@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['middleware' => 'auth:api'], function(){
+Route::group([], function(){
     Route::resource('post', 'PostController', [
         'names' => [
             'index' => 'post.index',
