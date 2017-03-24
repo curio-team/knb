@@ -32,6 +32,11 @@ class CreatePostTagsTable extends Migration
      */
     public function down()
     {
+        Schema::table('post_tags', function($table){
+            $table->dropForeign('post_tags_post_id_foreign');
+            $table->dropForeign('post_tags_tag_id_foreign');
+        });
+
         Schema::dropIfExists('post_tags');
     }
 }

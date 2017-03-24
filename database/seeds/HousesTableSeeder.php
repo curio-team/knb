@@ -15,7 +15,7 @@ class HousesTableSeeder extends Seeder {
             'description' => 'Storing fire in a structured way'
         ]);
         House::create([
-            'name' => 'FooBarbarions',
+            'name' => 'FooBarbarians',
             'description' => 'Placeholder barbarians'
         ]);
         House::create([

@@ -14,7 +14,8 @@ class PostsTableSeeder extends Seeder {
         {
             $posts[] = Post::create([
                 'title' => $faker->sentence . $index,
-                'content' => $faker->sentence
+                'content' => $faker->sentence,
+                'author_id' => rand(1, 50)
             ]);
         }
 
@@ -24,7 +25,8 @@ class PostsTableSeeder extends Seeder {
                 Post::create([
                     'title' => $faker->sentence . $index,
                     'content' => $faker->sentence,
-                    'post_id' => $post->id
+                    'post_id' => $post->id,
+                    'author_id' => rand(1, 50)
                 ]);
             }
         }

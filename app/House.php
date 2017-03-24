@@ -22,12 +22,18 @@ class House extends Model
     protected $table = 'houses';
 
     /**
-     * Get the members associated with the model.
+     * Get the member roles associated with the model.
      */
-    public function members()
+    public function memberRoles()
     {
-        return $this->belongsToMany('App\User', 'house_roles')
-            ->withPivot(['role_level', 'role_title'])
-            ->withTimestamps();
+        return $this->hasMany('App\HouseRole');
+    }
+
+    /**
+     * Get the headMaster associated with the model.
+     */
+    public function headmaster()
+    {
+        return $this->memberRoles()->where('role_level', self::ROLE_LEVEL_HEADMASTER);
     }
 }

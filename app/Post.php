@@ -14,6 +14,14 @@ class Post extends Model
     protected $table = 'posts';
 
     /**
+     * Get the author associated with the model.
+     */
+    public function author()
+    {
+        return $this->belongsTo('App\User', 'author_id');
+    }
+
+    /**
      * Get the parent post associated with the model.
      */
     public function parent()

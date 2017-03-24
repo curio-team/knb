@@ -39,11 +39,15 @@ class CreateHouseRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('house_roles');
-
         // Remove the users reference to their house
         Schema::table('users', function($table){
             $table->dropForeign('users_house_role_id_foreign');
         });
+
+        Schema::table('house_roles', function($table){
+            $table->dropForeign('house_roles_house_id_foreign');
+        });
+
+        Schema::dropIfExists('house_roles');
     }
 }
