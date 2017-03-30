@@ -15,6 +15,7 @@ require('./bootstrap');
 Vue.use(require('vue-resource'));
 
 Vue.component('posts', require('./components/posts.vue'));
+Vue.component('post', require('./components/post.vue'));
 
 const app = new Vue({
     el: '#app'

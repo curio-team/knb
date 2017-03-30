@@ -23,61 +23,58 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+
+        <nav class="nav has-shadow">
             <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                <div class="nav-left">
+                    <a href="" class="nav-item">
+                        <img src="{{ asset('img/logo.png') }}" alt="">
                     </a>
+                    <a class="nav-item is-tab is-hidden-mobile is-active">Home</a>
+                    <a class="nav-item is-tab is-hidden-mobile">About</a>
                 </div>
+    <span class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+                <div class="nav-right nav-menu">
+                    <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                    <a class="nav-item is-tab is-hidden-tablet">About</a>
+                    @if (Auth::guest())
+                        <a href="{{ route('login') }}" class="nav-item is-tab">login</a>
+                        <a href="{{ route('register') }}" class="nav-item is-tab">register</a>
+                    @else
+                        <a class="nav-item is-tab">
+                            <figure class="image is-16x16" style="margin-right: 8px;">
+                                <img src="http://bulma.io/images/jgthms.png">
+                            </figure>
+                            Profile
+                        </a>
+                        <a class="nav-item is-tab" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                            Logout
+                        </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
+                    @endif
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 </div>
             </div>
         </nav>
+
+        <section class="hero banner">
+            <div class="hero-body">
+                <div class="container">
+                    <img src="{{asset('img/logo.png')}}" class="is-pulled-right" alt="">
+                </div>
+            </div>
+        </section>
+
 
         @yield('content')
     </div>
