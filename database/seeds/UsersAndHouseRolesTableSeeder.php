@@ -12,17 +12,17 @@ class UsersAndHouseRolesTableSeeder extends Seeder {
 
         foreach(range(1, 50) as $index)
         {
-            $houseRole = HouseRole::create([
-                'house_id' =>rand(1, 4),
-                'role_title' => $faker->title,
-                'role_level' => rand(0, 100)
-            ]);
-
-            User::create([
+            $user = User::create([
                 'name' => $faker->firstName . ' (the ' . $index . 'st) ' . $faker->lastName,
                 'email' => $faker->email,
-                'house_role_id' => $houseRole->id,
                 'password' => 'secret'
+            ]);
+
+            $houseRole = HouseRole::create([
+                'user_id' => $user->id,
+                'house_id' => rand(1, 4),
+                'role_title' => $faker->title,
+                'role_level' => rand(0, 1) * 100
             ]);
         }
     }

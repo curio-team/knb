@@ -12101,7 +12101,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       edit: false,
@@ -12125,7 +12125,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   }
 
-};
+});
 
 /***/ }),
 /* 31 */
@@ -31670,7 +31670,7 @@ var Component = __webpack_require__(35)(
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\posts.vue"
+Component.options.__file = "D:\\Projects\\RadiusGamification\\knb\\knb\\resources\\assets\\js\\components\\posts.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] posts.vue: functional components are not supported with templates, they should use render functions.")}
 
