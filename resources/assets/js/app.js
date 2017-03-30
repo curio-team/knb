@@ -12,10 +12,8 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-Vue.component('questions', require('./components/questions.vue'));
-
-
+Vue.use(require('vue-resource'));
+Vue.component('posts', require('./components/posts.vue'));
 
 const app = new Vue({
     el: '#app'
