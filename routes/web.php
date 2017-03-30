@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/posts/:id', function($id){
+    return view('posts.show', ['id' => $id]);
+});

@@ -13,8 +13,10 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 Vue.use(require('vue-resource'));
+
 Vue.component('posts', require('./components/posts.vue'));
 
 const app = new Vue({
     el: '#app'
 });
+
