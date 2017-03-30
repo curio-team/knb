@@ -13,4 +13,4 @@
 ## running the application
 * php artisan serve in root/
 * npm run watch in root/
-    
+
