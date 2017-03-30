@@ -17,18 +17,13 @@ class CreateHouseRolesTable extends Migration
         Schema::create('house_roles', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('house_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('role_level')->unsigned();
             $table->string('role_title');
             $table->timestamps();
 
             $table->foreign('house_id')->references('id')->on('houses');
-        });
-
-        // Create the users reference to their house
-        Schema::table('users', function($table){
-            $table->integer('house_role_id')->unsigned();
-
-            $table->foreign('house_role_id')->references('id')->on('house_roles');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -39,13 +34,9 @@ class CreateHouseRolesTable extends Migration
      */
     public function down()
     {
-        // Remove the users reference to their house
-        Schema::table('users', function($table){
-            $table->dropForeign('users_house_role_id_foreign');
-        });
-
         Schema::table('house_roles', function($table){
             $table->dropForeign('house_roles_house_id_foreign');
+            $table->dropForeign('house_roles_user_id_foreign');
         });
 
         Schema::dropIfExists('house_roles');
