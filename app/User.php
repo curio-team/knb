@@ -27,4 +27,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Get the house role associated with the model.
+     */
+    public function houseRole()
+    {
+        return $this->hasOne('App\HouseRole', 'user_id');
+    }
+
 }
