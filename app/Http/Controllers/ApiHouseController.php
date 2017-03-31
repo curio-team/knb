@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+use App\House;
 
-class PostController extends Controller
+class ApiHouseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index')->with([
-            'posts' => Post::with('author')->where('post_id', NULL)->get()
-        ]);
+        return House::with('headmaster', 'headmaster.user')->get();
     }
 
     /**
@@ -48,9 +46,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts.show')->with([
-            'id' => $id
-        ]);
+        return House::with('memberRoles', 'memberRoles.user')->findOrFail($id);
     }
 
     /**

@@ -14,27 +14,26 @@ use Illuminate\Http\Request;
 */
 
 Route::group([], function(){
-    Route::resource('house', 'HouseController', [
+    Route::resource('house', 'ApiHouseController', [
         'names' => [
-            'index' => 'house.index',
-            'show' => 'house.show',
-            'create' => 'house.create',
-            'store' => 'house.store',
-            'edit' => 'house.edit',
-            'update' => 'house.update',
-            'destroy' => 'house.destroy',
+            'index' => 'api.house.index',
+            'show' => 'api.house.show',
+            'create' => 'api.house.create',
+            'store' => 'api.house.store',
+            'edit' => 'api.house.edit',
+            'update' => 'api.house.update',
+            'destroy' => 'api.house.destroy',
         ]
     ]);
-    Route::resource('post', 'PostController', [
+    Route::resource('post', 'ApiPostController', [
         'names' => [
-            'index' => 'post.index',
-            'show' => 'post.show',
-            'create' => 'post.create',
-            'store' => 'post.store',
-            'edit' => 'post.edit',
-            'update' => 'post.update',
-            'destroy' => 'post.destroy',
+            'index' => 'api.post.index',
+            'show' => 'api.post.show',
+            'create' => 'api.post.create',
+            'store' => 'api.post.store',
+            'edit' => 'api.post.edit',
+            'update' => 'api.post.update',
+            'destroy' => 'api.post.destroy',
         ]
     ]);
-
 });
