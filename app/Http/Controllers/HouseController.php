@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+use App\House;
 
-class PostController extends Controller
+class HouseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,15 +14,15 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index')->with([
-            'posts' => Post::with('author')->where('post_id', NULL)->get()
+        return view('houses.index')->with([
+            'houses' => House::with('headmaster', 'headmaster.user')->get()
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return mixed
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -48,7 +48,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts.show')->with([
+        return view('houses.show')->with([
             'id' => $id
         ]);
     }
