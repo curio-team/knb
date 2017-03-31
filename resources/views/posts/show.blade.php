@@ -1,7 +1,8 @@
 @extends('layouts/app')
 
 @section('content')
-
-<post v-bind:post_id={{$id}}></post>
+<div class="container main-content">
+    <post v-bind:post_id={{$id}}></post>
+</div>
 
 @endsection
