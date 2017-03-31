@@ -35,33 +35,18 @@
 
 <script>
   export default {
-    data: function() {
+    data() {
       return {
-        edit: false,
         list: [],
-        post: {
-          id: "",
-          body: ""
-        }
       }
     },
 
-    mounted: function() {
-      this.fetchPosts();
-    },
-
-    methods : {
-      fetchPosts : function() {
-        this.$http.get('api/post').then(function(res){
-          this.list = res.data;
-        })
-      }
+    created() {
+        axios.get('api/post')
+                .then(response => this.list = response.data)
     }
 
-
   }
-
-
 </script>
 
 

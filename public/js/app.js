@@ -12131,27 +12131,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = {
   data: function data() {
     return {
-      edit: false,
-      list: [],
-      post: {
-        id: "",
-        body: ""
-      }
+      list: []
     };
   },
+  created: function created() {
+    var _this = this;
 
-  mounted: function mounted() {
-    this.fetchPosts();
-  },
-
-  methods: {
-    fetchPosts: function fetchPosts() {
-      this.$http.get('api/post').then(function (res) {
-        this.list = res.data;
-      });
-    }
+    axios.get('api/post').then(function (response) {
+      return _this.list = response.data;
+    });
   }
-
 };
 
 /***/ }),
@@ -42819,19 +42808,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         };
     },
+    created: function created() {
+        var _this = this;
 
-    mounted: function mounted() {
-        this.fetchHouses();
-    },
-
-    methods: {
-        fetchHouses: function fetchHouses() {
-            this.$http.get('api/house').then(function (res) {
-                this.houses = res.data;
-            });
-        }
+        axios.get('api/house').then(function (response) {
+            return _this.houses = response.data;
+        });
     }
-
 };
 
 /***/ }),

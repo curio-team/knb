@@ -26,7 +26,7 @@
 
 <script>
     export default {
-        data: function()
+        data()
         {
             return {
                 houses: [],
@@ -37,20 +37,9 @@
             }
         },
 
-        mounted: function()
-        {
-            this.fetchHouses();
-        },
-
-        methods :
-        {
-            fetchHouses: function()
-            {
-                this.$http.get('api/house').then(function(res){
-                   this.houses = res.data;
-                });
-            }
+        created() {
+            axios.get('api/house')
+                    .then(response => this.houses = response.data)
         }
-
     }
 </script>
