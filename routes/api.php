@@ -36,4 +36,5 @@ Route::group([], function(){
             'destroy' => 'post.destroy',
         ]
     ]);
+
 });

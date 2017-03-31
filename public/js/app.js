@@ -11233,6 +11233,7 @@ Vue.use(__webpack_require__(37));
 
 Vue.component('posts', __webpack_require__(34));
 Vue.component('post', __webpack_require__(47));
+Vue.component('house-rankings', __webpack_require__(50));
 
 var app = new Vue({
   el: '#app'
@@ -42724,51 +42725,13 @@ module.exports = __webpack_require__(11);
 /* 43 */,
 /* 44 */,
 /* 45 */,
-/* 46 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = {
-    data: function data() {
-        return {
-
-            comments: [],
-            post: {
-                id: "",
-                body: ""
-            }
-        };
-    },
-
-    mounted: function mounted() {
-        this.fetchPosts();
-    },
-
-    methods: {
-        fetchPost: function fetchPost() {
-            this.$http.get('api/post').then(function (res) {
-                this.list = res.data;
-            });
-        }
-    }
-
-};
-
-/***/ }),
+/* 46 */,
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(35)(
   /* script */
-  __webpack_require__(46),
+  null,
   /* template */
   __webpack_require__(48),
   /* scopeId */
@@ -42810,6 +42773,121 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-3d369d87", module.exports)
+  }
+}
+
+/***/ }),
+/* 49 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        return {
+            houses: [],
+            house: {
+                id: "",
+                points: ""
+            }
+        };
+    },
+
+    mounted: function mounted() {
+        this.fetchHouses();
+    },
+
+    methods: {
+        fetchHouses: function fetchHouses() {
+            this.$http.get('api/house').then(function (res) {
+                this.houses = res.data;
+            });
+        }
+    }
+
+};
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(35)(
+  /* script */
+  __webpack_require__(49),
+  /* template */
+  __webpack_require__(51),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\house-rankings.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] house-rankings.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5c28379e", Component.options)
+  } else {
+    hotAPI.reload("data-v-5c28379e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "content top-ranking"
+  }, [_c('table', {
+    staticClass: "table"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.houses), function(house) {
+    return _c('tr', [_c('td', [_vm._v(" " + _vm._s(house.id) + " ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(house.name) + " ")]), _vm._v(" "), _c('td', [_vm._v(" 167 ")])])
+  }))]), _vm._v(" "), _c('a', [_vm._v(" more statistics ")])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th', [_vm._v(" Pos ")]), _vm._v(" "), _c('th', [_vm._v(" House ")]), _vm._v(" "), _c('th', [_vm._v(" Points ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5c28379e", module.exports)
   }
 }
 
