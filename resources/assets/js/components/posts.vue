@@ -2,8 +2,8 @@
   <div class="content">
     <h1> Forum </h1>
     <div class="posts" >
-        <div class="box" v-for="post in list">
-          <article class="media" >
+        <div class="box box-post" v-for="post in list">
+          <article v-on:click="toRoute(post.id)" class="media" >
 
             <figure class="media-left">
               <p class="image is-64x64">
@@ -44,6 +44,15 @@
     created() {
         axios.get('api/post')
                 .then(response => this.list = response.data)
+    },
+
+    methods : {
+
+
+        toRoute: function(param)
+        {
+            location.href = 'post/' + param;
+        }
     }
 
   }

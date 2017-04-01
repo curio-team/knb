@@ -11285,11 +11285,18 @@ __webpack_require__(34);
 Vue.use(__webpack_require__(43));
 
 Vue.component('posts', __webpack_require__(39));
+
 Vue.component('post', __webpack_require__(38));
+
+Vue.component('create-post-form', __webpack_require__(52));
+
 Vue.component('house-rankings', __webpack_require__(37));
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    imgPath: "http://localhost:8000/img/"
+  }
 });
 
 /***/ }),
@@ -12282,7 +12289,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
 
@@ -12358,7 +12364,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     axios.get('api/post').then(function (response) {
       return _this.list = response.data;
     });
+  },
+
+
+  methods: {
+
+    toRoute: function toRoute(param) {
+      location.href = 'post/' + param;
+    }
   }
+
 };
 
 /***/ }),
@@ -32000,52 +32015,57 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "content"
   }, [_c('article', {
-    staticClass: "media"
+    staticClass: "media "
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "media-content"
   }, [_c('div', {
-    staticClass: "content"
+    staticClass: "content  media-post"
   }, [_c('p', [_c('strong', [_vm._v(_vm._s(_vm.post.author.name))])]), _vm._v(" "), _c('h4', {
     staticClass: "title is-4"
-  }, [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.post.content))])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)])]), _vm._v(" "), _vm._m(3)])
+  }, [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.post.content) + "\n                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolores eos eum harum in ipsa odio provident tempora veniam voluptatum! Accusantium, dolore doloremque eius et libero nisi nobis possimus sed.\n                ")])]), _vm._v(" "), _c('h2', {
+    staticClass: "is-2"
+  }, [_vm._v(_vm._s(_vm.replies.length) + " Answers")]), _vm._v(" "), _vm._l((_vm.replies), function(reply, index) {
+    return _c('article', {
+      staticClass: "media"
+    }, [(index == 0) ? _c('figure', {
+      staticClass: "media-type media-accepted media-left"
+    }, [_c('img', {
+      attrs: {
+        "src": "/img/icons/accepted.png",
+        "alt": ""
+      }
+    })]) : _c('figure', {
+      staticClass: "media-type media-answer media-left"
+    }, [_c('img', {
+      attrs: {
+        "src": "/img/icons/answer.png",
+        "alt": ""
+      }
+    })]), _vm._v(" "), _c('div', {
+      staticClass: "media-content"
+    }, [_c('div', {
+      staticClass: "content media-post"
+    }, [_c('p', [_c('strong', [_vm._v(_vm._s(reply.author.name))])]), _vm._v(" "), _c('p', [_vm._v("\n                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam asperiores at corporis distinctio eaque eum eveniet, inventore ipsam iusto molestiae nobis porro praesentium quia tempore temporibus vero voluptatibus voluptatum.\n                            " + _vm._s(reply.author.content) + "\n                        ")]), _vm._v(" "), _c('h3', {
+      staticClass: "is-3"
+    }, [_vm._v("2 comments")]), _vm._v(" "), _c('article', {
+      staticClass: "media"
+    }, [_c('div', {
+      staticClass: "content media-post-comment"
+    }, [_c('strong', [_vm._v(_vm._s(reply.author.name) + ":  ")]), _vm._v(" "), _c('p', [_vm._v("Vivamus quis semper metus, non tincidunt dolor. Vivamus in mi eu lorem cursus ullamcorper sit amet nec massa.\n                                ")])])]), _vm._v(" "), _c('article', {
+      staticClass: "media"
+    }, [_c('div', {
+      staticClass: "content media-post-comment"
+    }, [_c('strong', [_vm._v(_vm._s(reply.author.name))]), _vm._v(" "), _c('p', [_vm._v("\n                                    Morbi vitae diam et purus tincidunt porttitor vel vitae augue. Praesent malesuada metus sed pharetra euismod. Cras tellus odio, tincidunt iaculis diam non, porta aliquet tortor.\n                                ")])])])])])])
+  })], 2)]), _vm._v(" "), _vm._m(1)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('figure', {
-    staticClass: "media-left"
-  }, [_c('div', {
-    staticClass: "post-type post-type-question"
-  }, [_vm._v("\n                question\n            ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('article', {
-    staticClass: "media"
-  }, [_c('figure', {
-    staticClass: "media-left"
-  }, [_c('div', {
-    staticClass: "post-type post-type-answer"
-  }, [_vm._v("\n                        answer\n                    ")])]), _vm._v(" "), _c('div', {
-    staticClass: "media-content"
-  }, [_c('div', {
-    staticClass: "content"
-  }, [_c('p', [_c('strong', [_vm._v("Sean Brown")]), _vm._v(" "), _c('br'), _vm._v("\n                            Donec sollicitudin urna eget eros malesuada sagittis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam blandit nisl a nulla sagittis, a lobortis leo feugiat.\n                            "), _c('br'), _vm._v(" "), _c('small', [_c('a', [_vm._v("Like")]), _vm._v(" · "), _c('a', [_vm._v("Reply")]), _vm._v(" · 2 hrs")])])]), _vm._v(" "), _c('article', {
-    staticClass: "media"
-  }, [_vm._v("\n                        Vivamus quis semper metus, non tincidunt dolor. Vivamus in mi eu lorem cursus ullamcorper sit amet nec massa.\n                    ")]), _vm._v(" "), _c('article', {
-    staticClass: "media"
-  }, [_vm._v("\n                        Morbi vitae diam et purus tincidunt porttitor vel vitae augue. Praesent malesuada metus sed pharetra euismod. Cras tellus odio, tincidunt iaculis diam non, porta aliquet tortor.\n                    ")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('article', {
-    staticClass: "media"
-  }, [_c('figure', {
-    staticClass: "media-left"
-  }, [_c('p', {
-    staticClass: "image is-48x48"
+    staticClass: "media-type media-left media-question"
   }, [_c('img', {
     attrs: {
-      "src": "http://bulma.io/images/placeholders/96x96.png"
+      "src": "/img/icons/question.png",
+      "alt": ""
     }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "media-content"
-  }, [_c('div', {
-    staticClass: "content"
-  }, [_c('p', [_c('strong', [_vm._v("Kayli Eunice ")]), _vm._v(" "), _c('br'), _vm._v("\n                            Sed convallis scelerisque mauris, non pulvinar nunc mattis vel. Maecenas varius felis sit amet magna vestibulum euismod malesuada cursus libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus lacinia non nisl id feugiat.\n                            "), _c('br'), _vm._v(" "), _c('small', [_c('a', [_vm._v("Like")]), _vm._v(" · "), _c('a', [_vm._v("Reply")]), _vm._v(" · 2 hrs")])])])])])
+  })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('article', {
     staticClass: "media"
@@ -32118,9 +32138,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "posts"
   }, _vm._l((_vm.list), function(post) {
     return _c('div', {
-      staticClass: "box"
+      staticClass: "box box-post"
     }, [_c('article', {
-      staticClass: "media"
+      staticClass: "media",
+      on: {
+        "click": function($event) {
+          _vm.toRoute(post.id)
+        }
+      }
     }, [_vm._m(0, true), _vm._v(" "), _c('div', {
       staticClass: "media-content"
     }, [_c('div', {
@@ -43056,6 +43081,78 @@ module.exports = function(module) {
 __webpack_require__(11);
 module.exports = __webpack_require__(12);
 
+
+/***/ }),
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(53),
+  /* template */
+  __webpack_require__(54),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\create-post.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] create-post.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-23eda08c", Component.options)
+  } else {
+    hotAPI.reload("data-v-23eda08c", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: {
+        title: "",
+        content: ""
+    },
+
+    created: function created() {}
+};
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c("div")
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-23eda08c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

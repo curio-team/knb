@@ -4,6 +4,7 @@
     <div class="container main-content">
         <div class="columns">
             <div class="column is-three-quarters">
+                <a href="{{route('post.create')}}" class="button ask-question is-pulled-right is-primary">Ask question</a>
                 <posts></posts>
             </div>
 

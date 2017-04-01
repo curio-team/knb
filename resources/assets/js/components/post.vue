@@ -1,65 +1,64 @@
 <template>
     <div class="content">
-        <article class="media">
-            <figure class="media-left">
-                <div class="post-type post-type-question">
-                    question
-                </div>
+        <article class="media ">
+            <figure class="media-type media-left media-question">
+                <img src="/img/icons/question.png" alt="">
             </figure>
             <div class="media-content">
-                <div class="content">
+                <div class="content  media-post">
                     <p>
                         <strong>{{post.author.name}}</strong>
                     </p>
                     <h4 class="title is-4">{{post.title}}</h4>
-                    <p>{{post.content}}</p>
+                    <p>{{post.content}}
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolores eos eum harum in ipsa odio provident tempora veniam voluptatum! Accusantium, dolore doloremque eius et libero nisi nobis possimus sed.
+                    </p>
                 </div>
-
-                <article class="media">
-                    <figure class="media-left">
-                        <div class="post-type post-type-answer">
-                            answer
-                        </div>
+                <h2 class="is-2">{{replies.length}} Answers</h2>
+                <article v-for="(reply, index) in replies" class="media">
+                    <figure v-if="index == 0" class="media-type media-accepted media-left">
+                        <img src="/img/icons/accepted.png" alt="">
+                    </figure>
+                    <figure v-else class="media-type media-answer media-left">
+                        <img src="/img/icons/answer.png" alt="">
                     </figure>
                     <div class="media-content">
-                        <div class="content">
+                        <div class="content media-post">
                             <p>
-                                <strong>Sean Brown</strong>
-                                <br>
-                                Donec sollicitudin urna eget eros malesuada sagittis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam blandit nisl a nulla sagittis, a lobortis leo feugiat.
-                                <br>
-                                <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+                                <strong>{{reply.author.name}}</strong>
                             </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam asperiores at corporis distinctio eaque eum eveniet, inventore ipsam iusto molestiae nobis porro praesentium quia tempore temporibus vero voluptatibus voluptatum.
+                                {{reply.author.content}}
+                            </p>
+
+                            <h3 class="is-3">2 comments</h3>
+
+                            <article class="media">
+                                <div class="content media-post-comment">
+                                    <strong>{{reply.author.name}}:  </strong>
+
+                                    <p>Vivamus quis semper metus, non tincidunt dolor. Vivamus in mi eu lorem cursus ullamcorper sit amet nec massa.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="media">
+                                <div class="content media-post-comment">
+                                    <strong>{{reply.author.name}}</strong>
+                                    <p>
+                                        Morbi vitae diam et purus tincidunt porttitor vel vitae augue. Praesent malesuada metus sed pharetra euismod. Cras tellus odio, tincidunt iaculis diam non, porta aliquet tortor.
+                                    </p>
+                                </div>
+                            </article>
+
                         </div>
 
-                        <article class="media">
-                            Vivamus quis semper metus, non tincidunt dolor. Vivamus in mi eu lorem cursus ullamcorper sit amet nec massa.
-                        </article>
 
-                        <article class="media">
-                            Morbi vitae diam et purus tincidunt porttitor vel vitae augue. Praesent malesuada metus sed pharetra euismod. Cras tellus odio, tincidunt iaculis diam non, porta aliquet tortor.
-                        </article>
                     </div>
                 </article>
 
-                <article class="media">
-                    <figure class="media-left">
-                        <p class="image is-48x48">
-                            <img src="http://bulma.io/images/placeholders/96x96.png">
-                        </p>
-                    </figure>
-                    <div class="media-content">
-                        <div class="content">
-                            <p>
-                                <strong>Kayli Eunice </strong>
-                                <br>
-                                Sed convallis scelerisque mauris, non pulvinar nunc mattis vel. Maecenas varius felis sit amet magna vestibulum euismod malesuada cursus libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus lacinia non nisl id feugiat.
-                                <br>
-                                <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
-                            </p>
-                        </div>
-                    </div>
-                </article>
+
             </div>
         </article>
         <article class="media">
