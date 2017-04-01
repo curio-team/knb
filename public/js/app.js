@@ -43129,6 +43129,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data: {
@@ -43144,8 +43177,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c("div")
-},staticRenderFns: []}
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "content"
+  }, [_c('div', {
+    staticClass: "columns"
+  }, [_c('div', {
+    staticClass: "column is-offset-two-thirds is-one-third panel is-pulled-right"
+  }, [_c('p', {
+    staticClass: "panel-heading"
+  }, [_vm._v("\n        How to ask questions!\n    ")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_vm._v("\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores at enim facilis nobis velit! Ab asperiores autem, dignissimos facere fugit ipsam ipsum itaque iusto, quae quibusdam quidem rem saepe! Cupiditate!\n    ")])])]), _vm._v(" "), _c('form', {
+    attrs: {
+      "action": ""
+    }
+  }, [_c('div', {
+    staticClass: "field"
+  }, [_c('label', {
+    staticClass: "label"
+  }, [_vm._v("Title")]), _vm._v(" "), _c('p', {
+    staticClass: "control"
+  }, [_c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "placeholder": "Please be specific about your question"
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('label', {
+    staticClass: "label"
+  }, [_vm._v("Question")]), _vm._v(" "), _c('textarea', {
+    staticClass: "textarea",
+    attrs: {
+      "name": "",
+      "id": "",
+      "cols": "30",
+      "rows": "10"
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "field is-grouped"
+  }, [_c('p', {
+    staticClass: "control"
+  }, [_c('button', {
+    staticClass: "button is-primary"
+  }, [_vm._v("Submit")])]), _vm._v(" "), _c('p', {
+    staticClass: "control"
+  }, [_c('button', {
+    staticClass: "button is-link"
+  }, [_vm._v("cancel")])])])])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
