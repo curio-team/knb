@@ -11,6 +11,15 @@ window.$ = window.jQuery = require('jquery');
 
 require('bootstrap-sass');
 
+/*
+    Load up tinymce
+ */
+import tinymce from 'tinymce/tinymce';
+import 'tinymce/themes/modern/theme';
+
+
+
+
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -25,12 +34,12 @@ window.Vue = require('vue');
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
-window.axios.defaults.baseURL = "http://localhost:8000";
-window.axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest'
-};
+//window.axios = require('axios');
+//window.axios.defaults.baseURL = "http://localhost:8000";
+//window.axios.defaults.headers.common = {
+//    'X-CSRF-TOKEN': window.Laravel.csrfToken,
+//    'X-Requested-With': 'XMLHttpRequest'
+//};
 
 
 

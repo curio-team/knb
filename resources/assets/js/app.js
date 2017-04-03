@@ -7,26 +7,14 @@
 
 require('./bootstrap');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-Vue.use(require('vue-resource'));
 
-Vue.component('posts', require('./components/posts.vue'));
+// boot up tinymce
+$('document').ready(function(){
 
-Vue.component('post', require('./components/post.vue'));
+    tinymce.init({
+        selector: ".tinymce",
+        themes: "modern",
 
-Vue.component('create-post-form', require('./components/create-post.vue'));
-
-Vue.component('house-rankings', require('./components/house-rankings.vue'));
-
-
-const app = new Vue({
-    el: '#app',
-    data: {
-        imgPath: "http://localhost:8000/img/"
-    }
+    });
 });
 

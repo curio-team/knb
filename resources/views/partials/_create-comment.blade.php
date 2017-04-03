@@ -1,7 +1,19 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Fedde
- * Date: 3-4-2017
- * Time: 22:15
- */
+<article class="media">
+    <figure class="media-left">
+        <p class="image is-64x64">
+            <img src="http://bulma.io/images/placeholders/128x128.png">
+        </p>
+    </figure>
+    <div class="media-content">
+        <div class="field">
+            <p class="control">
+                <textarea class="textarea" placeholder="Add a comment..."></textarea>
+            </p>
+        </div>
+        <div class="field">
+            <p class="control">
+                <button class="button">Post comment</button>
+            </p>
+        </div>
+    </div>
+</article>
