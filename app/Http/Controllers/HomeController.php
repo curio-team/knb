@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $posts = \App\Post::with('author')->where('post_id', NULL)->get();
+
+        return view('home', compact('posts'));
     }
 }

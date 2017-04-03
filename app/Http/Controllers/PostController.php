@@ -48,8 +48,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        $postDetails = ['author', 'author.houseRole', 'author.houseRole.house'];
+
         return view('posts.show')->with([
-            'id' => $id
+            'post' => Post::with($postDetails)->findOrFail($id),
+            'replies' => Post::with($postDetails)->where('post_id', $id)->get()
         ]);
     }
 

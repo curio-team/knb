@@ -21,8 +21,13 @@ body {
 }
 
 .box-post {
+
+  a {
+    color: inherit;
+  }
+
   transition: .2s;
-  cursor: pointer;
+
   &:hover {
     background: #efefef;
   }

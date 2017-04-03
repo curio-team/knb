@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // global sidebar values for each page.
+
+        $houses = \App\House::all();
+        \View::share('houses', $houses);
     }
 
     /**
