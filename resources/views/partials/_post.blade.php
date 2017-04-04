@@ -21,19 +21,20 @@
                         @include('partials/_create-comment')
                     </div>
                     <h3 class="is-3">{{count($post->comments)}} comments</h3>
+                    <div class="comment-box">
+                        @foreach($post->comments as $comment)
+                        <article class="media">
+                            <div class="content media-post-comment">
+                                <strong>{{$comment->author->name}}</strong>
 
-                    @foreach($post->comments as $comment)
-                    <article class="media">
-                        <div class="content media-post-comment">
-                            <strong>{{$comment->author->name}}</strong>
-
-                            <p>{{$comment->content}}</p>
-                        </div>
-                    </article>
-                    @endforeach
+                                <p>{!! nl2br($comment->content) !!}</p>
+                            </div>
+                        </article>
+                        @endforeach
+                    </div>
                 </div>
                 <h2 class="is-2">{{count($replies)}} Answers</h2>
-                @foreach($replies as $reply)
+                @foreach($replies as $post)
                 <article class="media">
                     @if ($loop->first)
                     <figure class="media-type media-accepted media-left">
@@ -47,10 +48,10 @@
                     <div class="media-content">
                         <div class="content media-post">
                             <p>
-                                <strong>{{$reply->author->name}}</strong>
+                                <strong>{{$post->author->name}}</strong>
                             </p>
                             <p>
-                               {!! $reply->content !!}
+                               {!! $post->content !!}
                             </p>
                             <div class="button-group">
                                 <a href="" class="btn-add-comment button is-primary">Add comment</a>
@@ -59,18 +60,18 @@
                             <div class="form-comment-hidden">
                                 @include('partials/_create-comment')
                             </div>
-                            <h3 class="is-3">{{count($reply->comments)}} comments</h3>
+                            <h3 class="is-3">{{count($post->comments)}} comments</h3>
+                            <div class="comment-box">
+                                @foreach($post->comments as $comment)
+                                    <article class="media">
+                                        <div class="content media-post-comment">
+                                            <strong>{{$comment->author->name}}</strong>
 
-                            @foreach($reply->comments as $comment)
-                                <article class="media">
-                                    <div class="content media-post-comment">
-                                        <strong>{{$comment->author->name}}</strong>
-
-                                        <p>{{$comment->content}}</p>
-                                    </div>
-                                </article>
-                            @endforeach
-
+                                            <p>{!! nl2br($comment->content) !!}</p>
+                                        </div>
+                                    </article>
+                                @endforeach
+                            </div>
 
 
                         </div>

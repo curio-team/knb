@@ -6,7 +6,7 @@
  */
 
 require('./bootstrap');
-
+window.Laravel.apiUrl = 'http://localhost:8000/api/';
 
 // boot up tinymce
 $('document').ready(function(){
@@ -24,6 +24,10 @@ $('document').ready(function(){
         $(this).parent().parent().find('.form-comment-hidden').toggle('fast');
 
     });
+
+
+
+
 
 });
 

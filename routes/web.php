@@ -46,6 +46,18 @@ Route::group(['middleware' => 'auth'], function(){
         ]
     ]);
 
+    Route::resource('comment', 'CommentController', [
+        'names' => [
+            'index' => 'comment.index',
+            'show' => 'comment.show',
+            'create' => 'comment.create',
+            'store' => 'comment.store',
+            'edit' => 'comment.edit',
+            'update' => 'comment.update',
+            'destroy' => 'comment.destroy',
+        ]
+    ]);
+
 });
 
 

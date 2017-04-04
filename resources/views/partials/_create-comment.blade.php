@@ -5,7 +5,10 @@
         </p>
     </figure>
     <div class="media-content">
-        <form action="">
+        <form method="post" action="{{action('CommentController@store')}}" id="comment-form">
+
+            {{csrf_field()}}
+            <input type="hidden" name="post_id" value="{{$post->id}}">
         <div class="field">
             <p class="control">
                 <textarea class="textarea" name="content" placeholder="Add a comment..."></textarea>
@@ -13,7 +16,7 @@
         </div>
         <div class="field">
             <p class="control">
-                <button type="submit" class="button">Post comment</button>
+                <button type="submit" class="button add-comment">Post comment</button>
             </p>
         </div>
         </form>

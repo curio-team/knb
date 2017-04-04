@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class ApiCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,20 +34,6 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'post_id' => 'required|exists:posts,id',
-            'content' => 'required|max:2000',
-        ]);
-
-        $comment = new \App\Comment();
-
-        $comment->author_id = \Auth::user()->id;
-        $comment->post_id = $request->post_id;
-        $comment->content = $request->content;
-        $comment->save();
-
-
-        return back();
 
     }
 

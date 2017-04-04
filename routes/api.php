@@ -36,4 +36,18 @@ Route::group([], function(){
             'destroy' => 'api.post.destroy',
         ]
     ]);
+
+    Route::resource('comment', 'ApiCommentController', [
+        'names' => [
+            'index' => 'api.comment.index',
+            'show' => 'api.comment.show',
+            'create' => 'api.comment.create',
+            'store' => 'api.comment.store',
+            'edit' => 'api.comment.edit',
+            'update' => 'api.comment.update',
+            'destroy' => 'api.comment.destroy',
+        ]
+    ]);
+
+
 });

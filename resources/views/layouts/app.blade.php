@@ -29,7 +29,7 @@
             <div class="container">
                 <div class="nav-left">
                     <a href="" class="nav-item">
-                        <img src="{{ asset('img/logo.png') }}" alt="">
+                        <img src="{{ asset('img/rc-fc.png') }}" alt="">
                     </a>
                     <a href="{{action('HomeController@index')}}" class="nav-item is-tab is-hidden-mobile is-active">Forum</a>
                     <a class="nav-item is-tab is-hidden-mobile">About</a>

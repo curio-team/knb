@@ -58,3 +58,9 @@ window.Vue = require('vue');
 //     key: 'your-pusher-key'
 // });
 
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': Laravel.csrftoken
+    }
+});
