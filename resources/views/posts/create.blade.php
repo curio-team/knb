@@ -15,16 +15,17 @@
                     </div>
                 </div>
             </div>
-            <form action="">
+            <form method="post" action="{{action('PostController@store')}}">
+                {{csrf_field()}}
                 <div class="field">
                     <label class="label">Title</label>
                     <p class="control">
-                        <input type="text" placeholder="Please be specific about your question" class="input">
+                        <input type="text" placeholder="Please be specific about your question" class="input" name="title">
                     </p>
                 </div>
                 <div class="field">
                     <label class="label">Question</label>
-                    <textarea name="" id="" cols="30" rows="10" class="textarea tinymce"></textarea>
+                    <textarea name="content" id="" cols="30" rows="10" class="textarea tinymce"></textarea>
                 </div>
                 <div class="field is-grouped">
                     <p class="control">

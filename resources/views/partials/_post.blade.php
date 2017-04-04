@@ -1,4 +1,5 @@
-    <div class="content">
+
+<div class="content">
         <article class="media ">
             <figure class="media-type media-left media-question">
                 <img src="{{asset('img/icons/question.png')}}" alt="">
@@ -9,12 +10,27 @@
                         <strong>{{$post->author->name}}</strong>
                     </p>
                     <h4 class="title is-4">{{$post->title}}</h4>
-                    <p>{{$post->content}}
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolores eos eum harum in ipsa odio provident tempora veniam voluptatum! Accusantium, dolore doloremque eius et libero nisi nobis possimus sed.
+                    <p>{!! $post->content !!}
                     </p>
-                    <a href="" class="button is-info">Give answer</a>
-                    <a href="" class="button is-primary">Add comment</a>
-                    
+                    <div class="button-group">
+                        <a href="{{action('PostController@answer', $post->id)}}" class="button is-info">Give answer</a>
+                        <a href="" class="btn-add-comment button is-primary">Add comment</a>
+                        @include('partials.minis._vote-group')
+                    </div>
+                    <div class="form-comment-hidden">
+                        @include('partials/_create-comment')
+                    </div>
+                    <h3 class="is-3">{{count($post->comments)}} comments</h3>
+
+                    @foreach($post->comments as $comment)
+                    <article class="media">
+                        <div class="content media-post-comment">
+                            <strong>{{$comment->author->name}}</strong>
+
+                            <p>{{$comment->content}}</p>
+                        </div>
+                    </article>
+                    @endforeach
                 </div>
                 <h2 class="is-2">{{count($replies)}} Answers</h2>
                 @foreach($replies as $reply)
@@ -34,30 +50,28 @@
                                 <strong>{{$reply->author->name}}</strong>
                             </p>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam asperiores at corporis distinctio eaque eum eveniet, inventore ipsam iusto molestiae nobis porro praesentium quia tempore temporibus vero voluptatibus voluptatum.
-                                {{$reply->author->content}}
+                               {!! $reply->content !!}
                             </p>
-                            <a href="" class="button is-primary">Add comment</a>
+                            <div class="button-group">
+                                <a href="" class="btn-add-comment button is-primary">Add comment</a>
+                                @include('partials.minis._vote-group')
+                            </div>
+                            <div class="form-comment-hidden">
+                                @include('partials/_create-comment')
+                            </div>
+                            <h3 class="is-3">{{count($reply->comments)}} comments</h3>
 
-                            <h3 class="is-3">2 comments</h3>
+                            @foreach($reply->comments as $comment)
+                                <article class="media">
+                                    <div class="content media-post-comment">
+                                        <strong>{{$comment->author->name}}</strong>
 
-                            <article class="media">
-                                <div class="content media-post-comment">
-                                    <strong>{{$reply->author->name}}:  </strong>
+                                        <p>{{$comment->content}}</p>
+                                    </div>
+                                </article>
+                            @endforeach
 
-                                    <p>Vivamus quis semper metus, non tincidunt dolor. Vivamus in mi eu lorem cursus ullamcorper sit amet nec massa.
-                                    </p>
-                                </div>
-                            </article>
 
-                            <article class="media">
-                                <div class="content media-post-comment">
-                                    <strong>{{$reply->author->name}}</strong>
-                                    <p>
-                                        Morbi vitae diam et purus tincidunt porttitor vel vitae augue. Praesent malesuada metus sed pharetra euismod. Cras tellus odio, tincidunt iaculis diam non, porta aliquet tortor.
-                                    </p>
-                                </div>
-                            </article>
 
                         </div>
 
@@ -68,5 +82,4 @@
 
             </div>
         </article>
-        @include('partials/_create-comment')
     </div>

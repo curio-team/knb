@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Scripts -->
     <script src=""></script>
     <script>
@@ -31,7 +31,7 @@
                     <a href="" class="nav-item">
                         <img src="{{ asset('img/logo.png') }}" alt="">
                     </a>
-                    <a class="nav-item is-tab is-hidden-mobile is-active">Home</a>
+                    <a href="{{action('HomeController@index')}}" class="nav-item is-tab is-hidden-mobile is-active">Forum</a>
                     <a class="nav-item is-tab is-hidden-mobile">About</a>
                 </div>
     <span class="nav-toggle">

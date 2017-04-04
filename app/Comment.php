@@ -20,4 +20,9 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Post', 'post_id');
     }
+
+    public function author()
+    {
+        return $this->belongsTo('App\User', 'author_id');
+    }
 }

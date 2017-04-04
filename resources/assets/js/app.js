@@ -14,7 +14,16 @@ $('document').ready(function(){
     tinymce.init({
         selector: ".tinymce",
         themes: "modern",
+    });
+
+
+    // event handlers
+    $(".btn-add-comment").on('click', function(e){
+
+        e.preventDefault();
+        $(this).parent().parent().find('.form-comment-hidden').toggle('fast');
 
     });
+
 });
 

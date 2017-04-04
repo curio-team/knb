@@ -5,15 +5,17 @@
         </p>
     </figure>
     <div class="media-content">
+        <form action="">
         <div class="field">
             <p class="control">
-                <textarea class="textarea" placeholder="Add a comment..."></textarea>
+                <textarea class="textarea" name="content" placeholder="Add a comment..."></textarea>
             </p>
         </div>
         <div class="field">
             <p class="control">
-                <button class="button">Post comment</button>
+                <button type="submit" class="button">Post comment</button>
             </p>
         </div>
+        </form>
     </div>
 </article>

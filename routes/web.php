@@ -31,6 +31,9 @@ Route::group(['middleware' => 'auth'], function(){
             'destroy' => 'house.destroy',
         ]
     ]);
+
+    Route::get('post/{id}/answer', 'PostController@answer')->name('answer');
+
     Route::resource('post', 'PostController', [
         'names' => [
             'index' => 'post.index',

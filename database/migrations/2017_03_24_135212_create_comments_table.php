@@ -17,9 +17,11 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->text('content');
             $table->integer('post_id')->unsigned();
+            $table->integer('author_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('author_id')->references('id')->on('users');
         });
     }
 
@@ -32,6 +34,7 @@ class CreateCommentsTable extends Migration
     {
         Schema::table('comments', function($table){
             $table->dropForeign('comments_post_id_foreign');
+            $table->dropForeign('comments_author_id_foreign');
         });
 
         Schema::dropIfExists('comments');

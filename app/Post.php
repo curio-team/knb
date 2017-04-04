@@ -13,6 +13,8 @@ class Post extends Model
      */
     protected $table = 'posts';
 
+
+
     /**
      * Get the author associated with the model.
      */
@@ -35,5 +37,13 @@ class Post extends Model
     public function children()
     {
         return $this->hasMany('App\Post', 'post_id');
+    }
+
+    /**
+     * Get the comment posts associated with the model.
+     */
+    public function comments()
+    {
+        return $this->hasMany('\App\Comment');
     }
 }

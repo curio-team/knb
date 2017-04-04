@@ -82,3 +82,38 @@ body {
   }
 }
 
+.form-comment-hidden
+{
+  display: none;
+}
+
+
+
+
+/*
+  icons styling
+*/
+
+.button-group {
+  padding: 20px 20px 20px 0px;
+
+}
+
+.vote-group {
+  margin-top: -15px;
+  display: flex;
+  flex-direction: column;
+  .fa {
+    cursor: pointer;
+
+  }
+}
+
+.fa-arrow-down
+{
+  color: red;
+}
+
+.fa-arrow-up {
+  color: green;
+}

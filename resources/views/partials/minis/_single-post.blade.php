@@ -9,10 +9,11 @@
                     <strong>{{$post->author->name}}</strong>
                 </p>
                 <h4 class="title is-4">{{$post->title}}</h4>
-                <p>{{$post->content}}
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolores eos eum harum in ipsa odio provident tempora veniam voluptatum! Accusantium, dolore doloremque eius et libero nisi nobis possimus sed.
+                <p>{!! $post->content !!}
+
                 </p>
             </div>
         </div>
     </article>
+
 </div>
