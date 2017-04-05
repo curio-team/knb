@@ -9,6 +9,7 @@
 * composer install 
 * composer dump-autoload
 * php artisan migrate
+* php artisan db:seed
 
 ## running the application
 * php artisan serve in root/
