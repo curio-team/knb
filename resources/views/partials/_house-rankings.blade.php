@@ -2,18 +2,18 @@
         <table class="table">
             <thead>
             <tr>
-                <th> Pos </th>
-                <th> House </th>
-                <th> Points </th>
+                <th>Pos</th>
+                <th>House</th>
+                <th>Points</th>
             </tr>
             </thead>
 
             <tbody>
             @foreach($houses as $house)
                 <tr>
-                    <td> {{ $house->id }} </td>
-                    <td> {{ $house->name }} </td>
-                    <td> 167 </td>
+                    <td>{{ $house->id }}</td>
+                    <td>{{ $house->name }}</td>
+                    <td>167</td>
                 </tr>
             @endforeach
             </tbody>

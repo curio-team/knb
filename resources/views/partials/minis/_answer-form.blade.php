@@ -3,7 +3,7 @@
 
     <input type="hidden" name="question_id" value="{{$post->id}}">
     <input type="hidden" name="title" value="reply:{{$post->title}}">
-    {{csrf_field()}}
+    {{ csrf_field() }}
 
     <div class="field">
         <p class="control">

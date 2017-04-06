@@ -15,8 +15,8 @@
                     </div>
                 </div>
             </div>
-            <form method="post" action="{{action('PostController@store')}}">
-                {{csrf_field()}}
+            <form method="post" action="{{ action('PostController@store') }}">
+                {{ csrf_field() }}
                 <div class="field">
                     <label class="label">Title</label>
                     <p class="control">

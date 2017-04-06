@@ -26,7 +26,7 @@ class House extends Model
      */
     public function memberRoles()
     {
-        return $this->hasMany('App\HouseRole');
+        return $this->hasMany(HouseRole::class);
     }
 
     /**

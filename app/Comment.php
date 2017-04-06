@@ -18,11 +18,11 @@ class Comment extends Model
      */
     public function post()
     {
-        return $this->belongsTo('App\Post', 'post_id');
+        return $this->belongsTo(Post::class, 'post_id');
     }
 
     public function author()
     {
-        return $this->belongsTo('App\User', 'author_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 }

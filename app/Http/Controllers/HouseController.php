@@ -14,8 +14,8 @@ class HouseController extends Controller
      */
     public function index()
     {
-        return view('houses.index')->with([
-            'houses' => House::with('headmaster', 'headmaster.user')->get()
+        return view('houses.index'[
+            'houses' => House::with('headmaster', 'headmaster.user')->get(),
         ]);
     }
 
@@ -49,7 +49,7 @@ class HouseController extends Controller
     public function show($id)
     {
         return view('houses.show')->with([
-            'id' => $id
+            'id' => $id,
         ]);
     }
 
