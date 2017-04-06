@@ -8,6 +8,7 @@ use App\Comment;
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -62,8 +63,8 @@ class PostController extends Controller
         $this->validate($request, $validation);
 
         $post = new \App\Post();
-        $post->title    = $request->title;
-        $post->content  = $request->content;
+        $post->title    = $request->get('title');
+        $post->content  = $request->get('content');
 
         // only set question_id if it's an answer to question
         isset($request->question_id) ? $post->post_id  = $request->question_id : false;
@@ -86,6 +87,20 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        //handle views per post
+        //TODO: there's gotta be a better place to put this...
+        if (! \Session::has('viewed') )
+        {
+          \Session::put('viewed', []);
+        }
+
+        if (! in_array($id, \Session::get('viewed')) )
+        {
+            \Session::push('viewed', $id);
+            Post::find($id)->increment('views');
+        }
+
+
         $postDetails = ['comments', 'comments.author', 'author', 'author.houseRole', 'author.houseRole.house'];
 
         return view('posts.show')->with([

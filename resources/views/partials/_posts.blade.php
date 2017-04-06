@@ -9,6 +9,13 @@
                         <p class="image is-64x64">
                             <img src="http://bulma.io/images/placeholders/128x128.png">
                         </p>
+                        <div class="block">
+                            <a href="{{action('PostController@show', $post->id)}}" class="button">{{ $post->views }} {{str_plural('view', $post->views)}}</a>
+                            <a href="{{action('PostController@show', $post->id)}}" class="button">
+
+                                {{ $post->getStats() }}  {{str_plural('answer', $post->getStats())}} </a>
+                            <a href="{{action('PostController@show', $post->id)}}" class="button">{{$post->votes}}  {{str_plural('vote', $post->votes)}}</a>
+                        </div>
                     </figure>
                     <div class="media-content">
                         <div class="content">
@@ -18,12 +25,7 @@
                                 <a href="{{action('PostController@show', $post->id)}}">{{$post->title}}</a>
 
                             </p>
-                            <div class="post-meta">
-                          <span class="views-amount">
-                            4
-                          </span>
-                                views
-                            </div>
+
                         </div>
                     </div>
 

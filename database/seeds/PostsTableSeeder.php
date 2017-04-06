@@ -15,8 +15,10 @@ class PostsTableSeeder extends Seeder {
             $posts[] = Post::create([
                 'title' => $faker->sentence . $index,
                 'content' => $faker->sentence,
-                'author_id' => rand(1, 50)
+                'author_id' => rand(1, 50),
             ]);
+
+
         }
 
         foreach(range(1, 5) as $index)

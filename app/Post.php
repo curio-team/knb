@@ -13,7 +13,10 @@ class Post extends Model
      */
     protected $table = 'posts';
 
-
+    public function isYours()
+    {
+        return \Auth::user()->id == $this->author->id ? true : false;
+    }
 
     /**
      * Get the author associated with the model.
@@ -21,6 +24,15 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo('App\User', 'author_id');
+    }
+
+    /*
+     * return int
+     * returns the views, votes or answers.
+     */
+    public function getStats()
+    {
+        return \App\Post::where('post_id', $this->id)->count();
     }
 
     /**

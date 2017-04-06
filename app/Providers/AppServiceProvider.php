@@ -15,8 +15,11 @@ class AppServiceProvider extends ServiceProvider
     {
         // global sidebar values for each page.
 
-        $houses = \App\House::all();
-        \View::share('houses', $houses);
+        if (\Schema::hasTable('houses'))
+        {
+            $houses = \App\House::all();
+            \View::share('houses', $houses);
+        }
     }
 
     /**

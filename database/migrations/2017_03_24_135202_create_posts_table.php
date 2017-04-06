@@ -17,7 +17,12 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->longText('content');
+            $table->integer('views')->unsigned()->default(0);
+            $table->integer('votes')->default(0);
+
+            $table->boolean('accepted_answer')->nullable();
             $table->integer('post_id')->unsigned()->nullable();
+
             $table->integer('author_id')->unsigned();
             $table->timestamps();
 

@@ -6,7 +6,6 @@
  */
 
 require('./bootstrap');
-window.Laravel.apiUrl = 'http://localhost:8000/api/';
 
 // boot up tinymce
 $('document').ready(function(){
@@ -14,15 +13,14 @@ $('document').ready(function(){
     tinymce.init({
         selector: ".tinymce",
         themes: "modern",
+        plugins: "autolink",
+        toolbar: "link"
     });
-
 
     // event handlers
     $(".btn-add-comment").on('click', function(e){
-
         e.preventDefault();
         $(this).parent().parent().find('.form-comment-hidden').toggle('fast');
-
     });
 
 

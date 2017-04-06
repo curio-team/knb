@@ -14,8 +14,8 @@ require('bootstrap-sass');
 /*
     Load up tinymce
  */
-import tinymce from 'tinymce/tinymce';
-import 'tinymce/themes/modern/theme';
+//import tinymce from 'tinymce/tinymce';
+//import 'tinymce/themes/modern/theme';
 
 
 

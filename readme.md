@@ -8,7 +8,7 @@
 * npm install 
 * composer install 
 * composer dump-autoload
-* php artisan migrate
+* php artisan migrate  (ISSUE: comment out the shared View in the App service provider before migration)
 * php artisan db:seed
 
 ## running the application
