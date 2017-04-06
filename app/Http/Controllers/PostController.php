@@ -98,14 +98,14 @@ class PostController extends Controller
 
         return view('posts.show', [
             'post' => $post->findOrFail($id),
-            'replies' => $post->where('post_id', $id)
+            'replies' => Post::where('post_id', $id)
                 ->orderBy('accepted_answer', 'DESC')
                 ->orderBy('votes', 'DESC')
                 ->orderBy('created_at', 'DESC')
                 ->get(),
         ]);
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *

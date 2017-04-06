@@ -1,4 +1,5 @@
 @php ($question = $post)
+
 <div class="content">
         <article class="media ">
             <figure class="media-type media-left media-question">
