@@ -18,7 +18,7 @@ class PostTag extends Model
      */
     public function post()
     {
-        return $this->belongsTo('App\Post');
+        return $this->belongsTo(Post::class);
     }
 
     /**
@@ -26,6 +26,6 @@ class PostTag extends Model
      */
     public function tag()
     {
-        return $this->belongsTo('App\Tag');
+        return $this->belongsTo(Tag::class);
     }
 }

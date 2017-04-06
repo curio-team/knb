@@ -18,7 +18,7 @@ class HouseRole extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -26,6 +26,6 @@ class HouseRole extends Model
      */
     public function house()
     {
-        return $this->belongsTo('App\House');
+        return $this->belongsTo(House::class);
     }
 }

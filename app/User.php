@@ -34,5 +34,4 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\HouseRole', 'user_id');
     }
-
 }
