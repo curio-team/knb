@@ -12,10 +12,23 @@ class Post extends Model
      * @var string
      */
     protected $table = 'posts';
+    protected $fillable = ['accepted_answer'];
 
     public function isYours()
     {
         return \Auth::user()->id == $this->author->id ? true : false;
+    }
+
+    /**
+     * return whether the question has an accepted answer
+     *
+     * @return bool
+     */
+    public function isAccepted()
+    {
+        return $this->whereHas('children', function($q){
+           $q->where('accepted_answer', 1)->where('post_id', $this->id);
+        })->count() == 1 ? true : false;
     }
 
     /**

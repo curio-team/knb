@@ -105,7 +105,11 @@ class PostController extends Controller
 
         return view('posts.show')->with([
             'post' => Post::with($postDetails)->findOrFail($id),
-            'replies' => Post::with($postDetails)->where('post_id', $id)->get()
+            'replies' => Post::with($postDetails)->where('post_id', $id)
+                ->orderBy('accepted_answer', 'DESC')
+                ->orderBy('votes', 'DESC')
+                ->orderBy('created_at', 'DESC')
+                ->get()
         ]);
     }
 
@@ -129,7 +133,15 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ( isset( $request->accepted ) )
+        {
+            $this->validate($request, [
+               'accepted' => 'boolean'
+            ]);
+
+            Post::find($id)->update(['accepted_answer' => $request->get('accepted')]);
+            return redirect()->back();
+        }
     }
 
     /**

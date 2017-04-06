@@ -1,4 +1,4 @@
-
+@php ($question = $post)
 <div class="content">
         <article class="media ">
             <figure class="media-type media-left media-question">
@@ -13,8 +13,8 @@
                     <p>{!! $post->content !!}
                     </p>
                     <div class="button-group">
-                        <a href="{{action('PostController@answer', $post->id)}}" class="button is-info">Give answer</a>
-                        <a href="" class="btn-add-comment button is-primary">Add comment</a>
+                        <a href="{{action('PostController@answer', $post->id)}}" class="button is-success">Give answer</a>
+                        <a href="" class="btn-add-comment button is-info">Add comment</a>
                         @include('partials.minis._vote-group')
                     </div>
                     <div class="form-comment-hidden">
@@ -53,8 +53,21 @@
                             <p>
                                {!! $post->content !!}
                             </p>
+
+                            @if( $question->isYours() )
+                                <form method="POST" action="{{action('PostController@update', $post->id)}}">
+                                    {{ csrf_field()}}
+                                    <input type="hidden" name="_method" value="put">
+                                    @if ($post->accepted_answer)
+                                    <button type="submit" class="button is-warning" value="0" name="accepted">Cancel acceptation</button>
+                                    @elseif(! $question->isAccepted() )
+                                    <button type="submit" class="button is-success" value="1" name="accepted">Accept this answer</button>
+                                    @endif
+                                </form>
+                            @endif
                             <div class="button-group">
-                                <a href="" class="btn-add-comment button is-primary">Add comment</a>
+
+                                <a href="" class="btn-add-comment button is-info">Add comment</a>
                                 @include('partials.minis._vote-group')
                             </div>
                             <div class="form-comment-hidden">

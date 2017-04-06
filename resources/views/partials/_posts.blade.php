@@ -11,9 +11,13 @@
                         </p>
                         <div class="block">
                             <a href="{{action('PostController@show', $post->id)}}" class="button">{{ $post->views }} {{str_plural('view', $post->views)}}</a>
-                            <a href="{{action('PostController@show', $post->id)}}" class="button">
-
-                                {{ $post->getStats() }}  {{str_plural('answer', $post->getStats())}} </a>
+                            <a href="{{action('PostController@show', $post->id)}}" class="button @if($post->isAccepted()) is-success @endif">
+                                @unless($post->isAccepted())
+                                    {{ $post->getStats() }}  {{str_plural('answer', $post->getStats()) }}
+                                @else
+                                    accepted
+                                @endunless
+                            </a>
                             <a href="{{action('PostController@show', $post->id)}}" class="button">{{$post->votes}}  {{str_plural('vote', $post->votes)}}</a>
                         </div>
                     </figure>
@@ -23,7 +27,6 @@
                                 <strong>{{$post->author->name}}</strong>
                                 <br>
                                 <a href="{{action('PostController@show', $post->id)}}">{{$post->title}}</a>
-
                             </p>
 
                         </div>
