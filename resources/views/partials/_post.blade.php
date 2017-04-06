@@ -22,7 +22,7 @@
                     <div class="form-comment-hidden">
                         @include('partials/_create-comment')
                     </div>
-                    <h3 class="is-3">{{ count($post->comments) }} comments</h3>
+                    <h3 class="is-3">{{ count($post->comments) }} {{str_plural('comment', count($post->comments))}}</h3>
                     <div class="comment-box">
                         @foreach($post->comments as $comment)
                         <article class="media">
