@@ -36,7 +36,7 @@
                 <h2 class="is-2">{{count($replies)}} Answers</h2>
                 @foreach($replies as $post)
                 <article class="media">
-                    @if ($loop->first)
+                    @if ($post->accepted_answer)
                     <figure class="media-type media-accepted media-left">
                         <img src="{{asset('img/icons/accepted.png')}}" alt="">
                     </figure>
