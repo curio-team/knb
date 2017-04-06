@@ -38,7 +38,7 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function($table){
+        Schema::table('posts', function($table) {
             $table->dropForeign('posts_post_id_foreign');
             $table->dropForeign('posts_author_id_foreign');
         });
