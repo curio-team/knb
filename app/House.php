@@ -34,6 +34,20 @@ class House extends Model
      */
     public function headmaster()
     {
-        return $this->memberRoles()->where('role_level', self::ROLE_LEVEL_HEADMASTER);
+        return $this->memberRoles->where('role_level', self::ROLE_LEVEL_HEADMASTER)->first()->user;
+    }
+
+    /**
+     * Get the total sum of points from all members
+     */
+    public function pointsSum()
+    {
+        $sum = 0;
+
+        foreach($this->memberRoles as $memberRole){
+            $sum += $memberRole->user->pointsSum();
+        }
+
+        return $sum;
     }
 }

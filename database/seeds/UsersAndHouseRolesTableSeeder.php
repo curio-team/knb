@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\HouseRole;
+use App\Point;
 use App\User;
 
 class UsersAndHouseRolesTableSeeder extends Seeder {
@@ -24,6 +25,16 @@ class UsersAndHouseRolesTableSeeder extends Seeder {
                 'role_title' => $faker->title,
                 'role_level' => rand(0, 1) * 100
             ]);
+
+            for($i=0; $i < rand(1, 50); $i++){
+                // Assign a random amount of points
+                $point = Point::create([
+                    'points' => rand(-25,25),
+                    'receiver_id' => $user->id,
+                    'benefactor_type' => Point::BENEFACTOR_TYPE_USER_ASSIGNED,
+                    'benefactor_id' => rand(1, $index),
+                ]);
+            }
         }
     }
 }

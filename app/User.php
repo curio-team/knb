@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\HouseRole;
+use App\Point;
 
 class User extends Authenticatable
 {
@@ -32,6 +34,14 @@ class User extends Authenticatable
      */
     public function houseRole()
     {
-        return $this->hasOne('App\HouseRole', 'user_id');
+        return $this->hasOne(HouseRole::class, 'user_id');
+    }
+
+    /**
+     * Get the sum of points associated with the model.
+     */
+    public function pointsSum()
+    {
+        return $this->hasMany(Point::class, 'receiver_id')->sum('points');
     }
 }
