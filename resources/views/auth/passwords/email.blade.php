@@ -8,8 +8,7 @@
         </p>
         <div class="panel-block">
             @if(session('status'))
-                <div class="notification">
-                    <button class="delete"></button>
+                <div class="notification is-info">
                     {{ session('status') }}
                 </div>
             @endif

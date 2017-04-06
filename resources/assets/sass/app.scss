@@ -130,7 +130,11 @@ code {
   }
 }
 
-form {
+.panel-block {
+  flex-direction: column;
+}
+
+.panel-block > form {
   display: block;
   width: 100%;
 }
