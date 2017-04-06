@@ -34,7 +34,7 @@ class CreateHouseRolesTable extends Migration
      */
     public function down()
     {
-        Schema::table('house_roles', function($table){
+        Schema::table('house_roles', function($table) {
             $table->dropForeign('house_roles_house_id_foreign');
             $table->dropForeign('house_roles_user_id_foreign');
         });
