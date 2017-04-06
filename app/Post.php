@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Post extends Model
 {
@@ -12,11 +13,20 @@ class Post extends Model
      * @var string
      */
     protected $table = 'posts';
-    protected $fillable = ['accepted_answer'];
 
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'accepted_answer', 'title', 'content', 'question_id', 'author_id',
+    ];
+
+    /**
+     * @return bool
+     */
     public function isYours()
     {
-        return \Auth::user()->id == $this->author->id ? true : false;
+        return Auth::user()->id == $this->author->id;
     }
 
     /**
@@ -26,9 +36,9 @@ class Post extends Model
      */
     public function isAccepted()
     {
-        return $this->whereHas('children', function($q){
+        return $this->whereHas('children', function($q) {
            $q->where('accepted_answer', 1)->where('post_id', $this->id);
-        })->count() == 1 ? true : false;
+        })->count() == 1;
     }
 
     /**
@@ -36,7 +46,7 @@ class Post extends Model
      */
     public function author()
     {
-        return $this->belongsTo('App\User', 'author_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     /*
@@ -45,7 +55,7 @@ class Post extends Model
      */
     public function getStats()
     {
-        return \App\Post::where('post_id', $this->id)->count();
+        return Post::where('post_id', $this->id)->count();
     }
 
     /**
@@ -53,7 +63,7 @@ class Post extends Model
      */
     public function parent()
     {
-        return $this->belongsTo('App\Post', 'post_id');
+        return $this->belongsTo(Post::class, 'post_id');
     }
 
     /**
@@ -61,7 +71,7 @@ class Post extends Model
      */
     public function children()
     {
-        return $this->hasMany('App\Post', 'post_id');
+        return $this->hasMany(Post::class, 'post_id');
     }
 
     /**
@@ -69,6 +79,6 @@ class Post extends Model
      */
     public function comments()
     {
-        return $this->hasMany('\App\Comment');
+        return $this->hasMany(Comment::class);
     }
 }
