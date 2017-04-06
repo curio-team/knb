@@ -18,7 +18,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'accepted_answer', 'title', 'content', 'question_id', 'author_id',
+        'accepted_answer', 'title', 'content', 'post_id', 'author_id',
     ];
 
     /**

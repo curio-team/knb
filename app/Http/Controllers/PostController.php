@@ -64,7 +64,7 @@ class PostController extends Controller
         $post = Post::create([
             'title' => $request->get('title'),
             'content' => $request->get('content'),
-            'question_id' => $request->has('question_id') ? $request->get('question_id') : null,
+            'post_id' => $request->has('question_id') ? $request->get('question_id') : null,
             'author_id' => \Auth::id(),
         ]);
 
