@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('author')->orderBy('created_at', 'DESC')->where('post_id', NULL)->get();
+        $posts = Post::with('author')->orderBy('created_at', 'DESC')->where('post_id', NULL)->paginate(10);
 
         return view('home', [
             'posts' => $posts,

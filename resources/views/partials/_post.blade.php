@@ -13,7 +13,9 @@
                     <p>{!! $post->content !!}
                     </p>
                     <div class="button-group">
-                        <a href="{{action('PostController@answer', $post->id)}}" class="button is-success">Give answer</a>
+                        @unless($post->isYours())
+                            <a href="{{action('PostController@answer', $post->id)}}" class="button is-success">Give answer</a>
+                        @endunless
                         <a href="" class="btn-add-comment button is-info">Add comment</a>
                         @include('partials.minis._vote-group')
                     </div>

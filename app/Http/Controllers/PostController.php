@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         return view('posts.index')->with([
-            'posts' => Post::with('author')->orderBy('created_at', 'DESC')->where('post_id', NULL)->get()
+            'posts' => Post::with('author')->orderBy('created_at', 'DESC')->where('post_id', NULL)->paginate(10)
         ]);
     }
 
