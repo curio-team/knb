@@ -56,7 +56,7 @@
                         </a>
                         <a class="nav-item is-tab" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                           document.getElementById('logout-form').submit();">
                             Logout
                         </a>
 

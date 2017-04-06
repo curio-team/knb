@@ -35,5 +35,7 @@
                 </article>
             </div>
             @endforeach
+
+            {{$posts->links()}}
         </div>
     </div>
