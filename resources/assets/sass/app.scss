@@ -123,10 +123,14 @@ code {
 }
 
 .pagination ul {
-  margin-left:0px
+  margin-left:0px;
 
-;
   li {
     list-style: none;
   }
+}
+
+form {
+  display: block;
+  width: 100%;
 }
