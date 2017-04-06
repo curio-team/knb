@@ -35,7 +35,7 @@ class PostController extends Controller
     {
         $post = Post::with('author', 'author.houseRole', 'author.houseRole.house')->findOrFail($id);
 
-        return view('posts.create-answer'[
+        return view('posts.create-answer', [
             'post' => $post,
         ]);
     }

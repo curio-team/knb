@@ -14,7 +14,7 @@ class HouseController extends Controller
      */
     public function index()
     {
-        return view('houses.index'[
+        return view('houses.index', [
             'houses' => House::with('headmaster', 'headmaster.user')->get(),
         ]);
     }

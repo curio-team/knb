@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,41 +11,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group([], function(){
-    Route::resource('house', 'ApiHouseController', [
-        'names' => [
-            'index' => 'api.house.index',
-            'show' => 'api.house.show',
-            'create' => 'api.house.create',
-            'store' => 'api.house.store',
-            'edit' => 'api.house.edit',
-            'update' => 'api.house.update',
-            'destroy' => 'api.house.destroy',
-        ]
-    ]);
-    Route::resource('post', 'ApiPostController', [
-        'names' => [
-            'index' => 'api.post.index',
-            'show' => 'api.post.show',
-            'create' => 'api.post.create',
-            'store' => 'api.post.store',
-            'edit' => 'api.post.edit',
-            'update' => 'api.post.update',
-            'destroy' => 'api.post.destroy',
-        ]
-    ]);
-
-    Route::resource('comment', 'ApiCommentController', [
-        'names' => [
-            'index' => 'api.comment.index',
-            'show' => 'api.comment.show',
-            'create' => 'api.comment.create',
-            'store' => 'api.comment.store',
-            'edit' => 'api.comment.edit',
-            'update' => 'api.comment.update',
-            'destroy' => 'api.comment.destroy',
-        ]
-    ]);
-
-
-});
+Route::resource('house', 'ApiHouseController');
+Route::resource('post', 'ApiPostController');
+Route::resource('comment', 'ApiCommentController');
