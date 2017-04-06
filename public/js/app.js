@@ -10558,8 +10558,8 @@ $('document').ready(function () {
     tinymce.init({
         selector: ".tinymce",
         themes: "modern",
-        plugins: "autolink",
-        toolbar: "link"
+        plugins: ["autolink", "code", "codesample"],
+        toolbar: 'code | codesample'
     });
 
     // event handlers
