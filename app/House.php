@@ -34,7 +34,7 @@ class House extends Model
      */
     public function headmaster()
     {
-        return $this->memberRoles->where('role_level', self::ROLE_LEVEL_HEADMASTER)->first()->user;
+        return $this->memberRoles()->where('role_level', self::ROLE_LEVEL_HEADMASTER)->first()->user;
     }
 
     /**
