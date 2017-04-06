@@ -1,17 +1,19 @@
 # Knowledge Base 
+To learn move about this project, visit [the wiki](https://github.com/Radiuscollege/knb/wiki).
 
+## Setup
+Follow the steps below to get this project up and running:
 
-## local installation
-### laravel
-* clone repo
-* change .env to local values
-* npm install 
-* composer install 
-* composer dump-autoload
-* php artisan migrate
-* php artisan db:seed
+* Clone the repository
+* Copy `.env.example` and rename it to `.env` 
+* Edit the `.env` file to the right values
+* Run `npm install` or `yarn` from the root directory
+* Run `composer install` from the root directory
+* Migrate and seed the database with `php artisan migrate --seed`
 
-## running the application
-* php artisan serve in root/
+## Running the application
+To run the application, you'll need a proper environment. You can use a virtual machine (like [Laravel Homestead](https://laravel.com/docs/master/homestead)), or run a local webserver:
 
-
+```bash
+$ php artisan serve
+```
