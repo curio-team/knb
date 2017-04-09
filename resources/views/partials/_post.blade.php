@@ -58,7 +58,7 @@
                             </p>
 
                             @if($question->isYours())
-                                <form method="POST" action="{{action('PostController@update', $post->id)}}">
+                                <form method="POST" action="{{action('PostController@accept', $post->id)}}">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="put">
                                     @if ($post->accepted_answer)
@@ -76,7 +76,6 @@
                             <div class="form-comment-hidden">
                                 @include('partials/_create-comment')
                             </div>
-                            <h3 class="is-3">{{ count($post->comments) }} comments</h3>
                             <div class="comment-box">
                                 @foreach($post->comments as $comment)
                                     <article class="media">
@@ -84,6 +83,7 @@
                                             <strong>{{ $comment->author->name }}</strong>
 
                                             <p>{!! nl2br($comment->content) !!}</p>
+
                                         </div>
                                     </article>
                                 @endforeach

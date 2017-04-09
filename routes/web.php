@@ -20,8 +20,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index');
 
     Route::resource('house', 'HouseController');
+
+
+    Route::put('post/{id}/vote', 'PostController@vote');
+    Route::put('post/{id}/accept', 'PostController@accept');
+    Route::get('post/{id}/answer', 'PostController@answer')->name('answer');
     Route::resource('post', 'PostController');
+
+
     Route::resource('comment', 'CommentController');
 
-    Route::get('post/{id}/answer', 'PostController@answer')->name('answer');
 });

@@ -126,13 +126,24 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+    }
+
+    /**
+     * Accepts this as answer to question
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function accept(Request $request, $id)
+    {
         if (!$request->has('accepted')) {
             // Maybe show flash message here?
             return redirect()->back();
         }
 
         $this->validate($request, [
-           'accepted' => 'boolean',
+            'accepted' => 'boolean',
         ]);
 
         Post::find($id)->update([
@@ -141,6 +152,31 @@ class PostController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function vote(Request $request, $id)
+    {
+
+        if (!$request->has('vote'))
+        {
+            return redirect()->back()->with('fail', 'Error while voting.');
+        }
+
+        $this->validate($request, [
+           'vote' => 'required|in:up,down'
+        ]);
+
+        if ($request->get('vote') == 'up')
+        {
+            Post::find($id)->increment('votes');
+        } else
+        {
+            Post::find($id)->decrement('votes');
+        }
+
+        return redirect()->back();
+    }
+
 
     /**
      * Remove the specified resource from storage.

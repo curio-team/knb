@@ -42,6 +42,9 @@ class House extends Model
      */
     public function pointsSum()
     {
+
+        $sum = 
+
         $sum = 0;
 
         foreach($this->memberRoles as $memberRole){
@@ -49,5 +52,11 @@ class House extends Model
         }
 
         return $sum;
+    }
+
+
+    public function points()
+    {
+
     }
 }
