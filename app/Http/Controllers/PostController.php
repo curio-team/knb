@@ -100,7 +100,7 @@ class PostController extends Controller
             'post' => $post->findOrFail($id),
             'replies' => Post::where('post_id', $id)
                 ->orderBy('accepted_answer', 'DESC')
-                ->orderBy('votes', 'DESC')
+
                 ->orderBy('created_at', 'DESC')
                 ->get(),
         ]);

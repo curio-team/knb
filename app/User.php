@@ -44,4 +44,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Point::class, 'receiver_id')->sum('points');
     }
+
+    public function points()
+    {
+        return $this->hasMany(Point::class,'receiver_id');
+    }
+
 }

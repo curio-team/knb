@@ -29,6 +29,11 @@ class House extends Model
         return $this->hasMany(HouseRole::class);
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'house_roles', 'house_id', 'user_id');
+    }
+
     /**
      * Get the headMaster associated with the model.
      */
@@ -43,20 +48,22 @@ class House extends Model
     public function pointsSum()
     {
 
-        $sum = 
-
+        $houses =  $this->with('users.points')->where('id', $this->id)->get();
         $sum = 0;
-
-        foreach($this->memberRoles as $memberRole){
-            $sum += $memberRole->user->pointsSum();
+        foreach($houses as $house)
+        {
+            foreach($house->users as $user)
+            {
+                foreach($user->points as $points)
+                {
+                    $sum += $points->points;
+                }
+            }
         }
 
         return $sum;
+        
     }
 
 
-    public function points()
-    {
-
-    }
 }
