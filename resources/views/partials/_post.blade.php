@@ -4,7 +4,9 @@
         <article class="media ">
             <figure class="media-type media-left media-question">
                 <img src="{{asset('img/icons/question.png')}}" alt="">
+
             </figure>
+
             <div class="media-content">
                 <div class="content  media-post">
                     <p>
@@ -14,11 +16,12 @@
                     <p>{!! $post->content !!}
                     </p>
                     <div class="button-group">
+
                         @unless($post->isYours())
                             <a href="{{action('PostController@answer', $post->id)}}" class="button is-success">Give answer</a>
                         @endunless
                         <a href="" class="btn-add-comment button is-info">Add comment</a>
-                        @include('partials.minis._vote-group')
+                           @include('partials/minis/_vote-group')
                     </div>
                     <div class="form-comment-hidden">
                         @include('partials/_create-comment')
@@ -69,9 +72,8 @@
                                 </form>
                             @endif
                             <div class="button-group">
-
                                 <a href="" class="btn-add-comment button is-info">Add comment</a>
-                                @include('partials.minis._vote-group')
+                                @include('partials/minis/_vote-group')
                             </div>
                             <div class="form-comment-hidden">
                                 @include('partials/_create-comment')

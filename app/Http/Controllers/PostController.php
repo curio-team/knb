@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\Post;
+use App\Vote;
 use App\Comment;
 use Illuminate\Http\Request;
 
@@ -93,14 +94,16 @@ class PostController extends Controller
         }
 
         $post = Post::with([
-            'comments', 'comments.author', 'author', 'author.houseRole', 'author.houseRole.house',
+            'comments', 'comments.author', 'author', 'author.houseRole', 'author.houseRole.house', 'votes'
         ]);
+
+
 
         return view('posts.show', [
             'post' => $post->findOrFail($id),
-            'replies' => Post::where('post_id', $id)
+            'replies' => Post::with('votes')->where('post_id', $id)
                 ->orderBy('accepted_answer', 'DESC')
-
+                ->orderBy('votes', 'DESC')
                 ->orderBy('created_at', 'DESC')
                 ->get(),
         ]);
@@ -166,16 +169,26 @@ class PostController extends Controller
            'vote' => 'required|in:up,down'
         ]);
 
+        $data = [
+            'user_id' => \Auth::user()->id,
+            'post_id' => $id
+        ];
         if ($request->get('vote') == 'up')
         {
+             $data['vote'] = 1;
             Post::find($id)->increment('votes');
         } else
         {
+            $data['vote'] = -1;
             Post::find($id)->decrement('votes');
         }
 
+        Vote::create($data);
+
         return redirect()->back();
     }
+
+
 
 
     /**

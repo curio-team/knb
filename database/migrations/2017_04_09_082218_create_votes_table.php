@@ -17,10 +17,12 @@ class CreateVotesTable extends Migration
         Schema::create('votes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('post_id')->unsigned();
-            $table->boolean('vote');
+            $table->integer('user_id')->unsigned();
+            $table->integer('vote');
             $table->timestamps();
 
             $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -33,6 +35,7 @@ class CreateVotesTable extends Migration
     {
         Schema::table('votes', function($table) {
             $table->dropForeign('votes_post_id_foreign');
+            $table->dropForeign('votes_user_id_foreign');
         });
 
         Schema::dropIfExists('votes');

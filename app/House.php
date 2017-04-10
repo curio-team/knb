@@ -62,7 +62,7 @@ class House extends Model
         }
 
         return $sum;
-        
+
     }
 
 

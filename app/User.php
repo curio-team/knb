@@ -50,4 +50,9 @@ class User extends Authenticatable
         return $this->hasMany(Point::class,'receiver_id');
     }
 
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'votes');
+    }
+
 }

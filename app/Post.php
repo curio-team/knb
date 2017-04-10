@@ -53,7 +53,7 @@ class Post extends Model
      * return int
      * returns the views, votes or answers.
      */
-    public function getStats()
+    public function getAnswerTotal()
     {
         return Post::where('post_id', $this->id)->count();
     }
@@ -80,6 +80,38 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function posts()
+    {
+        return $this->belongsToMany(User::class, 'votes');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
+
+    public function getVotesTotal()
+    {
+        if ($this->votes)
+        {
+            return $this->votes()->sum('vote');
+        }
+        return 0;
+    }
+
+    public function userHasVoted()
+    {
+        $data = \App\Vote::where([
+            ['user_id', '=', \Auth::user()->id],
+            ['post_id', '=', $this->id]
+        ])->get();
+        if (count($data))
+        {
+            return true;
+        }
+        return false;
     }
 
 }
