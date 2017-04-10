@@ -21,7 +21,13 @@ body {
 }
 
 .box-post {
-
+  position: relative;
+  .box-options {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+  }
+  font-size: 1.2rem;
   a {
     color: inherit;
   }
@@ -32,6 +38,8 @@ body {
     background: #efefef;
   }
 }
+
+
 
 .nav {
   background: $nav-bg;

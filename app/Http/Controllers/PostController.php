@@ -117,7 +117,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('posts/edit', [
+            'post' => Post::with('author', 'author.houseRole', 'author.houseRole.house', 'votes')->findOrFail($id)
+        ]);
     }
 
     /**
@@ -129,6 +131,14 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validation = [
+            'title'   => 'required',
+            'content' => 'required',
+        ];
+        $this->validate($request, $validation);
+
+        Post::findOrFail($id)->update($request->all());
+        return redirect()->back();
 
     }
 

@@ -107,11 +107,8 @@ class Post extends Model
             ['user_id', '=', \Auth::user()->id],
             ['post_id', '=', $this->id]
         ])->get();
-        if (count($data))
-        {
-            return true;
-        }
-        return false;
+
+        return count($data);
     }
 
 }
