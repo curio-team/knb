@@ -18,6 +18,21 @@
                     <label class="label">Question</label>
                     <textarea name="content" id="" cols="30" rows="10" class="textarea tinymce">{{$post->content}}</textarea>
                 </div>
+                <div class="field">
+                    <label class="label">Add tags</label>
+                    <div class="field-body">
+                        <div class="field is-narrow">
+                            <div class="control">
+                                @foreach($tags as $tag)
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="tag[]">
+                                        {{$tag->name}}
+                                    </label>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="field is-grouped">
                     <p class="control">
                         <button class="button is-primary">Submit</button>

@@ -82,6 +82,11 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'post_tags');
+    }
+
     public function posts()
     {
         return $this->belongsToMany(User::class, 'votes');
@@ -110,6 +115,7 @@ class Post extends Model
 
         return count($data);
     }
+
 
 }
 

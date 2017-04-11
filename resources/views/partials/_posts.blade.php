@@ -42,8 +42,19 @@
                         <a href="{{action('PostController@show', $post->id)}}" class="button"> {{$post->getVotesTotal() }} Points </a>
                         </div>
                     </div>
-
                 </article>
+
+                <div class="level">
+                    <div class="level-left">
+                        @foreach($post->tags as $tag)
+                            <div class="level-item">
+                                <figure class="image is-32x32">
+                                    <img src="{{asset('img/icons/languages/')}}/{{$tag->thumbnail}}" alt="{{$tag->name}}">
+                                </figure>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
             @endforeach
 

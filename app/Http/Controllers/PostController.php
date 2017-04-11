@@ -6,6 +6,7 @@ use Session;
 use App\Post;
 use App\Vote;
 use App\Comment;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -29,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts/create');
+        $tags = Tag::all();
+        return view('posts/create')->with(compact('tags'));
     }
 
     public function answer($id)
@@ -61,17 +63,32 @@ class PostController extends Controller
         }
 
         $this->validate($request, $validation);
+        \DB::beginTransaction();
 
-        $post = Post::create([
-            'title' => $request->get('title'),
-            'content' => $request->get('content'),
-            'post_id' => $request->has('question_id') ? $request->get('question_id') : null,
-            'author_id' => \Auth::id(),
-        ]);
+        try
+        {
+            $post = Post::create([
+                'title' => $request->get('title'),
+                'content' => $request->get('content'),
+                'post_id' => $request->has('question_id') ? $request->get('question_id') : null,
+                'author_id' => \Auth::id(),
+            ]);
+
+            if ($request->has('tag'))
+            {
+                $post->tags()->attach($request->get('tag'));
+            }
+            \DB::commit();
+        } catch (\Exception $e)
+        {
+            \DB::rollback();
+            return redirect()->back()->with('error', 'error creating post.');
+        }
+
 
         $redirect = $request->has('question_id') ? $request->get('question_id') : $post->id;
 
-        return redirect()->action('PostController@show', $redirect);
+        return redirect()->action('PostController@show', $redirect)->with('Success','Post succesfully created.');
     }
 
     /**
@@ -117,8 +134,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+
         return view('posts/edit', [
-            'post' => Post::with('author', 'author.houseRole', 'author.houseRole.house', 'votes')->findOrFail($id)
+            'post' => Post::with('author', 'author.houseRole', 'author.houseRole.house', 'votes')->findOrFail($id),
+            'tags' => Tag::all()
         ]);
     }
 
@@ -133,7 +152,8 @@ class PostController extends Controller
     public function editAnswer($id)
     {
         $post =  Post::with('author', 'author.houseRole', 'author.houseRole.house', 'votes')->findOrFail($id);
-        return view('posts/edit-answer', compact('post'));
+        $tags =  Tag::all();
+        return view('posts/edit-answer', compact('post', 'tags'));
 
     }
 
