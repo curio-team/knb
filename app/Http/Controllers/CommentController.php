@@ -47,7 +47,7 @@ class CommentController extends Controller
         $comment->save();
 
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Succesfully added comment!');
     }
 
     /**

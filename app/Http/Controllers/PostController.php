@@ -157,7 +157,7 @@ class PostController extends Controller
         Post::findOrFail($id)->update($request->all());
 
 
-        return redirect()->back();
+        return redirect()->action('PostController@show', $id)->with('success', 'Succesfully edited your question.');
 
     }
 
@@ -171,7 +171,7 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
         $post->update($request->all());
-        return redirect()->action('PostController@show', $post->parent->id);
+        return redirect()->action('PostController@show', $post->parent->id)->with('success', 'Succesfully edited your answer.');
     }
 
     /**
@@ -195,7 +195,7 @@ class PostController extends Controller
             'accepted_answer' => $request->get('accepted'),
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Answer has been accepted.');
     }
 
 

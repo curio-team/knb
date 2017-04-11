@@ -10381,6 +10381,10 @@ $('document').ready(function () {
         e.preventDefault();
         $(this).parent().parent().find('.form-comment-hidden').toggle('fast');
     });
+
+    $(".delete").on('click', function () {
+        $(this).parent().slideToggle();
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

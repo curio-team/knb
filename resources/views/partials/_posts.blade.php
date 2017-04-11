@@ -4,8 +4,12 @@
             @foreach($posts as $post)
             <div class="box box-post">
                 <div class="box-options">
+                    @if($post->isYours())
                     <a href="{{action('PostController@edit', $post->id)}}" class="option-edit">edit</a>
-                    <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">flag</a>
+                    @endif
+                    @unless($post->isYours())
+                        <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">flag</a>
+                    @endunless
                 </div>
                 <article class="media" >
 
