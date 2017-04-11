@@ -123,6 +123,23 @@ class PostController extends Controller
     }
 
     /**
+     *
+     * Show form for editing answer
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     */
+    public function editAnswer($id)
+    {
+        $post =  Post::with('author', 'author.houseRole', 'author.houseRole.house', 'votes')->findOrFail($id);
+        return view('posts/edit-answer', compact('post'));
+
+    }
+
+
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -138,8 +155,23 @@ class PostController extends Controller
         $this->validate($request, $validation);
 
         Post::findOrFail($id)->update($request->all());
+
+
         return redirect()->back();
 
+    }
+
+    public function updateAnswer(Request $request, $id)
+    {
+        $validation = [
+            'title'   => 'required',
+            'content' => 'required',
+        ];
+        $this->validate($request, $validation);
+
+        $post = Post::findOrFail($id);
+        $post->update($request->all());
+        return redirect()->action('PostController@show', $post->parent->id);
     }
 
     /**

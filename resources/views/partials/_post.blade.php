@@ -9,6 +9,12 @@
 
             <div class="media-content">
                 <div class="content  media-post">
+                    <div class="box-options">
+                        @unless($question->isYours())
+                            <a href="{{action('PostController@edit', $post->id)}}" class="option-edit">edit</a>
+                        @endunless
+                        <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">flag</a>
+                    </div>
                     <p>
                         <strong>{{ $post->author->name }}</strong>
                     </p>
@@ -52,7 +58,14 @@
                     </figure>
                     @endif
                     <div class="media-content">
+
                         <div class="content media-post">
+                            <div class="box-options">
+                                @unless($post->isYours())
+                                <a href="{{action('PostController@editAnswer', $post->id)}}" class="option-edit">edit</a>
+                                @endunless
+                                <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">flag</a>
+                            </div>
                             <p>
                                 <strong>{{ $post->author->name }}</strong>
                             </p>

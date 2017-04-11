@@ -24,6 +24,11 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::post('post/{id}/vote', 'PostController@vote');
     Route::put('post/{id}/accept', 'PostController@accept');
+
+
+    Route::put('answer/{id}/edit', 'PostController@updateAnswer');
+    Route::get('answer/{id}', 'PostController@editAnswer');
+
     Route::get('post/{id}/answer', 'PostController@answer')->name('answer');
     Route::resource('post', 'PostController');
 
