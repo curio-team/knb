@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use GrahamCampbell\GitHub\GitHubManager;
 use Illuminate\Http\Request;
+use GitHub;
 
 class HomeController extends Controller
 {
+    private $github;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(GitHubManager $github)
     {
         $this->middleware('auth');
+        $this->github = $github;
     }
 
     /**

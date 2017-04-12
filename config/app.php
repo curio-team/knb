@@ -179,6 +179,9 @@ return [
         Sven\EnvProviders\EnvServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
 
+
+        GrahamCampbell\GitHub\GitHubServiceProvider::class
+
     ],
 
     /*
@@ -209,6 +212,7 @@ return [
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
+        'Github' => GrahamCampbell\GitHub\Facades\GitHub::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,

@@ -1,7 +1,10 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Fedde
- * Date: 12-4-2017
- * Time: 11:12
- */
+
+    <div class="panel">
+    <p class="panel-tabs panel-tags">
+
+        @foreach($tags as $tag)
+            <a href="">{{$tag->name}}</a>
+        @endforeach
+    </p>
+    </div>
+

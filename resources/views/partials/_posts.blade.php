@@ -1,14 +1,19 @@
 <div class="content">
         <h1> Forum </h1>
+        @include('partials/_search_navigation')
         <div class="posts" >
             @foreach($posts as $post)
             <div class="box box-post">
                 <div class="box-options">
                     @if($post->isYours())
-                    <a href="{{action('PostController@edit', $post->id)}}" class="option-edit">edit</a>
+                    <a href="{{action('PostController@edit', $post->id)}}" class="option-edit">
+                        <i title="edit this post" class="fa fa-2x fa-edit"></i>
+                    </a>
                     @endif
                     @unless($post->isYours())
-                        <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">flag</a>
+                        <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">
+                            <i title="flag this post" class="fa fa-2x fa-flag"></i>
+                        </a>
                     @endunless
                 </div>
                 <article class="media" >
@@ -50,11 +55,16 @@
                             @if($tag->thumbnail)
                             <div class="level-item">
                                 <figure class="image is-32x32">
-                                    <img src="{{asset('img/icons/languages/')}}/{{$tag->thumbnail}}" alt="{{$tag->name}}">
+                                    <img title="{{$tag->name}}" src="{{asset('img/icons/languages/')}}/{{$tag->thumbnail}}" alt="{{$tag->name}}">
                                 </figure>
                             </div>
                             @endif
                         @endforeach
+                    </div>
+                    <div class="level-right">
+                        <p class="level-item">
+                           created {{$post->getTimePosted()}}
+                        </p>
                     </div>
                 </div>
             </div>

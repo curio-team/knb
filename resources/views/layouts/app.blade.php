@@ -78,6 +78,7 @@
         </section>
 
         @include('partials/minis/_notifications')
+
         @yield('content')
     </div>
 

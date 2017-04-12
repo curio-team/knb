@@ -25,7 +25,7 @@
                             <div class="control">
                                 @foreach($tags as $tag)
                                     <label class="checkbox-inline">
-                                        <input type="checkbox" name="tag[]">
+                                        <input type="checkbox" name="tag[]" value="{{$tag->id}}" {{$post->tags->contains($tag->id) ? 'checked' : ''}}>
                                         {{$tag->name}}
                                     </label>
                                 @endforeach

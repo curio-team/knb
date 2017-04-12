@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use GitHub;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap any application services.
      *
@@ -18,7 +20,11 @@ class AppServiceProvider extends ServiceProvider
         if (\Schema::hasTable('houses'))
         {
             $houses = \App\House::all();
-            \View::share('houses', $houses);
+            $tags = \App\Tags::all();
+            \View::share([
+                'houses'    => $houses,
+                'tags'      => $tags
+            ]);
         }
     }
 

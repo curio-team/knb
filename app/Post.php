@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
+use \Carbon\Carbon;
 
 class Post extends Model
 {
@@ -114,6 +115,14 @@ class Post extends Model
         ])->get();
 
         return count($data);
+    }
+
+    public function getTimePosted()
+    {
+        $date = $this->created_at;
+        $carbonDate = new Carbon($date);
+
+        return $carbonDate->diffForHumans();
     }
 
 

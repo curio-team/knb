@@ -11,7 +11,15 @@
                         How to ask questions!
                     </p>
                     <div class="panel-block">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores at enim facilis nobis velit! Ab asperiores autem, dignissimos facere fugit ipsam ipsum itaque iusto, quae quibusdam quidem rem saepe! Cupiditate!
+                        <ul>
+                            <li>
+                                First <strong> be sure your question hasn't already been posted. </strong> Use the search function to verify this.
+                            </li>
+                            <li>
+                                <strong> Be specific to your question. </strong> Give as much information as you can. Use links to sandbox
+                                environments (codepen.io for example) to illustrate the problem you are dealing with.
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -47,7 +55,7 @@
                         <button class="button is-primary">Submit</button>
                     </p>
                     <p class="control">
-                        <button class="button is-link">cancel</button>
+                        <a class="button is-link" href="/">cancel</a>
                     </p>
                 </div>
             </form>

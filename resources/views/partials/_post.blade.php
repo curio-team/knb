@@ -13,7 +13,9 @@
                         @unless($question->isYours())
                             <a href="{{action('PostController@edit', $post->id)}}" class="option-edit">edit</a>
                         @endunless
-                        <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">flag</a>
+                        <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">
+                            <i class="fa fa-flag"></i>
+                        </a>
                     </div>
                     <p>
                         <strong>{{ $post->author->name }}</strong>
@@ -21,6 +23,24 @@
                     <h4 class="title is-4">{{ $post->title }}</h4>
                     <p>{!! $post->content !!}
                     </p>
+                    <div class="level post-tags">
+                        <div class="level-left">
+                            @foreach($post->tags as $tag)
+                                @if($tag->thumbnail)
+                                    <div class="level-item">
+                                        <figure class="image is-32x32">
+                                            <img title="{{$tag->name}}" src="{{asset('img/icons/languages/')}}/{{$tag->thumbnail}}" alt="{{$tag->name}}">
+                                        </figure>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                        <div class="level-right">
+                            <p class="level-item">
+                               <i> created {{$post->getTimePosted()}} </i>
+                            </p>
+                        </div>
+                    </div>
                     <div class="button-group">
 
                         @unless($post->isYours())
@@ -64,7 +84,7 @@
                                 @unless($post->isYours())
                                 <a href="{{action('PostController@editAnswer', $post->id)}}" class="option-edit">edit</a>
                                 @endunless
-                                <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">flag</a>
+                                <a href="{{action('PostController@edit', $post->id)}}" class="option-flag"><i class="fa fa-flag"></i></a>
                             </div>
                             <p>
                                 <strong>{{ $post->author->name }}</strong>
@@ -72,7 +92,24 @@
                             <p>
                                {!! $post->content !!}
                             </p>
-
+                            <div class="level post-tags">
+                                <div class="level-left">
+                                    @foreach($post->tags as $tag)
+                                        @if($tag->thumbnail)
+                                            <div class="level-item">
+                                                <figure class="image is-32x32">
+                                                    <img title="{{$tag->name}}" src="{{asset('img/icons/languages/')}}/{{$tag->thumbnail}}" alt="{{$tag->name}}">
+                                                </figure>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="level-right">
+                                    <p class="level-item">
+                                        <i> created {{$post->getTimePosted()}} </i>
+                                    </p>
+                                </div>
+                            </div>
                             @if($question->isYours())
                                 <form method="POST" action="{{action('PostController@accept', $post->id)}}">
                                     {{ csrf_field() }}
@@ -84,6 +121,7 @@
                                     @endif
                                 </form>
                             @endif
+
                             <div class="button-group">
                                 <a href="" class="btn-add-comment button is-info">Add comment</a>
                                 @include('partials/minis/_vote-group')

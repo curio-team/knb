@@ -25,13 +25,19 @@ body {
 
     right: 15px;
     top: 15px;
-
+    i {
+      &:hover {
+        color: $brand-link;
+      }
+    }
 }
 
 .box-post {
   position: relative;
 
-  font-size: 1.2rem;
+  .media {
+    font-size: 1.2rem;
+  }
   a {
     color: inherit;
   }
@@ -46,7 +52,14 @@ body {
 .post-tags {
   margin-top: 15px;
   padding: 5px;
-  display: inline-block;
+}
+
+.panel-tags {
+  a {
+    &:hover {
+      border-bottom: 1px solid $brand-link;
+    }
+  }
 }
 
 .nav {

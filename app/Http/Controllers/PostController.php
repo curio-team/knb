@@ -63,10 +63,11 @@ class PostController extends Controller
         }
 
         $this->validate($request, $validation);
-        \DB::beginTransaction();
+
 
         try
         {
+            \DB::beginTransaction();
             $post = Post::create([
                 'title' => $request->get('title'),
                 'content' => $request->get('content'),
@@ -174,7 +175,24 @@ class PostController extends Controller
         ];
         $this->validate($request, $validation);
 
-        Post::findOrFail($id)->update($request->all());
+
+        $post = Post::findOrFail($id);
+
+        try
+        {
+            \DB::beginTransaction();
+            $post->update($request->all());
+            if($request->has('tag'))
+            {
+                $post->tags()->detach();
+                $post->tags()->attach($request->get('tag'));
+            }
+            \DB::commit();
+        } catch(\Exception $e)
+        {
+            \DB::rollback();
+            return redirect()->back()->with('error', 'Error editing post.: <br>' . $e->getMessage());
+        }
 
 
         return redirect()->action('PostController@show', $id)->with('success', 'Succesfully edited your question.');
