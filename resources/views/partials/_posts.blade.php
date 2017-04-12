@@ -44,14 +44,16 @@
                     </div>
                 </article>
 
-                <div class="level">
+                <div class="level post-tags">
                     <div class="level-left">
                         @foreach($post->tags as $tag)
+                            @if($tag->thumbnail)
                             <div class="level-item">
                                 <figure class="image is-32x32">
                                     <img src="{{asset('img/icons/languages/')}}/{{$tag->thumbnail}}" alt="{{$tag->name}}">
                                 </figure>
                             </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
