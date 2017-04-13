@@ -10385,6 +10385,10 @@ $('document').ready(function () {
     $(".delete").on('click', function () {
         $(this).parent().slideToggle();
     });
+
+    $(".filter-questions").on('click', function () {
+        $('.filter-panel').slideToggle('fast');
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

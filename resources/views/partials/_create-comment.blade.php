@@ -3,6 +3,7 @@
         <p class="image is-64x64">
             <img src="http://bulma.io/images/placeholders/128x128.png">
         </p>
+        <p class="user-name">{{Auth::user()->name}}</p>
     </figure>
     <div class="media-content">
         <form method="post" action="{{ action('CommentController@store') }}" id="comment-form">

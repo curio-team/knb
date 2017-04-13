@@ -28,6 +28,10 @@ $('document').ready(function(){
        $(this).parent().slideToggle();
     });
 
+    $(".filter-questions").on('click', function() {
+        $('.filter-panel').slideToggle('fast');
+    });
+
 
 });
 

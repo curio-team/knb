@@ -26,10 +26,22 @@ body {
     right: 15px;
     top: 15px;
     i {
+      color: $text-color;
       &:hover {
         color: $brand-link;
       }
     }
+}
+
+.filter-panel {
+  display: none;
+  label.checkbox {
+    padding: 5px;
+    input {
+      margin-right: 3px;
+    }
+  }
+
 }
 
 .box-post {

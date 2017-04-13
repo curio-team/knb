@@ -1,6 +1,5 @@
 <div class="content">
-        <h1> Forum </h1>
-        @include('partials/_search_navigation')
+        <h1> Questions </h1>
         <div class="posts" >
             @foreach($posts as $post)
             <div class="box box-post">

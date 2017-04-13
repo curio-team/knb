@@ -10,12 +10,16 @@
             <div class="media-content">
                 <div class="content  media-post">
                     <div class="box-options">
+                        @if($question->isYours())
+                            <a href="{{action('PostController@edit', $post->id)}}" class="option-edit">
+                                <i class="fa fa-2x fa-edit"></i>
+                            </a>
+                        @endif
                         @unless($question->isYours())
-                            <a href="{{action('PostController@edit', $post->id)}}" class="option-edit">edit</a>
-                        @endunless
                         <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">
-                            <i class="fa fa-flag"></i>
+                            <i class="fa fa-2x fa-flag"></i>
                         </a>
+                        @endunless
                     </div>
                     <p>
                         <strong>{{ $post->author->name }}</strong>
@@ -82,9 +86,13 @@
                         <div class="content media-post">
                             <div class="box-options">
                                 @unless($post->isYours())
-                                <a href="{{action('PostController@editAnswer', $post->id)}}" class="option-edit">edit</a>
+                                <a href="{{action('PostController@editAnswer', $post->id)}}" class="option-edit">
+                                    <i class="fa fa-edit fa-2x"></i>
+                                </a>
                                 @endunless
-                                <a href="{{action('PostController@edit', $post->id)}}" class="option-flag"><i class="fa fa-flag"></i></a>
+                                <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">
+                                    <i class="fa fa-2x fa-flag"></i>
+                                </a>
                             </div>
                             <p>
                                 <strong>{{ $post->author->name }}</strong>
