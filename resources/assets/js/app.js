@@ -6,6 +6,14 @@
  */
 
 require('./bootstrap');
+window.Vue = require('vue');
+
+Vue.component('videos', require('./components/learn/index.vue') );
+
+const app = new Vue({
+    el : '#learning'
+});
+
 
 // boot up tinymce
 $('document').ready(function(){
