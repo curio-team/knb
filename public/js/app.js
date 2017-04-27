@@ -19724,6 +19724,10 @@ $('document').ready(function () {
     $(".filter-questions").on('click', function () {
         $('.filter-panel').slideToggle('fast');
     });
+
+    $(".box-post").on('click', function () {
+        document.location.href = $(this).attr('data-href');
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

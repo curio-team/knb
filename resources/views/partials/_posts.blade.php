@@ -2,7 +2,7 @@
         <h1> Questions </h1>
         <div class="posts" >
             @foreach($posts as $post)
-            <div class="box box-post">
+            <div class="box box-post" data-href="{{action('PostController@show', $post->id)}}">
                 <div class="box-options">
                     @if($post->isYours())
                     <a href="{{action('PostController@edit', $post->id)}}" class="option-edit">

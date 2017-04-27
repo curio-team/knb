@@ -85,14 +85,16 @@
 
                         <div class="content media-post">
                             <div class="box-options">
-                                @unless($post->isYours())
+                                @if($post->isYours())
                                 <a href="{{action('PostController@editAnswer', $post->id)}}" class="option-edit">
                                     <i class="fa fa-edit fa-2x"></i>
                                 </a>
-                                @endunless
+                                @endif
+                                @unless($post->isYours())
                                 <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">
                                     <i class="fa fa-2x fa-flag"></i>
                                 </a>
+                                @endunless
                             </div>
                             <p>
                                 <strong>{{ $post->author->name }}</strong>

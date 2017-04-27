@@ -40,6 +40,10 @@ $('document').ready(function(){
         $('.filter-panel').slideToggle('fast');
     });
 
+    $(".box-post").on('click', function(){
+       document.location.href = $(this).attr('data-href');
+    });
+
 
 });
 
