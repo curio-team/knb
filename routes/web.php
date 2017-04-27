@@ -23,9 +23,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('house', 'HouseController');
 
 
+    Route::post('post/{id}/flag', 'PostController@flag');
     Route::post('post/{id}/vote', 'PostController@vote');
     Route::put('post/{id}/accept', 'PostController@accept');
-
 
     Route::put('answer/{id}/edit', 'PostController@updateAnswer');
     Route::get('answer/{id}', 'PostController@editAnswer');

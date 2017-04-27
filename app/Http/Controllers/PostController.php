@@ -268,6 +268,16 @@ class PostController extends Controller
         return redirect()->back();
     }
 
+    public function flag(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        $post->increment('flags');
+
+
+        return back();
+
+    }
+
 
 
 

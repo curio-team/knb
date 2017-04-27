@@ -10,9 +10,18 @@
                     </a>
                     @endif
                     @unless($post->isYours())
-                        <a href="{{action('PostController@edit', $post->id)}}" class="option-flag">
+                        @unless($post->isFlagged())
+                        <i class="option-flag">
                             <i title="flag this post" class="fa fa-2x fa-flag"></i>
-                        </a>
+                        </i>
+                            <form class="flag-form" style="display:none" action="{{action('PostController@flag', $post->id)}}" method="POST">
+                                {{csrf_field()}}
+                            </form>
+                        @else
+                            <i title="this post is flagged. A moderator will look into this soon." style="color: red">
+                                flagged
+                            </i>
+                        @endunless
                     @endunless
                 </div>
                 <article class="media" >
@@ -72,3 +81,4 @@
             {{$posts->links()}}
         </div>
     </div>
+

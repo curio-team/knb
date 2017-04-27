@@ -19728,6 +19728,15 @@ $('document').ready(function () {
     $(".box-post").on('click', function () {
         document.location.href = $(this).attr('data-href');
     });
+
+    $(".option-flag").on('click', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        if (confirm('Are you sure you want to mark this post as flagged? A moderator will be notified and address this. Misuse of this will not be tolerated.')) {
+            $(this).next('.flag-form').submit();
+        }
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

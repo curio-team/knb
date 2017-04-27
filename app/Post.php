@@ -42,6 +42,11 @@ class Post extends Model
         })->count() == 1;
     }
 
+    public function isFlagged()
+    {
+        return $this->flags > 0 ? true : false;
+    }
+
     /**
      * Get the author associated with the model.
      */
