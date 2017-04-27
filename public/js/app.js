@@ -19737,6 +19737,10 @@ $('document').ready(function () {
             $(this).next('.flag-form').submit();
         }
     });
+
+    $("#search-tags input").on('change', function () {
+        $(this).closest('form').submit();
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

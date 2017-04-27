@@ -26,7 +26,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('post/{id}/flag', 'PostController@flag');
     Route::post('post/{id}/vote', 'PostController@vote');
     Route::put('post/{id}/accept', 'PostController@accept');
-
+    Route::get('post/filter', 'PostController@filter');
+    Route::get('post/search', 'PostController@search');
     Route::put('answer/{id}/edit', 'PostController@updateAnswer');
     Route::get('answer/{id}', 'PostController@editAnswer');
 

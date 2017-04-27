@@ -279,6 +279,50 @@ class PostController extends Controller
     }
 
 
+    public function filter(Request $request)
+    {
+        if (empty($request->tags))
+        {
+            return redirect()->action('HomeController@index');
+        }
+        $posts = Post::with('author')->
+                whereHas('tags', function($query) use ($request){
+                    $query->whereIn('tags.id', $request->tags);
+                })->
+                orderBy('created_at', 'DESC')->
+                where('post_id', NULL)->
+                paginate(10);
+
+        return view('home', [
+            'posts' => $posts,
+            'searchTags' => $request->tags
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        if (empty($request->query))
+        {
+            return redirect()->action('HomeController@index');
+        }
+        $query = $request->get('query');
+        $posts = Post::with('author')->
+        orderBy('created_at', 'DESC')->
+        where('post_id', NULL)->
+        where('content', 'like', "%$query%")->
+        orWhere('title', 'like', "%$query%")->
+        paginate(10);
+
+
+        return view('home', [
+            'posts' => $posts
+        ]);
+
+    }
+
+
+
+
 
 
     /**

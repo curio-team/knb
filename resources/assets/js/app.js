@@ -31,7 +31,6 @@ $('document').ready(function(){
         $(this).parent().parent().find('.form-comment-hidden').toggle('fast');
     });
 
-
     $(".delete").on('click', function(){
        $(this).parent().slideToggle();
     });
@@ -52,7 +51,11 @@ $('document').ready(function(){
         {
             $(this).next('.flag-form').submit();
         }
-    })
+    });
+
+    $("#search-tags input").on('change', function(){
+       $(this).closest('form').submit();
+    });
 
 
 });

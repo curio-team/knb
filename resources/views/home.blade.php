@@ -25,17 +25,15 @@
                         <div class="level-left">
                             <div class="panel-block level-item">
                                 <div class="field has-addons">
-                                    <p class="control has-icon">
-                                        <input class="input" type="text" placeholder="Search">
-                                          <span class="icon">
-                                            <i class="fa fa-search"></i>
-                                          </span>
-                                    </p>
-                                    <p class="control">
-                                        <a href="" class="button is-info">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </p>
+                                    <form action="{{action('PostController@search')}}">
+
+                                        <p class="control" style="display: flex">
+                                            <input name="query" class="input is-pulled-left" type="text" placeholder="Search">
+                                            <button type="submit" class="button is-info is-pulled-left">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </p>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -44,13 +42,26 @@
                                 <div class="field is-horizontal">
                                     <div class="field-body">
                                         <div class="field">
+                                            <form id="search-tags" action="{{action('PostController@filter')}}">
                                             <p class="control">
                                                 @foreach($tags as $tag)
-                                                    <label for="" class="checkbox">
-                                                        <input type="checkbox" value="{{$tag->id}}">{{$tag->name}}
+                                                    <label for=""  class="checkbox">
+                                                        <input name="tags[]" type="checkbox" value="{{$tag->id}}"
+                                                            <?php
+                                                                if (isset($searchTags))
+                                                                    {
+                                                                        if (in_array($tag->id, $searchTags))
+                                                                        {
+                                                                            echo 'checked';
+                                                                        }
+                                                                    }
+
+                                                            ?>
+                                                        >{{$tag->name}}
                                                     </label>
                                                 @endforeach
                                             </p>
+                                            </form>
                                             </p>
                                         </div>
                                     </div>
