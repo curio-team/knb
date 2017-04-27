@@ -301,7 +301,7 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        if (empty($request->query))
+        if (empty($request->get('query')))
         {
             return redirect()->action('HomeController@index');
         }
