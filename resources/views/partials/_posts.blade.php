@@ -1,4 +1,7 @@
 <div class="content">
+        @if(\Request::path() == 'post/search')
+            <p>You've searched for: <b>{{$query}}</b>. (<a href="{{action('HomeController@index')}}">reset</a>)</p>
+        @endif
         <h1> Questions </h1>
         <div class="posts" >
             @foreach($posts as $post)

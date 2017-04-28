@@ -315,7 +315,8 @@ class PostController extends Controller
 
 
         return view('home', [
-            'posts' => $posts
+            'posts' => $posts,
+            'query' => $request->get('query')
         ]);
 
     }
