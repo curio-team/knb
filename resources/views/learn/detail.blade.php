@@ -2,7 +2,8 @@
 
 
 @section('content')
+
     <div id="learning">
-        <videos-overview></videos-overview>
+        <videos tag="{{$tag}}"></videos>
     </div>
 @endsection

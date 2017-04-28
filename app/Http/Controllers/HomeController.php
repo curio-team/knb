@@ -41,4 +41,11 @@ class HomeController extends Controller
         return view('learn/index');
     }
 
+    public function details($tag)
+    {
+        return view('learn/detail', [
+            'tag' => $tag
+        ]);
+    }
+
 }

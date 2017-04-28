@@ -1,61 +1,134 @@
 <template>
     <div class="root-element section">
-       <div class="container content">
-           <h1>PHP SERIES: ToDo Application for beginners</h1>
-           <div class="box" v-for="video in videos.data">
-               <article class="media">
-                   <div class="media-left">
-                       <figure class="image is-64x64">
-                           <img v-bind:src="video.pictures.sizes[2].link" alt="">
-                       </figure>
-                   </div>
-                   <div class="media-content">
-                       <div class="content">
-                           <p><small><b>duur: {{Math.floor(video.duration / 60)}} mins.</b></small></p>
-                           <h3  class="is-3"><a target="_blank" v-bind:href="video.link">{{video.name}}</a></h3>
-                           <p>{{video.description}}</p>
-                       </div>
+        <div class="container">
+            <div class="content">
+                <h1>Learn</h1>
 
+                <div class="tabs is-centered is-medium is-boxed">
+                    <ul>
+                        <li v-for="category in categories" v-bind:class="{'is-active': isActive(category.name)}" v-on:click="setActive(category)"><a>{{category.name}}</a></li>
+                    </ul>
+                </div>
 
-                   <nav class="level is-mobile">
-                        <div class="level-left">
-                            <a href="" class="level-item">
-                                <span class="icon-is-small"><a target="_blank" v-bind:href="video.link"><i class="fa fa-play"></i></a></span>
-                            </a>
+                <div v-for="category in categories">
+                    <div class="columns" v-if="category.name === active.name">
+                        <p v-if="!category.series.length > 0" class="notification is-warning">Nog geen video series beschikbaar</p>
+                        <div  v-for="serie in category.series" v-on:click="serieClicked(serie.tag)" class="column is-one-quarter">
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image is-4by3">
+                                        <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <div class="media">
+                                        <div class="media-content">
+                                            <p class="title is-4">{{serie.title}}</p>
+                                            <p class="subtitle is-6">{{serie.difficulty}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        {{serie.content}}
+                                    </div>
+                                    <b>{{serie.length}}</b>
+                                </div>
+                            </div>
                         </div>
-                   </nav>
-                   </div>
-               </article>
-           </div>
 
-       </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
 
-        data : function() {
+        data :  function(){
             return {
-                videos: [],
-                tag: ''
+
+                categories: [
+                    {
+                        name: "HTML/CSS",
+                        series: []
+                    },
+
+                    {
+                        name: "C#",
+                        series: [
+                            {
+                                title: 'C# Fundamentals',
+                                content: "In deze video series maak je kennis met programmeren. Dit gebeurt in de taal C#. Tim neemt je mee vanaf het configureren van visual studio tot het maken van werkende applicaties.",
+                                length: 'still in progress...',
+                                tag: 'sharp_fundementals'
+
+                            }
+                        ]
+                    },
+
+                    {
+                        name: "PHP",
+                        series : [
+                            {
+                                title:  "Maak een todo list met PHP en MySql",
+                                difficulty: "beginner",
+                                content: "In deze videoserie maak je met behulp van PDO een databaseconnectie en maak je een een online todo list waarbij de items in een database worden gezet.",
+                                length: "6 videos",
+                                tag: 'series-todo-beginner'
+                            }
+                        ]
+                    },
+                    {
+                        name : "SQL",
+                        series: []
+                    },
+                    {
+                        name : "UML",
+                        series: []
+                    },
+                    {
+                        name: "Normaliseren",
+                        series: []
+                    },
+
+                    {
+                        name: "Xamarin",
+                        series: []
+                    },
+                    {
+                        name: "Javascript",
+                        series: []
+                    }
+
+                ],
+                active : ''
+
             }
+
         },
 
-        mounted() {
-            axios.get('https://api.vimeo.com/channels/amo/videos?sort=manual&access_token=e433335e8d25a8c33089024e2bc30d4d').then(response => this.videos = response.data);
+        mounted: function() {
+            this.setActive(this.categories[0]);
         },
 
         methods: {
 
-            getTag: function(tags, tag)
+            setActive : function(name) {
+                this.active = name;
+            },
+
+            isActive : function(name)
             {
-                for(var i = 0 ; i < tags.length; i++){
-                    if(tags[i].hasOwnProperty("name") && tags[i].name === tag) {
-                        return true;
-                    }
-                }
-                return false;
+                return name === this.active.name ? true : false;
+            },
+
+            serieClicked : function(tag)
+            {
+                document.location.href= "/learn/" +  tag;
             }
 
         }

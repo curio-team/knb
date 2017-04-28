@@ -19695,7 +19695,8 @@ module.exports = g;
 __webpack_require__(6);
 window.Vue = __webpack_require__(1);
 
-Vue.component('videos', __webpack_require__(10));
+Vue.component('videos', __webpack_require__(45));
+Vue.component('videos-overview', __webpack_require__(10));
 
 var app = new Vue({
     el: '#learning'
@@ -19790,34 +19791,83 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
 
     data: function data() {
         return {
-            videos: [],
-            tag: ''
+
+            categories: [{
+                name: "HTML/CSS",
+                series: []
+            }, {
+                name: "C#",
+                series: [{
+                    title: 'C# Fundamentals',
+                    content: "In deze video series maak je kennis met programmeren. Dit gebeurt in de taal C#. Tim neemt je mee vanaf het configureren van visual studio tot het maken van werkende applicaties.",
+                    length: 'still in progress...',
+                    tag: 'sharp_fundementals'
+
+                }]
+            }, {
+                name: "PHP",
+                series: [{
+                    title: "Maak een todo list met PHP en MySql",
+                    difficulty: "beginner",
+                    content: "In deze videoserie maak je met behulp van PDO een databaseconnectie en maak je een een online todo list waarbij de items in een database worden gezet.",
+                    length: "6 videos",
+                    tag: 'series-todo-beginner'
+                }]
+            }, {
+                name: "SQL",
+                series: []
+            }, {
+                name: "UML",
+                series: []
+            }, {
+                name: "Normaliseren",
+                series: []
+            }, {
+                name: "Xamarin",
+                series: []
+            }, {
+                name: "Javascript",
+                series: []
+            }],
+            active: ''
+
         };
     },
 
     mounted: function mounted() {
-        var _this = this;
-
-        axios.get('https://api.vimeo.com/channels/amo/videos?sort=manual&access_token=e433335e8d25a8c33089024e2bc30d4d').then(function (response) {
-            return _this.videos = response.data;
-        });
+        this.setActive(this.categories[0]);
     },
-
 
     methods: {
 
-        getTag: function getTag(tags, tag) {
-            for (var i = 0; i < tags.length; i++) {
-                if (tags[i].hasOwnProperty("name") && tags[i].name === tag) {
-                    return true;
-                }
-            }
-            return false;
+        setActive: function setActive(name) {
+            this.active = name;
+        },
+
+        isActive: function isActive(name) {
+            return name === this.active.name ? true : false;
+        },
+
+        serieClicked: function serieClicked(tag) {
+            document.location.href = "/learn/" + tag;
         }
 
     }
@@ -39649,53 +39699,64 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "root-element section"
   }, [_c('div', {
-    staticClass: "container content"
-  }, [_c('h1', [_vm._v("PHP SERIES: ToDo Application for beginners")]), _vm._v(" "), _vm._l((_vm.videos.data), function(video) {
-    return _c('div', {
-      staticClass: "box"
-    }, [_c('article', {
-      staticClass: "media"
-    }, [_c('div', {
-      staticClass: "media-left"
-    }, [_c('figure', {
-      staticClass: "image is-64x64"
-    }, [_c('img', {
-      attrs: {
-        "src": video.pictures.sizes[2].link,
-        "alt": ""
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "content"
+  }, [_c('h1', [_vm._v("Learn")]), _vm._v(" "), _c('div', {
+    staticClass: "tabs is-centered is-medium is-boxed"
+  }, [_c('ul', _vm._l((_vm.categories), function(category) {
+    return _c('li', {
+      class: {
+        'is-active': _vm.isActive(category.name)
+      },
+      on: {
+        "click": function($event) {
+          _vm.setActive(category)
+        }
       }
-    })])]), _vm._v(" "), _c('div', {
-      staticClass: "media-content"
-    }, [_c('div', {
-      staticClass: "content"
-    }, [_c('p', [_c('small', [_c('b', [_vm._v("duur: " + _vm._s(Math.floor(video.duration / 60)) + " mins.")])])]), _vm._v(" "), _c('h3', {
-      staticClass: "is-3"
-    }, [_c('a', {
-      attrs: {
-        "target": "_blank",
-        "href": video.link
-      }
-    }, [_vm._v(_vm._s(video.name))])]), _vm._v(" "), _c('p', [_vm._v(_vm._s(video.description))])]), _vm._v(" "), _c('nav', {
-      staticClass: "level is-mobile"
-    }, [_c('div', {
-      staticClass: "level-left"
-    }, [_c('a', {
-      staticClass: "level-item",
-      attrs: {
-        "href": ""
-      }
-    }, [_c('span', {
-      staticClass: "icon-is-small"
-    }, [_c('a', {
-      attrs: {
-        "target": "_blank",
-        "href": video.link
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-play"
-    })])])])])])])])])
-  })], 2)])
-},staticRenderFns: []}
+    }, [_c('a', [_vm._v(_vm._s(category.name))])])
+  }))]), _vm._v(" "), _vm._l((_vm.categories), function(category) {
+    return _c('div', [(category.name === _vm.active.name) ? _c('div', {
+      staticClass: "columns"
+    }, [(!category.series.length > 0) ? _c('p', {
+      staticClass: "notification is-warning"
+    }, [_vm._v("Nog geen video series beschikbaar")]) : _vm._e(), _vm._v(" "), _vm._l((category.series), function(serie) {
+      return _c('div', {
+        staticClass: "column is-one-quarter",
+        on: {
+          "click": function($event) {
+            _vm.serieClicked(serie.tag)
+          }
+        }
+      }, [_c('div', {
+        staticClass: "card"
+      }, [_vm._m(0, true), _vm._v(" "), _c('div', {
+        staticClass: "card-content"
+      }, [_c('div', {
+        staticClass: "media"
+      }, [_c('div', {
+        staticClass: "media-content"
+      }, [_c('p', {
+        staticClass: "title is-4"
+      }, [_vm._v(_vm._s(serie.title))]), _vm._v(" "), _c('p', {
+        staticClass: "subtitle is-6"
+      }, [_vm._v(_vm._s(serie.difficulty))])])]), _vm._v(" "), _c('div', {
+        staticClass: "content"
+      }, [_vm._v("\n                                    " + _vm._s(serie.content) + "\n                                ")]), _vm._v(" "), _c('b', [_vm._v(_vm._s(serie.length))])])])])
+    })], 2) : _vm._e()])
+  })], 2)])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-image"
+  }, [_c('figure', {
+    staticClass: "image is-4by3"
+  }, [_c('img', {
+    attrs: {
+      "src": "http://bulma.io/images/placeholders/1280x960.png",
+      "alt": "Image"
+    }
+  })])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -41256,6 +41317,177 @@ module.exports = function spread(callback) {
   };
 };
 
+
+/***/ }),
+/* 44 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+
+    data: function data() {
+        return {
+            videos: []
+        };
+    },
+
+    props: ['tag'],
+
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('https://api.vimeo.com/channels/amo/videos?sort=manual&access_token=e433335e8d25a8c33089024e2bc30d4d').then(function (response) {
+            return _this.videos = response.data;
+        });
+    },
+
+
+    methods: {
+
+        getTag: function getTag(tags) {
+            for (var i = 0; i < tags.length; i++) {
+                if (tags[i].hasOwnProperty("name") && tags[i].name === this.tag) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    }
+};
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(44),
+  /* template */
+  __webpack_require__(46),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] details.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e630c1c0", Component.options)
+  } else {
+    hotAPI.reload("data-v-e630c1c0", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "root-element section"
+  }, [_c('div', {
+    staticClass: "container content"
+  }, _vm._l((_vm.videos.data), function(video) {
+    return (_vm.getTag(video.tags)) ? _c('div', {
+      staticClass: "box"
+    }, [_c('article', {
+      staticClass: "media"
+    }, [_c('div', {
+      staticClass: "media-left"
+    }, [_c('figure', {
+      staticClass: "image is-64x64"
+    }, [_c('img', {
+      attrs: {
+        "src": video.pictures.sizes[2].link,
+        "alt": ""
+      }
+    })])]), _vm._v(" "), _c('div', {
+      staticClass: "media-content"
+    }, [_c('div', {
+      staticClass: "content"
+    }, [_c('p', [_c('small', [_c('b', [_vm._v("duur: " + _vm._s(Math.floor(video.duration / 60)) + " mins.")])])]), _vm._v(" "), _c('h3', {
+      staticClass: "is-3"
+    }, [_c('a', {
+      attrs: {
+        "target": "_blank",
+        "href": video.link
+      }
+    }, [_vm._v(_vm._s(video.name))])]), _vm._v(" "), _c('p', [_vm._v(_vm._s(video.description))])]), _vm._v(" "), _c('nav', {
+      staticClass: "level is-mobile"
+    }, [_c('div', {
+      staticClass: "level-left"
+    }, [_c('a', {
+      staticClass: "level-item",
+      attrs: {
+        "href": ""
+      }
+    }, [_c('span', {
+      staticClass: "icon-is-small"
+    }, [_c('a', {
+      attrs: {
+        "target": "_blank",
+        "href": video.link
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-play"
+    })])])])])])])])]) : _vm._e()
+  }))])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-e630c1c0", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

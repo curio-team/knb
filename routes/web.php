@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/home', 'HomeController@index');
     Route::get('/learn', 'HomeController@learn');
+    Route::get('/learn/{name}', 'HomeController@details');
 
     Route::resource('house', 'HouseController');
 

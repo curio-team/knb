@@ -32,8 +32,8 @@
                     <a href="" class="nav-item">
                         <img src="{{ asset('img/rc-fc.png') }}" alt="">
                     </a>
-                    <a href="{{action('HomeController@index')}}" class="nav-item is-tab is-hidden-mobile {{Request::path() == 'home' ? 'is-active' : ''}}">Forum</a>
-                    <a href="{{action('HomeController@learn')}}" class="nav-item is-tab is-hidden-mobile {{Request::path() == 'learn' ? 'is-active' : ''}} ">Learn</a>
+                    <a href="{{action('HomeController@index')}}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'home') === true ? 'is-active' : ''}}">Forum</a>
+                    <a href="{{action('HomeController@learn')}}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'learn') === true ? 'is-active' : ''}} ">Learn</a>
                     <a class="nav-item is-tab is-hidden-mobile">About</a>
                 </div>
     <span class="nav-toggle">
