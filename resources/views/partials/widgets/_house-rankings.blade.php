@@ -1,3 +1,4 @@
+<h3> House rankings </h3>
     <div class="content top-ranking">
         <table class="table">
             <thead>
