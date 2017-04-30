@@ -3,7 +3,7 @@
        <div class="container content">
            <a style="display:inline-block; margin-bottom: 10px" href="/learn" class="button is-primary"><i class="fa fa-arrow-left"></i> &nbsp; back</a>
 
-           <div class="box" v-on:click="startMovie(video)" v-for="video in videos.data" v-if="getTag(video.tags)">
+           <div style="cursor:pointer" class="box" v-on:click="startMovie(video)" v-for="video in videos.data" v-if="getTag(video.tags)">
                    <article class="media">
                        <div class="media-left">
                            <figure class="image is-64x64">

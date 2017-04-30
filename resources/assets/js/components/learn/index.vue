@@ -13,7 +13,7 @@
                 <div v-for="category in categories">
                     <div class="columns" v-if="category.name === active.name">
                         <p v-if="!category.series.length > 0" class="notification is-warning">Nog geen video series beschikbaar</p>
-                        <div  v-for="serie in category.series" v-on:click="serieClicked(serie.tag)" class="column is-one-quarter">
+                        <div style="cursor:pointer"  v-for="serie in category.series" v-on:click="serieClicked(serie.tag)" class="column is-one-quarter">
                             <div class="card">
                                 <div class="card-image">
                                     <figure class="image is-4by3">

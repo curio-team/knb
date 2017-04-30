@@ -41368,6 +41368,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v("Nog geen video series beschikbaar")]) : _vm._e(), _vm._v(" "), _vm._l((category.series), function(serie) {
       return _c('div', {
         staticClass: "column is-one-quarter",
+        staticStyle: {
+          "cursor": "pointer"
+        },
         on: {
           "click": function($event) {
             _vm.serieClicked(serie.tag)
@@ -41422,6 +41425,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.videos.data), function(video) {
     return (_vm.getTag(video.tags)) ? _c('div', {
       staticClass: "box",
+      staticStyle: {
+        "cursor": "pointer"
+      },
       on: {
         "click": function($event) {
           _vm.startMovie(video)
