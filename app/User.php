@@ -55,4 +55,5 @@ class User extends Authenticatable
         return $this->belongsToMany(Post::class, 'votes');
     }
 
+
 }

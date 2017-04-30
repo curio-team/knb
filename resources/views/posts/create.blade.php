@@ -33,7 +33,7 @@
                 </div>
                 <div class="field">
                     <label class="label">Question</label>
-                    <textarea name="content" id="" cols="30" rows="10" class="textarea tinymce"></textarea>
+                    <textarea name="content" id="" style="min-height:250px" class="textarea tinymce"></textarea>
                 </div>
                 <div class="field">
                     <label class="label">Add tags</label>

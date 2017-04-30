@@ -1,6 +1,6 @@
-<div class="column is-one-quarter">
+
     <div class="content">
-        <h3> User Rankings </h3>
+        <h3> <i class="fa fa-user"></i> User rankings </h3>
         <div class="content">
             <table class="table">
                 <thead>
@@ -12,11 +12,11 @@
                 </thead>
 
                 <tbody>
-                @foreach($houses as $house)
+                @foreach($rankedUsers as $user)
                     <tr>
-                        <td>{{ $house->id }}</td>
-                        <td>{{ $house->name }}</td>
-                        <td>{{ $house->pointsSum() }}</td>
+                        <td>{{ 1 }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->pointsSum() }}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -24,4 +24,3 @@
 
         </div>
     </div>
-</div>

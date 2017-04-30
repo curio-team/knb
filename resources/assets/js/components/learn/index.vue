@@ -42,6 +42,7 @@
 
             </div>
         </div>
+
     </div>
 </template>
 
@@ -50,7 +51,6 @@
 
         data :  function(){
             return {
-
                 categories: [
                     {
                         name: "HTML/CSS",

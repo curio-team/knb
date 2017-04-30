@@ -186,3 +186,18 @@ code {
   display: block;
   width: 100%;
 }
+
+
+footer.main-footer {
+  margin-top: 30px;
+  background: url('../img/banner.jpg');
+  .columns {
+    background: rgba(0,0,0,0.4);
+    padding: 10px;
+  }
+  .column, h3 {
+    color: #fefefe;
+  }
+
+}
+

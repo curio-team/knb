@@ -1,7 +1,9 @@
 <template>
     <div class="root-element section">
        <div class="container content">
-           <div class="box" v-for="video in videos.data" v-if="getTag(video.tags)">
+           <a style="display:inline-block; margin-bottom: 10px" href="/learn" class="button is-primary"><i class="fa fa-arrow-left"></i> &nbsp; back</a>
+
+           <div class="box" v-on:click="startMovie(video)" v-for="video in videos.data" v-if="getTag(video.tags)">
                    <article class="media">
                        <div class="media-left">
                            <figure class="image is-64x64">
@@ -11,7 +13,7 @@
                        <div class="media-content">
                            <div class="content">
                                <p><small><b>duur: {{Math.floor(video.duration / 60)}} mins.</b></small></p>
-                               <h3  class="is-3"><a target="_blank" v-bind:href="video.link">{{video.name}}</a></h3>
+                               <h3  class="is-3">{{video.name}}</h3>
                                <p>{{video.description}}</p>
                            </div>
 
@@ -26,10 +28,17 @@
                        </div>
                    </article>
                </div>
-
-
        </div>
+        <div v-if="modalEnabled" class="modal" v-bind:class="{'is-active' : modalEnabled}">
+            <div class="modal-background"></div>
+                <div class="modal-content" style="width:1280px">
+                    <h3 class="is-3" style="color: white">{{ selectedVideo.name }}</h3>
 
+                    <div  v-html="selectedVideo.embed.html"></div>
+
+                </div>
+            <button class="modal-close" v-on:click="closeModal()"></button>
+        </div>
     </div>
 </template>
 
@@ -39,6 +48,8 @@
         data : function() {
             return {
                 videos: [],
+                modalEnabled: false,
+                selectedVideo : {}
             }
         },
 
@@ -58,6 +69,22 @@
                     }
                 }
                 return false;
+            },
+
+            closeModal: function()
+            {
+                this.modalEnabled = false;
+            },
+
+            isModalEnabled: function()
+            {
+                return this.modalEnabled ? true : false
+            },
+
+            startMovie: function(video)
+            {
+                this.modalEnabled = true;
+                this.selectedVideo = video;
             }
 
         }

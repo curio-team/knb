@@ -10,7 +10,6 @@ window.Vue = require('vue');
 
 Vue.component('videos', require('./components/learn/details.vue') );
 Vue.component('videos-overview', require('./components/learn/index.vue'));
-
 const app = new Vue({
     el : '#learning'
 });

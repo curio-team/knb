@@ -83,6 +83,25 @@
         @yield('content')
     </div>
 
+    <footer class="main-footer">
+        <div class="container">
+            <div class="columns content">
+                <div class="column">
+                    <h3 class="is-3 is-title">Contribute to AmoHub!</h3>
+                    <div class="level">
+                        <img class="level-item" width="40%" src="{{asset('img/rc-fc.png')}}" alt="">
+                        <img class="level-item" width="30%" src="{{asset('img/logo.png')}}" alt="">
+                    </div>
+                    <p>This is an open source project created for ROC West-Brabant. As a student, if you want to contribute, please check out the project on
+                        <a href="http://www.github.com/Radiuscollege/knb"> github</a>.</p>
+                </div>
+                <div class="column"></div>
+                <div class="column"></div>
+                <div class="column"></div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

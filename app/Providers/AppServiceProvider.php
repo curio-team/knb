@@ -21,9 +21,12 @@ class AppServiceProvider extends ServiceProvider
         {
             $houses = \App\House::all();
             $tags = \App\Tags::all();
+            $rankedUsers = \App\User::limit(5)->get();
+
             \View::share([
                 'houses'    => $houses,
-                'tags'      => $tags
+                'tags'      => $tags,
+                'rankedUsers'     => $rankedUsers
             ]);
         }
     }
