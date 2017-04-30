@@ -17,3 +17,6 @@ To run the application, you'll need a proper environment. You can use a virtual 
 ```bash
 $ php artisan serve
 ```
+
+## Demo
+checkout a demo of the application on http://107.170.8.173
