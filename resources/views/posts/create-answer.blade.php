@@ -23,12 +23,7 @@
 
             </div>
 
-            <div class="column is-one-quarter">
-                <div class="content top-ranking">
-                    <h3> House rankings </h3>
-                    @include('partials/_house-rankings')
-                </div>
-            </div>
+            @include('partials/_sidebar')
 
         </div>
     </div>
