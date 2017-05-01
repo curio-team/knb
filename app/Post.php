@@ -3,11 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Auth;
 use \Carbon\Carbon;
 
 class Post extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
     /**
      * The table associated with the model.
      *

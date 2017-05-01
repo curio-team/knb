@@ -161,6 +161,10 @@ code {
   }
 }
 
+i.fa-remove {
+  color: red;
+}
+
 .fa-arrow-down
 {
   color: red;
@@ -169,6 +173,40 @@ code {
 .fa-arrow-up {
   color: green;
 }
+
+.fa-user-md {
+  color: $brand-warning;
+}
+
+
+li.admin-control .fa {
+  vertical-align: middle;
+}
+
+
+// endicons
+ul.admin-controls {
+  margin-left: 0px;
+  margin-top: 0px;
+  display: none;
+  background: $brand-warning;
+  position: absolute;
+  z-index: 5;
+  box-shadow: 1px 1px 2px black;
+
+}
+
+li.admin-control {
+  list-style: none;
+  padding: 5px 8px;
+  border-bottom: 1px solid #ccc;
+  background: $brand-warning;
+  transition: 0.2s;
+  &:hover {
+    background: darken($brand-warning, 15%);
+  }
+}
+
 
 .pagination ul {
   margin-left:0px;

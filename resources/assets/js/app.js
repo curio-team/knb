@@ -57,6 +57,26 @@ $('document').ready(function(){
        $(this).closest('form').submit();
     });
 
+    $(".enable-admin-controls").on('click', function(e){
+       e.stopPropagation();
+       $(this).next().slideToggle();
+    });
+
+    $(".btn-admin-control-remove").on('click', function(e){
+       e.stopPropagation();
+       var id = $(this).attr('data-id');
+       $.ajax('/post/' + id, {
+            type: 'post',
+            data : {
+                _method: 'DELETE',
+                _token: window.Laravel.csrfToken
+            }
+       }).done(function(data){
+           document.location.href="/";
+       });
+
+    });
+
 
 });
 

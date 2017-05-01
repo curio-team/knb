@@ -55,5 +55,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Post::class, 'votes');
     }
 
+    public function isHeadMaster()
+    {
+        return $this->houseRole->role_level == 100 ? true : false;
+    }
+
 
 }

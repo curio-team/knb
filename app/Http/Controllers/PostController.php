@@ -9,6 +9,7 @@ use App\Comment;
 use App\Tag;
 use Illuminate\Http\Request;
 
+
 class PostController extends Controller
 {
     /**
@@ -321,11 +322,6 @@ class PostController extends Controller
 
     }
 
-
-
-
-
-
     /**
      * Remove the specified resource from storage.
      *
@@ -334,6 +330,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::findOrFail($id)->delete();
+
     }
 }

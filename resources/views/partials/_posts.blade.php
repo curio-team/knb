@@ -6,6 +6,9 @@
         <div class="posts" >
             @foreach($posts as $post)
             <div class="box box-post" data-href="{{action('PostController@show', $post->id)}}">
+                @if( \Auth::user()->isHeadMaster() )
+                    @include("partials/minis/_post-admin-controls")
+                @endif
                 <div class="box-options">
                     @if($post->isYours())
                     <a href="{{action('PostController@edit', $post->id)}}" class="option-edit">
