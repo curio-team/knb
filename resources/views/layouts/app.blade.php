@@ -29,7 +29,7 @@
         <nav class="nav has-shadow">
             <div class="container">
                 <div class="nav-left">
-                    <a href="" class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-item">
                         <img src="{{ asset('img/rc-fc.png') }}" alt="">
                     </a>
                     <a href="{{action('HomeController@index')}}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'home') === true ? 'is-active' : ''}}">Forum</a>
