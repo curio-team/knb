@@ -19,7 +19,7 @@ class UsersAndHouseRolesTableSeeder extends Seeder
             $user = User::create([
                 'name' => $faker->firstName . ' (the ' . $index . 'st) ' . $faker->lastName,
                 'email' => $faker->email,
-                'password' => 'secret',
+                'password' => bcrypt('secret'),
             ]);
 
             HouseRole::create([
