@@ -25,22 +25,23 @@
 </head>
 <body>
     <div id="app">
-
         <nav class="nav has-shadow">
             <div class="container">
                 <div class="nav-left">
                     <a href="{{ route('home') }}" class="nav-item">
                         <img src="{{ asset('img/rc-fc.png') }}" alt="">
                     </a>
-                    <a href="{{action('HomeController@index')}}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'home') === true ? 'is-active' : ''}}">Forum</a>
-                    <a href="{{action('HomeController@learn')}}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'learn') === true ? 'is-active' : ''}} ">Learn</a>
+                    <a href="{{ action('HomeController@index') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'home') === true ? 'is-active' : ''}}">Forum</a>
+                    <a href="{{ action('HomeController@learn') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'learn') === true ? 'is-active' : ''}} ">Learn</a>
                     <a class="nav-item is-tab is-hidden-mobile">About</a>
                 </div>
-    <span class="nav-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </span>
+
+                <span class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+
                 <div class="nav-right nav-menu">
                     <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
 
@@ -60,7 +61,6 @@
                            document.getElementById('logout-form').submit();">
                             Logout
                         </a>
-
                     @endif
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -73,12 +73,12 @@
         <section class="hero banner">
             <div class="hero-body">
                 <div class="container">
-                    <img src="{{asset('img/logo.png')}}" class="is-pulled-right" alt="">
+                    <img src="{{ asset('img/logo.png') }}" class="is-pulled-right" alt="">
                 </div>
             </div>
         </section>
 
-        @include('partials/minis/_notifications')
+        @include('partials.minis._notifications')
 
         @yield('content')
     </div>
@@ -89,12 +89,15 @@
                 <div class="column">
                     <h3 class="is-3 is-title">Contribute to AmoHub!</h3>
                     <div class="level">
-                        <img class="level-item" width="40%" src="{{asset('img/rc-fc.png')}}" alt="">
-                        <img class="level-item" width="30%" src="{{asset('img/logo.png')}}" alt="">
+                        <img class="level-item" width="40%" src="{{ asset('img/rc-fc.png') }}" alt="">
+                        <img class="level-item" width="30%" src="{{ asset('img/logo.png') }}" alt="">
                     </div>
-                    <p>This is an open source project created for ROC West-Brabant. As a student, if you want to contribute, please check out the project on
-                        <a href="http://www.github.com/Radiuscollege/knb"> github</a>.</p>
+                    <p>
+                        This is an open source project created for ROC West-Brabant. As a student, if you want to contribute, please check out the project on
+                        <a href="https://github.com/Radiuscollege/knb">GitHub</a>.
+                    </p>
                 </div>
+
                 <div class="column"></div>
                 <div class="column"></div>
                 <div class="column"></div>
