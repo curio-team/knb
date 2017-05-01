@@ -40,16 +40,16 @@ class ApiPostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
         $postDetails = ['author', 'author.houseRole', 'author.houseRole.house'];
 
         return response()->json([
-            'op' => Post::with($postDetails)->findOrFail($id),
-            'replies' => Post::with($postDetails)->where('post_id', $id)->get()
+            'op' => $post->load($postDetails),
+            'replies' => Post::with($postDetails)->where('post_id', $post->id)->get()
         ]);
     }
 
