@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AcceptAnswerRequest;
+use App\Http\Requests\AddVoteRequest;
+use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdateAnswerRequest;
+use App\Http\Requests\UpdatePostRequest;
 use Session;
 use App\Post;
 use App\Vote;
@@ -45,27 +50,14 @@ class PostController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreatePostRequest $request
      * @return mixed
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        $validation = [
-            'title'   => 'required',
-            'content' => 'required',
-        ];
-        // if it's an answer to a question, validate question_id
-        if ($request->has('answer')) {
-            $validation['question_id'] = 'required|exists:post.id';
-        }
-
-        $this->validate($request, $validation);
-
-
         try
         {
             \DB::beginTransaction();
@@ -127,7 +119,7 @@ class PostController extends Controller
                 ->get(),
         ]);
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -160,23 +152,15 @@ class PostController extends Controller
     }
 
 
-
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param UpdatePostRequest $request
+     * @param  int $id
      * @return mixed
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, $id)
     {
-        $validation = [
-            'title'   => 'required',
-            'content' => 'required',
-        ];
-        $this->validate($request, $validation);
-
-
         $post = Post::findOrFail($id);
 
         try
@@ -200,14 +184,8 @@ class PostController extends Controller
 
     }
 
-    public function updateAnswer(Request $request, $id)
+    public function updateAnswer(UpdateAnswerRequest $request, $id)
     {
-        $validation = [
-            'title'   => 'required',
-            'content' => 'required',
-        ];
-        $this->validate($request, $validation);
-
         $post = Post::findOrFail($id);
         $post->update($request->all());
         return redirect()->action('PostController@show', $post->parent->id)->with('success', 'Succesfully edited your answer.');
@@ -215,21 +193,12 @@ class PostController extends Controller
 
     /**
      * Accepts this as answer to question
-     * @param Request $request
+     * @param AcceptAnswerRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function accept(Request $request, $id)
+    public function accept(AcceptAnswerRequest $request, $id)
     {
-        if (!$request->has('accepted')) {
-            // Maybe show flash message here?
-            return redirect()->back();
-        }
-
-        $this->validate($request, [
-            'accepted' => 'boolean',
-        ]);
-
         Post::find($id)->update([
             'accepted_answer' => $request->get('accepted'),
         ]);
@@ -238,18 +207,8 @@ class PostController extends Controller
     }
 
 
-    public function vote(Request $request, $id)
+    public function vote(AddVoteRequest $request, $id)
     {
-
-        if (!$request->has('vote'))
-        {
-            return redirect()->back()->with('fail', 'Error while voting.');
-        }
-
-        $this->validate($request, [
-           'vote' => 'required|in:up,down'
-        ]);
-
         $data = [
             'user_id' => \Auth::user()->id,
             'post_id' => $id
