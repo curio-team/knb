@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AcceptAnswerRequest;
+use App\Http\Requests\AddVoteRequest;
+use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdateAnswerRequest;
+use App\Http\Requests\UpdatePostRequest;
 use Session;
 use App\Post;
 use App\Tag;
@@ -41,27 +46,14 @@ class PostController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreatePostRequest $request
      * @return mixed
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        $validation = [
-            'title'   => 'required',
-            'content' => 'required',
-        ];
-        // if it's an answer to a question, validate question_id
-        if ($request->has('answer')) {
-            $validation['question_id'] = 'required|exists:post.id';
-        }
-
-        $this->validate($request, $validation);
-
-
         try
         {
             \DB::beginTransaction();
@@ -155,21 +147,17 @@ class PostController extends Controller
     }
 
 
-
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Post $post
+
+     * @param UpdatePostRequest $request
+     * @param  int $id
      * @return mixed
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, $id)
     {
-        $validation = [
-            'title'   => 'required',
-            'content' => 'required',
-        ];
-        $this->validate($request, $validation);
+        $post = Post::findOrFail($id);
 
         try
         {
@@ -192,61 +180,45 @@ class PostController extends Controller
 
     }
 
-    public function updateAnswer(Request $request, Post $post)
-    {
-        $validation = [
-            'title'   => 'required',
-            'content' => 'required',
-        ];
-        $this->validate($request, $validation);
 
+    public function updateAnswer(UpdateAnswerRequest $request, $id)
+    {
+        $post = Post::findOrFail($id);
         $post->update($request->all());
         return redirect()->action('PostController@show', $post->parent->id)->with('success', 'Succesfully edited your answer.');
     }
 
     /**
      * Accepts this as answer to question
-     * @param Request $request
-     * @param Post $post
+
+     * @param AcceptAnswerRequest $request
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function accept(Request $request, Post $post)
+    public function accept(AcceptAnswerRequest $request, $id)
     {
-        if (!$request->has('accepted')) {
-            // Maybe show flash message here?
-            return redirect()->back();
-        }
-
-        $this->validate($request, [
-            'accepted' => 'boolean',
-        ]);
-
-        $post->update([
+        Post::find($id)->update([
             'accepted_answer' => $request->get('accepted'),
         ]);
 
         return redirect()->back()->with('success', 'Answer has been accepted.');
     }
 
-
-    public function vote(Request $request, Post $post)
+    public function vote(AddVoteRequest $request, $id)
     {
-
-        if (!$request->has('vote'))
+        $data = [
+            'user_id' => \Auth::user()->id,
+            'post_id' => $id
+        ];
+        if ($request->get('vote') == 'up')
         {
-            return redirect()->back()->with('fail', 'Error while voting.');
-        }
+             $data['vote'] = 1;
+            Post::find($id)->increment('votes');
+        } else
+        {
+            $data['vote'] = -1;
+            Post::find($id)->decrement('votes');
 
-        $this->validate($request, [
-           'vote' => 'required|in:up,down'
-        ]);
-
-        $isUpvote = $request->get('vote') == 'up';
-
-        if ($isUpvote) {
-            $post->increment('votes');
-        } else {
-            $post->decrement('votes');
         }
 
         $post->votes()->create([

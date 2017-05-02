@@ -22,6 +22,14 @@ class House extends Model
     protected $table = 'houses';
 
     /**
+     * Gets all houses ordered by points
+     */
+    public static function allOrderedByPoints()
+    {
+        // TODO: Return all houses ordered by points
+    }
+
+    /**
      * Get the member roles associated with the model.
      */
     public function memberRoles()

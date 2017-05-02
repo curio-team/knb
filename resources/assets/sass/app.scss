@@ -225,6 +225,12 @@ li.admin-control {
   width: 100%;
 }
 
+iframe[src^="https://player.vimeo.com"] {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+}
+
 
 footer.main-footer {
   margin-top: 30px;

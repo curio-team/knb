@@ -19,7 +19,7 @@ class UsersAndHouseRolesTableSeeder extends Seeder
             $user = User::create([
                 'name' => $faker->firstName . ' (the ' . $index . 'st) ' . $faker->lastName,
                 'email' => $faker->email,
-                'password' => 'secret',
+                'password' => bcrypt('secret'),
             ]);
 
             HouseRole::create([
@@ -31,7 +31,7 @@ class UsersAndHouseRolesTableSeeder extends Seeder
 
             for($i=0; $i < rand(1, 50); $i++){
                 // Assign a random amount of points
-                $point = Point::create([
+                Point::create([
                     'points' => rand(-25,25),
                     'receiver_id' => $user->id,
                     'benefactor_type' => Point::BENEFACTOR_TYPE_USER_ASSIGNED,

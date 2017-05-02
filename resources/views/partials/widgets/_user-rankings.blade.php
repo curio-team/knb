@@ -1,17 +1,16 @@
-
+<div class="content">
+    <h3> <i class="fa fa-user"></i> User rankings </h3>
     <div class="content">
-        <h3> <i class="fa fa-user"></i> User rankings </h3>
-        <div class="content">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Pos</th>
-                    <th>User</th>
-                    <th>Points</th>
-                </tr>
-                </thead>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Pos</th>
+                <th>User</th>
+                <th>Points</th>
+            </tr>
+            </thead>
 
-                <tbody>
+            <tbody>
                 @foreach($rankedUsers as $user)
                     <tr>
                         <td>{{ 1 }}</td>
@@ -19,8 +18,7 @@
                         <td>{{ $user->pointsSum() }}</td>
                     </tr>
                 @endforeach
-                </tbody>
-            </table>
-
-        </div>
+            </tbody>
+        </table>
     </div>
+</div>

@@ -31,7 +31,7 @@
        </div>
         <div v-if="modalEnabled" class="modal" v-bind:class="{'is-active' : modalEnabled}">
             <div class="modal-background"></div>
-                <div class="modal-content" style="width:1280px">
+                <div class="modal-content" style="width: 80%">
                     <h3 class="is-3" style="color: white">{{ selectedVideo.name }}</h3>
 
                     <div  v-html="selectedVideo.embed.html"></div>
