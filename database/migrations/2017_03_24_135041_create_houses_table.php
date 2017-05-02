@@ -16,6 +16,7 @@ class CreateHousesTable extends Migration
         Schema::defaultStringLength(191);
         Schema::create('houses', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('points')->default(0);
             $table->string('name')->unique();
             $table->string('description');
             $table->timestamps();

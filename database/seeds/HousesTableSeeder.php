@@ -29,5 +29,6 @@ class HousesTableSeeder extends Seeder
             'name' => 'Variable Vikings',
             'description' => 'The type of vikings there are keeps changing'
         ]);
+
     }
 }
