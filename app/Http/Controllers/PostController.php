@@ -9,8 +9,6 @@ use App\Http\Requests\UpdateAnswerRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Session;
 use App\Post;
-use App\Vote;
-use App\Comment;
 use App\Tag;
 use Illuminate\Http\Request;
 
@@ -40,12 +38,10 @@ class PostController extends Controller
         return view('posts/create')->with(compact('tags'));
     }
 
-    public function answer($id)
+    public function answer(Post $post)
     {
-        $post = Post::with('author', 'author.houseRole', 'author.houseRole.house')->findOrFail($id);
-
         return view('posts.create-answer', [
-            'post' => $post,
+            'post' => $post->load('author', 'author.houseRole', 'author.houseRole.house'),
         ]);
     }
 
@@ -88,10 +84,10 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return mixed
      */
-    public function show($id)
+    public function show(Post $post)
     {
         //handle views per post
         //TODO: there's gotta be a better place to put this...
@@ -99,9 +95,9 @@ class PostController extends Controller
             Session::put('viewed', []);
         }
 
-        if (! in_array($id, Session::get('viewed'))) {
-            Session::push('viewed', $id);
-            Post::find($id)->increment('views');
+        if (! in_array($post->id, Session::get('viewed'))) {
+            Session::push('viewed', $post->id);
+            Post::find($post->id)->increment('views');
         }
 
         $post = Post::with([
@@ -111,8 +107,8 @@ class PostController extends Controller
 
 
         return view('posts.show', [
-            'post' => $post->findOrFail($id),
-            'replies' => Post::with('votes')->where('post_id', $id)
+            'post' => $post,
+            'replies' => Post::with('votes')->where('post_id', $post->id)
                 ->orderBy('accepted_answer', 'DESC')
                 ->orderBy('votes', 'DESC')
                 ->orderBy('created_at', 'DESC')
@@ -123,14 +119,13 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return mixed
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-
         return view('posts/edit', [
-            'post' => Post::with('author', 'author.houseRole', 'author.houseRole.house', 'votes')->findOrFail($id),
+            'post' => $post->load('author', 'author.houseRole', 'author.houseRole.house', 'votes'),
             'tags' => Tag::all()
         ]);
     }
@@ -139,13 +134,13 @@ class PostController extends Controller
      *
      * Show form for editing answer
      *
-     * @param $id
+     * @param  Post $post
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      */
-    public function editAnswer($id)
+    public function editAnswer(Post $post)
     {
-        $post =  Post::with('author', 'author.houseRole', 'author.houseRole.house', 'votes')->findOrFail($id);
+        $post =  $post->load('author', 'author.houseRole', 'author.houseRole.house', 'votes');
         $tags =  Tag::all();
         return view('posts/edit-answer', compact('post', 'tags'));
 
@@ -155,6 +150,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
+
      * @param UpdatePostRequest $request
      * @param  int $id
      * @return mixed
@@ -180,9 +176,10 @@ class PostController extends Controller
         }
 
 
-        return redirect()->action('PostController@show', $id)->with('success', 'Succesfully edited your question.');
+        return redirect()->action('PostController@show', $post)->with('success', 'Succesfully edited your question.');
 
     }
+
 
     public function updateAnswer(UpdateAnswerRequest $request, $id)
     {
@@ -193,6 +190,7 @@ class PostController extends Controller
 
     /**
      * Accepts this as answer to question
+
      * @param AcceptAnswerRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
@@ -205,7 +203,6 @@ class PostController extends Controller
 
         return redirect()->back()->with('success', 'Answer has been accepted.');
     }
-
 
     public function vote(AddVoteRequest $request, $id)
     {
@@ -221,16 +218,19 @@ class PostController extends Controller
         {
             $data['vote'] = -1;
             Post::find($id)->decrement('votes');
+
         }
 
-        Vote::create($data);
+        $post->votes()->create([
+            'user_id' => auth()->id(),
+            'vote' => $isUpvote ? 1 : -1,
+        ]);
 
         return redirect()->back();
     }
 
-    public function flag(Request $request, $id)
+    public function flag(Request $request, Post $post)
     {
-        $post = Post::findOrFail($id);
         $post->increment('flags');
 
 
@@ -284,12 +284,12 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return mixed
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        Post::findOrFail($id)->delete();
+        $post->delete();
 
     }
 }

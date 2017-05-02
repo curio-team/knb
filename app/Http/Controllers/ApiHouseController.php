@@ -41,12 +41,12 @@ class ApiHouseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  House $house
+     * @return \Illuminate\Http\Response|string
      */
-    public function show($id)
+    public function show(House $house)
     {
-        return House::with('memberRoles', 'memberRoles.user')->findOrFail($id);
+        return $house->load('memberRoles', 'memberRoles.user');
     }
 
     /**
