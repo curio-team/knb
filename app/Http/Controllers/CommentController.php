@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateCommentRequest;
 
 class CommentController extends Controller
 {
@@ -29,16 +30,11 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateCommentRequest       $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCommentRequest $request)
     {
-        $this->validate($request, [
-            'post_id' => 'required|exists:posts,id',
-            'content' => 'required|max:2000',
-        ]);
-
         $comment = new \App\Comment();
 
         $comment->author_id = \Auth::user()->id;
