@@ -202,12 +202,11 @@ class PostController extends Controller
         return redirect()->back()->with('success', 'Answer has been accepted.');
     }
 
-    public function vote(AddVoteRequest $request, $id)
+    public function vote(AddVoteRequest $request,Post $post)
     {
-        $post = Post::find($id);
         $data = [
             'user_id' => \Auth::user()->id,
-            'post_id' => $id
+            'post_id' => $post->id
         ];
         if ($request->get('vote') == 'up')
         {
