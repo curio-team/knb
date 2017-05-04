@@ -90,7 +90,6 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //handle views per post
-        //TODO: there's gotta be a better place to put this...
         if (! Session::has('viewed')) {
             Session::put('viewed', []);
         }
@@ -100,11 +99,10 @@ class PostController extends Controller
             Post::find($post->id)->increment('views');
         }
 
-        $post = Post::with([
-            'comments', 'comments.author', 'author', 'author.houseRole', 'author.houseRole.house', 'votes'
-        ]);
-
-
+    //        $post = Post::with([
+    //            'comments', 'comments.author', 'author', 'author.houseRole', 'author.houseRole.house', 'votes'
+    //        ])->get();
+    //        dd($post);
 
         return view('posts.show', [
             'post' => $post,
@@ -206,6 +204,7 @@ class PostController extends Controller
 
     public function vote(AddVoteRequest $request, $id)
     {
+        $post = Post::find($id);
         $data = [
             'user_id' => \Auth::user()->id,
             'post_id' => $id
@@ -213,17 +212,17 @@ class PostController extends Controller
         if ($request->get('vote') == 'up')
         {
              $data['vote'] = 1;
-            Post::find($id)->increment('votes');
+            $post->increment('votes');
         } else
         {
             $data['vote'] = -1;
-            Post::find($id)->decrement('votes');
+            $post->decrement('votes');
 
         }
 
         $post->votes()->create([
             'user_id' => auth()->id(),
-            'vote' => $isUpvote ? 1 : -1,
+            'vote' => 'up' ? 1 : -1,
         ]);
 
         return redirect()->back();
@@ -232,8 +231,6 @@ class PostController extends Controller
     public function flag(Request $request, Post $post)
     {
         $post->increment('flags');
-
-
         return back();
 
     }

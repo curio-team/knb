@@ -62,6 +62,7 @@
                         series: [
                             {
                                 title: 'C# Fundamentals',
+                                difficulty: 'beginner',
                                 content: "In deze video series maak je kennis met programmeren. Dit gebeurt in de taal C#. Tim neemt je mee vanaf het configureren van visual studio tot het maken van werkende applicaties.",
                                 length: 'still in progress...',
                                 tag: 'sharp_fundementals'
@@ -79,6 +80,13 @@
                                 content: "In deze videoserie maak je met behulp van PDO een databaseconnectie en maak je een een online todo list waarbij de items in een database worden gezet.",
                                 length: "6 videos",
                                 tag: 'series-todo-beginner'
+                            },
+                            {
+                                title:  "PHP Fundamentals",
+                                difficulty: "beginner",
+                                content: "In deze videoserie maak je kennis met PHP als programmeertaal. Deze serie is geschikt voor als je met behulp van PHP je programmeerskills wilt opvijzelen.",
+                                length: "still in progress...",
+                                tag: 'series-php-fundamentals'
                             }
                         ]
                     },

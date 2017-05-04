@@ -31,8 +31,8 @@
                     <a href="{{ route('home') }}" class="nav-item">
                         <img src="{{ asset('img/rc-fc.png') }}" alt="">
                     </a>
-                    <a href="{{ action('HomeController@index') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'home') === true ? 'is-active' : ''}}">Forum</a>
-                    <a href="{{ action('HomeController@learn') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'learn') === true ? 'is-active' : ''}} ">Learn</a>
+                    <a href="{{ action('HomeController@index') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Forum</a>
+                    <a href="{{ action('HomeController@learn') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a>
                     <a class="nav-item is-tab is-hidden-mobile">About</a>
                 </div>
 
@@ -50,12 +50,6 @@
                         <a href="{{ route('login') }}" class="nav-item is-tab">login</a>
                         <a href="{{ route('register') }}" class="nav-item is-tab">register</a>
                     @else
-                        <a class="nav-item is-tab">
-                            <figure class="image is-16x16" style="margin-right: 8px;">
-                                <img src="http://bulma.io/images/jgthms.png">
-                            </figure>
-                            Profile
-                        </a>
                         <a class="nav-item is-tab" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">

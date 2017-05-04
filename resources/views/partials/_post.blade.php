@@ -14,9 +14,18 @@
                             <i class="fa fa-2x fa-edit"></i>
                         </a>
                     @else
-                        <a href="{{ action('PostController@edit', $post) }}" class="option-flag">
-                            <i class="fa fa-2x fa-flag"></i>
-                        </a>
+                        @unless($post->isFlagged())
+                            <a href="{{action('PostController@edit', $post->id) }}" class="option-flag">
+                                <i class="fa fa-2x fa-flag"></i>
+                            </a>
+                            <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
+                                {{ csrf_field() }}
+                            </form>
+                        @else
+                            <i title="this post is flagged. A moderator will look into this soon." style="color: red">
+                               flagged
+                            </i>
+                        @endunless
                     @endif
                 </div>
 
@@ -97,9 +106,18 @@
                                         <i class="fa fa-edit fa-2x"></i>
                                     </a>
                                 @else
-                                    <a href="{{action('PostController@edit', $post->id) }}" class="option-flag">
-                                        <i class="fa fa-2x fa-flag"></i>
-                                    </a>
+                                    @unless($post->isFlagged())
+                                        <a href="{{action('PostController@edit', $post->id) }}" class="option-flag">
+                                            <i class="fa fa-2x fa-flag"></i>
+                                        </a>
+                                        <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    @else
+                                            <i title="this post is flagged. A moderator will look into this soon." style="color: red">
+                                                flagged
+                                            </i>
+                                    @endunless
                                 @endif
                             </div>
 
