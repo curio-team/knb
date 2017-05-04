@@ -19,4 +19,4 @@ $ php artisan serve
 ```
 
 ## Demo
-checkout a demo of the application on http://107.170.8.173
+checkout a demo of the application on http://hub.amo.rocks
