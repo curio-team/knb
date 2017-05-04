@@ -17,6 +17,12 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
 
+    Route::group(['middleware' => 'headmaster'], function(){
+        Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+    });
+
+
+
     Route::get('/home', 'HomeController@index');
     Route::get('/learn', 'HomeController@learn');
     Route::get('/learn/{name}', 'HomeController@details');

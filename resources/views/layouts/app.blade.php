@@ -50,6 +50,9 @@
                         <a href="{{ route('login') }}" class="nav-item is-tab">login</a>
                         <a href="{{ route('register') }}" class="nav-item is-tab">register</a>
                     @else
+                        @if (\Auth::user()->isHeadMaster())
+                            <a class="nav-item is-tab" href="{{ route('dashboard') }}">Dashboard</a>
+                        @endif
                         <a class="nav-item is-tab" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
