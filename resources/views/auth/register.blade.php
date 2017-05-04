@@ -35,6 +35,34 @@
                 </div>
 
                 <div class="field">
+                    <label for="house" class="label">House</label>
+                    <p class="control">
+                        <span class="select">
+                        <select name="house" class="input{{ $errors->has('house') ? ' is-danger' : '' }}" id="">
+
+                                <option value=""></option>
+                            @foreach($houses as $house)
+                                <option value="{{$house->id}}">{{$house->name}}</option>
+                            @endforeach
+                        </select>
+                            </span>
+                    </p>
+                </div>
+
+                <div class="field">
+                    <label for="role level" class="label">Role level</label>
+                    <p class="control">
+                        <span class="select">
+                        <select name="level" class="input{{ $errors->has('level') ? ' is-danger' : '' }}" id="">
+                            <option value=""></option>
+                            <option value="0">Minion</option>
+                            <option value="100">Headmaster</option>
+                        </select>
+                            </span>
+                    </p>
+                </div>
+
+                <div class="field">
                     <label for="password" class="label">Password</label>
 
                     <p class="control">
@@ -45,6 +73,9 @@
                         <p class="help is-danger">{{ $errors->first('password') }}</p>
                     @endif
                 </div>
+
+
+
 
                 <div class="field">
                     <label for="password-confirm" class="label">Confirm password</label>

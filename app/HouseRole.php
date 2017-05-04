@@ -13,6 +13,8 @@ class HouseRole extends Model
      */
     protected $table = 'house_roles';
 
+    protected $fillable = ['house_id', 'user_id', 'role_level', 'role_title'];
+
     /**
      * Get the post associated with the model.
      */

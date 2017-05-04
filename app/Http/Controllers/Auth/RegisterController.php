@@ -51,6 +51,9 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+
+            'level' => 'required|between:0,100',
+            'house' => 'required|exists:house_roles,id'
         ]);
     }
 
@@ -62,10 +65,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+
+            \App\HouseRole::create([
+                'house_id'      => $data['house'],
+                'user_id'       => $user->id,
+                'role_level'    => $data['level'],
+                'role_title'    => $data['level'] == '100' ? 'Headmaster' : "Minion"
+            ]);
+            return $user;
+
     }
 }
