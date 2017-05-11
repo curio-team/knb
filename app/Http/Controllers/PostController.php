@@ -208,20 +208,13 @@ class PostController extends Controller
             'user_id' => \Auth::user()->id,
             'post_id' => $post->id
         ];
-        if ($request->get('vote') == 'up')
-        {
+
              $data['vote'] = 1;
             $post->increment('votes');
-        } else
-        {
-            $data['vote'] = -1;
-            $post->decrement('votes');
-
-        }
 
         $post->votes()->create([
             'user_id' => auth()->id(),
-            'vote' => 'up' ? 1 : -1,
+            'vote' => 1,
         ]);
 
         return redirect()->back();

@@ -8,13 +8,6 @@
 
     <span class="tag is-medium is-dark">{{ $post->getVotesTotal() }}</span>
 
-    @unless($post->isYours() || $post->userHasVoted())
-        <span class="fa fa-arrow-down fa-2x " onclick="event.preventDefault();
-           $(this).closest('.button-group').find('.vote-form .vote-type').val('down');
-           $(this).closest('.button-group').find('.vote-form').submit();">
-        </span>
-    @endunless
-
     @if($post->userHasVoted())
         voted
     @endif
