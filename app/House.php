@@ -24,9 +24,25 @@ class House extends Model
     /**
      * Gets all houses ordered by points
      */
-    public static function allOrderedByPoints()
+    public static function sortByPoints($limit = null)
     {
-        // TODO: Return all houses ordered by points
+        $sql = "SELECT sum(p.`points`) as points, houses.name as name
+                FROM houses
+                INNER JOIN house_roles hr 
+                ON hr.house_id = houses.id
+                INNER JOIN users u 
+                ON hr.user_id = u.id 
+                INNER JOIN points p 
+                ON p.receiver_id = u.id
+                GROUP BY name
+                ORDER BY points DESC
+                ";
+         if ($limit)
+         {
+             $sql .= " LIMIT $limit";
+         }
+
+        return collect(\DB::select($sql));
     }
 
     /**
@@ -72,6 +88,7 @@ class House extends Model
         return $sum;
 
     }
+
 
 
 }

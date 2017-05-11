@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
 
         if (\Schema::hasTable('houses'))
         {
-            $houses = \App\House::all();
+            $houses = \App\House::sortByPoints(4);
             $tags = \App\Tags::all();
             $rankedUsers = \App\User::sortByPoints(10);
 

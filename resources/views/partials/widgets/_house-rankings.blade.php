@@ -11,12 +11,15 @@
                 </thead>
 
                 <tbody>
+                    <?php $index = 0; ?>
                     @foreach($houses as $house)
+
                         <tr>
-                            <td>{{ $house->id }}</td>
+                            <td>{{ ++$index }}</td>
                             <td>{{ $house->name }}</td>
                             <td>{{ $house->points }}</td>
                         </tr>
+
                     @endforeach
                 </tbody>
             </table>
