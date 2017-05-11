@@ -15,7 +15,7 @@
                         <tr>
                             <td>{{ $house->id }}</td>
                             <td>{{ $house->name }}</td>
-                            <td>{{ $house->pointsSum() }}</td>
+                            <td>{{ $house->points }}</td>
                         </tr>
                     @endforeach
                 </tbody>

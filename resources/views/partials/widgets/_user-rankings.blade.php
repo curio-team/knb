@@ -11,11 +11,12 @@
             </thead>
 
             <tbody>
+                <?php $index = 0; ?>
                 @foreach($rankedUsers as $user)
                     <tr>
-                        <td>{{ 1 }}</td>
+                        <td>{{ $index += 1 }}</td>
                         <td>{{ $user->name }}</td>
-                        <td>{{ $user->pointsSum() }}</td>
+                        <td>{{ $user->total }}</td>
                     </tr>
                 @endforeach
             </tbody>

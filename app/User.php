@@ -60,5 +60,23 @@ class User extends Authenticatable
         return $this->houseRole->role_level == 100 ? true : false;
     }
 
+    public static function sortByPoints($limit = null)
+    {
+        $sql = "SELECT sum(`points`.`points`) as total, `users`.`name` as name
+                FROM points
+                LEFT JOIN users
+                ON points.receiver_id = users.id
+                GROUP BY name
+                ORDER BY total DESC";
+
+        if ($limit)
+        {
+            $sql.=" LIMIT $limit";
+        }
+
+        return collect(\DB::select($sql));
+
+    }
+
 
 }
