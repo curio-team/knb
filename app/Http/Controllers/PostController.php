@@ -11,7 +11,7 @@ use Session;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
-
+use Auth;
 
 class PostController extends Controller
 {
@@ -223,6 +223,8 @@ class PostController extends Controller
     public function flag(Request $request, Post $post)
     {
         $post->increment('flags');
+        $user = Auth::user();
+        $user->flags()->attach($post->id);
         return back();
 
     }

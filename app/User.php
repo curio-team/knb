@@ -78,5 +78,10 @@ class User extends Authenticatable
 
     }
 
+    public function flags()
+    {
+        return $this->belongsToMany(Post::class, 'flags', 'user_id', 'post_id');
+    }
+
 
 }

@@ -8,7 +8,11 @@
 
         <div class="media-content">
             <div class="content media-post">
+                @if(\Auth::user()->isHeadMaster())
+                    @include("partials/minis/_post-admin-controls")
+                @endif
                 <div class="box-options">
+
                     @if($question->isYours())
                         <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
                             <i class="fa fa-2x fa-edit"></i>
@@ -30,7 +34,7 @@
                 </div>
 
                 <p>
-                    <strong>{{ $post->author->name }}</strong>
+                    <strong>author: {{ $post->author->name }}</strong>
                 </p>
 
                 <h4 class="title is-4">{{ $post->title }}</h4>
@@ -88,6 +92,7 @@
 
             @foreach($replies as $post)
                 <article class="media">
+
                     @if ($post->accepted_answer)
                         <figure class="media-type media-accepted media-left">
                             <img src="{{ asset('img/icons/accepted.png') }}" alt="">
@@ -99,7 +104,11 @@
                     @endif
 
                     <div class="media-content">
+
                         <div class="content media-post">
+                            @if(\Auth::user()->isHeadMaster())
+                                @include("partials/minis/_post-admin-controls")
+                            @endif
                             <div class="box-options">
                                 @if($post->isYours())
                                     <a href="{{ action('PostController@editAnswer', $post) }}" class="option-edit">

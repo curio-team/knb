@@ -11,16 +11,16 @@
                 </thead>
 
                 <tbody>
-                    <?php $index = 0; ?>
-                    @foreach($houses as $house)
 
-                        <tr>
-                            <td>{{ ++$index }}</td>
-                            <td>{{ $house->name }}</td>
-                            <td>{{ $house->points }}</td>
-                        </tr>
+                        <?php $index = 0; ?>
+                        @foreach($houses as $house)
+                            <tr>
+                                <td>{{ ++$index }}</td>
+                                <td>{{ $house->name }}</td>
+                                <td>{{ $house->points }}</td>
+                            </tr>
+                        @endforeach
 
-                    @endforeach
                 </tbody>
             </table>
         </div>
