@@ -50,6 +50,20 @@
                         <a href="{{ route('login') }}" class="nav-item is-tab">login</a>
                         <a href="{{ route('register') }}" class="nav-item is-tab">register</a>
                     @else
+                        <div class="field has-addons" style="margin-top:10px">
+                            <form action="{{action('PostController@search')}}">
+                                {{csrf_field()}}
+                                <p class="control" style="float: left">
+                                    <input class="input" name="query" type="text" placeholder="Search the forum...">
+                                </p>
+
+                                <p style="float: left" class="control">
+                                    <button type="submit" class="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </p>
+                            </form>
+                        </div>
                         @if (\Auth::user()->isHeadMaster())
                             <a class="nav-item is-tab" href="{{ route('dashboard') }}">Dashboard</a>
                         @endif
