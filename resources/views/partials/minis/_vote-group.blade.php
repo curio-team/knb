@@ -1,4 +1,4 @@
-<div class="vote-group is-pulled-right">
+<div class="vote-group">
     @unless($post->isYours() || $post->userHasVoted())
         <span class="fa fa-arrow-up fa-2x" onclick="event.preventDefault();
             $(this).closest('.button-group').find('.vote-form .vote-type').val('up');

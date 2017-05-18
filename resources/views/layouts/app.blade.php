@@ -31,7 +31,7 @@
                     <a href="{{ route('home') }}" class="nav-item">
                         <img src="{{ asset('img/rc-fc.png') }}" alt="">
                     </a>
-                    <a href="{{ action('HomeController@index') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Forum</a>
+                    <a href="{{ action('HomeController@index') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a>
                     <a href="{{ action('HomeController@learn') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a>
                     <a class="nav-item is-tab is-hidden-mobile">About</a>
                 </div>

@@ -11,6 +11,16 @@ body {
   background: linear-gradient(to left, #ECE9E6 , #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+
+// Optimizations for Bulma
+.tag{
+  border-radius: 3px;
+}
+span.panel-heading{
+  display: block;
+}
+
+
 .main-content {
   margin-top: 50px;
 }
@@ -26,15 +36,20 @@ body {
 
 .box-options {
   position: absolute;
-
-    right: 15px;
-    top: 15px;
-    i {
-      color: $text-color;
-      &:hover {
-        color: $brand-link;
-      }
+  right: 15px;
+  top: 15px;
+  i.fa{
+    color: #4a4a4a;
+  }
+  i{
+    &:hover {
+      color: $brand-link;
     }
+  }
+  .option{
+    margin-bottom: 10px;
+    text-align: center;
+  }
 }
 
 .filter-panel {
@@ -90,13 +105,17 @@ body {
   padding: 5px;
 }
 
-.media-post {
+.box-with-options{
   position: relative;
-  background: white;
-  box-shadow: 0px 0px 5px 1px black;
-  padding: 23px;
+}
 
+.media-post h4.title{
+  margin-bottom: 0;
+}
 
+.media-post span.author{
+  font-size: .8em;
+  font-weight: bold;
 }
 
 .media-post-comment {
@@ -109,7 +128,6 @@ body {
 
   img {
     width: 100%;
-    background: #fedde1;
   }
 }
 
@@ -117,7 +135,6 @@ body {
 
   img {
     width: 50%;
-    background: #ed5fBB;
   }
 }
 
@@ -126,7 +143,6 @@ body {
 
   img {
     width: 80%;
-    background: #34deaa;
   }
 }
 
@@ -152,7 +168,7 @@ code {
 }
 
 .vote-group {
-  margin-top: -30px;
+  max-width: 50px;
   display: flex;
   flex-direction: column;
   .fa {
@@ -174,10 +190,16 @@ i.fa-remove {
   color: green;
 }
 
-.fa-user-md {
+.fa.is-warning {
   color: $brand-warning;
 }
+.fa.is-danger {
+  color: $brand-danger;
+}
 
+i.enable-admin-controls{
+  cursor: pointer;
+}
 
 li.admin-control .fa {
   vertical-align: middle;
@@ -186,8 +208,9 @@ li.admin-control .fa {
 
 // endicons
 ul.admin-controls {
-  margin-left: 0px;
-  margin-top: 0px;
+  right: 0px;
+  top: 0px;
+  min-width: 150px;
   display: none;
   background: $brand-warning;
   position: absolute;
