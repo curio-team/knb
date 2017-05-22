@@ -8,83 +8,84 @@
 
         <div class="media-content">
             <div class="content media-post">
-                @if(\Auth::user()->isHeadMaster())
-                    @include("partials/minis/_post-admin-controls")
-                @endif
-                <div class="box-options">
-
-                    @if($question->isYours())
-                        <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
-                            <i class="fa fa-2x fa-edit"></i>
-                        </a>
-                    @else
-                        @unless($post->isFlagged())
-                            <a href="{{action('PostController@edit', $post->id) }}" class="option-flag">
-                                <i class="fa fa-2x fa-flag"></i>
+                <div class="box box-with-options">
+                    <div class="box-options">
+                        @if(\Auth::user()->isHeadMaster())
+                            @include("partials/minis/_post-admin-controls")
+                        @endif
+                        @if($question->isYours())
+                            <a class="option"  href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                <i class="fa fa-2x fa-edit"></i>
                             </a>
-                            <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
-                                {{ csrf_field() }}
-                            </form>
                         @else
-                            <i title="this post is flagged. A moderator will look into this soon." style="color: red">
-                               flagged
-                            </i>
-                        @endunless
-                    @endif
-                </div>
+                            @unless($post->isFlagged())
+                                <a class="option"  href="{{action('PostController@edit', $post->id) }}" class="option-flag">
+                                    <i class="fa fa-2x fa-flag"></i>
+                                </a>
+                                <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
+                                    {{ csrf_field() }}
+                                </form>
+                            @else
+                                <span class="option" title="this post is flagged. A moderator will look into this soon.">
+                                    <i class="fa fa-2x fa-flag is-danger"></i>
+                                </span>
+                            @endunless
+                        @endif
+                    </div>
 
-                <p>
-                    <strong>author: {{ $post->author->name }}</strong>
-                </p>
+                    <div class="columns">
+                        <div class="column">
+                            @include('partials.minis._vote-group')
+                        </div>
+                        <div class="column is-11">
+                            <h4 class="title is-4">{{ $post->title }}</h4>
+                            <span class="author">author: {{ $post->author->name }}</span>
 
-                <h4 class="title is-4">{{ $post->title }}</h4>
-                <p>{!! $post->content !!}</p>
+                            <p>{!! $post->content !!}</p>
+                        </div>
+                    </div>
 
-                <div class="level post-tags">
-                    <div class="level-left">
-                        @foreach($post->tags as $tag)
-                            @if($tag->thumbnail)
-                                <div class="level-item">
-                                    <figure class="image is-32x32">
-                                        <img title="{{ $tag->name }}" src="{{ asset('img/icons/languages/') }}/{{ $tag->thumbnail }}" alt="{{ $tag->name }}">
-                                    </figure>
+                    <div class="level post-tags">
+                        <div class="level-left">
+                            @foreach($post->tags as $tag)
+                                @if($tag->thumbnail)
+                                    <div class="level-item">
+                                        <figure class="image is-32x32">
+                                            <img title="{{ $tag->name }}" src="{{ asset('img/icons/languages/') }}/{{ $tag->thumbnail }}" alt="{{ $tag->name }}">
+                                        </figure>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+
+                        <div class="level-right">
+                            <p class="level-item">
+                               <i> created {{ $post->getTimePosted() }} </i>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <a href="{{ action('PostController@answer', $post) }}" class="button is-success">Give answer</a>
+
+                        <a href="" class="btn-add-comment button is-info">Add comment</a>
+                    </div>
+
+                    <div class="form-comment-hidden">
+                        @include('partials._create-comment')
+                    </div>
+
+                    <h3 class="is-3">{{ $post->comments->count() }} {{ str_plural('comment', $post->comments->count()) }}</h3>
+                    <div class="comment-box">
+                        @foreach($post->comments as $comment)
+                            <article class="media">
+                                <div class="content media-post-comment">
+                                    <strong>{{ $comment->author->name }}</strong>
+
+                                    <p>{!! nl2br($comment->content) !!}</p>
                                 </div>
-                            @endif
+                            </article>
                         @endforeach
                     </div>
-
-                    <div class="level-right">
-                        <p class="level-item">
-                           <i> created {{ $post->getTimePosted() }} </i>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="button-group">
-                    @unless($post->isYours())
-                        <a href="{{ action('PostController@answer', $post) }}" class="button is-success">Give answer</a>
-                    @endunless
-
-                    <a href="" class="btn-add-comment button is-info">Add comment</a>
-
-                    @include('partials.minis._vote-group')
-                </div>
-
-                <div class="form-comment-hidden">
-                    @include('partials._create-comment')
-                </div>
-
-                <h3 class="is-3">{{ $post->comments->count() }} {{ str_plural('comment', $post->comments->count()) }}</h3>
-                <div class="comment-box">
-                    @foreach($post->comments as $comment)
-                        <article class="media">
-                            <div class="content media-post-comment">
-                                <strong>{{ $comment->author->name }}</strong>
-
-                                <p>{!! nl2br($comment->content) !!}</p>
-                            </div>
-                        </article>
-                    @endforeach
                 </div>
             </div>
 
@@ -105,36 +106,41 @@
 
                     <div class="media-content">
 
-                        <div class="content media-post">
-                            @if(\Auth::user()->isHeadMaster())
-                                @include("partials/minis/_post-admin-controls")
-                            @endif
+                        <div class="content media-post box box-with-options">
                             <div class="box-options">
-                                @if($post->isYours())
-                                    <a href="{{ action('PostController@editAnswer', $post) }}" class="option-edit">
-                                        <i class="fa fa-edit fa-2x"></i>
+                                @if(\Auth::user()->isHeadMaster())
+                                    @include("partials/minis/_post-admin-controls")
+                                @endif
+                                @if($question->isYours())
+                                    <a class="option"  href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                        <i class="fa fa-2x fa-edit"></i>
                                     </a>
                                 @else
                                     @unless($post->isFlagged())
-                                        <a href="{{action('PostController@edit', $post->id) }}" class="option-flag">
+                                        <a class="option"  href="{{action('PostController@edit', $post->id) }}" class="option-flag">
                                             <i class="fa fa-2x fa-flag"></i>
                                         </a>
                                         <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
                                             {{ csrf_field() }}
                                         </form>
-                                    @else
-                                            <i title="this post is flagged. A moderator will look into this soon." style="color: red">
-                                                flagged
-                                            </i>
-                                    @endunless
-                                @endif
+                                        @else
+                                            <span class="option" title="this post is flagged. A moderator will look into this soon.">
+                                    <i class="fa fa-2x fa-flag is-danger"></i>
+                                </span>
+                                            @endunless
+                                        @endif
                             </div>
 
-                            <p>
-                                <strong>{{ $post->author->name }}</strong>
-                            </p>
+                            <div class="columns">
+                                <div class="column">
+                                    @include('partials.minis._vote-group')
+                                </div>
+                                <div class="column is-11">
+                                    <span class="author">author: {{ $post->author->name }}</span>
 
-                            <p>{!! $post->content !!}</p>
+                                    <p>{!! $post->content !!}</p>
+                                </div>
+                            </div>
 
                             <div class="level post-tags">
                                 <div class="level-left">
@@ -171,7 +177,6 @@
 
                             <div class="button-group">
                                 <a href="" class="btn-add-comment button is-info">Add comment</a>
-                                @include('partials.minis._vote-group')
                             </div>
 
                             <div class="form-comment-hidden">

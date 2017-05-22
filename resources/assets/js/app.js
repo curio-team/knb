@@ -49,7 +49,6 @@ $('document').ready(function(){
 
         if ( confirm('Are you sure you want to mark this post as flagged? A moderator will be notified and address this. Misuse of this will not be tolerated.') )
         {
-            console.log('waht?');
             $(this).next('.flag-form').submit();
         }
     });
