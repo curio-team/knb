@@ -22055,7 +22055,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             categories: [{
                 name: "HTML/CSS",
-                series: []
+                series: [{
+                    title: 'HTML CSS Fundamentals',
+                    difficulty: 'beginner',
+                    content: "Deze video series is voor jou als je vanaf nul wilt weten hoe een webpagina opgebouwd wordt.",
+                    length: "still in progress",
+                    tag: 'html-css-fundamentals'
+                }]
             }, {
                 name: "C#",
                 series: [{
@@ -22063,7 +22069,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     difficulty: 'beginner',
                     content: "In deze video series maak je kennis met programmeren. Dit gebeurt in de taal C#. Tim neemt je mee vanaf het configureren van visual studio tot het maken van werkende applicaties.",
                     length: 'still in progress...',
-                    tag: 'sharp_fundementals'
+                    tag: 'csharp_fundamentals'
 
                 }]
             }, {
