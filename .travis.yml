@@ -8,5 +8,8 @@ php:
 before_script:
   - composer install --no-interaction --no-scripts
 
+env:
+  - APP_KEY=base64:oKkca01Gaxi9n+4iJlF6VL1QIHp49Ln6VTa6N61O4Ws=
+
 script:
   - vendor/bin/phpunit
