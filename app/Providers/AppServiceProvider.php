@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
             $rankedUsers = \App\User::sortByPoints(10);
 
             \View::share([
-                'houses'    => $houses,
+                'houses'        => $houses,
                 'tags'      => $tags,
                 'rankedUsers'     => $rankedUsers
             ]);

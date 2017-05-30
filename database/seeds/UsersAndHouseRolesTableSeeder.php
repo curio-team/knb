@@ -32,7 +32,6 @@ class UsersAndHouseRolesTableSeeder extends Seeder
             for($i=0; $i < rand(1, 50); $i++){
                 // Assign a random amount of points
                 Point::create([
-                    'points' => 0,
                     'receiver_id' => $user->id,
                     'score_type_id' => rand(1, 8),
                     'benefactor_id' => rand(1, $index),

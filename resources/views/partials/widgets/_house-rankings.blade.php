@@ -17,7 +17,7 @@
                             <tr>
                                 <td>{{ ++$index }}</td>
                                 <td>{{ $house->name }}</td>
-                                <td>{{ $house->points }}</td>
+                                <td>{{ $house->total }}</td>
                             </tr>
                         @endforeach
 

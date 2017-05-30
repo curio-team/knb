@@ -16,8 +16,6 @@ class CreatePointsTable extends Migration
         // Create a role pivot table for a user with a house
         Schema::create('points', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('points')->nullable();
-            $table->string('description')->nullable();
             $table->integer('receiver_id')->unsigned();
             $table->integer('score_type_id')->unsigned();
             $table->integer('benefactor_id')->unsigned()->nullable();

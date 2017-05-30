@@ -39,6 +39,7 @@ class User extends Authenticatable
 
     /**
      * Get the sum of points associated with the model.
+     * DEPRECATED
      */
     public function pointsSum()
     {
