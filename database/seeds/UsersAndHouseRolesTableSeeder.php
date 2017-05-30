@@ -34,7 +34,7 @@ class UsersAndHouseRolesTableSeeder extends Seeder
                 Point::create([
                     'points' => rand(-25,25),
                     'receiver_id' => $user->id,
-                    'benefactor_type' => Point::BENEFACTOR_TYPE_USER_ASSIGNED,
+                    'score_type_id' => rand(1, 8),
                     'benefactor_id' => rand(1, $index),
                 ]);
             }

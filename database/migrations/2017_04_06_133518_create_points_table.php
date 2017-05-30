@@ -18,10 +18,11 @@ class CreatePointsTable extends Migration
             $table->increments('id');
             $table->integer('points');
             $table->integer('receiver_id')->unsigned();
-            $table->smallInteger('benefactor_type');
+            $table->integer('score_type_id')->unsigned();
             $table->integer('benefactor_id')->unsigned()->nullable();
             $table->timestamps();
 
+            $table->foreign('score_type_id')->references('id')->on('score_types');
             $table->foreign('receiver_id')->references('id')->on('users');
             $table->foreign('benefactor_id')->references('id')->on('users');
         });
