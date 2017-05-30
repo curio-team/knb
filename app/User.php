@@ -62,10 +62,10 @@ class User extends Authenticatable
 
     public static function sortByPoints($limit = null)
     {
-        $sql = "SELECT sum(`points`.`points`) as total, `users`.`name` as name
-                FROM points
-                LEFT JOIN users
-                ON points.receiver_id = users.id
+        $sql = "SELECT SUM(`score_types`.`points`) as total, `users`.`name` as name
+                FROM `POINTS`
+                INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
+                LEFT JOIN `users` ON `users`.`id` = `points`.`receiver_id`
                 GROUP BY name
                 ORDER BY total DESC";
 
