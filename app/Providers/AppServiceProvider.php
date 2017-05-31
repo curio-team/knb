@@ -16,15 +16,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $houses = \App\House::sortByPoints(4);
-        $tags = \App\Tags::all();
-        $rankedUsers = \App\User::sortByPoints(10);
+        if (Schema::hasTable('points'))
+        {
+            $houses = \App\House::sortByPoints(4);
+            $tags = \App\Tags::all();
+            $rankedUsers = \App\User::sortByPoints(10);
 
-        \View::share([
-            'houses'        => $houses,
-            'tags'          => $tags,
-            'rankedUsers'   => $rankedUsers
-        ]);
+            \View::share([
+                'houses'        => $houses,
+                'tags'          => $tags,
+                'rankedUsers'   => $rankedUsers
+            ]);
+
+        }
+
     }
 
     /**
