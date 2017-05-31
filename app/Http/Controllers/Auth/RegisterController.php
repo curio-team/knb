@@ -53,7 +53,7 @@ class RegisterController extends Controller
             'password' => 'required|min:6|confirmed',
 
             'level' => 'required|between:0,100',
-            'house' => 'required|exists:house_roles,id'
+            'house' => 'required|exists:houses,id'
         ]);
     }
 
