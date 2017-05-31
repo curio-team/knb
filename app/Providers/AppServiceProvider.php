@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (Schema::hasTable('points'))
+        if (\Schema::hasTable('points'))
         {
             $houses = \App\House::sortByPoints(4);
             $tags = \App\Tags::all();
