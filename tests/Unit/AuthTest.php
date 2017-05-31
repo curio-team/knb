@@ -12,8 +12,23 @@ class AuthTest extends TestCase
 
     public function testRegisterUser()
     {
+
+
+
+    }
+
+    public function testLoginUser()
+    {
         $user = factory(\App\User::class)->make();
-        $this->assertEquals(1, count($user));
+        $login = false;
+        if ( \Auth::attempt(['email' => $user->email, 'password' => 'secret']) )
+        {
+            $login = true;
+        }
+
+        $this->assertEquals(true, $login,
+            'Failed trying to authenticate user...');
+
     }
 
 

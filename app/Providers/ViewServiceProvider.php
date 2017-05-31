@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 class ViewServiceProvider extends ServiceProvider
 {
 
-    public $defer = true;
 
     /**
      * Bootstrap the application services.
@@ -16,18 +15,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \View::composer('*', function(){
-            $houses = \App\House::sortByPoints(4);
-            $tags = \App\Tags::all();
-            $rankedUsers = \App\User::sortByPoints(10);
 
-            \View::share([
-                'houses'        => $houses,
-                'tags'          => $tags,
-                'rankedUsers'   => $rankedUsers
-            ]);
-
-        });
     }
 
     /**
@@ -37,6 +25,6 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 }

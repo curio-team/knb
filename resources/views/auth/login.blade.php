@@ -44,7 +44,7 @@
 
                 <div class="field is-grouped">
                     <p class="control">
-                        <button class="button is-primary" type="submit">Submit</button>
+                        <button name="submit" class="button is-primary" type="submit">Submit</button>
                     </p>
 
                     <p class="control">
