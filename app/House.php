@@ -27,7 +27,7 @@ class House extends Model
     public static function sortByPoints($limit = null)
     {
         $sql = "SELECT SUM(`score_types`.`points`) as total, `houses`.`name` as name, `houses`.`id` as id
-                FROM `POINTS`
+                FROM `points`
                 INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
                 LEFT JOIN `users` ON `users`.`id` = `points`.`receiver_id`
                 INNER JOIN `house_roles` ON `users`.id = `house_roles`.`user_id`
