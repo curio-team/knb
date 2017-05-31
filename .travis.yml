@@ -1,8 +1,15 @@
 language: php
-php:
-  - '5.6'
-  - '7.0'
-  - '7.1'
 
-install:
-  - travis_retry composer install --no-interaction --prefer-source
+php:
+  - 5.6
+  - 7.0
+  - 7.1
+
+before_script:
+  - composer install --no-interaction --no-scripts
+
+env:
+  - APP_KEY=base64:oKkca01Gaxi9n+4iJlF6VL1QIHp49Ln6VTa6N61O4Ws=
+
+script:
+  - vendor/bin/phpunit
