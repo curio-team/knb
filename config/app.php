@@ -176,13 +176,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-//        App\Providers\ViewServiceProvider::class,
+        App\Providers\ViewServiceProvider::class,
 
         Sven\EnvProviders\EnvServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-
-
-
         GrahamCampbell\GitHub\GitHubServiceProvider::class
 
     ],

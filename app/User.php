@@ -67,7 +67,7 @@ class User extends Authenticatable
                 FROM `points`
                 INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
                 LEFT JOIN `users` ON `users`.`id` = `points`.`receiver_id`
-                GROUP BY name
+                GROUP BY `users`.`name`
                 ORDER BY total DESC";
 
         if ($limit)
