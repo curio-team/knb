@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\HousesSelected;
 use Illuminate\Http\Request;
 use App\House;
 
@@ -17,6 +18,27 @@ class HouseController extends Controller
         return view('houses.index', [
             'houses' => House::with('headmaster', 'headmaster.user')->get(),
         ]);
+    }
+
+    /**
+     * Display the house selection page
+     *
+     * @return mixed
+     */
+    public function selection()
+    {
+        return view('houses.selection');
+    }
+
+    /**
+     * Initiate the house selection
+     *
+     * @return mixed
+     */
+    public function doSelection()
+    {
+        // TODO: Authorize user
+        var_dump(event(new HousesSelected()));
     }
 
     /**

@@ -28,7 +28,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/learn/{name}', 'HomeController@details');
 
     Route::resource('house', 'HouseController');
-
+    Route::get('/house-selection', 'HouseController@selection');
+    Route::get('/start-house-selection', 'HouseController@doSelection');
 
     Route::post('post/{post}/flag', 'PostController@flag');
     Route::post('post/{post}/vote', 'PostController@vote');
