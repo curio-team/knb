@@ -135,6 +135,15 @@ class Post extends Model
         return $carbonDate->diffForHumans();
     }
 
+    public function isAnswer()
+    {
+        if (count($this->parent))
+        {
+            return true;
+        }
+        return false;
+    }
+
 
 }
 

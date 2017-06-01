@@ -68,7 +68,23 @@ class PostController extends Controller
             {
                 $post->tags()->attach($request->get('tag'));
             }
+
+            // get points for an answer but not on your own question
+            if ($post->isAnswer() )
+            {
+                if ($post->parent->author_id !== \Auth::user()->id )
+                {
+                    $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED;
+                    \App\Point::assign(\Auth::user()->id, $type);
+                }
+            // get points for a question
+            } else {
+                $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ASKED;
+                \App\Point::assign(\Auth::user()->id, $type);
+            }
+            // assign the points
             \DB::commit();
+
         } catch (\Exception $e)
         {
             \DB::rollback();

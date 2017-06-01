@@ -7,15 +7,15 @@ use Auth;
 
 class Point extends Model
 {
-    const BENEFACTOR_REGISTER_SYSTEM = 3;                   // For when you register and get some points
-    const BENEFACTOR_TYPE_QUESTION_ASKED = 1;               // For when you ask a question
-    const BENEFACTOR_TYPE_QUESTION_ANSWERED = 1;            // Answering a question
-    const BENEFACTOR_TYPE_ANSWER_ACCEPTED = 3;              // Your answer got marked as accepted
-    const BENEFACTOR_TYPE_COMMENTED = 1;                    // Commenting on a question
+    const BENEFACTOR_REGISTER_SYSTEM = 1;                   // For when you register and get some points
+    const BENEFACTOR_TYPE_QUESTION_ASKED = 2;               // For when you ask a question
+    const BENEFACTOR_TYPE_QUESTION_ANSWERED = 3;            // Answering a question
+    const BENEFACTOR_TYPE_ANSWER_ACCEPTED = 4;              // Your answer got marked as accepted
+    const BENEFACTOR_TYPE_COMMENTED = 5;                    // Commenting on a question
     const BENEFACTOR_TYPE_USER_ASSIGNED = null;             // When a teacher awards points to you
-    const BENEFACTOR_TYPE_TOP_WEEKLY_COMMENTER = 2;         // Weekly points for top active commenter
-    const BENEFACTOR_TYPE_TOP_WEEKLY_MOST_VOTED_FOR = 3;    // weekly points for most voted for
-    const BENEFACTOR_TYPE_TOP_WEEKLY_ANSWERS = 2;           // Weekly point for most answers
+    const BENEFACTOR_TYPE_TOP_WEEKLY_COMMENTER = 6;         // Weekly points for top active commenter
+    const BENEFACTOR_TYPE_TOP_WEEKLY_MOST_VOTED_FOR = 7;    // weekly points for most voted for
+    const BENEFACTOR_TYPE_TOP_WEEKLY_ANSWERS = 8;           // Weekly point for most answers
 
 
     /**
@@ -24,7 +24,7 @@ class Point extends Model
      * @var string
      */
     protected $table = 'points';
-
+    protected $fillable = ['receiver_id', 'score_type_id'];
     /**
      * @return bool
      */
@@ -61,9 +61,12 @@ class Point extends Model
         }
     }
 
-    public function assign()
+    public static function assign($userId, $type)
     {
-
+        \App\Point::create([
+            'receiver_id' => $userId,
+            'score_type_id' => $type
+        ]);
     }
 
 }
