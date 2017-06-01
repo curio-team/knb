@@ -98,7 +98,8 @@ span.panel-heading{
 }
 
 .banner {
-  background: url('../img/banner.jpg');
+  background: #272822 url('../img/banner.jpg') no-repeat;
+  background-size: cover;
 }
 
 .media-type img {
@@ -257,7 +258,8 @@ iframe[src^="https://player.vimeo.com"] {
 
 footer.main-footer {
   margin-top: 30px;
-  background: url('../img/banner.jpg');
+  background: #272822 url('../img/banner.jpg') no-repeat;
+  background-size: cover;
   .columns {
     background: rgba(0,0,0,0.4);
     padding: 10px;

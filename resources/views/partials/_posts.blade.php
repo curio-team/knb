@@ -7,12 +7,12 @@
 
     <div class="posts" >
         @foreach($posts as $post)
-            <div class="box box-post" data-href="{{ action('PostController@show', $post) }}">
-                @if(\Auth::user()->isHeadMaster())
-                    @include("partials/minis/_post-admin-controls")
-                @endif
-
+            <div class="box box-post box-with-options" data-href="{{ action('PostController@show', $post) }}">
                 <div class="box-options">
+                    @if(\Auth::user()->isHeadMaster())
+                        @include("partials/minis/_post-admin-controls")
+                    @endif
+
                     @if($post->isYours())
                         <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
                             <i title="edit this post" class="fa fa-2x fa-edit"></i>
