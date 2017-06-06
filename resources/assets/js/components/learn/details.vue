@@ -21,8 +21,14 @@
                        <nav class="level is-mobile">
                             <div class="level-left">
                                 <a href="" class="level-item">
-                                    <span class="icon-is-small"><a target="_blank" v-bind:href="video.link"><i class="fa fa-play"></i></a></span>
+                                    <a style="display:inline-block; margin-bottom: 10px" target="_blank" v-bind:href="video.link" class="button is-primary"><i class="fa fa-play"></i> Play</a>
                                 </a>
+                                <div class="level-item" v-if="getLearnData(video).quiz !== false">
+                                    <span style="display:inline-block; margin-bottom: 10px;" v-on:click="showQuiz(video)" class="button is-secondary"><i class="fa fa-list-ol"></i> Quiz</span>
+                                </div>
+                                <div href="" class="level-item" v-if="getLearnData(video).practice !== false">
+                                    <span style="display:inline-block; margin-bottom: 10px;" v-on:click="showPractice(video)" class="button is-secondary"><i class="fa fa-graduation-cap"></i> Practice</span>
+                                </div>
                             </div>
                        </nav>
                        </div>
@@ -31,7 +37,31 @@
        </div>
         <div v-if="modalEnabled" class="modal" v-bind:class="{'is-active' : modalEnabled}">
             <div class="modal-background"></div>
-                <div class="modal-content" style="width: 80%">
+                <div class="modal-content" style="width: 80%" v-if="isQuiz">
+                    <h3 class="is-3" style="color: white">{{ selectedQuiz.title }}</h3>
+
+                    <div class="box">
+                        <div v-for="question in selectedQuiz.questions">
+                            <h2 v-html="question.question"></h2>
+                            <ul>
+                                <li v-for="answer in question.answers"><button v-html="answer.answer" v-on:click="answer.is_correct ? showCorrect() : showIncorrect()"></button></li>
+                            </ul>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <div class="modal-content" style="width: 80%" v-else-if="isPractice">
+                    <h3 class="is-3" style="color: white">{{ selectedPractice.title }}</h3>
+
+                    <div class="box">
+                        <div v-for="assignment in selectedPractice.assignments">
+                            <h2 v-html="assignment.assignment"></h2>
+                            <span v-html="assignment.description"></span>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <div class="modal-content" style="width: 80%" v-else>
                     <h3 class="is-3" style="color: white">{{ selectedVideo.name }}</h3>
 
                     <div  v-html="selectedVideo.embed.html"></div>
@@ -48,8 +78,13 @@
         data : function() {
             return {
                 videos: [],
+                categories: [],
                 modalEnabled: false,
-                selectedVideo : {}
+                isQuiz: false,
+                isPractice: false,
+                selectedVideo : {},
+                selectedQuiz : {},
+                selectedPractice : {}
             }
         },
 
@@ -57,6 +92,7 @@
 
         mounted() {
             axios.get('https://api.vimeo.com/channels/amo/videos?sort=manual&access_token=e433335e8d25a8c33089024e2bc30d4d').then(response => this.videos = response.data);
+            axios.get('json/series_data.json').then(response => this.categories = response.data);
         },
 
         methods: {
@@ -74,6 +110,9 @@
             closeModal: function()
             {
                 this.modalEnabled = false;
+                this.selectedVideo = undefined;
+                this.isPractice = true;
+                this.isQuiz = undefined;
             },
 
             isModalEnabled: function()
@@ -85,8 +124,55 @@
             {
                 this.modalEnabled = true;
                 this.selectedVideo = video;
-            }
+            },
 
+            getLearnData: function(video)
+            {
+                for(var c = 0 ; c < this.categories.length; c++){
+                    for(var i = 0 ; i < this.categories[c].series.length; i++){
+                        if(this.categories[c].series[i].hasOwnProperty("videos") && this.categories[c].series[i].tag === this.tag) {
+                            for(var videoId in this.categories[c].series[i].videos){
+                                if(video.uri == videoId){
+                                    return this.categories[c].series[i].videos[videoId];
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return {
+                    quiz: false,
+                    practice: false
+                };
+            },
+
+            showQuiz: function(video)
+            {
+                this.modalEnabled = true;
+
+                this.selectedQuiz = this.getLearnData(video).quiz;
+
+                this.isQuiz = true;
+            },
+
+            showPractice: function(video)
+            {
+                this.modalEnabled = true;
+
+                this.selectedPractice = this.getLearnData(video).practice;
+
+                this.isPractice = true;
+            },
+
+            showCorrect: function()
+            {
+                alert('This is the right answer!');
+            },
+
+            showIncorrect: function()
+            {
+                alert('Wrong answer!');
+            },
         }
     }
 

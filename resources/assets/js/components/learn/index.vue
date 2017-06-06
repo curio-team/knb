@@ -51,84 +51,17 @@
 
         data :  function(){
             return {
-                categories: [
-                    {
-                        name: "HTML/CSS",
-                        series: [
-                            {
-                                title: 'HTML CSS Fundamentals',
-                                difficulty: 'beginner',
-                                content: "Deze video series is voor jou als je vanaf nul wilt weten hoe een webpagina opgebouwd wordt.",
-                                length: "still in progress",
-                                tag: 'html-css-fundamentals'
-                            }
-                        ]
-                    },
-
-                    {
-                        name: "C#",
-                        series: [
-                            {
-                                title: 'C# Fundamentals',
-                                difficulty: 'beginner',
-                                content: "In deze video series maak je kennis met programmeren. Dit gebeurt in de taal C#. Tim neemt je mee vanaf het configureren van visual studio tot het maken van werkende applicaties.",
-                                length: 'still in progress...',
-                                tag: 'csharp_fundamentals'
-
-                            }
-                        ]
-                    },
-
-                    {
-                        name: "PHP",
-                        series : [
-                            {
-                                title:  "Maak een todo list met PHP en MySql",
-                                difficulty: "beginner",
-                                content: "In deze videoserie maak je met behulp van PDO een databaseconnectie en maak je een een online todo list waarbij de items in een database worden gezet.",
-                                length: "6 videos",
-                                tag: 'series-todo-beginner'
-                            },
-                            {
-                                title:  "PHP Fundamentals",
-                                difficulty: "beginner",
-                                content: "In deze videoserie maak je kennis met PHP als programmeertaal. Deze serie is geschikt voor als je met behulp van PHP je programmeerskills wilt opvijzelen.",
-                                length: "8 videos",
-                                tag: 'series-php-fundamentals'
-                            }
-                        ]
-                    },
-                    {
-                        name : "SQL",
-                        series: []
-                    },
-                    {
-                        name : "UML",
-                        series: []
-                    },
-                    {
-                        name: "Normaliseren",
-                        series: []
-                    },
-
-                    {
-                        name: "Xamarin",
-                        series: []
-                    },
-                    {
-                        name: "Javascript",
-                        series: []
-                    }
-
-                ],
+                categories: [],
                 active : ''
-
             }
 
         },
 
         mounted: function() {
-            this.setActive(this.categories[0]);
+            axios.get('json/series_data.json').then(response =>{
+                this.categories = response.data;
+                this.setActive(this.categories[0]);
+            });
         },
 
         methods: {
