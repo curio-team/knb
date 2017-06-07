@@ -137,11 +137,7 @@ class Post extends Model
 
     public function isAnswer()
     {
-        if (count($this->parent))
-        {
-            return true;
-        }
-        return false;
+        return count($this->parent);
     }
 
 

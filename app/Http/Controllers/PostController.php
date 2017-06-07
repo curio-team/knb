@@ -211,9 +211,12 @@ class PostController extends Controller
      */
     public function accept(AcceptAnswerRequest $request, $id)
     {
-        Post::find($id)->update([
+        $post = Post::find($id)->update([
             'accepted_answer' => $request->get('accepted'),
         ]);
+
+        // accepted answer author gets points.
+        \App\Point::assign($post->author_id, \App\Point::BENEFACTOR_TYPE_ANSWER_ACCEPTED);
 
         return redirect()->back()->with('success', 'Answer has been accepted.');
     }

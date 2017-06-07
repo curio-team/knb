@@ -42,6 +42,7 @@ class CommentController extends Controller
         $comment->content = $request->get('content');
         $comment->save();
 
+        \App\Point::assign(\Auth::user()->id, \App\Point::BENEFACTOR_TYPE_COMMENTED);
 
         return redirect()->back()->with('success', 'Succesfully added comment!');
     }
@@ -86,8 +87,8 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(\App\Comment $comment)
     {
-        //
+        $comment->delete();
     }
 }
