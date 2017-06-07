@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('post/{post}/answer', 'PostController@answer')->name('answer');
     Route::resource('post', 'PostController');
+    Route::resource('message', 'MessageController');
 
 
     Route::resource('comment', 'CommentController');

@@ -21,8 +21,8 @@ class HousesTableSeeder extends Seeder
         ]);
 
         House::create([
-            'name' => 'FooBarbarians',
-            'description' => 'Placeholder barbarians'
+            'name' => 'Recursive Ravens',
+            'description' => 'Recursively recursive recursions'
         ]);
 
         House::create([
