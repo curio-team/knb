@@ -66,6 +66,8 @@
                         </div>
                         @if (\Auth::user()->isHeadMaster())
                             <a class="nav-item is-tab" href="{{ route('dashboard') }}">Dashboard</a>
+                        @else
+                            <a class="nav-item is-tab" href="{{ route('profile') }}">Profile</a>
                         @endif
                         <a class="nav-item is-tab" href="{{ route('logout') }}"
                            onclick="event.preventDefault();

@@ -41,12 +41,13 @@
                     <h3 class="is-3" style="color: white">{{ selectedQuiz.title }}</h3>
 
                     <div class="box">
-                        <div v-for="question in selectedQuiz.questions">
-                            <h2 v-html="question.question"></h2>
-                            <ul>
-                                <li v-for="answer in question.answers"><button v-html="answer.answer" v-on:click="answer.is_correct ? showCorrect() : showIncorrect()"></button></li>
-                            </ul>
-                        </div>
+
+                        <!--<div v-for="question in selectedQuiz.questions">-->
+                            <!--<h2 v-html="question.question"></h2>-->
+                            <!--<ul>-->
+                                <!--<li v-for="answer in question.answers"><button v-html="answer.answer" v-on:click="answer.is_correct ? showCorrect() : showIncorrect()"></button></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
                         <hr>
                     </div>
                 </div>
@@ -83,8 +84,11 @@
                 isQuiz: false,
                 isPractice: false,
                 selectedVideo : {},
+
                 selectedQuiz : {},
+
                 selectedPractice : {}
+
             }
         },
 

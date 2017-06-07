@@ -53,4 +53,9 @@ class HomeController extends Controller
         return 'dashboard';
     }
 
+    public function profile()
+    {
+        return 'profile';
+    }
+
 }
