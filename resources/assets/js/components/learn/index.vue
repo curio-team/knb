@@ -58,6 +58,7 @@
         },
 
         mounted: function() {
+            //TODO: Load from database instead of plain JSON file
             axios.get('json/series_data.json').then(response =>{
                 this.categories = response.data;
                 this.setActive(this.categories[0]);

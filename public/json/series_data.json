@@ -27,6 +27,25 @@
               "questions": [
                 {
                   "question": "Selecteer antwoord B!",
+                  "explaination": "This is why B is the correct answer",
+                  "answers": [
+                    {
+                      "answer": "A: This is the incorrect answer"
+                    },
+                    {
+                      "answer": "B: This is the correct answer",
+                      "is_correct": true
+                    },
+                    {
+                      "answer": "C: This is another incorrect answer"
+                    },
+                    {
+                      "answer": "D: This is the final incorrect answer"
+                    }
+                  ]
+                },
+                {
+                  "question": "Selecteer antwoord B!",
                   "answers": [
                     {
                       "answer": "A: This is the incorrect answer"
