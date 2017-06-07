@@ -31,7 +31,7 @@ class Post extends Model
      */
     public function isYours()
     {
-        return Auth::user()->id == $this->author->id;
+        return Auth::id() == $this->author->id;
     }
 
     /**
