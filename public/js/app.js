@@ -21572,14 +21572,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     data: function data() {
         return {
             videos: [],
+            categories: [],
             modalEnabled: false,
-            selectedVideo: {}
+            isQuiz: false,
+            isPractice: false,
+            selectedVideo: {},
+            selectedQuiz: {},
+            selectedPractice: {}
         };
     },
 
@@ -21590,6 +21625,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         axios.get('https://api.vimeo.com/channels/amo/videos?sort=manual&access_token=e433335e8d25a8c33089024e2bc30d4d').then(function (response) {
             return _this.videos = response.data;
+        });
+        axios.get('json/series_data.json').then(function (response) {
+            return _this.categories = response.data;
         });
     },
 
@@ -21607,6 +21645,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         closeModal: function closeModal() {
             this.modalEnabled = false;
+            this.selectedVideo = undefined;
+            this.isPractice = true;
+            this.isQuiz = undefined;
         },
 
         isModalEnabled: function isModalEnabled() {
@@ -21616,8 +21657,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         startMovie: function startMovie(video) {
             this.modalEnabled = true;
             this.selectedVideo = video;
-        }
+        },
 
+        getLearnData: function getLearnData(video) {
+            for (var c = 0; c < this.categories.length; c++) {
+                for (var i = 0; i < this.categories[c].series.length; i++) {
+                    if (this.categories[c].series[i].hasOwnProperty("videos") && this.categories[c].series[i].tag === this.tag) {
+                        for (var videoId in this.categories[c].series[i].videos) {
+                            if (video.uri == videoId) {
+                                return this.categories[c].series[i].videos[videoId];
+                            }
+                        }
+                    }
+                }
+            }
+
+            return {
+                quiz: false,
+                practice: false
+            };
+        },
+
+        showQuiz: function showQuiz(video) {
+            this.modalEnabled = true;
+
+            this.selectedQuiz = this.getLearnData(video).quiz;
+
+            this.isQuiz = true;
+        },
+
+        showPractice: function showPractice(video) {
+            this.modalEnabled = true;
+
+            this.selectedPractice = this.getLearnData(video).practice;
+
+            this.isPractice = true;
+        },
+
+        showCorrect: function showCorrect() {
+            alert('This is the right answer!');
+        },
+
+        showIncorrect: function showIncorrect() {
+            alert('Wrong answer!');
+        }
     }
 });
 
@@ -21680,63 +21763,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            categories: [{
-                name: "HTML/CSS",
-                series: [{
-                    title: 'HTML CSS Fundamentals',
-                    difficulty: 'beginner',
-                    content: "Deze video series is voor jou als je vanaf nul wilt weten hoe een webpagina opgebouwd wordt.",
-                    length: "still in progress",
-                    tag: 'html-css-fundamentals'
-                }]
-            }, {
-                name: "C#",
-                series: [{
-                    title: 'C# Fundamentals',
-                    difficulty: 'beginner',
-                    content: "In deze video series maak je kennis met programmeren. Dit gebeurt in de taal C#. Tim neemt je mee vanaf het configureren van visual studio tot het maken van werkende applicaties.",
-                    length: 'still in progress...',
-                    tag: 'csharp_fundamentals'
-
-                }]
-            }, {
-                name: "PHP",
-                series: [{
-                    title: "Maak een todo list met PHP en MySql",
-                    difficulty: "beginner",
-                    content: "In deze videoserie maak je met behulp van PDO een databaseconnectie en maak je een een online todo list waarbij de items in een database worden gezet.",
-                    length: "6 videos",
-                    tag: 'series-todo-beginner'
-                }, {
-                    title: "PHP Fundamentals",
-                    difficulty: "beginner",
-                    content: "In deze videoserie maak je kennis met PHP als programmeertaal. Deze serie is geschikt voor als je met behulp van PHP je programmeerskills wilt opvijzelen.",
-                    length: "8 videos",
-                    tag: 'series-php-fundamentals'
-                }]
-            }, {
-                name: "SQL",
-                series: []
-            }, {
-                name: "UML",
-                series: []
-            }, {
-                name: "Normaliseren",
-                series: []
-            }, {
-                name: "Xamarin",
-                series: []
-            }, {
-                name: "Javascript",
-                series: []
-            }],
+            categories: [],
             active: ''
-
         };
     },
 
     mounted: function mounted() {
-        this.setActive(this.categories[0]);
+        var _this = this;
+
+        axios.get('json/series_data.json').then(function (response) {
+            _this.categories = response.data;
+            _this.setActive(_this.categories[0]);
+        });
     },
 
     methods: {
@@ -41494,16 +41532,52 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "href": ""
       }
-    }, [_c('span', {
-      staticClass: "icon-is-small"
     }, [_c('a', {
+      staticClass: "button is-primary",
+      staticStyle: {
+        "display": "inline-block",
+        "margin-bottom": "10px"
+      },
       attrs: {
         "target": "_blank",
         "href": video.link
       }
     }, [_c('i', {
       staticClass: "fa fa-play"
-    })])])])])])])])]) : _vm._e()
+    }), _vm._v(" Play")])]), _vm._v(" "), (_vm.getLearnData(video).quiz !== false) ? _c('div', {
+      staticClass: "level-item"
+    }, [_c('span', {
+      staticClass: "button is-secondary",
+      staticStyle: {
+        "display": "inline-block",
+        "margin-bottom": "10px"
+      },
+      on: {
+        "click": function($event) {
+          _vm.showQuiz(video)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-list-ol"
+    }), _vm._v(" Quiz")])]) : _vm._e(), _vm._v(" "), (_vm.getLearnData(video).practice !== false) ? _c('div', {
+      staticClass: "level-item",
+      attrs: {
+        "href": ""
+      }
+    }, [_c('span', {
+      staticClass: "button is-secondary",
+      staticStyle: {
+        "display": "inline-block",
+        "margin-bottom": "10px"
+      },
+      on: {
+        "click": function($event) {
+          _vm.showPractice(video)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-graduation-cap"
+    }), _vm._v(" Practice")])]) : _vm._e()])])])])]) : _vm._e()
   })], 2), _vm._v(" "), (_vm.modalEnabled) ? _c('div', {
     staticClass: "modal",
     class: {
@@ -41511,7 +41585,58 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "modal-background"
-  }), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), (_vm.isQuiz) ? _c('div', {
+    staticClass: "modal-content",
+    staticStyle: {
+      "width": "80%"
+    }
+  }, [_c('h3', {
+    staticClass: "is-3",
+    staticStyle: {
+      "color": "white"
+    }
+  }, [_vm._v(_vm._s(_vm.selectedQuiz.title))]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._l((_vm.selectedQuiz.questions), function(question) {
+    return _c('div', [_c('h2', {
+      domProps: {
+        "innerHTML": _vm._s(question.question)
+      }
+    }), _vm._v(" "), _c('ul', _vm._l((question.answers), function(answer) {
+      return _c('li', [_c('button', {
+        domProps: {
+          "innerHTML": _vm._s(answer.answer)
+        },
+        on: {
+          "click": function($event) {
+            answer.is_correct ? _vm.showCorrect() : _vm.showIncorrect()
+          }
+        }
+      })])
+    }))])
+  }), _vm._v(" "), _c('hr')], 2)]) : (_vm.isPractice) ? _c('div', {
+    staticClass: "modal-content",
+    staticStyle: {
+      "width": "80%"
+    }
+  }, [_c('h3', {
+    staticClass: "is-3",
+    staticStyle: {
+      "color": "white"
+    }
+  }, [_vm._v(_vm._s(_vm.selectedPractice.title))]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._l((_vm.selectedPractice.assignments), function(assignment) {
+    return _c('div', [_c('h2', {
+      domProps: {
+        "innerHTML": _vm._s(assignment.assignment)
+      }
+    }), _vm._v(" "), _c('span', {
+      domProps: {
+        "innerHTML": _vm._s(assignment.description)
+      }
+    })])
+  }), _vm._v(" "), _c('hr')], 2)]) : _c('div', {
     staticClass: "modal-content",
     staticStyle: {
       "width": "80%"
