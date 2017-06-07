@@ -33,7 +33,7 @@
                     </a>
                     <a href="{{ action('HomeController@index') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a>
                     <a href="{{ action('HomeController@learn') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a>
-                    <a class="nav-item is-tab is-hidden-mobile">About</a>
+                    <a href="{{ action('HomeController@about') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}" class="nav-item is-tab is-hidden-mobile">Story</a>
                 </div>
 
                 <span class="nav-toggle">
