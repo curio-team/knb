@@ -299,6 +299,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+
+        // check whether post was an answer for determining the point type.
+        $type = $post->isAnswer() ? \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED : \App\Point::BENEFACTOR_TYPE_QUESTION_ASKED;
+
+        \App\Point::deAssign($post->author_id, $type);
+        $post->children()->delete();
         $post->delete();
 
     }

@@ -69,4 +69,10 @@ class Point extends Model
         ]);
     }
 
+    public static function deAssign($userId, $type)
+    {
+        $point = \App\Point::where('receiver_id', $userId)->where('score_type_id', $type)->limit(1);
+        $point->delete();
+    }
+
 }

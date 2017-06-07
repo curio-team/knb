@@ -139,5 +139,6 @@ class CreateBadgesSeeder extends Seeder
             'img_path'         => 'seniorcommentator.png'
         ]);
 
+
     }
 }

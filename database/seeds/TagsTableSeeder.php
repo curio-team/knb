@@ -43,6 +43,10 @@ class TagsTableSeeder extends Seeder
             [
                 'name'         => 'jQuery',
                 'thumbnail'     => 'jQuery.png'
+            ],
+            [
+                'name'          => 'PHP',
+                'thumbnail'     => 'php.png'
             ]
         ];
 
