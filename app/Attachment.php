@@ -18,10 +18,18 @@ class Attachment extends Model
      */
     protected $table = 'attachments';
 
+    /**
+     * Get the point associated with the model.
+     */
+    public function point()
+    {
+        return $this->belongsTo(Point::class, 'points_id');
+    }
+
     public function description(){
         switch ($this->type_id){
             case self::TYPE_POINTS:{
-                return "x points"; // TODO: Make it show the points here by joining the scoretype model
+                return $this->point->scoreType->points . " points"; // TODO: Make it show the points here by joining the scoretype model
                 break;
             }
             default:{

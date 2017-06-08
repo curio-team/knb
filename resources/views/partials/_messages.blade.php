@@ -31,7 +31,7 @@
                 <div class="level">
                     <div class="level-right">
                         <p class="level-item">
-                           sent to you {{ $message->getTimeReceived() }} by {{ $message->sender->name }}
+                           sent to you {{ $message->getTimeReceived() }} by {{ is_null($message->sender) ? 'System' : $message->sender->name }}
                         </p>
                     </div>
                 </div>

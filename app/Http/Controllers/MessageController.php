@@ -70,21 +70,6 @@ class MessageController extends Controller
                 $message->content = $request->get('content');
                 $message->save();
 
-                // TODO: make support for attachments here (now just adding the same attachment for testing)
-                $points = new Point;
-                $points->receiver_id = $receiver->id;
-                $points->benefactor_id = $message->sender_id;
-                $points->score_type_id = 1;
-                $points->save();
-
-                $attachment = new Attachment;
-                $attachment->message_id = $message->id;
-                $attachment->type_id = Attachment::TYPE_POINTS;
-                $attachment->points_id = $points->id;
-
-                $message->attachments()->save($attachment);
-                $message->save();
-
                 // create the message
                 \DB::commit();
             } catch (\Exception $e)

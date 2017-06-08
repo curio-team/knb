@@ -25,6 +25,15 @@ class Point extends Model
      */
     protected $table = 'points';
     protected $fillable = ['receiver_id', 'score_type_id'];
+
+    /**
+     * Get the score type associated with the model.
+     */
+    public function scoreType()
+    {
+        return $this->belongsTo(ScoreType::class, 'score_type_id');
+    }
+
     /**
      * @return bool
      */
@@ -63,16 +72,54 @@ class Point extends Model
 
     public static function assign($userId, $type)
     {
-        \App\Point::create([
+        $points = \App\Point::create([
             'receiver_id' => $userId,
             'score_type_id' => $type
         ]);
+
+        try
+        {
+            \DB::beginTransaction();
+
+            $message = new \App\Message;
+            $message->sender_id = null;
+            $message->receiver_id = $userId;
+            $message->subject = 'You received points for [TODO]'; // Implement message based on type here
+            $message->content = 'You have received points for doing [TODO]. Congratulations!';
+            $message->save();
+
+            $message->attachPoints($points);
+
+            // create the message
+            \DB::commit();
+        } catch (\Exception $e)
+        {
+            \DB::rollback();
+        }
     }
 
     public static function deAssign($userId, $type)
     {
         $point = \App\Point::where('receiver_id', $userId)->where('score_type_id', $type)->limit(1);
         $point->delete();
+
+        try
+        {
+            \DB::beginTransaction();
+
+            $message = new \App\Message;
+            $message->sender_id = null;
+            $message->receiver_id = $userId;
+            $message->subject = 'You lost points for [TODO]'; // Implement message based on type here
+            $message->content = 'You have lost points for doing [TODO].';
+            $message->save();
+
+            // create the message
+            \DB::commit();
+        } catch (\Exception $e)
+        {
+            \DB::rollback();
+        }
     }
 
 }

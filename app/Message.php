@@ -18,6 +18,18 @@ class Message extends Model
     protected $table = 'messages';
 
     /**
+     * Attach points to the model
+     */
+    public function attachPoints($points){
+        $attachment = new Attachment;
+        $attachment->message_id = $this->id;
+        $attachment->type_id = Attachment::TYPE_POINTS;
+        $attachment->points_id = $points->id;
+
+        $this->attachments()->save($attachment);
+    }
+
+    /**
      * Get the sender associated with the model.
      */
     public function sender()

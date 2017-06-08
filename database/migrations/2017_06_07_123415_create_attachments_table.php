@@ -24,7 +24,7 @@ class CreateAttachmentsTable extends Migration
             $table->softDeletes();
 
             $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');
-            $table->foreign('points_id')->references('id')->on('points');
+            $table->foreign('points_id')->references('id')->on('points')->onDelete('cascade');
             //$table->foreign('badge_id')->references('id')->on('badges');
             //$table->foreign('file_id')->references('id')->on('file_uploads');
         });

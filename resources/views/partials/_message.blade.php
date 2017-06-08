@@ -6,7 +6,7 @@
             <div class="content media-post">
                 <div class="box">
                     <h4 class="title is-4">{{ $message->subject }}</h4>
-                    <span class="author">sender: {{ $message->sender->name }}</span>
+                    <span class="author">sender: {{ is_null($message->sender) ? 'System' : $message->sender->name }}</span>
 
                     <div style="word-break: break-all;">
                     <p>{!! $message->content !!}</p>
