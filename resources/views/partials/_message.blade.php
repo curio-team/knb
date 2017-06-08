@@ -1,3 +1,5 @@
+@php($attachments = $message->attachments())
+
 <div class="content">
     <article class="media ">
         <div class="media-content">
@@ -9,6 +11,14 @@
                     <div style="word-break: break-all;">
                     <p>{!! $message->content !!}</p>
                     </div>
+
+                    @if($attachments->count() > 0)
+                    <ul class="attachments">
+                        @foreach($attachments->get() as $attachment)
+                            <li>{{ $attachment->description() }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
 
                     <div class="level-right">
                         <p class="level-item">

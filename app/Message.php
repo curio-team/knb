@@ -25,6 +25,13 @@ class Message extends Model
         return $this->belongsTo(User::class, 'sender_id');
     }
 
+    /**
+     * Get the attachments associated with the model.
+     */
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class, 'message_id', 'id');
+    }
 
     public function getTimeReceived()
     {

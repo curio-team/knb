@@ -64,6 +64,7 @@
                                 </p>
                             </form>
                         </div>
+                        <a class="nav-item is-tab" href="{{ route('message.index') }}">Inbox</a>
                         @if (\Auth::user()->isHeadMaster())
                             <a class="nav-item is-tab" href="{{ route('dashboard') }}">Dashboard</a>
                         @else
