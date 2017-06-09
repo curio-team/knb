@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Attachment;
+use App\Point;
 use App\User;
 use App\Message;
 //use App\Attachment;
@@ -10,6 +12,12 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('headmaster')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -62,11 +70,8 @@ class MessageController extends Controller
                 $message->content = $request->get('content');
                 $message->save();
 
-                // TODO: make support for attachments here
-
                 // create the message
                 \DB::commit();
-
             } catch (\Exception $e)
             {
                 \DB::rollback();

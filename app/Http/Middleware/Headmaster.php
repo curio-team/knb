@@ -17,7 +17,7 @@ class Headmaster
     {
         if ( !$request->user()->isHeadMaster() )
         {
-            return back()->with('error', 'Dashboard is only available for headmasters.');
+            return back()->with('error', 'This feature is only available for headmasters.');
         }
         return $next($request);
     }

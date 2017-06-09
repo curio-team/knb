@@ -21602,6 +21602,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -21613,8 +21614,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             isQuiz: false,
             isPractice: false,
             selectedVideo: {},
+
             selectedQuiz: {},
+
             selectedPractice: {}
+
         };
     },
 
@@ -21771,6 +21775,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
+        //TODO: Load from database instead of plain JSON file
         axios.get('json/series_data.json').then(function (response) {
             _this.categories = response.data;
             _this.setActive(_this.categories[0]);
@@ -41595,26 +41600,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "color": "white"
     }
-  }, [_vm._v(_vm._s(_vm.selectedQuiz.title))]), _vm._v(" "), _c('div', {
-    staticClass: "box"
-  }, [_vm._l((_vm.selectedQuiz.questions), function(question) {
-    return _c('div', [_c('h2', {
-      domProps: {
-        "innerHTML": _vm._s(question.question)
-      }
-    }), _vm._v(" "), _c('ul', _vm._l((question.answers), function(answer) {
-      return _c('li', [_c('button', {
-        domProps: {
-          "innerHTML": _vm._s(answer.answer)
-        },
-        on: {
-          "click": function($event) {
-            answer.is_correct ? _vm.showCorrect() : _vm.showIncorrect()
-          }
-        }
-      })])
-    }))])
-  }), _vm._v(" "), _c('hr')], 2)]) : (_vm.isPractice) ? _c('div', {
+  }, [_vm._v(_vm._s(_vm.selectedQuiz.title))]), _vm._v(" "), _vm._m(1)]) : (_vm.isPractice) ? _c('div', {
     staticClass: "modal-content",
     staticStyle: {
       "width": "80%"
@@ -41671,6 +41657,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-arrow-left"
   }), _vm._v("   back")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "box"
+  }, [_c('hr')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
