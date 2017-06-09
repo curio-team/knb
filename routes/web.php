@@ -18,7 +18,8 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['middleware' => 'headmaster'], function(){
-        Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+        Route::resource('message', 'MessageController');
     });
 
 
@@ -42,7 +43,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('post/{post}/answer', 'PostController@answer')->name('answer');
     Route::resource('post', 'PostController');
-    Route::resource('message', 'MessageController');
 
 
     Route::resource('comment', 'CommentController');

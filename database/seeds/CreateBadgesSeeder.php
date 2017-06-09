@@ -116,25 +116,25 @@ class CreateBadgesSeeder extends Seeder
         ]);
 
         Badge::create([
-            'title'           => 'Baby Commentator',
+            'title'           => 'Noob Commentator',
             'description'     => 'Heeft een comment geplaatst op een post',
             'img_path'        => 'minorcommentator.png'
         ]);
 
         Badge::create([
-            'title'           => 'Junior Commentator',
+            'title'           => 'Skilled Commentator',
             'description'     => 'Heeft tien comments geplaatst op verschillende posts',
             'img_path'        => 'toddlercommentator.png'
         ]);
 
         Badge::create([
-            'title'           => 'Senior Commentator',
+            'title'           => 'Veteran Commentator',
             'description'     => 'Heeft 25 comments geplaatst op verschillende posts',
             'img_path'        => 'juniorcommentator.png'
         ]);
 
         Badge::create([
-            'title'            => 'Senior Commentator',
+            'title'            => 'Elite Commentator',
             'description'      => 'Heeft 50 comments geplaatst op verschillende posts',
             'img_path'         => 'seniorcommentator.png'
         ]);
