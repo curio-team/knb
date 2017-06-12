@@ -31,6 +31,13 @@ $('document').ready(function(){
         $(this).parent().parent().find('.form-comment-hidden').toggle('fast');
     });
 
+    $('.nav-toggle').on({
+      // Toggle nav menu for mobile devices
+      click: function () {
+        $('.nav-menu').toggleClass('is-active');
+      }
+    });
+
     $(".delete").on('click', function(){
        $(this).parent().slideToggle();
     });
@@ -77,6 +84,4 @@ $('document').ready(function(){
 
     });
 
-
 });
-
