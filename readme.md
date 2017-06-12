@@ -21,5 +21,11 @@ To run the application, you'll need a proper environment. You can use a virtual 
 $ php artisan serve
 ```
 
+## Create a pull request
+* commit and push to forked repository
+* create pull request to github.com/Radiuscollege/knb through the ui of your forked repository on github.com
+* Please be descriptive in the pull request
+
+
 ## Demo
 checkout a demo of the application on http://hub.amo.rocks
