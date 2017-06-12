@@ -17,6 +17,11 @@ Follow the steps below to get this project up and running:
 ## Running the application
 To run the application, you'll need a proper environment. You can use a virtual machine (like [Laravel Homestead](https://laravel.com/docs/master/homestead)), or run a local webserver:
 
+## Create a pull request
+* commit and push to forked repository
+* create pull request to github.com/Radiuscollege/knb through the ui of your forked repository on github.com
+* Please be descriptive in the pull request
+
 ```bash
 $ php artisan serve
 ```
