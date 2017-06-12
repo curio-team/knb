@@ -9,6 +9,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('dashboard/index');
+        $flagged = \App\Post::getFlaggedPosts();
+        return view('dashboard/index', compact('flagged'));
     }
 }
