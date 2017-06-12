@@ -6,7 +6,7 @@ Follow the steps below to get this project up and running:
 
 * Fork the repository
 * Clone the repository you just forked
-* Set the git upstream to https://github.com/Radiuscollege/knb (git remote add upstream https://github.com/Radiuscollege/knb )
+* Set the git upstream to https://github.com/Radiuscollege/knb ( `git remote add upstream https://github.com/Radiuscollege/knb` )
 * Copy `.env.example` and rename it to `.env` 
 * Edit the `.env` file to the right values
 * Run `npm install` or `yarn` from the root directory
