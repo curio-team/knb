@@ -18,18 +18,19 @@
                                 <i class="fa fa-2x fa-edit"></i>
                             </a>
                         @else
-                            @unless($post->isFlagged())
-                                <a class="option"  href="{{action('PostController@edit', $post->id) }}" class="option-flag">
-                                    <i class="fa fa-2x fa-flag"></i>
-                                </a>
-                                <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
-                                    {{ csrf_field() }}
-                                </form>
-                            @else
-                                <span class="option" title="this post is flagged. A moderator will look into this soon.">
-                                    <i class="fa fa-2x fa-flag is-danger"></i>
-                                </span>
-                            @endunless
+                                @unless($post->isFlagged())
+                                    <i class="option-flag">
+                                        <i title="flag this post" class="fa fa-2x fa-flag"></i>
+                                    </i>
+
+                                    <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
+                                        {{ csrf_field() }}
+                                    </form>
+                                @else
+                                    <i title="this post is flagged. A moderator will look into this soon." style="color: red">
+                                        flagged
+                                    </i>
+                                @endunless
                         @endif
                     </div>
 
