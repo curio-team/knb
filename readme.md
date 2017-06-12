@@ -10,6 +10,7 @@ Follow the steps below to get this project up and running:
 * Run `npm install` or `yarn` from the root directory
 * Run `composer install` from the root directory
 * Migrate and seed the database with `php artisan migrate --seed`
+* Run npm run dev of npm run watch for compiling assets
 
 ## Running the application
 To run the application, you'll need a proper environment. You can use a virtual machine (like [Laravel Homestead](https://laravel.com/docs/master/homestead)), or run a local webserver:
