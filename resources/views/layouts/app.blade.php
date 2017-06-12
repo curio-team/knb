@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="nav has-shadow">
+        <!-- <nav class="nav has-shadow">
             <div class="container">
                 <div class="nav-left">
                     <a href="{{ route('home') }}" class="nav-item">
@@ -82,7 +82,120 @@
                     </form>
                 </div>
             </div>
-        </nav>
+        </nav> -->
+
+        <div class="header">
+          <div class="container">
+            <div class="header-left">
+              <!-- Logo -->
+              <a href="{{ route('home') }}" class="nav-item">
+                  <img src="{{ asset('img/rc-fc.png') }}" alt="">
+              </a>
+              <!-- Hamburger menu -->
+              <a class="nav-item toggle-header-nav is-hidden-tablet">
+                <span class="icon">
+                  <i class="fa fa-bars"></i>
+                </span>
+              </a>
+              <!-- Nav menu -->
+              @if (Auth::guest())
+                <ul class="header-nav">
+                  <li><a href="{{ route('login') }}" class="nav-item is-tab">login</a></li>
+                  <li><a href="{{ route('register') }}" class="nav-item is-tab">register</a></li>
+                </ul>
+              @else
+                <ul class="header-nav">
+                  <li><a href="{{ action('HomeController@index') }}" class="nav-item is-tab {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a></li>
+                  <li><a href="{{ action('HomeController@learn') }}" class="nav-item is-tab {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a></li>
+                  <li><a href="{{ action('HomeController@about') }}" class="nav-item is-tab {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}">Story</a></li>
+                </ul>
+              @endif
+            </div>
+
+            @if (Auth::guest())
+            @else
+
+              <div class="header-right">
+                <!-- Search bar -->
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+
+                <div class="field has-addons header-search-field is-hidden-mobile nav-item">
+                  <form action="{{action('PostController@search')}}">
+                      {{csrf_field()}}
+                    <p class="control header-search-control">
+                      <input class="input" name="query" type="text" placeholder="Search the forum...">
+                    </p>
+                    <p class="control">
+                      <button type="submit" class="button">
+                        <span class="icon">
+                          <i class="fa fa-search"></i>
+                        </span>
+                      </button>
+                    </p>
+                  </form>
+                </div>
+                <a href="{{ route('message.index') }}" class="nav-item is-tab is-hidden-mobile">
+                  <span class="tag is-progress is-notification">99+</span>
+                  <span class="icon is-marginless"><i class="fa fa-bell"></i></span>
+                </a>
+                <!-- Options button -->
+                <a class="nav-item toggle-options">
+                  <span class="icon"><i class="fa fa-cog"></i></span>
+                </a>
+                <!-- Options menu/dropdown -->
+                <ul class="options-dropdown">
+                  <!-- Mobile search bar -->
+                  <li class="is-hidden-tablet">
+                    <a class="nav-item">
+                      <div class="field has-addons header-search-field">
+                        <form action="{{action('PostController@search')}}">
+                            {{csrf_field()}}
+                          <p class="control header-search-control">
+                            <input class="input" name="query" type="text" placeholder="Search the forum...">
+                          </p>
+                          <p class="control">
+                            <button type="submit" class="button">
+                              <span class="icon">
+                                <i class="fa fa-search"></i>
+                              </span>
+                            </button>
+                          </p>
+                        </form>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- Options nav -->
+                  <li><a class="nav-item is-tab is-hidden-tablet"><span class="icon"><i class="fa fa-home"></i></span>Home</a></li>
+                  {{-- <li><a class="nav-item is-tab">About</a></li> --}}
+
+                  <li>
+                    <a href="{{ route('message.index') }}" class="nav-item is-tab">
+                      <!-- Unread notification -->
+                      <span class="tag is-progress is-notification">99+</span>
+
+                      <span class="icon">
+                        <i class="fa fa-envelope"></i>
+                      </span>
+                      Inbox
+                    </a>
+                  </li>
+
+                  @if (\Auth::user()->isHeadMaster())
+                    <li><a  href="{{ route('dashboard') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-bar-chart"></i></span> Dashboard</a></li>
+                  @else
+                    <li><a href="{{ route('profile') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>
+                  @endif
+                  <li><a onclick="event.preventDefault(), document.getElementById('logout-form').submit" href="{{ route('logout') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-sign-out"></i></span> Logout</a></li>
+                </ul>
+
+              </div>
+            @endif
+          </div>
+
+        </div>
 
         <section class="hero banner">
             <div class="hero-body">

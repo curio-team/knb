@@ -38,6 +38,29 @@ $('document').ready(function(){
       }
     });
 
+    $('.toggle-options').on('click', function () {
+      $('.header-nav').removeClass('is-active')
+      $('.toggle-header-nav').removeClass('is-active')
+
+      $('.options-dropdown').toggleClass('is-active')
+      $(this).toggleClass('is-active')
+    })
+
+    $('.toggle-header-nav').on('click', function () {
+      $('.options-dropdown').removeClass('is-active')
+      $('.toggle-options').removeClass('is-active')
+
+      $('.header-nav').toggleClass('is-active')
+      $(this).toggleClass('is-active')
+    })
+
+    $('.hero, .main-content').on('click', function () {
+      $('.options-dropdown').removeClass('is-active')
+      $('.toggle-options').removeClass('is-active')
+      $('.header-nav').removeClass('is-active')
+      $('.toggle-header-nav').removeClass('is-active')
+    })
+
     $(".delete").on('click', function(){
        $(this).parent().slideToggle();
     });
