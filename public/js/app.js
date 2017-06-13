@@ -11247,7 +11247,11 @@ module.exports = function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
+<<<<<<< Updated upstream
  * Vue.js v2.3.3
+=======
+ * Vue.js v2.3.4
+>>>>>>> Stashed changes
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
@@ -15676,7 +15680,11 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
+<<<<<<< Updated upstream
 Vue$3.version = '2.3.3';
+=======
+Vue$3.version = '2.3.4';
+>>>>>>> Stashed changes
 
 /*  */
 
@@ -16167,6 +16175,7 @@ function createPatchFunction (backend) {
   function initComponent (vnode, insertedVnodeQueue) {
     if (isDef(vnode.data.pendingInsert)) {
       insertedVnodeQueue.push.apply(insertedVnodeQueue, vnode.data.pendingInsert);
+      vnode.data.pendingInsert = null;
     }
     vnode.elm = vnode.componentInstance.$el;
     if (isPatchable(vnode)) {
@@ -21009,6 +21018,7 @@ $('document').ready(function () {
         }
     });
 
+<<<<<<< Updated upstream
     $('.toggle-options').on('click', function () {
         $('.header-nav').removeClass('is-active');
         $('.toggle-header-nav').removeClass('is-active');
@@ -21032,6 +21042,8 @@ $('document').ready(function () {
         $('.toggle-header-nav').removeClass('is-active');
     });
 
+=======
+>>>>>>> Stashed changes
     $(".delete").on('click', function () {
         $(this).parent().slideToggle();
     });
@@ -41763,7 +41775,11 @@ var Component = __webpack_require__(9)(
   /* cssModules */
   null
 )
+<<<<<<< Updated upstream
 Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
+=======
+Component.options.__file = "C:\\wamp64\\www\\1-school\\jaar-2\\p7\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
+>>>>>>> Stashed changes
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] details.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -41797,7 +41813,11 @@ var Component = __webpack_require__(9)(
   /* cssModules */
   null
 )
+<<<<<<< Updated upstream
 Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\index.vue"
+=======
+Component.options.__file = "C:\\wamp64\\www\\1-school\\jaar-2\\p7\\knb\\resources\\assets\\js\\components\\learn\\index.vue"
+>>>>>>> Stashed changes
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
