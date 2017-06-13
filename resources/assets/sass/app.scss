@@ -20,6 +20,30 @@ span.panel-heading{
   display: block;
 }
 
+.tag {
+  &.is-notification {
+    font-size: 10px;
+    padding: 1px 3px;
+    background: $notifications;
+    border-radius: 2px;
+    color: white;
+    font-size: 10px;
+    min-height: 13px;
+    line-height: 1.3;
+    border: 1px solid rgba(white, 0.2);
+    position: absolute;
+    top: 9px;
+    left: 4px;
+    text-align: right;
+    margin: 0 !important;
+    height: 12px;
+    min-width: 12px;
+  }
+}
+
+// header
+@import "header";
+
 // General classes
 .center-content{
   text-align: center
@@ -276,4 +300,3 @@ footer.main-footer {
   }
 
 }
-

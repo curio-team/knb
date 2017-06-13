@@ -35,10 +35,10 @@
                     <figure>
                         <img src="{{asset('img/rc-fc.png')}}" alt="">
                     </figure>
-                    <a href="#" class="item active"><span class="icon"><i class="fa fa-home"></i></span><span class="name">Dashboard</span></a>
+                    <a href="" class="item active"><span class="icon"><i class="fa fa-home"></i></span><span class="name">Dashboard</span></a>
                     <a href="#" class="item"><span class="icon"><i class="fa fa-map-marker"></i></span><span class="name">Activity</span></a>
                     <a href="#" class="item"><span class="icon"><i class="fa fa-th-list"></i></span><span class="name">Timeline</span></a>
-                    <a href="#" class="item"><span class="icon"><i class="fa fa-folder-o"></i></span><span class="name">Folders</span></a>
+                    <a href="{{route('import')}}" class="item"><span class="icon"><i class="fa fa-folder-o"></i></span><span class="name">Import / Export</span></a>
                 </div>
             </div>
         </aside>
@@ -106,89 +106,8 @@
                     </nav>
                 </div>
             </section>
-            <section class="section">
-                <div class="columns is-mobile is-multiline">
-                    <div class="column is-one-third-desktop is-full-mobile flagged-posts">
-                        <section class="panel">
-                            <p class="panel-heading">
-                                Flagged posts
-                            </p>
-                            @foreach($flagged as $post)
-                                <a class="panel-block">
-                                    {{  $post->title }}
-                                    <button  class="button is-pulled-right" disabled>{{$post->flags}}</button>
-                                </a>
-                            @endforeach
-
-                        </section>
-                    </div>
-                    <div class="column is-one-third-desktop is-full-mobile">
-                        <section class="panel">
-                            <p class="panel-heading">
-                                Sales
-                            </p>
-                            <div class="panel-block">
-
-                            </div>
-                            <div class="panel-block">
-
-                            </div>
-                        </section>
-                    </div>
-                    <div class="column is-one-third-desktop is-full-mobile">
-                        <section class="panel">
-                            <p class="panel-heading">
-                                YoY Comparison
-                            </p>
-                            <div class="panel-block">
-
-                            </div>
-                            <div class="panel-block">
-
-                            </div>
-                        </section>
-                    </div>
-                    <div class="column is-half-desktop is-full-mobile">
-                        <section class="panel">
-                            <p class="panel-heading">
-                                Notifications
-                            </p>
-                            <div class="panel-block">
-
-                            </div>
-                        </section>
-                    </div>
-                    <div class="column is-half-desktop is-full-mobile">
-                        <section class="panel">
-                            <p class="panel-heading">
-                                Forecast
-                            </p>
-                            <div class="panel-block">
-
-                            </div>
-                        </section>
-                    </div>
-                    <div class="column is-half-desktop is-full-mobile">
-                        <section class="panel">
-                            <p class="panel-heading">
-                                Popular Followers
-                            </p>
-                            <div class="panel-block">
-
-                            </div>
-                        </section>
-                    </div>
-                    <div class="column">
-                        <section class="panel">
-                            <p class="panel-heading">
-                                Message User
-                            </p>
-                            <div class="panel-block">
-
-                            </div>
-                        </section>
-                    </div>
-                </div>
+            <section class="section content dashboard-content">
+               @yield('content')
             </section>
         </div>
     </div>

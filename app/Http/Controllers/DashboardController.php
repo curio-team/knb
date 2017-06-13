@@ -12,4 +12,9 @@ class DashboardController extends Controller
         $flagged = \App\Post::getFlaggedPosts();
         return view('dashboard/index', compact('flagged'));
     }
+
+    public function import()
+    {
+        return view('dashboard/import');
+    }
 }
