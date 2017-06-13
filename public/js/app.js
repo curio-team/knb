@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 45);
+/******/ 	return __webpack_require__(__webpack_require__.s = 44);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -20980,8 +20980,8 @@ module.exports = g;
 __webpack_require__(35);
 window.Vue = __webpack_require__(10);
 
-Vue.component('videos', __webpack_require__(40));
-Vue.component('videos-overview', __webpack_require__(41));
+Vue.component('videos', __webpack_require__(39));
+Vue.component('videos-overview', __webpack_require__(40));
 var app = new Vue({
     el: '#learning'
 });
@@ -21007,6 +21007,29 @@ $('document').ready(function () {
         click: function click() {
             $('.nav-menu').toggleClass('is-active');
         }
+    });
+
+    $('.toggle-options').on('click', function () {
+        $('.header-nav').removeClass('is-active');
+        $('.toggle-header-nav').removeClass('is-active');
+
+        $('.options-dropdown').toggleClass('is-active');
+        $(this).toggleClass('is-active');
+    });
+
+    $('.toggle-header-nav').on('click', function () {
+        $('.options-dropdown').removeClass('is-active');
+        $('.toggle-options').removeClass('is-active');
+
+        $('.header-nav').toggleClass('is-active');
+        $(this).toggleClass('is-active');
+    });
+
+    $('.hero, .main-content').on('click', function () {
+        $('.options-dropdown').removeClass('is-active');
+        $('.toggle-options').removeClass('is-active');
+        $('.header-nav').removeClass('is-active');
+        $('.toggle-header-nav').removeClass('is-active');
     });
 
     $(".delete").on('click', function () {
@@ -22185,7 +22208,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {
-window._ = __webpack_require__(38);
+window._ = __webpack_require__(37);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -24634,8 +24657,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 37 */,
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -41724,18 +41746,18 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(44)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(43)(module)))
 
 /***/ }),
-/* 39 */,
-/* 40 */
+/* 38 */,
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(9)(
   /* script */
   __webpack_require__(33),
   /* template */
-  __webpack_require__(43),
+  __webpack_require__(42),
   /* scopeId */
   null,
   /* cssModules */
@@ -41762,14 +41784,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(9)(
   /* script */
   __webpack_require__(34),
   /* template */
-  __webpack_require__(42),
+  __webpack_require__(41),
   /* scopeId */
   null,
   /* cssModules */
@@ -41796,7 +41818,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -41873,7 +41895,7 @@ if (false) {
 }
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -42052,7 +42074,7 @@ if (false) {
 }
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -42080,7 +42102,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
