@@ -28,64 +28,7 @@
 </head>
 <body>
     <div id="app">
-        <!-- <nav class="nav has-shadow">
-            <div class="container">
-                <div class="nav-left">
-                    <a href="{{ route('home') }}" class="nav-item">
-                        <img src="{{ asset('img/rc-fc.png') }}" alt="">
-                    </a>
-                    <a href="{{ action('HomeController@index') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a>
-                    <a href="{{ action('HomeController@learn') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a>
-                    <a href="{{ action('HomeController@about') }}" class="nav-item is-tab is-hidden-mobile {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}" class="nav-item is-tab is-hidden-mobile">Story</a>
-                </div>
 
-                <span class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-
-                <div class="nav-right nav-menu">
-                    <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
-
-                    <a class="nav-item is-tab is-hidden-tablet">About</a>
-                    @if (Auth::guest())
-                        <a href="{{ route('login') }}" class="nav-item is-tab">login</a>
-                        <a href="{{ route('register') }}" class="nav-item is-tab">register</a>
-                    @else
-                        <div class="field has-addons" style="margin-top:10px">
-                            <form action="{{action('PostController@search')}}">
-                                {{csrf_field()}}
-                                <p class="control" style="float: left">
-                                    <input class="input" name="query" type="text" placeholder="Search the forum...">
-                                </p>
-
-                                <p style="float: left" class="control">
-                                    <button type="submit" class="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </p>
-                            </form>
-                        </div>
-                        <a class="nav-item is-tab" href="{{ route('message.index') }}">Inbox</a>
-                        @if (\Auth::user()->isHeadMaster())
-                            <a class="nav-item is-tab" href="{{ route('dashboard') }}">Dashboard</a>
-                        @else
-                            <a class="nav-item is-tab" href="{{ route('profile') }}">Profile</a>
-                        @endif
-                        <a class="nav-item is-tab" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                    @endif
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                </div>
-            </div>
-        </nav> -->
 
         <div class="header">
           <div class="container">
@@ -102,7 +45,7 @@
               </a>
               <!-- Nav menu -->
               @if (Auth::guest())
-                <ul class="header-nav">
+                <ul class="header-nav is-pulled-right">
                   <li><a href="{{ route('login') }}" class="nav-item is-tab">login</a></li>
                   <li><a href="{{ route('register') }}" class="nav-item is-tab">register</a></li>
                 </ul>
@@ -110,7 +53,8 @@
                 <ul class="header-nav">
                   <li><a href="{{ action('HomeController@index') }}" class="nav-item is-tab {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a></li>
                   <li><a href="{{ action('HomeController@learn') }}" class="nav-item is-tab {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a></li>
-                  <li><a href="{{ action('HomeController@about') }}" class="nav-item is-tab {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}">Story</a></li>
+                    <li><a href="{{ action('HomeController@gameInfo')}}" class="nav-item is-tab {{ strpos(Request::path(), 'earnings') !== false ? "is-active" : "" }}">Game Info</a></li>
+                    <li><a href="{{ action('HomeController@about') }}" class="nav-item is-tab {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}">Story</a></li>
                 </ul>
               @endif
             </div>

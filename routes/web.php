@@ -26,7 +26,8 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
 
-    Route::get('/about', 'HomeController@about');
+    Route::get('/game-info', 'HomeController@gameInfo');
+    Route::get('/about', 'HomeController@about')->name('story');
     Route::get('/profile', 'HomeController@profile')->name('profile');
     Route::get('/home', 'HomeController@index');
     Route::get('/learn', 'HomeController@learn');
