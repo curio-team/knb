@@ -20,7 +20,10 @@
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
+            'appUrl'    => config('app.url')
         ]) !!};
+
+
     </script>
 </head>
 <body>
