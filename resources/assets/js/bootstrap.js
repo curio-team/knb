@@ -1,5 +1,3 @@
-var baseUrl = window.location.hostname == 'hub.amo.rocks' ? 'http://hub.amo.rocks' : 'http://localhost:8000';
-
 window._ = require('lodash');
 
 /**
@@ -37,7 +35,7 @@ window.Vue = require('vue');
 
 window.axios = require('axios');
 
-window.axios.defaults.baseURL = baseUrl;
+window.axios.defaults.baseURL = 'http://' + window.Laravel.appUrl;
 // window.axios.defaults.headers.common = {
 //    'X-CSRF-TOKEN': window.Laravel.csrfToken,
 //    'X-Requested-With': 'XMLHttpRequest'
