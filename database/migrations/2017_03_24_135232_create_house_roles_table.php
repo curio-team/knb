@@ -18,8 +18,8 @@ class CreateHouseRolesTable extends Migration
             $table->increments('id');
             $table->integer('house_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer('role_level')->unsigned();
-            $table->string('role_title');
+            $table->integer('role_level')->unsigned()->nullable();
+            $table->string('role_title')->nullable();
             $table->timestamps();
 
             $table->foreign('house_id')->references('id')->on('houses');

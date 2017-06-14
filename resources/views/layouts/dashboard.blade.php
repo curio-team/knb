@@ -26,8 +26,6 @@
 <body>
 <div id="app">
 
-    @include('partials.minis._notifications')
-
     <div class="columns">
         <aside class="column is-2 aside hero is-fullheight is-hidden-mobile">
             <div>

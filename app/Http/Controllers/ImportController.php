@@ -8,34 +8,50 @@ use Excel;
 
 class ImportController extends Controller
 {
+    public $duplicates = 0;
+    public $imports = 0;
 
     public function __construct()
     {
     }
 
-    public function import()
-    {
-
-    }
 
     public function upload(UploadCsvRequest $request)
     {
         $file = $request->file('csv');
 
-        Excel::load($file, function($reader){
+        Excel::load($file, function($reader)  {
 
             $results = $reader->select(['roepnaam', 'voorvoegsel', 'achternaam', 'studentnummer'])->get();
 
+
             foreach ($results as $result)
             {
-                $fullname = $result->roepnaam . ' ' . $result->voorvoegsel . ' ' . $result->achternaam;
-                $student = new \App\User;
+                if (\App\User::where('studentnr', '=', $result->studentnummer)->exists())
+                {
+                   $this->duplicates++;
+                } else
+                {
+                    $fullname = $result->roepnaam . ' ' . $result->voorvoegsel . ' ' . $result->achternaam;
+                    $email = 'd' . $result->studentnummer . '@edu.rocwb.nl';
 
+                    $house_id = mt_rand(1, 4);
+                    $user = new \App\User;
+                    $user->name     = $fullname;
+                    $user->studentnr = $result->studentnummer;
+                    $user->email        = $email;
+                    $user->password     = bcrypt( $user->studentnummer );
+                    $user->save();
+                    \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house_id]);
+                    $this->imports++;
+                }
 
             }
 
-        });
 
+
+        });
+        return back()->with('success', 'Import succesful. ' . $this->imports . ' added.' . $this->duplicates . ' duplicates were found.');
     }
 
 }

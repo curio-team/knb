@@ -19,6 +19,7 @@ class Badges extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('img_path');
+            $table->integer('priority');
             $table->timestamps();
         });
 

@@ -90,4 +90,10 @@ class User extends Authenticatable
     }
 
 
+
+    public function getHouseSingular()
+    {
+        return $this->houseRole->house->singular;
+    }
+
 }

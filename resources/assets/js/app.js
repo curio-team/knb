@@ -38,6 +38,8 @@ $('document').ready(function(){
       }
     });
 
+
+
     $('.toggle-options').on('click', function () {
       $('.header-nav').removeClass('is-active')
       $('.toggle-header-nav').removeClass('is-active')

@@ -18,6 +18,7 @@ class CreateHousesTable extends Migration
             $table->increments('id');
             $table->integer('points')->default(0);
             $table->string('name')->unique();
+            $table->string('singular')->unique();
             $table->text('description');
             $table->timestamps();
         });

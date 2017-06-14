@@ -46,13 +46,20 @@ class HomeController extends Controller
         return view('learn/index');
     }
 
+    public function gameInfo()
+    {
+        $badges = \App\Badge::orderBy('priority')->get();
+        $score_types = \App\ScoreType::orderBy('points')->get();
+        return view('gameinfo', compact(['badges', 'score_types']));
+    }
+
+
     public function details($tag)
     {
         return view('learn/detail', [
             'tag' => $tag
         ]);
     }
-
 
     public function profile()
     {
