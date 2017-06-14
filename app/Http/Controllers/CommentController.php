@@ -90,5 +90,6 @@ class CommentController extends Controller
     public function destroy(\App\Comment $comment)
     {
         $comment->delete();
+        \App\Point::deAssign($comment->author()->id,\App\Point::BENEFACTOR_TYPE_COMMENTED );
     }
 }

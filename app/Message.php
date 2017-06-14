@@ -37,6 +37,11 @@ class Message extends Model
         return $this->belongsTo(User::class, 'sender_id');
     }
 
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'receiver_id', 'id');
+    }
+
     /**
      * Get the attachments associated with the model.
      */
@@ -52,4 +57,9 @@ class Message extends Model
 
         return $carbonDate->diffForHumans();
     }
+
+
+
+
+
 }

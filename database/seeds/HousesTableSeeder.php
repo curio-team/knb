@@ -19,7 +19,7 @@ class HousesTableSeeder extends Seeder
         House::create([
             'name' => 'Database Dragons',
             'singular' => 'Dragon',
-            'description' => 'Armed with the most vicious of queries, the database dragons leaves no table unjoined in ‘The Coding Conflict’. They do not care about the eternal debate. The database dragons fight for more use of views and triggers. They believe in a world of structure and relationships. Armed with lots of data, normalized and lined up in rows and colums, the Database Dragons are a force to be reckoned with. '
+            'description' => 'Armed with the most vicious of queries, the database dragons leave no table unjoined in ‘The Coding Conflict’. They do not care about the eternal debate because they know good storage of data is the primary key to succes. The database dragons fight for more use of views and triggers so only selected warriors have access to their wisdom. They believe in a world of structure and relations. Protecting the integrity of the data, normalized and lined up in rows and colums, the Database Dragons are a force to be reckoned with. '
         ]);
 
         House::create([

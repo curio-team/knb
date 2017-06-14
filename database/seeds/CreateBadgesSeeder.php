@@ -171,17 +171,24 @@ class CreateBadgesSeeder extends Seeder
         ]);
 
         Badge::create([
+           'title'          => 'Overachiever!!',
+            'description'   => 'Heeft in de opleiding een 9 of hoger behaald.',
+            'img_path'      => 'badges/overachiever.png',
+            'priority'      => 23
+        ]);
+
+        Badge::create([
             'title'           => 'Always there!',
             'description'     => 'Heeft in een periode een aanwezigheid behaald van 100%',
             'img_path'        => 'badges/alwaysontime.png',
-            'priority'        => 23
+            'priority'        => 24
         ]);
 
         Badge::create([
             'title'           => 'Fashionably on time!',
             'description'     => 'Heeft in een periode 0 te laat meldingen ontvangen',
             'img_path'        => 'badges/ontime.png',
-            'priority'        => 24
+            'priority'        => 25
         ]);
 
 

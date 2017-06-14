@@ -92,6 +92,8 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
+        $message->read = 1;
+        $message->update();
         return view('messages.show', [
             'message' => $message
         ]);

@@ -53,7 +53,7 @@
                 <ul class="header-nav">
                   <li><a href="{{ action('HomeController@index') }}" class="nav-item is-tab {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a></li>
                   <li><a href="{{ action('HomeController@learn') }}" class="nav-item is-tab {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a></li>
-                    <li><a href="{{ action('HomeController@gameInfo')}}" class="nav-item is-tab {{ strpos(Request::path(), 'earnings') !== false ? "is-active" : "" }}">Game Info</a></li>
+                    <li><a href="{{ action('HomeController@gameInfo')}}" class="nav-item is-tab {{ strpos(Request::path(), 'game-info') !== false ? "is-active" : "" }}">Game Info</a></li>
                     <li><a href="{{ action('HomeController@about') }}" class="nav-item is-tab {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}">Story</a></li>
                 </ul>
               @endif
@@ -85,8 +85,10 @@
                   </form>
                 </div>
                 <a href="{{ route('message.index') }}" class="nav-item is-tab is-hidden-mobile">
-                  <span class="tag is-progress is-notification">99+</span>
-                  <span class="icon is-marginless"><i class="fa fa-bell"></i></span>
+                  @if (\Auth::user()->newMessageCount())
+                    <span class="tag is-progress is-notification">{{\Auth::user()->newMessageCount()}}</span>
+                  @endif
+                    <span class="icon is-marginless"><i class="fa fa-bell"></i></span>
                 </a>
                 <!-- Options button -->
                 <a class="nav-item toggle-options">

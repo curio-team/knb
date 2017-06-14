@@ -89,6 +89,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Badge::class);
     }
 
+    public function messages()
+    {
+        return $this->hasMany(\App\Message::class, 'receiver_id');
+    }
+
+    public function newMessageCount()
+    {
+        return \App\Message::where('receiver_id', $this->id)->where('read', 0)->count();
+    }
 
 
     public function getHouseSingular()
