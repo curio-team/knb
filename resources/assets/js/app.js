@@ -22,7 +22,7 @@ $('document').ready(function(){
         selector: ".tinymce",
         themes: "modern",
         plugins: ["autolink", "code", "codesample"],
-        toolbar: 'code | codesample'
+        toolbar: 'code | codesample',
     });
 
     // event handlers
