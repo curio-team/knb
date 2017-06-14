@@ -35,7 +35,7 @@ window.Vue = require('vue');
 
 window.axios = require('axios');
 
-window.axios.defaults.baseURL = 'http://' + window.Laravel.appUrl;
+window.axios.defaults.baseURL = window.Laravel.appUrl;
 // window.axios.defaults.headers.common = {
 //    'X-CSRF-TOKEN': window.Laravel.csrfToken,
 //    'X-Requested-With': 'XMLHttpRequest'
