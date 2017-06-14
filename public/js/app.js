@@ -22242,7 +22242,7 @@ window.Vue = __webpack_require__(10);
 
 window.axios = __webpack_require__(15);
 
-window.axios.defaults.baseURL = 'http://' + window.Laravel.appUrl;
+window.axios.defaults.baseURL = window.Laravel.appUrl;
 // window.axios.defaults.headers.common = {
 //    'X-CSRF-TOKEN': window.Laravel.csrfToken,
 //    'X-Requested-With': 'XMLHttpRequest'
