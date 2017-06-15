@@ -6,6 +6,14 @@
     <h1> Questions </h1>
 
     <div class="posts" >
+
+        @if(!count($posts))
+            <div class="box">
+                <p>Whelp, there aren't any posts right now, how about you go fix that?!</p>
+            </div>
+
+        @endif
+
         @foreach($posts as $post)
             <div class="box box-post box-with-options" data-href="{{ action('PostController@show', $post) }}">
                 <div class="box-options">

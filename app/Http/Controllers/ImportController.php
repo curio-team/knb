@@ -16,6 +16,7 @@ class ImportController extends Controller
     }
 
 
+
     public function upload(UploadCsvRequest $request)
     {
         $file = $request->file('csv');
@@ -42,7 +43,8 @@ class ImportController extends Controller
                     $user->email        = $email;
                     $user->password     = bcrypt( $user->studentnummer );
                     $user->save();
-                    \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house_id]);
+                    \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house_id, 'role_level', '0']);
+                    \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
                     $this->imports++;
                 }
 
@@ -51,7 +53,7 @@ class ImportController extends Controller
 
 
         });
-        return back()->with('success', 'Import succesful. ' . $this->imports . ' added.' . $this->duplicates . ' duplicates were found.');
+        return back()->with('success', 'Import successful. ' . $this->imports . ' added.' . $this->duplicates . ' duplicates were found.');
     }
 
 }

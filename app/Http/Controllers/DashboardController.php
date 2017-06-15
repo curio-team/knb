@@ -17,4 +17,10 @@ class DashboardController extends Controller
     {
         return view('dashboard/import');
     }
+
+    public function points()
+    {
+        $students = \App\User::getStudents();
+        return view('dashboard/points', compact('students'));
+    }
 }

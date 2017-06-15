@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('content')
-    <div id="learning">
+    <div id="vue-app">
         <videos tag="{{ $tag }}"></videos>
     </div>
 @endsection

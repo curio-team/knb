@@ -105,4 +105,13 @@ class User extends Authenticatable
         return $this->houseRole->house->singular;
     }
 
+    public static function getStudents()
+    {
+        $students = \App\User::whereHas('houseRole', function($query){
+            $query->where('role_level', '=', NULL);
+        })->get();
+
+        return $students;
+    }
+
 }

@@ -34,8 +34,8 @@
                         <img src="{{asset('img/rc-fc.png')}}" alt="">
                     </figure>
                     <a href="" class="item active"><span class="icon"><i class="fa fa-home"></i></span><span class="name">Dashboard</span></a>
-                    <a href="#" class="item"><span class="icon"><i class="fa fa-map-marker"></i></span><span class="name">Activity</span></a>
-                    <a href="#" class="item"><span class="icon"><i class="fa fa-th-list"></i></span><span class="name">Timeline</span></a>
+                    <a href="{{route('points')}}" class="item"><span class="icon"><i class="fa fa-thumbs-o-up"></i></span><span class="name">Points</span></a>
+                    <a href="#" class="item"><span class="icon"><i class="fa fa-shield"></i></span><span class="name">Badges</span></a>
                     <a href="{{route('import')}}" class="item"><span class="icon"><i class="fa fa-folder-o"></i></span><span class="name">Import / Export</span></a>
                 </div>
             </div>
@@ -113,6 +113,7 @@
 
 
 
+<script src="{{ asset('js/app.js') }}"></script>
 <!-- Scripts -->
 <script>
     (function() {
