@@ -22222,6 +22222,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -22229,7 +22253,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             students: [],
             studentSelection: [],
-            keyWords: ""
+            keyWords: "",
+            allocate: {
+                type: "assign",
+                points: "",
+                reason: "",
+                student: "",
+                id: ""
+            }
         };
     },
 
@@ -22249,6 +22280,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }
             this.studentSelection = selection;
+        },
+
+        assignStudent: function assignStudent(student) {
+            this.keyWords = student.name;
+            this.allocate.id = student.id;
+            this.studentSelection = [];
+        },
+
+        allocation: function allocation() {
+            axios.post('/dashboard/points/', {
+                type: this.allocate.type,
+                points: this.allocate.points,
+                reason: this.allocate.reason,
+                user_id: this.allocate.id
+            }).then(function (res) {
+                console.log(res);
+            });
         }
 
     }
@@ -41814,7 +41862,7 @@ var Component = __webpack_require__(4)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
+Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] details.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -41848,7 +41896,7 @@ var Component = __webpack_require__(4)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\index.vue"
+Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -41882,7 +41930,7 @@ var Component = __webpack_require__(4)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\points\\index.vue"
+Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\points\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -41986,6 +42034,69 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "root-element section"
+  }, [_c('div', {
+    staticClass: "field is-horizontal"
+  }, [_c('div', {
+    staticClass: "field-body"
+  }, [_c('div', {
+    staticClass: "field"
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.allocate.type),
+      expression: "allocate.type"
+    }],
+    staticClass: "input",
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.allocate.type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "assign"
+    }
+  }, [_vm._v("Assign")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "deassign"
+    }
+  }, [_vm._v("De-assign")])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.allocate.points),
+      expression: "allocate.points"
+    }],
+    staticClass: "input",
+    attrs: {
+      "placeholder": "amount points",
+      "type": "number",
+      "name": "",
+      "id": ""
+    },
+    domProps: {
+      "value": (_vm.allocate.points)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.allocate.points = $event.target.value
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
+      }
+    }
+  })]), _vm._v(" "), _c('p', [_vm._v("to  ")]), _vm._v(" "), _c('div', {
+    staticClass: "field is-grouped"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -42008,10 +42119,45 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.keyWords = $event.target.value
       }
     }
-  }), _vm._v(" "), _vm._l((_vm.studentSelection), function(student) {
-    return _c('div', [_c('a', {
+  })]), _vm._v(" "), _c('p', [_vm._v("because:  ")]), _vm._v(" "), _c('div', {
+    staticClass: "field is-grouped"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.allocate.reason),
+      expression: "allocate.reason"
+    }],
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "placeholder": "Reason"
+    },
+    domProps: {
+      "value": (_vm.allocate.reason)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.allocate.reason = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('button', {
+    staticClass: "button is-primary",
+    on: {
+      "click": function($event) {
+        _vm.allocation()
+      }
+    }
+  }, [_vm._v("Assign")])])]), _vm._v(" "), _vm._l((_vm.studentSelection), function(student) {
+    return _c('div', [_c('p', {
       attrs: {
         "href": ""
+      },
+      on: {
+        "click": function($event) {
+          _vm.assignStudent(student)
+        }
       }
     }, [_vm._v(_vm._s(student.name))])])
   })], 2)

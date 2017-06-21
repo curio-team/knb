@@ -3,7 +3,8 @@
 
     <div class="posts" >
         @forelse($messages as $message)
-            <div class="box box-post box-with-options" data-href="{{ action('MessageController@show', $message) }}">
+
+            <div class="{{ $message->read ? 'message-read' : 'message-unread' }} box box-post box-with-options" data-href="{{ action('MessageController@show', $message) }}">
                 <div class="box-options">
                     <form action="{{ route('message.destroy', $message) }}" method="POST">
                         {{ csrf_field() }}
@@ -19,7 +20,7 @@
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                <strong><a href="{{ action('MessageController@show', $message) }}">{{ $message->subject }}</a></strong>
+                                <strong><a href="{{ action('MessageController@show', $message) }}"> @if(!$message->read) [NEW!] @endif {{ $message->subject }}</a></strong>
                                 @if($message->attachments()->count() > 0)
                                     <small>(Contains attachments)</small>
                                 @endif

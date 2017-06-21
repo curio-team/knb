@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(HousesTableSeeder::class);
         $this->call(ScoreTypeSeeder::class);
-//        $this->call(UsersAndHouseRolesTableSeeder::class);
-//        $this->call(PostsTableSeeder::class);
+        $this->call(UsersAndHouseRolesTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
         $this->call(TagsTableSeeder::class);
         $this->call(CreateBadgesSeeder::class);
     }

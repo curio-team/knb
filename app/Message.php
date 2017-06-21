@@ -60,6 +60,4 @@ class Message extends Model
 
 
 
-
-
 }

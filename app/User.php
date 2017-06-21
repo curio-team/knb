@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'points'
     ];
 
     /**
@@ -54,6 +54,11 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->belongsToMany(Post::class, 'votes');
+    }
+
+    public function scorelogs()
+    {
+        return $this->hasMany('ScoreLog::class', 'user_id');
     }
 
     public function isHeadMaster()

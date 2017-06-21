@@ -72,6 +72,7 @@ class PostController extends Controller
             // get points for an answer but not on your own question
             if ($post->isAnswer() )
             {
+                // we don't want to assign points when answering your own question.
                 if ($post->parent->author_id !== \Auth::user()->id )
                 {
                     $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED;
@@ -218,14 +219,23 @@ class PostController extends Controller
             'accepted_answer' => $accepted,
         ]);
 
-        if($accepted){
+        if( $accepted ){
             // accepted answer author gets points.
-            \App\Point::assign($post->author_id, \App\Point::BENEFACTOR_TYPE_ANSWER_ACCEPTED);
+            if ( \Auth::user()->id !== $post->parent->author_id)
+            {
+                \App\Point::assign($post->author_id, \App\Point::BENEFACTOR_TYPE_ANSWER_ACCEPTED);
+            }
+            $message = 'Answer has been accepted.';
         }else{
-            \App\Point::deAssign($post->author_id, \App\Point::BENEFACTOR_TYPE_ANSWER_ACCEPTED);
+
+            if ( \Auth::user()->id !== $post->parent->author_id)
+            {
+                \App\Point::deAssign($post->author_id, \App\Point::BENEFACTOR_TYPE_ANSWER_ACCEPTED);
+            }
+            $message = 'Accepted answer is undone.';
         }
 
-        return redirect()->back()->with('success', 'Answer has been accepted.');
+        return redirect()->back()->with('success', $message);
     }
 
     public function vote(AddVoteRequest $request,Post $post)

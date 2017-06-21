@@ -80,12 +80,11 @@ class Point extends Model
         try
         {
             \DB::beginTransaction();
-
             $message = new \App\Message;
             $message->sender_id = null;
             $message->receiver_id = $userId;
-            $message->subject = 'You received points for [TODO]'; // Implement message based on type here
-            $message->content = 'You have received points for doing [TODO]. Congratulations!';
+            $message->subject = 'You received points for: ' . $points->scoreType->description; // Implement message based on type here
+            $message->content = 'You have received points for: ' . $points->scoreType->description .  '. Congratulations!';
             $message->save();
 
             $message->attachPoints($points);
@@ -110,8 +109,8 @@ class Point extends Model
             $message = new \App\Message;
             $message->sender_id = null;
             $message->receiver_id = $userId;
-            $message->subject = 'You lost points for [TODO]'; // Implement message based on type here
-            $message->content = 'You have lost points for doing [TODO].';
+            $message->subject = 'You lost points for: ' . $point->scoreType->description . '.'; // Implement message based on type here
+            $message->content = 'You have lost points for: ' . $point->scoreType->description . '.' ;
             $message->save();
 
             // create the message

@@ -26,6 +26,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
         Route::resource('message', 'MessageController');
+
+        // allocate points from dashboard
+        Route::post('/dashboard/points/', 'PointsController@allocate');
     });
 
 

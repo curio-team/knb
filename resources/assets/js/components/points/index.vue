@@ -1,10 +1,34 @@
 <template>
 
     <div class="root-element section">
-        <input class="input" type="text" placeholder="search student by name" v-on:keyup="checkStudent" v-model="keyWords">
+        <div class="field is-horizontal">
+
+            <div class="field-body">
+                <div class="field">
+                    <select v-model="allocate.type" class="input">
+                        <option value="assign">Assign</option>
+                        <option value="deassign">De-assign</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <input class="input" placeholder="amount points" type="number" name="" id="" v-model="allocate.points">
+                </div>
+                <p>to &nbsp;</p>
+                <div class="field is-grouped">
+                    <input class="input" type="text" placeholder="search student by name" v-on:keyup="checkStudent" v-model="keyWords">
+                </div>
+                <p>because: &nbsp;</p>
+                <div class="field is-grouped">
+                    <input class="input" type="text" placeholder="Reason" v-model="allocate.reason">
+                </div>
+                <button class="button is-primary" v-on:click="allocation()">Assign</button>
+            </div>
+        </div>
 
         <div v-for="student in studentSelection">
-            <a href="">{{student.name}}</a>
+
+            <p v-on:click="assignStudent(student)" href="">{{student.name}}</p>
+
         </div>
     </div>
 </template>
@@ -16,7 +40,14 @@
             return {
                 students: [],
                 studentSelection: [],
-                keyWords: ""
+                keyWords: "",
+                allocate: {
+                    type: "assign",
+                    points: "",
+                    reason: "",
+                    student: "",
+                    id: ""
+                }
             }
 
         },
@@ -41,6 +72,25 @@
                         }
                     }
                     this.studentSelection = selection;
+                },
+
+                assignStudent: function(student)
+                {
+                    this.keyWords = student.name;
+                    this.allocate.id = student.id;
+                    this.studentSelection = [];
+                },
+
+                allocation: function()
+                {
+                    axios.post('/dashboard/points/', {
+                        type: this.allocate.type,
+                        points: this.allocate.points,
+                        reason: this.allocate.reason,
+                        user_id: this.allocate.id
+                    }).then(function(res){
+                       console.log(res);
+                    });
                 }
 
         }
