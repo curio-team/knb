@@ -24,6 +24,8 @@ class PointsController extends Controller
             $user = \App\User::find($request->user_id);
             $user->points += intval($request->points);
             $user->save();
+
+            echo json_encode(['name' => $user->name]);
         });
 
 

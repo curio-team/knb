@@ -1,8 +1,17 @@
 <template>
 
     <div class="root-element section">
-        <div class="field is-horizontal">
+        <h1 class="is-title">Points</h1>
+        <div class="panel">
+            <div class="panel-heading" v-if="inHistory.length > 0">
+                Added points this session:
+            </div>
 
+            <div v-for="data in inHistory" class="panel-block">
+                {{data.type}} {{data.points}} points to {{data.name}} for {{data.reason}}
+            </div>
+        </div>
+        <div class="field is-horizontal">
             <div class="field-body">
                 <div class="field">
                     <select v-model="allocate.type" class="input">
@@ -47,7 +56,8 @@
                     reason: "",
                     student: "",
                     id: ""
-                }
+                },
+                inHistory: []
             }
 
         },
@@ -83,13 +93,20 @@
 
                 allocation: function()
                 {
+                    var that = this;
                     axios.post('/dashboard/points/', {
                         type: this.allocate.type,
                         points: this.allocate.points,
                         reason: this.allocate.reason,
                         user_id: this.allocate.id
                     }).then(function(res){
-                       console.log(res);
+                        console.log(res.data);
+                        that.inHistory.push({
+                            type:   'assigned',
+                            points: that.allocate.points,
+                            reason: that.allocate.reason,
+                            name: res.data.name
+                        });
                     });
                 }
 

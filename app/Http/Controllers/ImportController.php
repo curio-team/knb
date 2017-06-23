@@ -56,4 +56,20 @@ class ImportController extends Controller
         return back()->with('success', 'Import successful. ' . $this->imports . ' added.' . $this->duplicates . ' duplicates were found.');
     }
 
+    public function singleRegistration(Request $request)
+    {
+
+        $user = new \App\User;
+        $user->name     = $request->name;
+        $user->studentnr = $request->studentnr;
+        $user->email        = $request->email;
+        $user->password     = bcrypt( $user->studentnummer );
+        $user->save();
+
+        \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $request->house_id, 'role_level', '0']);
+        \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
+
+        return back()->with('succes', 'User ' . $user->name . ' succesfully registered to the amohub.');
+    }
+
 }

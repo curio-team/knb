@@ -22246,6 +22246,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -22260,7 +22269,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 reason: "",
                 student: "",
                 id: ""
-            }
+            },
+            inHistory: []
         };
     },
 
@@ -22289,13 +22299,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         allocation: function allocation() {
+            var that = this;
             axios.post('/dashboard/points/', {
                 type: this.allocate.type,
                 points: this.allocate.points,
                 reason: this.allocate.reason,
                 user_id: this.allocate.id
             }).then(function (res) {
-                console.log(res);
+                console.log(res.data);
+                that.inHistory.push({
+                    type: 'assigned',
+                    points: that.allocate.points,
+                    reason: that.allocate.reason,
+                    name: res.data.name
+                });
             });
         }
 
@@ -42034,7 +42051,17 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "root-element section"
-  }, [_c('div', {
+  }, [_c('h1', {
+    staticClass: "is-title"
+  }, [_vm._v("Points")]), _vm._v(" "), _c('div', {
+    staticClass: "panel"
+  }, [(_vm.inHistory.length > 0) ? _c('div', {
+    staticClass: "panel-heading"
+  }, [_vm._v("\n            Added points this session:\n        ")]) : _vm._e(), _vm._v(" "), _vm._l((_vm.inHistory), function(data) {
+    return _c('div', {
+      staticClass: "panel-block"
+    }, [_vm._v("\n            " + _vm._s(data.type) + " " + _vm._s(data.points) + " points to " + _vm._s(data.name) + " for " + _vm._s(data.reason) + "\n        ")])
+  })], 2), _vm._v(" "), _c('div', {
     staticClass: "field is-horizontal"
   }, [_c('div', {
     staticClass: "field-body"

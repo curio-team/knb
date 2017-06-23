@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['middleware' => 'headmaster'], function(){
         Route::post('dashboard/csv/upload', 'ImportController@upload')->name('upload');
+        Route::post('dashboard/user/registration', 'ImportController@singleRegistration');
 
         Route::get('/dashboard/import', 'DashboardController@import')->name('import');
         Route::get('/dashboard/points', 'DashboardController@points')->name('points');
