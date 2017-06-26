@@ -4,7 +4,7 @@
     <div class="container main-content">
         <div class="columns">
             <div class="column is-three-quarters">
-                <nav class="level">
+                <nav class="level filter-bar">
                     <div class="level-left">
                         <div class="level-item">
                             <button class="button filter-questions is-primary">Filter &nbsp;<i class="fa fa-2X fa-caret-down"></i></button>

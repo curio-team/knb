@@ -7,8 +7,10 @@ a.nav-item {
 }
 
 .header {
+  color: $brand-base;
   background: $header-bg;
   position: relative;
+  font-weight: bold;
   width: 100%;
   height: $header-height;
   z-index: 99;
@@ -16,7 +18,7 @@ a.nav-item {
     &.is-active {
       background: $hoverNav;
       .icon {
-        color: white;
+        color: $brand-secondary;
       }
     }
   }
@@ -56,7 +58,6 @@ a.nav-item {
   .header-nav {
     display: flex;
     flex-direction: row;
-    background: $header-bg;
     @media screen and (max-width: 768px) {
       display: none;
       flex-direction: column;
@@ -70,14 +71,14 @@ a.nav-item {
     }
     li, a {
       height: 100%;
+      color: $brand-base;
     }
   }
   .nav-item.is-tab {
     border: 0;
     // color: whitesmoke;
     &:hover, &.is-active {
-      background: $hoverNav;
-      color: white;
+      color: $brand-secondary;
       border: 0;
     }
     .icon {
@@ -116,3 +117,5 @@ a.nav-item {
     }
   }
 }
+
+

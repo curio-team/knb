@@ -148,15 +148,15 @@
 
         </div>
 
+        @include('partials.minis._notifications')
         <section class="hero banner">
             <div class="hero-body">
                 <div class="container">
-                    <img src="{{ asset('img/logo.png') }}" class="is-pulled-right" alt="">
+                    <img src="{{ asset('img/logo.png') }}" class="is-pulled-right" alt="Logo AmoHUB" style="width:300px">
                 </div>
             </div>
         </section>
 
-        @include('partials.minis._notifications')
 
         @yield('content')
     </div>

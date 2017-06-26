@@ -1,16 +1,47 @@
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
+@import url('https://fonts.googleapis.com/css?family=Chivo');
 // Variables
 @import "variables";
 
 body {
-  background: #ECE9E6; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #ECE9E6 , #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #ECE9E6 , #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  font-family: "Chivo" !important;
+  background: #134E5E;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #71B280, #134E5E);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
+
+
+
+//buttons
+.button.is-primary {
+  background: $brand-primary;
+  &:hover {
+    background: $transparent;
+  }
+}
+
+.button.is-info {
+  background: $brand-info;
+  &:hover {
+    background: $transparent;
+  }
+}
+
+.button.is-success {
+  background: $brand-info;
+  &:hover {
+    background: $transparent;
+  }
+}
+
+.button {
+  background: $brand-base;
+}
 
 // Optimizations for Bulma
 .tag{
@@ -18,6 +49,18 @@ body {
 }
 span.panel-heading{
   display: block;
+}
+
+.panel-heading {
+  background: $transparent;
+}
+
+#search-tags {
+  color: $transparent;
+}
+
+.filter-bar .button {
+  color: $transparent;
 }
 
 .tag {
@@ -53,12 +96,15 @@ span.panel-heading{
 }
 
 .main-content {
-  margin-top: 50px;
 }
 
 .front-logo-container {
   background: #222222;
   width: 40%;
+}
+
+.box {
+  background: $transparent;
 }
 
 .box-post {
@@ -93,8 +139,28 @@ span.panel-heading{
   }
 
 }
+.fa {
+  color: $brand-secondary;
+}
+
+.content h3 {
+  color: $transparent;
+  .fa {
+    color: $transparent;
+  }
+}
+
+.content h1 {
+  color: $transparent;
+}
+
+.fa.fa-caret-down {
+  color: $transparent;
+}
+
 
 .box-post {
+  @include transparent();
   position: relative;
 
   .media {
@@ -104,12 +170,8 @@ span.panel-heading{
     color: inherit;
   }
 
-  transition: .2s;
-
-  &:hover {
-    background: #efefef;
-  }
 }
+
 
 .post-tags {
   margin-top: 15px;
@@ -129,7 +191,8 @@ span.panel-heading{
 }
 
 .banner {
-  background: #272822 url('../img/banner.jpg') no-repeat;
+  background: inherit;
+
   background-size: cover;
 }
 
@@ -302,6 +365,54 @@ footer.main-footer {
 }
 
 .message-unread {
+  background: $transparent;
+}
+
+.message-read {
   background: $brand-link;
 }
+
+table.table {
+  @include transparent();
+}
+
+.content table tr:hover {
+  background: inherit;
+}
+
+
+.pagination-link {
+  color: $brand-secondary;
+  border-color: $brand-secondary;
+  &:link {
+    border-color: $brand-secondary;
+  }
+  &:hover {
+    border-color: $brand-secondary;
+    color: $brand-secondary;
+  }
+}
+
+.pagination-link.is-current {
+  background-color: $brand-secondary;
+  border-color: $brand-secondary;
+  &:link {
+    border-color: $brand-secondary;
+    background-color: $brand-secondary;
+  }
+  &:hover {
+    border-color: $brand-secondary;
+    background-color: $brand-secondary;
+  }
+}
+
+.pagination a {
+  background: $brand-secondary;
+  border-color: $brand-secondary;
+  color: white;
+  &:active {
+    border-color: $brand-secondary;
+  }
+}
+
 

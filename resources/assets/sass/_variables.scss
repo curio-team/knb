@@ -11,10 +11,15 @@ $navbar-default-border: $laravel-border-color;
 $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
+// transparency
+$transparent: rgba(255,255,255,0.6);
+
 // Brands
-$brand-link: #00d1b2;
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
+$brand-base: lighten($transparent, 30%);
+$brand-secondary: #9f6060;
+$brand-link: darken($transparent, 70%);
+$brand-primary: darken($transparent, 70%);
+$brand-info: darken($transparent, 50);
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
 $brand-danger: #bf5329;
@@ -29,7 +34,7 @@ $text-color: #636b6f;
 // Navbar
 $navbar-default-bg: #222222;
 
-$header-bg: #222222;
+$header-bg: rgba(255,255,255, 0.5);
 $notifications: #cb4437;
 $hoverNav: #000000;
 $header-height: 3em;
@@ -44,3 +49,13 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+
+
+// Mixins
+@mixin transparent {
+  background: $transparent;
+  transition: .3s;
+  &:hover {
+    background: rgba(255,255,255,0.5);
+  }
+}
