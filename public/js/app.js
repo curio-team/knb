@@ -22301,7 +22301,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         allocation: function allocation() {
             var that = this;
             console.log(this.allocate);
-            axios.post('/dashboard/points/', {
+            axios.post('/dashboard/points', {
                 type: this.allocate.type,
                 points: this.allocate.points,
                 reason: this.allocate.reason,
