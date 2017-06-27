@@ -22300,13 +22300,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         allocation: function allocation() {
             var that = this;
+            console.log(this.allocate);
             axios.post('/dashboard/points/', {
                 type: this.allocate.type,
                 points: this.allocate.points,
                 reason: this.allocate.reason,
                 user_id: this.allocate.id
             }).then(function (res) {
-                console.log(res.data);
+
                 that.inHistory.push({
                     type: 'assigned',
                     points: that.allocate.points,
