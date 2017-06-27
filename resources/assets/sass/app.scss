@@ -5,6 +5,8 @@
 // Variables
 @import "variables";
 
+
+
 body {
 
   font-family: "Chivo" !important;
@@ -14,7 +16,13 @@ body {
 
 }
 
+.root-element {
+  background: inherit;
+}
 
+a {
+  color: $brand-secondary;
+}
 
 
 //buttons
@@ -33,7 +41,7 @@ body {
 }
 
 .button.is-success {
-  background: $brand-info;
+  background: $brand-secondary;
   &:hover {
     background: $transparent;
   }
@@ -83,6 +91,11 @@ span.panel-heading{
     min-width: 12px;
   }
 }
+
+.card {
+  background: $transparent;
+}
+
 
 // header
 @import "header";
@@ -172,6 +185,9 @@ span.panel-heading{
 
 }
 
+.hero-body {
+  padding-bottom: 0px;
+}
 
 .post-tags {
   margin-top: 15px;
@@ -380,6 +396,13 @@ table.table {
   background: inherit;
 }
 
+.tabs li a {
+  color: $transparent;
+}
+
+.tabs li.is-active a {
+  color: $brand-secondary;
+}
 
 .pagination-link {
   color: $brand-secondary;
