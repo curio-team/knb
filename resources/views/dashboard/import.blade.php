@@ -16,7 +16,7 @@
             </form>
 
             <h3 class="is-3">Add user</h3>
-            <form action="{{action('UserController@singleRegistration')}}" method="post">
+            <form action="{{action('ImportController@singleRegistration')}}" method="post">
                 {{csrf_field()}}
                 <div class="field">
                     <label class="label">Name</label>
