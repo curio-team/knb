@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class PointsController extends Controller
 {
+
     public function allocate(AllocatePointsRequest $request)
     {
-        \DB::transaction(function() use ($request){
+
             \App\ScoreLog::write($request->user_id, [
                 'reason'    => $request->reason,
                 'points'    => $request->points,
@@ -26,8 +27,6 @@ class PointsController extends Controller
             $user->save();
 
             echo json_encode(['name' => $user->name]);
-        });
-
 
     }
 }
