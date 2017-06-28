@@ -30,7 +30,7 @@ class House extends Model
         $sql = "SELECT SUM(`score_types`.`points`) as total, `houses`.`name`, `houses`.`description`, `houses`.`id` as id
                 FROM `points`
                 INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
-                LEFT JOIN `users` ON `users`.`id` = `points`.`receiver_id`
+                RIGHT JOIN `users` ON `users`.`id` = `points`.`receiver_id`
                 INNER JOIN `house_roles` ON `users`.id = `house_roles`.`user_id`
                 INNER JOIN `houses` ON `house_roles`.`house_id` = `houses`.`id`
                 GROUP BY `houses`.`name`, `houses`.`id`, `houses`.`description`
@@ -40,7 +40,23 @@ class House extends Model
          {
              $sql .= " LIMIT $limit";
          }
-        return collect(\DB::select($sql));
+
+
+        // If this code works, it was written by Fedde. If not, I don't know
+        // who wrote it
+         $data = \DB::select($sql);
+         foreach($data as $house)
+         {
+            $hs = \App\House::find($house->id);
+            $house->total += $hs->pointsSum();
+         }
+
+         usort($data, function($a, $b){
+            return $b->total - $a->total;
+         });
+
+        return collect($data);
+
     }
 
     /**
@@ -67,7 +83,7 @@ class House extends Model
     /**
      * Get the total sum of points from all members
      */
-    public function pointsSum()
+    private function pointsSum()
     {
 
         $houses =  $this->with('users.points')->where('id', $this->id)->get();
@@ -76,10 +92,9 @@ class House extends Model
         {
             foreach($house->users as $user)
             {
-                foreach($user->points as $points)
-                {
-                    $sum += $points->points;
-                }
+
+                    $sum += $user->points;
+
             }
         }
 

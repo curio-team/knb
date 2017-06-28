@@ -17,7 +17,9 @@ class ViewServiceProvider extends ServiceProvider
     {
         view()->composer('*', function(){
             $houses = \App\House::sortByPoints(4);
+
             $tags = \App\Tags::all();
+
             $rankedUsers = \App\User::sortByPoints(10);
 
             \View::share([

@@ -23,4 +23,11 @@ class DashboardController extends Controller
         $students = \App\User::getStudents();
         return view('dashboard/points', compact('students'));
     }
+
+    public function badges()
+    {
+        $badges = \App\Badge::all();
+        return view('dashboard/badges', compact('badges'));
+    }
+
 }

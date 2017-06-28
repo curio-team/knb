@@ -23,15 +23,15 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::get('/dashboard/import', 'DashboardController@import')->name('import');
         Route::get('/dashboard/points', 'DashboardController@points')->name('points');
-
+        Route::get('/dashboard/badges', 'DashboardController@badges')->name('badges');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-        Route::resource('message', 'MessageController');
 
         // allocate points from dashboard
         Route::post('/dashboard/points/', 'PointsController@allocate');
     });
 
+    Route::resource('message', 'MessageController');
 
     Route::get('/game-info', 'HomeController@gameInfo');
     Route::get('/about', 'HomeController@about')->name('story');

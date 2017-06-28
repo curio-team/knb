@@ -151,7 +151,7 @@
                   @else
                     <li><a href="{{ route('profile') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>
                   @endif
-                  <li><a onclick="event.preventDefault(), document.getElementById('logout-form').submit" href="{{ route('logout') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-sign-out"></i></span> Logout</a></li>
+                  <li><a onclick="event.preventDefault(), document.getElementById('logout-form').submit()" class="nav-item is-tab"><span class="icon"><i class="fa fa-sign-out"></i></span> Logout</a></li>
                 </ul>
 
               </div>

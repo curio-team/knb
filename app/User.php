@@ -43,7 +43,7 @@ class User extends Authenticatable
      */
     public function pointsSum()
     {
-        return $this->hasMany(Point::class, 'receiver_id')->sum('points');
+        $this->hasMany(Point::class, 'receiver_id')->sum('points');
     }
 
     public function points()
@@ -68,11 +68,11 @@ class User extends Authenticatable
 
     public static function sortByPoints($limit = null)
     {
-        $sql = "SELECT SUM(`score_types`.`points`) as total, `users`.`name` as name
+        $sql = "SELECT SUM(`score_types`.`points`) + `users`.`points` as total, `users`.`name` as name
                 FROM `points`
                 INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
                 LEFT JOIN `users` ON `users`.`id` = `points`.`receiver_id`
-                GROUP BY `users`.`name`
+                GROUP BY `users`.`name`, `users`.`points`
                 ORDER BY total DESC";
 
         if ($limit)

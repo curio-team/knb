@@ -14,3 +14,6 @@
 Route::resource('house', 'ApiHouseController');
 Route::resource('post', 'ApiPostController');
 Route::resource('comment', 'ApiCommentController');
+Route::resource('badge', 'BadgesController');
+Route::get('students', 'UsersController@getStudents');
+Route::get('student/{id}', 'UsersController@getStudent');

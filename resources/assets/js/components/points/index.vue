@@ -94,7 +94,6 @@
                 allocation: function()
                 {
                     var that = this;
-                    console.log(this.allocate);
                     axios.post('/dashboard/points', {
                         type: this.allocate.type,
                         points: this.allocate.points,
