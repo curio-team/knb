@@ -26,39 +26,84 @@
               "title": "Visual Studio Introductie",
               "questions": [
                 {
-                  "question": "Selecteer antwoord B!",
-                  "explaination": "This is why B is the correct answer",
+                  "question": "1. Wat voor een project ga je om te beginnen maken voor je HelloWorld applicatie?",
+
                   "answers": [
                     {
-                      "answer": "A: This is the incorrect answer"
+                      "answer": "A: Visual C# console project",
+					  "is_correct": true
                     },
                     {
-                      "answer": "B: This is the correct answer",
-                      "is_correct": true
+                      "answer": "B: Windows Forms Application project"
                     },
                     {
-                      "answer": "C: This is another incorrect answer"
+                      "answer": "C: Visual C# console solution"
                     },
                     {
-                      "answer": "D: This is the final incorrect answer"
+                      "answer": "D: Blank C# project"
                     }
                   ]
                 },
                 {
-                  "question": "Selecteer antwoord B!",
+                  "question": "2. Waar kan je de opties voor de tekstbewerking in Visual Studio aanpassen?",
                   "answers": [
                     {
-                      "answer": "A: This is the incorrect answer"
+                      "answer": "A: Window > Editor > Settings"
                     },
                     {
-                      "answer": "B: This is the correct answer",
+                      "answer": "B: Tools > Options > Text Editor",
                       "is_correct": true
                     },
                     {
-                      "answer": "C: This is another incorrect answer"
+                      "answer": "C: View > Text > Options"
+                    }
+                  ]
+                },
+				{
+                  "question": "3. Waar begint je applicatie te draaien (het entry point)?",
+                  "answers": [
+                    {
+                      "answer": "Bij de knop 'program start'."
                     },
                     {
-                      "answer": "D: This is the final incorrect answer"
+                      "answer": "B: Bij de namespace die bij het programma hoort."
+                    },
+                    {
+                      "answer": "C: Bij de methode Main.",
+					  "is_correct" : true
+                    }
+                  ]
+                },
+				{
+                  "question": "4.Welke van deze twee stellingen is waar?<ul><li>1 Visual Studio zet een rode streep onder errors</li><li>2 Visual Studio werkt de lijst met errors vanzelf bij</li>",
+                  "answers": [
+                    {
+                      "answer": "A: 1 en 2 zijn waar.",
+                      "is_correct": true
+                    },
+                    {
+                      "answer": "1 en 2 zijn niet waar"
+                    },
+					{
+						"answer": "1 is waar, 2 niet"
+					},
+					{
+						"answer": "1 is niet waar, 2 wel"
+					}
+                  ]
+                },
+				{
+                  "question": "5. 5 Hoe zorg je ervoor dat het programma op een bepaalde regel stopt zodat je het kan debuggen?",
+                  "answers": [
+				    {
+                      "answer": "A: Door het programma te pauzeren met de pauzeknop als het programma bij de juiste regel is."
+                    },
+                    {
+                      "answer": "B: Door bij die regel Console.ReadKey(); in te voeren."
+                    },
+                    {
+                      "answer": "C: Door bij die regel een breakpoint (rood bolletje) te plaatsen.",
+                      "is_correct": true
                     }
                   ]
                 }
@@ -68,12 +113,302 @@
               "title": "Visual Studio Introductie Oefeningen",
               "assignments": [
                 {
-                  "assignment": "Okidoki",
-                  "description": "asdasd"
+                  "assignment": "Opdracht: Hello, World!",
+                  "description": "Maak een programma dat de volgende tekst afdrukt: &quotHello, World!&quot\n<br />Pas je main methode aan en breidt het programma hieronder uit met de onderstaande code. Zoek nu op het internet hoe je in Microsoft Visual Studio &quotCommand Line Arguments&quot aan een programma kan meegeven, en geef de volgende argumenten mee; 1, aap, eet, 6, banaan.<br>Leg uit wat hier gebeurd.",
+				  "code": "    static void Main(string[] args)<hr />    Console.WriteLine(&quotYour execution arguments were:&quot);<br />        for (int i = 0; i < args.Length; i++)<br />        {<br />            Console.WriteLine(&quot{0}: {1}&quot, i, args[i]);<br />        }"
                 }
               ]
             }
-          }
+          },
+		  "/videos/218479166" : {
+			"quiz" : {
+				"title" : "Variabelen en datatypes",
+				"questions" : [
+					{
+						"question": "1. Welke regel code is onjuist?",
+						"answers": [
+							{
+								"answer" : "A: int x = -72520;"
+							},
+							{
+								"answer" : "B: float bananenbroek = 6.6F;"
+							},
+							{
+								"answer" : "C: char eerste letter = 'a';",
+								"is_correct": true
+							},
+							{
+								"answer" : "D: string number = &quot234&quot;"
+							}
+						]
+					},
+					{
+						"question": "2. Welke regel code is wél juist?",
+						"answers": [
+							{
+								"answer" : "A: String name = 'Bertje Bob';"
+							},
+							{
+								"answer" : "B: String lieverKipsLeverworst = &S&quot;",
+								"is_correct": true
+							},
+							{
+								"answer" : "C: char double float = 2.1f;"
+							},
+							{
+								"answer" : "D: int y = 30"
+							}
+						]
+					},
+					{
+						"question": "3. Wat gaat er fout in de onderstaande code?",
+						"code" : "int firstNumber = 10;<br />int secondNumber = 6;<br />int result;<br />result = firstNumber / secondNumber;<br />Console.WriteLine(firstNumber + &quot delen door &quot + secondNumber + &quot is &quot + result + &quot!&quot);<br />Console.WriteLine(&quotIk ben een rekenwonder!&quot);",
+						"answers": [
+							{
+								"answer" : "A: Result krijgt een verkeerde waarde toegewezen.",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: Als je een getal wil printen naar de console moet je aanhalingstekens gebruiken."
+							},
+							{
+								"answer" : "C: De variabele result krijgt nooit een waarde."
+							},
+							{
+								"answer" : "D: Er gaat helemaal niks fout."
+							}
+						]
+					},
+					{
+						"question": "4. Je wil graag variabelen gebruiken om de postcode, het huisnummer, de straatnaam en de woonplaats van een persoon op te slaan.<br>Welke typen variabelen zijn het handigst om te gebruiken?",
+						"answers": [
+							{
+								"answer" : "A: Een string, char en int."
+							},
+							{
+								"answer" : "B: Twee ints en twee strings.",
+								"is_correct": true
+							},
+							{
+								"answer" : "C: Een int en een string."
+							},
+							{
+								"answer" : "D: Een enkele string."
+							}
+						]
+					},
+					{
+						"question": "Welke van deze getallen past in een unsigned short?",
+						"answers": [
+							{
+								"answer" : "A: -6"
+							},
+							{
+								"answer" : "B: 600.006"
+							},
+							{
+								"answer" : "C: 600006"
+							},
+							{
+								"answer" : "D: 6",
+								"is_correct": true
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "Variabelen en datatypes",
+				"assignments": [
+					{
+						"assignment": "Opdracht: Operatie wisseltruc",
+						"description": "Schrijf een programma dat twee ints aanmaakt. Deze heten a en b. Daarna geeft het programama allebij de ints een verschillende waarde (je mag zelf weten welke).<br />Tot slot zorgt ervoor dat de waarde van a in b terecht komt en de waarde van b in a terecht komt."
+					}
+				]
+			}
+		  },
+		  "/videos/218612057" : {
+			"quiz" : {
+				"title" : "Rekenen++",
+				"questions" : [
+					{
+						"question": "1. Wat zal er worden weergegeven bij het uitvoeren van deze code?",
+						"code" : "int a, b;<br />a = 1;<br />b = a;<br />a = b * ( 6 + a ) + ( 3 - b);<br />Console.WriteLine(a);",
+						"answers": [
+							{
+								"answer" : "A: 4"
+							},
+							{
+								"answer" : "B: 5",
+								"is_correct": true
+							},
+							{
+								"answer" : "C: 6"
+							},
+							{
+								"answer" : "D: 7"
+							}
+						]
+					},
+					{
+						"question": "2. Wat zal er worden weergegeven bij het uitvoeren van deze code?",
+						"code" : "float baseNumber = 5.90;<br />int toSubtract = 2;<br />baseNumber = baseNumber - toSubtract;<br />baseNumber += 2;<br />int result = (int) baseNumber;<br />Console.WriteLine(result);",
+						"answers": [
+							{
+								"answer" : "A: 4"
+							},
+							{
+								"answer" : "B: 5",
+								"is_correct": true
+							},
+							{
+								"answer" : "C: 6"
+							},
+							{
+								"answer" : "D: 7"
+							}
+						]
+					},
+					{
+						"question": "3. Waarvoor kan je modulo (het % teken) niet gebruiken?",
+						"answers": [
+							{
+								"answer" : "A: Kijken of een getal oneven is."
+							},
+							{
+								"answer" : "B: Een float converteren naar een int.",
+								"is_correct" : true
+							},
+							{
+								"answer" : "C: Kijken of een getal deelbaar is door een ander getal."
+							},
+							{
+								"answer" : "D: De 'rest' van een deelsom berekenen."
+							}
+						]
+					},
+					{
+						"question": "4. Welke getallen worden geprint bij het uitvoeren van deze code?",
+						"code": "int dispInt = 0;<br />Console.WriteLine(dispInt + 3);<br />Console.WriteLine(dispInt--);",
+						"answers": [
+							{
+								"answer" : "A: 0 en 2"
+							},
+							{
+								"answer" : "B: 3 en -1",
+								"is_correct" : true
+							},
+							{
+								"answer" : "C: 0 en -2"
+							},
+							{
+								"answer" : "D: 3 en 2"
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "Rekenen++",
+				"assignments": [
+					{
+						"assignment": "De bananenfabriek",
+						"description": "Maak een programma dat in ieder geval twee doubles gebruikt. Deze het bananaPrice (de prijs van een kilo bananen) en bananaWeight (het aantal kilo bananen).<br />Geef beide variabelen een waarde.<br /><br />Hierna moet het programma een offerte voor de bananen uitdraaien in de console. Zorg dat er het volgende instaat.<br /><ul><li>De hoeveelheid bananen</li><li>De kiloprijs van de bananen</li><li>Het totaalbedrag (excl 6% BTW)</li><li>De hoeveelheid BTW</li><li>Het totaalbedgrag (incl 6% BTW)</li></ul>"
+					}
+				]
+			}
+		  },
+		  "/videos/218748288" : {
+			"quiz" : {
+				"title" : "If-statement en vergelijkingen",
+				"questions" : [
+					{
+						"question": "1. Wat gaat er fout in het volgende stuk code?",
+						"code" : "<p>string mooieStadInput;<br /> bool isMooi = false;</p><p>Console.WriteLine(&quotConstantinopol is een mooie stad...&quot);<br /> Console.WriteLine(&quotVind je ook niet?&quot);<br /> mooieStadInput = Console.ReadLine();<br /> <br /> if(mooieStadInput = &quotJa&quot || mooieStadInput = &quotj&quot)<br /> {<br /> isMooi = true;<br /> }<br /> Console.WriteLine(&quotHm....&quot);<br /> if(isMooi)<br /> {<br /> Console.WriteLine(&quotHelemaal mee eens!&quot);<br /> }else{<br /> Console.WriteLine(&quotNou ja zeg!&quot);<br /> }</p>",
+						"answers": [
+							{
+								"answer" : "A: isMooi word niet juist gedeclareerd."
+							},
+							{
+								"answer" : "B: Het eerste if-statement werkt niet.",
+								"is_correct": true
+							},
+							{
+								"answer" : "C: Het tweede if-statement werkt niet."
+							},
+							{
+								"answer" : "D: Er gaat niks fout."
+							}
+						]
+					},
+					{
+					"question": "2. Wat word er geprint bij het uitvoeren van de volgende code?",
+						"code" : "<p>string mooieStadInput;<br /> bool isMooi = false;</p><p>Console.WriteLine(&quotConstantinopol is een mooie stad...&quot);<br /> Console.WriteLine(&quotVind je ook niet?&quot);<br /> mooieStadInput = Console.ReadLine();<br /> <br /> if(mooieStadInput = &quotJa&quot || mooieStadInput = &quotj&quot)<br /> {<br /> isMooi = true;<br /> }<br /> Console.WriteLine(&quotHm....&quot);<br /> if(isMooi)<br /> {<br /> Console.WriteLine(&quotHelemaal mee eens!&quot);<br /> }else{<br /> Console.WriteLine(&quotNou ja zeg!&quot);<br /> }</p>",
+						"answers": [
+							{
+								"answer" : "A: Dag baas. Verhuist?"
+							},
+							{
+								"answer" : "B: Dag baas. Welkom terug"
+							},
+							{
+								"answer" : "C: Wat doe je hier? Wegwezen!",
+								"is_correct" : true
+							},
+							{
+								"answer" : "D: Aan het werk jij!"
+							}
+						]
+					},
+					{
+					"question": "3. Welke van de volgende statements is true?",
+						"answers": [
+							{
+								"answer" : "A: !true || false"
+							},
+							{
+								"answer" : "B: &quotBanaan&quot != &quotAap&quot && &quotAap&quot == &quotBanaan&quot"
+							},
+							{
+								"answer" : "C: &quotFiets&quot == true"
+							},
+							{
+								"answer" : "D: !false && (false || true)",
+								"is_correct": true
+							}
+						]
+					},
+					{
+						"question": "4. Wat moet een gebruiker invoeren om met het onderstaande stuk code de tekst 'Helaas!' op de console krijgen?",
+						"code" : "<p>String questionFourA = Console.ReadLine();<br /> int answerFourA = 3;<br /> if(questionFourA == answerFourA)<br /> {<br /> Console.WriteLine(&quotHoezee!&quot);<br /> }<br /> Console.WriteLine(&quotHelaas!&quot);</p>",
+						"answers": [
+							{
+								"answer" : "A: Het maakt niet uit wat de invoer is, 'Helaas!' wordt altijd afgedrukt."
+							},
+							{
+								"answer" : "B: Het programma zegt alleen 'Helaas!' als de de invoer 3 is."
+							},
+							{
+								"answer" : "C: Het programma zegt alleen 'Helaas!' als de invoer geen 3 is."
+							},
+							{
+								"answer" : "D: Er zit een fout in het programma die ervoor zorgt dat het kan niet worden uitgevoerd.",
+								"is_correct": true
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title": "If-statement en vergelijkingen",
+				"assignments": [
+					{
+						"assignment": "",
+						"description": "<p>Opdracht: Rekenmachine<br />Programmeer een eenvoudige rekenmachine die via de console de gebruiker vraagt of hij wil optellen, aftrekken, delen of vermenigvuldigen.<br />Hierna vraagt het programma om twee getallen van de gebruiker, en voert het de gekozen bewerking uit.<br />Tot slot laat het programma de uitkomst zien en wacht het op een enter om het programma af te sluiten.</p><p>BONUS: Probeer ervoor te zorgen dat de rekenmachine een SYNTAX ERROR in de console laat zien als de gebruiker ongeldige input geeft, en een MATH ERROR als er een getal voorbij komt dat te groot is om in een int te passen.</p>"
+					}
+				]
+			}
+		  }
         }
       }
     ]
