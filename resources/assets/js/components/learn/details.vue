@@ -3,7 +3,8 @@
        <div class="container content">
            <a style="display:inline-block; margin-bottom: 10px" href="/learn" class="button is-primary"><i class="fa fa-arrow-left"></i> &nbsp; back</a>
 
-           <div style="cursor:pointer" class="box" v-on:click="startMovie(video)" v-for="video in videos.data" v-if="getTag(video.tags)">
+      <!--     <div style="cursor:pointer" class="box" v-on:click="startMovie(video)" v-for="video in videos.data" v-if="getTag(video.tags)"> -->
+		   <div class="box" v-for="video in videos.data" v-if="getTag(video.tags)">
                    <article class="media">
                        <div class="media-left">
                            <figure class="image is-64x64">
@@ -42,13 +43,14 @@
 
                     <div class="box">
 
-                        <!--<div v-for="question in selectedQuiz.questions">-->
-                            <!--<h2 v-html="question.question"></h2>-->
-                            <!--<ul>-->
-                                <!--<li v-for="answer in question.answers"><button v-html="answer.answer" v-on:click="answer.is_correct ? showCorrect() : showIncorrect()"></button></li>-->
-                            <!--</ul>-->
-                        <!--</div>-->
-                        <hr>
+                        <div v-for="question in selectedQuiz.questions">
+                            <h2 v-html="question.question"></h2>
+								<pre v-if="question.code != null" v-html="question.code" class="language-markup"></pre>
+                            <ul>
+                                <li v-for="answer in question.answers"><button v-html="answer.answer" v-on:click="answer.is_correct ? showCorrect() : showIncorrect()"></button></li>
+                            </ul>
+							<hr>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-content" style="width: 80%" v-else-if="isPractice">
@@ -58,6 +60,7 @@
                         <div v-for="assignment in selectedPractice.assignments">
                             <h2 v-html="assignment.assignment"></h2>
                             <span v-html="assignment.description"></span>
+							<pre v-if="assignment.code != null" v-html="assignment	.code" class="language-markup"></pre>
                         </div>
                         <hr>
                     </div>
@@ -72,6 +75,7 @@
         </div>
     </div>
 </template>
+
 
 <script>
     export default {
