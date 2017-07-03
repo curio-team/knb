@@ -4,7 +4,6 @@
        <nav class="panel">
             <a v-on:click="assignStudent(student)" v-for="student in studentSelection" class="panel-block">{{student.name}}</a>
        </nav>
-
         <div v-if="activeStudent.name.length > 0" class="columns" style="flex-wrap: wrap">
             <h4 class="is-4">Badges for {{activeStudent.name}}</h4>
             <div class="columns" style="flex-wrap: wrap">
@@ -28,8 +27,7 @@
 
                     </div>
 
-                     <button v-if="hasBadge(badge.id)" style="position: absolute; bottom: 15px" class="button is-large"><i class="fa fa-toggle-on"></i></button>
-                     <button v-if="!hasBadge(badge.id)" style="position: absolute; bottom: 15px" class="button is-large"><i class="fa fa-toggle-off"></i></button>
+                     <button v-on:click="toggleBadge(badge.id)" style="position: absolute; bottom: 15px" class="button is-large"><i style="color: green" v-bind:class="badgeActive(badge.id)" ></i></button>
 
                  </div>
             </div>
@@ -50,10 +48,13 @@
                 studentSelection: [],
                 activeStudent: {
                     name: ""
-                }
+                },
+                activeBadges : []
 
             }
         },
+
+
 
         mounted: function() {
             this.getBadges();
@@ -61,6 +62,22 @@
         },
 
         methods: {
+
+            badgeActive: function(badge_id)
+            {
+                var classes = {};
+                if (!this.activeBadges.includes(badge_id))
+                {
+                    classes = {
+                        'fa fa-toggle-off' : true
+                    }
+                } else {
+                    classes = {
+                        'fa fa-toggle-on' : true
+                    }
+                }
+                return classes;
+            },
 
             getBadges: function() {
                 var that = this;
@@ -75,6 +92,7 @@
               axios.get('/api/students')
                   .then(function(res){
                      that.students = res.data;
+
                   });
             },
 
@@ -101,22 +119,29 @@
                 this.keyWords = "";
                 axios.get('/api/student/' + student.id)
                     .then(function(res){
-                       that.activeStudent = res.data;
-
+                        that.activeStudent = res.data;
+                        for(var i = 0; i < res.data.badges.length; i++)
+                        {
+                            that.activeBadges.push(res.data.badges[i].id);
+                        }
                     });
 
             },
 
             hasBadge: function(badge_id)
             {
-                for (var i = 0 ; i < this.activeStudent.badges.length; i++)
-                {
-                    if (badge_id == this.activeStudent.badges[i].id)
-                    {
-                        return true;
-                    }
-                }
-                return false;
+
+            },
+
+            toggleBadge : function(badge_id)
+            {
+                var that = this;
+                axios.post('/dashboard/badges/toggle', {
+                    badge_id:   badge_id,
+                    student_id: that.activeStudent.id
+                }).then(function(res){
+
+                })
             }
         }
 

@@ -15,4 +15,15 @@ class UsersController extends Controller
         return \App\User::with('badges')->where('id', $id)->first();
     }
 
+    public function changePassword(Request $request)
+    {
+        if($request->password == $request->password_confirm)
+        {
+            $user = \App\User::find(\Auth::user()->id);
+            $user->password = bcrypt($request->password);
+            $user->update();
+        }
+        return back()->with('error', 'Passwords did not match');
+    }
+
 }

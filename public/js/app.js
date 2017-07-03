@@ -21974,8 +21974,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -21987,7 +21985,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             studentSelection: [],
             activeStudent: {
                 name: ""
-            }
+            },
+            activeBadges: []
 
         };
     },
@@ -21998,6 +21997,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+
+        badgeActive: function badgeActive(badge_id) {
+            var classes = {};
+            if (!this.activeBadges.includes(badge_id)) {
+                classes = {
+                    'fa fa-toggle-off': true
+                };
+            } else {
+                classes = {
+                    'fa fa-toggle-on': true
+                };
+            }
+            return classes;
+        },
 
         getBadges: function getBadges() {
             var that = this;
@@ -22032,16 +22045,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.keyWords = "";
             axios.get('/api/student/' + student.id).then(function (res) {
                 that.activeStudent = res.data;
+                for (var i = 0; i < res.data.badges.length; i++) {
+                    that.activeBadges.push(res.data.badges[i].id);
+                }
             });
         },
 
-        hasBadge: function hasBadge(badge_id) {
-            for (var i = 0; i < this.activeStudent.badges.length; i++) {
-                if (badge_id == this.activeStudent.badges[i].id) {
-                    return true;
-                }
-            }
-            return false;
+        hasBadge: function hasBadge(badge_id) {},
+
+        toggleBadge: function toggleBadge(badge_id) {
+            var that = this;
+            axios.post('/dashboard/badges/toggle', {
+                badge_id: badge_id,
+                student_id: that.activeStudent.id
+            }).then(function (res) {});
         }
     }
 
@@ -42417,23 +42434,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "title is-5"
     }, [_vm._v(_vm._s(badge.title))])])]), _vm._v(" "), _c('div', {
       staticClass: "content"
-    }, [_vm._v("\n                        " + _vm._s(badge.description) + "\n                    ")])]), _vm._v(" "), (_vm.hasBadge(badge.id)) ? _c('button', {
+    }, [_vm._v("\n                        " + _vm._s(badge.description) + "\n                    ")])]), _vm._v(" "), _c('button', {
       staticClass: "button is-large",
       staticStyle: {
         "position": "absolute",
         "bottom": "15px"
+      },
+      on: {
+        "click": function($event) {
+          _vm.toggleBadge(badge.id)
+        }
       }
     }, [_c('i', {
-      staticClass: "fa fa-toggle-on"
-    })]) : _vm._e(), _vm._v(" "), (!_vm.hasBadge(badge.id)) ? _c('button', {
-      staticClass: "button is-large",
+      class: _vm.badgeActive(badge.id),
       staticStyle: {
-        "position": "absolute",
-        "bottom": "15px"
+        "color": "green"
       }
-    }, [_c('i', {
-      staticClass: "fa fa-toggle-off"
-    })]) : _vm._e()])
+    })])])
   }))]) : _vm._e()])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {

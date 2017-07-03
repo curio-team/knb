@@ -40,7 +40,7 @@
                         <span class="select">
                         <select name="house" class="input{{ $errors->has('house') ? ' is-danger' : '' }}" id="">
                                 <!-- testing purpose --><option value="1" style="visibility:hidden"></option>
-                                <option value=""></option>
+
                             @foreach($houses as $house)
                                 <option value="{{$house->id}}">{{$house->name}}</option>
                             @endforeach

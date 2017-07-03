@@ -68,19 +68,32 @@ class User extends Authenticatable
 
     public static function sortByPoints($limit = null)
     {
-        $sql = "SELECT SUM(`score_types`.`points`) + `users`.`points` as total, `users`.`name` as name
+        $sql = "SELECT SUM(`score_types`.`points`) as total, `users`.`name` as name, `users`.`id` as id
                 FROM `points`
                 INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
                 LEFT JOIN `users` ON `users`.`id` = `points`.`receiver_id`
-                GROUP BY `users`.`name`, `users`.`points`
+                GROUP BY `users`.`name`, `users`.`id`
                 ORDER BY total DESC";
+
 
         if ($limit)
         {
             $sql.=" LIMIT $limit";
         }
 
-        return collect(\DB::select($sql));
+        $data = \DB::select($sql);
+        foreach($data as $user)
+        {
+            $u = \App\User::find($user->id);
+            $user->total += $u->points;
+        }
+        usort($data, function($a, $b){
+            return $b->total - $a->total;
+        });
+
+
+
+        return collect($data);
 
     }
 

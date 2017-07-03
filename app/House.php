@@ -30,7 +30,7 @@ class House extends Model
         $sql = "SELECT SUM(`score_types`.`points`) as total, `houses`.`name`, `houses`.`description`, `houses`.`id` as id
                 FROM `points`
                 INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
-                RIGHT JOIN `users` ON `users`.`id` = `points`.`receiver_id`
+                INNER JOIN `users` ON `users`.`id` = `points`.`receiver_id`
                 INNER JOIN `house_roles` ON `users`.id = `house_roles`.`user_id`
                 INNER JOIN `houses` ON `house_roles`.`house_id` = `houses`.`id`
                 GROUP BY `houses`.`name`, `houses`.`id`, `houses`.`description`
