@@ -1110,7 +1110,7 @@
 						]
 					},
 					{
-						"question": "2. Zoek de documentatie op voor de functie rand() en bekijk het onderstaande stukje code.",
+						"question": "2. Zoek de documentatie op voor de functie rand() en bekijk het onderstaande stukje code. Welke waarden moeten $lowerLimit en $upperLimit hebben om rand een getal tussen de 1 en 216 te laten genereren?",
 						"code" : "$lowerLimit = ...;<br />$upperLimit = ...;<br />echo rand($lowerLimit, $upperLimit)",
 						"answers" : [
 							{
