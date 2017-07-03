@@ -1243,7 +1243,7 @@
 				"assignments": [
 					{
 						"assignment": "TODO",
-						"description": "Maak een script dat alle elementen in een associatief array sorteerd op volgorde van klein naar groot. Kijk wat er gebeurd als de keys strings
+						"description": "Maak een script dat alle elementen in een associatief array sorteerd op volgorde van klein naar groot. Kijk wat er gebeurd als de keys strings zijn."
 					}
 				]
 			}
