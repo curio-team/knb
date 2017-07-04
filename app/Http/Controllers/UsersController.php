@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
 
+    public function show(\App\User $user)
+    {
+        return view('profile.show', ['user' => $user]);
+    }
+
     public function getStudents() {
         return \App\User::getStudents();
     }

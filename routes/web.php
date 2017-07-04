@@ -30,21 +30,18 @@ Route::group(['middleware' => 'auth'], function() {
 
 
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-
-
-
-
         // allocate points from dashboard
         Route::post('/dashboard/points/', 'PointsController@allocate');
     });
 
     Route::resource('message', 'MessageController');
 
-    Route::put('/profile/password', 'UsersController@changePassword');
-
     Route::get('/game-info', 'HomeController@gameInfo');
     Route::get('/about', 'HomeController@about')->name('story');
-    Route::get('/profile', 'HomeController@profile')->name('profile');
+
+    Route::get('/profile/{user}', 'UsersController@show');
+
+
     Route::get('/home', 'HomeController@index');
     Route::get('/learn', 'HomeController@learn');
     Route::get('/learn/{name}', 'HomeController@details');

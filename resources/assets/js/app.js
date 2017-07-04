@@ -111,4 +111,13 @@ $('document').ready(function(){
 
     });
 
+    $("body").on('click', '.badge-toggler',  function(){
+
+        $(this).toggleClass('fa-toggle-on fa-toggle-off');
+
+    });
+
+
+
+
 });

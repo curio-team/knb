@@ -21078,6 +21078,11 @@ $('document').ready(function () {
             document.location.href = "/";
         });
     });
+
+    $("body").on('click', '.badge-toggler', function () {
+
+        $(this).toggleClass('fa-toggle-on fa-toggle-off');
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
@@ -22070,6 +22075,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -42446,6 +42455,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_c('i', {
+      staticClass: "badge-toggler",
       class: _vm.badgeActive(badge.id),
       staticStyle: {
         "color": "green"
@@ -42483,15 +42493,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "container content"
   }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.videos.data), function(video) {
     return (_vm.getTag(video.tags)) ? _c('div', {
-      staticClass: "box",
-      staticStyle: {
-        "cursor": "pointer"
-      },
-      on: {
-        "click": function($event) {
-          _vm.startMovie(video)
-        }
-      }
+      staticClass: "box"
     }, [_c('article', {
       staticClass: "media"
     }, [_c('div', {
@@ -42581,7 +42583,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "color": "white"
     }
-  }, [_vm._v(_vm._s(_vm.selectedQuiz.title))]), _vm._v(" "), _vm._m(1)]) : (_vm.isPractice) ? _c('div', {
+  }, [_vm._v(_vm._s(_vm.selectedQuiz.title))]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, _vm._l((_vm.selectedQuiz.questions), function(question) {
+    return _c('div', [_c('h2', {
+      domProps: {
+        "innerHTML": _vm._s(question.question)
+      }
+    }), _vm._v(" "), (question.code != null) ? _c('pre', {
+      staticClass: "language-markup",
+      domProps: {
+        "innerHTML": _vm._s(question.code)
+      }
+    }) : _vm._e(), _vm._v(" "), _c('ul', _vm._l((question.answers), function(answer) {
+      return _c('li', [_c('button', {
+        domProps: {
+          "innerHTML": _vm._s(answer.answer)
+        },
+        on: {
+          "click": function($event) {
+            answer.is_correct ? _vm.showCorrect() : _vm.showIncorrect()
+          }
+        }
+      })])
+    })), _vm._v(" "), _c('hr')])
+  }))]) : (_vm.isPractice) ? _c('div', {
     staticClass: "modal-content",
     staticStyle: {
       "width": "80%"
@@ -42602,7 +42628,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "innerHTML": _vm._s(assignment.description)
       }
-    })])
+    }), _vm._v(" "), (assignment.code != null) ? _c('pre', {
+      staticClass: "language-markup",
+      domProps: {
+        "innerHTML": _vm._s(assignment.code)
+      }
+    }) : _vm._e()])
   }), _vm._v(" "), _c('hr')], 2)]) : _c('div', {
     staticClass: "modal-content",
     staticStyle: {
@@ -42638,10 +42669,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-arrow-left"
   }), _vm._v("   back")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('hr')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
