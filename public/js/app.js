@@ -42443,9 +42443,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "title is-5"
     }, [_vm._v(_vm._s(badge.title))])])]), _vm._v(" "), _c('div', {
       staticClass: "content"
-    }, [_vm._v("\n                        " + _vm._s(badge.description) + "\n                    ")])]), _vm._v(" "), _c('button', {
-      staticClass: "button is-large",
+    }, [_vm._v("\n                        " + _vm._s(badge.description) + "\n                    ")])]), _vm._v(" "), _c('i', {
+      staticClass: "badge-toggler fa-2x",
+      class: _vm.badgeActive(badge.id),
       staticStyle: {
+        "color": "green",
         "position": "absolute",
         "bottom": "15px"
       },
@@ -42454,13 +42456,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.toggleBadge(badge.id)
         }
       }
-    }, [_c('i', {
-      staticClass: "badge-toggler",
-      class: _vm.badgeActive(badge.id),
-      staticStyle: {
-        "color": "green"
-      }
-    })])])
+    })])
   }))]) : _vm._e()])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {

@@ -27,7 +27,7 @@
 
                     </div>
 
-                     <button v-on:click="toggleBadge(badge.id)" style="position: absolute; bottom: 15px" class="button is-large"><i style="color: green" v-bind:class="badgeActive(badge.id)" class="badge-toggler" ></i></button>
+                     <i  style="color: green; position: absolute; bottom: 15px" v-bind:class="badgeActive(badge.id)" class="badge-toggler fa-2x" v-on:click="toggleBadge(badge.id)"></i>
 
                  </div>
             </div>

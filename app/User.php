@@ -123,6 +123,20 @@ class User extends Authenticatable
         return $this->houseRole->house->singular;
     }
 
+    public function getPoints()
+    {
+//        return $this->id;
+       $sql = "SELECT SUM(`score_types`.`points`) as total
+                FROM `points`
+                INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
+                LEFT JOIN `users` ON `users`.`id` = `points`.`receiver_id`
+                WHERE `users`.`id` = " . $this->id;
+
+       $points = \DB::select($sql);
+       $points[0]->total += $this->points;
+       return $points[0]->total;
+    }
+
     public static function getStudents()
     {
         $students = \App\User::whereHas('houseRole', function($query){
