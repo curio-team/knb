@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 51);
+/******/ 	return __webpack_require__(__webpack_require__.s = 57);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -78,7 +78,7 @@
  */
 // import Echo from 'laravel-echo'
 
-window.Pusher = __webpack_require__(40);
+window.Pusher = __webpack_require__(42);
 
 window.Pusher.log = function (message) {
     if (window.console && window.console.log) {
@@ -188,7 +188,7 @@ window.requestAnimationFrame(update);
 
 /***/ }),
 
-/***/ 40:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -4327,7 +4327,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 51:
+/***/ 57:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(13);

@@ -63,6 +63,10 @@ span.panel-heading{
   background: $transparent;
 }
 
+.panel-body {
+  background: darken($transparent, 10%);
+}
+
 #search-tags {
   color: $transparent;
 }

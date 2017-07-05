@@ -21,5 +21,5 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/house-selection.js') }}"></script>
+
 @endsection

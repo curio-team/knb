@@ -1,9 +1,8 @@
 <template>
     <div class="root-element section">
-        <div class="container">
-            <div class="content">
-                <h1>Learn</h1>
 
+                <h2>Course videos</h2>
+                <h4 class="is-subtitle"><i> Videos meant as support for lessons during the course AMO. </i></h4>
                 <div class="tabs is-centered is-medium is-boxed">
                     <ul>
                         <li v-for="category in categories" v-bind:class="{'is-active': isActive(category.name)}" v-on:click="setActive(category)"><a>{{category.name}}</a></li>
@@ -41,9 +40,7 @@
 
 
             </div>
-        </div>
 
-    </div>
 </template>
 
 <script>

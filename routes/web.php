@@ -39,8 +39,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/game-info', 'HomeController@gameInfo');
     Route::get('/about', 'HomeController@about')->name('story');
 
-    Route::get('/profile/{user}', 'UsersController@show');
-
+    Route::get('/profile/password', 'UsersController@edit');
+    Route::get('/profile/{user}', 'UsersController@show')->name('profile');
+    Route::put('/profile/password', 'UsersController@changePassword')->name('change-password');
 
     Route::get('/home', 'HomeController@index');
     Route::get('/learn', 'HomeController@learn');

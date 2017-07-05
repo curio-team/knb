@@ -39,8 +39,9 @@
             a.appendChild(r);
         })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+
 </head>
-<body>
+
     <div id="app">
 
 
@@ -149,7 +150,7 @@
                   @if (\Auth::user()->isHeadMaster())
                     <li><a  href="{{ route('dashboard') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-bar-chart"></i></span> Dashboard</a></li>
                   @else
-                    <li><a href="{{ route('profile') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>
+                    <li><a href="{{ route('profile', \Auth::id()) }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>
                   @endif
                   <li><a onclick="event.preventDefault(), document.getElementById('logout-form').submit()" class="nav-item is-tab"><span class="icon"><i class="fa fa-sign-out"></i></span> Logout</a></li>
                 </ul>
@@ -196,7 +197,13 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
+<script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+@if ( strpos(Request::path(), 'house-selection') !== false )
+<script src="{{ asset('js/house-selection.js') }}"></script>
+@endif
+
 </body>
 </html>

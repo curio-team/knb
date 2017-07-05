@@ -23,7 +23,7 @@
                 <nav class="panel user-only">
                     <div class="panel-content">
                         <div class="panel-block">
-                            <a href="">Change password</a>
+                            <a href="{{route('change-password')}}">Change password</a>
                         </div>
                     </div>
                 </nav>

@@ -12,6 +12,10 @@ Vue.component('videos', require('./components/learn/details.vue') );
 Vue.component('videos-overview', require('./components/learn/index.vue'));
 Vue.component('points', require('./components/points/index.vue'));
 Vue.component('badges', require('./components/badges/index.vue'));
+Vue.component('tools', require('./components/learn/tools.vue'));
+Vue.component('resource-links', require('./components/learn/links.vue'));
+
+
 
 const app = new Vue({
     el : '#app'
@@ -23,8 +27,8 @@ $('document').ready(function(){
     tinymce.init({
         selector: ".tinymce",
         themes: "modern",
-        plugins: ["autolink", "code", "codesample"],
-        toolbar: 'code | codesample',
+        plugins: ["autolink", "code", "codesample", "link"],
+        toolbar: 'code | codesample | link',
     });
 
     // event handlers
