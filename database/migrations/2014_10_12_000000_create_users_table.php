@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('studentnr')->unique()->nullable();
             $table->string('password');
             $table->integer('points')->nullable();
+            $table->boolean('confirmed')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

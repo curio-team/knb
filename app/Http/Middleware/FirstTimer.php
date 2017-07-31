@@ -15,6 +15,10 @@ class FirstTimer
      */
     public function handle($request, Closure $next)
     {
+        if ( !\Auth::user()->confirmed )
+        {
+            return redirect()->to('/profile/password');
+        }
         return $next($request);
     }
 }

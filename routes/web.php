@@ -17,6 +17,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
 
+
     Route::group(['middleware' => 'headmaster'], function(){
 
         Route::post('dashboard/csv/upload', 'ImportController@upload')->name('upload');
@@ -61,8 +62,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('post/{post}/answer', 'PostController@answer')->name('answer');
     Route::resource('post', 'PostController');
-
-
     Route::resource('comment', 'CommentController');
+
 
 });
