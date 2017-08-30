@@ -18,7 +18,7 @@ class ViewServiceProvider extends ServiceProvider
         view()->composer('*', function(){
             if( \App\HouseRole::count() > 0 )
             {
-                $houses = \App\House::sortByPoints(4)->get();
+                $houses = \App\House::sortByPoints(4);
             } else {
                 $houses = \App\House::all();
             }
