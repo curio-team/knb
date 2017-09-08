@@ -41,7 +41,7 @@
                     </p>
 
                     <p class="control">
-                        <button class="button is-link">cancel</button>
+                        <a class="button is-link" href="{{URL::previous()}}">cancel</a>
                     </p>
                 </div>
             </form>
