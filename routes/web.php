@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index');
     Route::get('/learn', 'HomeController@learn');
     Route::get('/learn/{name}', 'HomeController@details');
-
+    Route::get('/request-badge', 'HomeController@badgeRequest')->name('request-badge');
     Route::resource('house', 'HouseController');
     Route::get('/house-selection', 'HouseController@selection');
     Route::get('/start-house-selection', 'HouseController@doSelection');

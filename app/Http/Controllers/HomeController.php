@@ -61,4 +61,8 @@ class HomeController extends Controller
         ]);
     }
 
+    public function badgeRequest() {
+        return view('request-badge');
+    }
+
 }
