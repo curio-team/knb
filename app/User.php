@@ -140,7 +140,7 @@ class User extends Authenticatable
     public static function getStudents()
     {
         $students = \App\User::whereHas('houseRole', function($query){
-            $query->where('role_level', '=', NULL);
+            $query->where('role_level', '=', 0);
         })->get();
 
         return $students;

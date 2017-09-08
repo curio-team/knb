@@ -16,7 +16,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function(){
-            if( \App\HouseRole::count() > 0 )
+            if( \App\HouseRole::count() > 0 && count(\App\House::sortByPoints()) > 3 )
             {
                 $houses = \App\House::sortByPoints(4);
             } else {

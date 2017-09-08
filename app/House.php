@@ -41,10 +41,10 @@ class House extends Model
              $sql .= " LIMIT $limit";
          }
 
-
         // If this code works, it was written by Fedde. If not, I don't know
         // who wrote it
          $data = \DB::select($sql);
+
          foreach($data as $house)
          {
             $hs = \App\House::find($house->id);
