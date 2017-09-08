@@ -135,18 +135,6 @@
                   <li><a class="nav-item is-tab is-hidden-tablet"><span class="icon"><i class="fa fa-home"></i></span>Home</a></li>
                   {{-- <li><a class="nav-item is-tab">About</a></li> --}}
 
-                  <li>
-                    <a href="{{ route('message.index') }}" class="nav-item is-tab">
-                      <!-- Unread notification -->
-                      <span class="tag is-progress is-notification">99+</span>
-
-                      <span class="icon">
-                        <i class="fa fa-envelope"></i>
-                      </span>
-                      Inbox
-                    </a>
-                  </li>
-
                   @if (\Auth::user()->isHeadMaster())
                     <li><a  href="{{ route('dashboard') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-bar-chart"></i></span> Dashboard</a></li>
                   @else
