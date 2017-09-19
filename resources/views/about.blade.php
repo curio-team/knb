@@ -21,7 +21,7 @@
                     <div class="tile is-vertical is-parent">
                 @endif
                         <div class="tile is-child box">
-                            <p class="title">{{  $house->name }}</p>
+                            <p class="title"><img class="image is-32x32" src="{{}}" alt=""> {{  $house->name }}</p>
                             <p>{{ $house->description }}</p>
                         </div>
                 @if($loop->index % 2 == 1)

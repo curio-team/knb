@@ -37,6 +37,7 @@
                     <div class="columns">
                         <div class="column">
                             @include('partials.minis._vote-group')
+                            <img style="margin-top: 25px" src="{{$post->author->houserole->house->thumbnail()}}" alt="">
                         </div>
                         <div class="column is-11">
                             <h4 class="title is-4">{{ $post->title }}</h4>
@@ -79,6 +80,9 @@
                     <div class="comment-box">
                         @foreach($post->comments as $comment)
                             <article class="media">
+                                <figure class="image is-32x32">
+                                    <img src="{{$comment->author->houserole->house->thumbnail()}}" alt="">
+                                </figure>
                                 <div class="content media-post-comment">
                                     <strong>{{ $comment->author->name }}</strong>
 
@@ -135,6 +139,9 @@
                             <div class="columns">
                                 <div class="column">
                                     @include('partials.minis._vote-group')
+                                    <figure class="image is-64x64">
+                                        <img src="{{$post->author->houserole->house->thumbnail()}}" alt="">
+                                    </figure>
                                 </div>
                                 <div class="column is-11">
                                     <span class="author">author: {{ $post->author->name }}</span>

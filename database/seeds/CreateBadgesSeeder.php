@@ -21,120 +21,33 @@ class CreateBadgesSeeder extends Seeder
         ]);
 
         Badge::create([
-            'title'           => 'Ask, don\'t tell',
-            'description'     => 'Heeft een vraag gesteld op amoHUB',
-            'img_path'        => 'Askdonttell.png',
-            'priority'        => 2
+            'title'           => 'Forum rookie',
+            'description'     => 'Heeft 50 punten behaald door activiteiten op het forum.',
+            'img_path'        => 'helloworld.png',
+            'priority'        => 1
         ]);
 
         Badge::create([
-            'title'          => 'amoHUB Question Rookie',
-            'description'    => 'Heeft 10 vragen gesteld',
-            'img_path'       => 'questionrookie.png',
-            'priority'        => 3
+            'title'           => 'Forum veteran',
+            'description'     => 'Heeft 150 punten behaald door activiteiten op het forum.',
+            'img_path'        => 'helloworld.png',
+            'priority'        => 1
         ]);
 
         Badge::create([
-            'title'          => 'amoHUB Question Prospect',
-            'description'    => 'Heeft minimaal 25 vragen gesteld en 25 vragen beantwoord',
-            'img_path'       => 'questionprospect.png',
-            'priority'        => 4
-        ]);
-
-
-        Badge::create([
-            'title'          => 'amoHUB Question Elite',
-            'description'    => 'Heeft minimaal 50 vragen gesteld en 50 vragen beantwoord',
-            'img_path'       => 'questionelite.png',
-            'priority'        => 5
+            'title'           => 'Forum elite',
+            'description'     => 'Heeft 300 punten behaald door activiteiten op het forum.',
+            'img_path'        => 'helloworld.png',
+            'priority'        => 1
         ]);
 
         Badge::create([
-            'title'           => 'Tell, don\'t ask',
-            'description'     => 'Heeft een vraag beantwoord op amoHUB',
-            'img_path'        => 'telldontask.png',
-            'priority'        => 6
+            'title'           => 'Hello World!',
+            'description'     => 'Heeft zich geregistreerd op de amoHUB',
+            'img_path'        => 'helloworld.png',
+            'priority'        => 1
         ]);
 
-        Badge::create([
-            'title'          => 'amoHUB Answer Rookie',
-            'description'    => 'Heeft 10 vragen beantwoord',
-            'img_path'       => 'answerrookie.png',
-            'priority'        => 7
-        ]);
-
-        Badge::create([
-            'title'          => 'amoHUB Answer Prospect',
-            'description'    => 'Heeft 25 vragen beantwoord',
-            'img_path'       => 'answerprospect.png',
-            'priority'        => 8
-        ]);
-
-
-        Badge::create([
-            'title'          => 'amoHUB Answer Elite',
-            'description'    => 'Heeft 50 vragen beantwoord',
-            'img_path'       => 'answerelite.png',
-            'priority'        => 9
-        ]);
-
-        Badge::create([
-            'title'            => 'You got accepted!',
-            'description'      => 'Een van jouw antwoorden is geaccepteerd als oplossing!',
-            'img_path'         => '',
-            'priority'        => 10
-        ]);
-
-
-
-        Badge::create([
-            'title'           => 'Have an upvote!',
-            'description'     => 'Heeft een post een upvote gegeven.',
-            'img_path'        => '',
-            'priority'        => 11
-        ]);
-
-        Badge::create([
-            'title'           => 'Wow you\'re so positive!',
-            'description'     => 'Heeft 50 posts een upvote gegeven.',
-            'img_path'        => '',
-            'priority'        => 12
-        ]);
-
-        Badge::create([
-            'title'           => 'You get an upvote! And you get an upvote!',
-            'description'     => 'Heeft 100 posts een upvote gegeven',
-            'img_path'        => '',
-            'priority'        => 13
-        ]);
-
-        Badge::create([
-            'title'           => 'Noob Commentator',
-            'description'     => 'Heeft een comment geplaatst op een post',
-            'img_path'        => '',
-            'priority'        => 14
-        ]);
-
-        Badge::create([
-            'title'           => 'Skilled Commentator',
-            'description'     => 'Heeft tien comments geplaatst op verschillende posts',
-            'img_path'        => '',
-            'priority'        => 15
-        ]);
-
-        Badge::create([
-            'title'           => 'Veteran Commentator',
-            'description'     => 'Heeft 25 comments geplaatst op verschillende posts',
-            'img_path'        => '',
-            'priority'        => 16
-        ]);
-
-        Badge::create([
-            'title'            => 'Elite Commentator',
-            'description'      => 'Heeft 50 comments geplaatst op verschillende posts',
-            'img_path'         => '',
-            'priority'        => 17
-        ]);
         Badge::create([
             'title'         => 'Open Dag Assistant',
             'description'   => 'Is minimaal één keer aanwezig geweest tijdens de opleiding bij een open dag of een andere belangrijke bijdrage geleverd aan de open dag.',
@@ -190,6 +103,28 @@ class CreateBadgesSeeder extends Seeder
             'img_path'        => '',
             'priority'        => 25
         ]);
+
+        Badge::create([
+            'title'           => 'C# rookie',
+            'description'     => 'Heeft de eerstejaars toets C# met een voldoende behaald',
+            'img_path'        => '',
+            'priority'        => 26
+        ]);
+
+        Badge::create([
+            'title'           => 'The Front End journey begins! ',
+            'description'     => 'Heeft de eerstejaars toets HTML/CSS met een voldoende behaald',
+            'img_path'        => '',
+            'priority'        => 27
+        ]);
+
+
+
+
+
+
+
+
 
 
     }

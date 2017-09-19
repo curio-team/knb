@@ -42,7 +42,11 @@ class CommentController extends Controller
         $comment->content = $request->get('content');
         $comment->save();
 
-        \App\Point::assign(\Auth::user()->id, \App\Point::BENEFACTOR_TYPE_COMMENTED);
+        if (! $comment->post->isYours())
+        {
+            \App\Point::assign(\Auth::user()->id, \App\Point::BENEFACTOR_TYPE_COMMENTED);
+            \Auth::user()->addPoints(\App\Point::BENEFACTOR_TYPE_COMMENTED, true);
+        }
 
         return redirect()->back()->with('success', 'Succesfully added comment!');
     }
@@ -91,5 +95,6 @@ class CommentController extends Controller
     {
         $comment->delete();
         \App\Point::deAssign($comment->author()->id,\App\Point::BENEFACTOR_TYPE_COMMENTED );
+        $comment->author()->deletePoints(\App\Point::BENEFACTOR_TYPE_COMMENTED, true);
     }
 }

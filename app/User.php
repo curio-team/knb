@@ -68,6 +68,7 @@ class User extends Authenticatable
 
     public static function sortByPoints($limit = null)
     {
+
         $sql = "SELECT SUM(`score_types`.`points`) as total, `users`.`name` as name, `users`.`id` as id
                 FROM `points`
                 INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
@@ -86,7 +87,9 @@ class User extends Authenticatable
         {
             $u = \App\User::find($user->id);
             $user->total += $u->points;
+
         }
+
         usort($data, function($a, $b){
             return $b->total - $a->total;
         });
@@ -94,7 +97,7 @@ class User extends Authenticatable
 
 
         return collect($data);
-
+        dd($data);
     }
 
     public function flags()
@@ -144,6 +147,37 @@ class User extends Authenticatable
         })->get();
 
         return $students;
+    }
+
+    public function addPoints($points, $fromDB = false)
+    {
+
+        if ($fromDB)
+        {
+            $point = \App\ScoreType::find($points);
+
+            $this->points += $point->points;
+
+
+        } else {
+            $this->points += $points;
+        }
+        $this->update();
+    }
+
+    public function deletePoints($points, $fromDB = false) {
+
+        if ($fromDB)
+        {
+            $point = \App\ScoreType::find($points);
+
+            $this->points -= $point->points;
+
+        } else
+        {
+            $this->points -= $points;
+        }
+        $this->update();
     }
 
 }

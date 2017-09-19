@@ -72,16 +72,20 @@ class PostController extends Controller
             // get points for an answer but not on your own question
             if ($post->isAnswer() )
             {
+
                 // we don't want to assign points when answering your own question.
                 if ($post->parent->author_id !== \Auth::user()->id )
                 {
                     $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED;
                     \App\Point::assign(\Auth::user()->id, $type);
+                    \Auth::user()->addPoints($type, true);
+
                 }
             // get points for a question
             } else {
                 $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ASKED;
                 \App\Point::assign(\Auth::user()->id, $type);
+                \Auth::user()->addPoints($type, true);
             }
             // assign the points
             \DB::commit();
@@ -220,17 +224,20 @@ class PostController extends Controller
         ]);
 
         if( $accepted ){
+
             // accepted answer author gets points.
-            if ( \Auth::user()->id !== $post->parent->author_id)
+            if ( \Auth::user()->id !== $post->author_id)
             {
                 \App\Point::assign($post->author_id, \App\Point::BENEFACTOR_TYPE_ANSWER_ACCEPTED);
+                $post->author->addPoints(\App\Point::BENEFACTOR_TYPE_ANSWER_ACCEPTED, true);
             }
             $message = 'Answer has been accepted.';
         }else{
 
-            if ( \Auth::user()->id !== $post->parent->author_id)
+            if ( \Auth::user()->id !== $post->author_id)
             {
                 \App\Point::deAssign($post->author_id, \App\Point::BENEFACTOR_TYPE_ANSWER_ACCEPTED);
+                $post->author->deletePoints(\App\Point::BENEFACTOR_TYPE_ANSWER_ACCEPTED, true);
             }
             $message = 'Accepted answer is undone.';
         }
@@ -321,6 +328,7 @@ class PostController extends Controller
         $type = $post->isAnswer() ? \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED : \App\Point::BENEFACTOR_TYPE_QUESTION_ASKED;
 
         \App\Point::deAssign($post->author_id, $type);
+        $post->author->deletePoints($type, true);
         $post->children()->delete();
         $post->delete();
 

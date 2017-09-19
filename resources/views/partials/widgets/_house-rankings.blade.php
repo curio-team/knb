@@ -15,9 +15,10 @@
                         <?php $index = 0; ?>
                         @foreach($houses as $house)
                             <tr>
+
                                 <td>{{ ++$index }}</td>
                                 <td>{{ $house->name }}</td>
-                                <td>{{ $house->total }}</td>
+                                <td>{{ $house->users->sum('points') }}</td>
                             </tr>
                         @endforeach
 

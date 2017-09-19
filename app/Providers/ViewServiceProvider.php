@@ -16,16 +16,14 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function(){
-            if( \App\HouseRole::count() > 0 && count(\App\House::sortByPoints()) > 3 )
-            {
-                $houses = \App\House::sortByPoints(4);
-            } else {
-                $houses = \App\House::all();
-            }
+
+            $houses = \App\House::sortByPoints();
+
+
 
             $tags = \App\Tags::all();
 
-            $rankedUsers = \App\User::sortByPoints(10);
+            $rankedUsers = \App\User::orderBy('points', 'DESC')->take(10)->get();
 
 
             \View::share([

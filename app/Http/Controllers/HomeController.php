@@ -62,7 +62,10 @@ class HomeController extends Controller
     }
 
     public function badgeRequest() {
-        return view('request-badge');
+
+        $badges = \App\Badge::all();
+        return view('request-badge', compact('badges'));
+
     }
 
 }

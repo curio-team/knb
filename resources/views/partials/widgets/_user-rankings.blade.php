@@ -4,6 +4,7 @@
         <table class="table">
             <thead>
             <tr>
+                <th></th>
                 <th>Pos</th>
                 <th>User</th>
                 <th>Points</th>
@@ -14,9 +15,12 @@
                 <?php $index = 0; ?>
                 @foreach($rankedUsers as $user)
                     <tr>
+                        <td>
+
+                        </td>
                         <td>{{ $index += 1 }}</td>
                         <td>{{ $user->name }}</td>
-                        <td>{{ $user->total }}</td>
+                        <td>{{ $user->points }}</td>
                     </tr>
                 @endforeach
             </tbody>

@@ -45,6 +45,7 @@ class ImportController extends Controller
                     $user->save();
                     \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house_id, 'role_level', '0']);
                     \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
+                    $user->addPoints(\App\Point::BENEFACTOR_REGISTER_SYSTEM, true);
                     $this->imports++;
                 }
 
@@ -68,7 +69,7 @@ class ImportController extends Controller
 
         \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $request->house_id, 'role_level', '0']);
         \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
-
+        $user->addPoints(\App\Point::BENEFACTOR_REGISTER_SYSTEM, true);
         return back()->with('succes', 'User ' . $user->name . ' succesfully registered to the amohub.');
     }
 

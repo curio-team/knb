@@ -27,35 +27,12 @@ class House extends Model
     public static function sortByPoints($limit = null)
     {
 
-        $sql = "SELECT SUM(`score_types`.`points`) as total, `houses`.`name`, `houses`.`description`, `houses`.`id` as id
-                FROM `points`
-                INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
-                INNER JOIN `users` ON `users`.`id` = `points`.`receiver_id`
-                INNER JOIN `house_roles` ON `users`.id = `house_roles`.`user_id`
-                INNER JOIN `houses` ON `house_roles`.`house_id` = `houses`.`id`
-                GROUP BY `houses`.`name`, `houses`.`id`, `houses`.`description`
-                ORDER BY total DESC
-                ";
-         if ($limit)
-         {
-             $sql .= " LIMIT $limit";
-         }
+       $houses = \App\House::get();
+       $houses = $houses->sortByDesc(function($house) {
+          return $house->users->sum('points');
+       });
 
-        // If this code works, it was written by Fedde. If not, I don't know
-        // who wrote it
-         $data = \DB::select($sql);
-
-         foreach($data as $house)
-         {
-            $hs = \App\House::find($house->id);
-            $house->total += $hs->pointsSum();
-         }
-
-         usort($data, function($a, $b){
-            return $b->total - $a->total;
-         });
-
-        return collect($data);
+       return $houses;
 
     }
 
@@ -100,6 +77,27 @@ class House extends Model
 
         return $sum;
 
+    }
+
+    public function thumbnail() {
+        $thumb = "";
+
+        switch($this->id) {
+            case 1:
+                $thumb = "s_serpents.png";
+                break;
+            case 2:
+                $thumb = "db_dragons.png";
+                break;
+            case 3:
+                $thumb = "r_ravens.png";
+                break;
+            case 4:
+                $thumb = "v_vikings.png";
+                break;
+        }
+
+        return asset("img/icons/houses/{$thumb}");
     }
 
 
