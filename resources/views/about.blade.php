@@ -13,22 +13,21 @@
                     The four houses still battle for what they hold dearest. In the end, one will rise and rule the kingdom."
                 </b></p>
             </div>
-        </div>
-        <div class="tile is-ancestor">
+            <div class="column is-half">
 
-            @foreach($houses as $house)
-                @if($loop->index % 2 == 0)
-                    <div class="tile is-vertical is-parent">
-                @endif
-                        <div class="tile is-child box">
-                            <p class="title"><img class="image is-32x32" src="{{}}" alt=""> {{  $house->name }}</p>
-                            <p>{{ $house->description }}</p>
-                        </div>
-                @if($loop->index % 2 == 1)
-                    </div>
-                @endif
-            @endforeach
+            </div>
         </div>
+
+
+            <div class="story-houses">
+                @foreach($houses as $house)
+                    <div class="box">
+                        <p class="title"><img src="{{$house->thumbnail()}}" alt="" class="image is-128x128 is-pulled-left">{{$house->name}}</p>
+                        <p>{{$house->description}}</p>
+                    </div>
+                @endforeach
+            </div>
+
 
     </div>
 @endsection

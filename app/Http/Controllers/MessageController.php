@@ -126,4 +126,13 @@ class MessageController extends Controller
 
         return redirect()->route('message.index')->with('success','Message with subject: \'' . $subject . '\' successfully removed.');
     }
+
+
+    public function checkAllRead()
+    {
+        \App\Message::where('receiver_id', \Auth::user()->id)->where('read', 0)->update([
+            'read' => 1
+        ]);
+        return back()->with('success', 'All messages marked as read');
+    }
 }

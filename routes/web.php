@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/profile/{user}', 'UsersController@show')->name('profile');
     Route::put('/profile/password', 'UsersController@changePassword')->name('change-password');
 
+    Route::post('/message/allread', 'MessageController@checkAllRead');
+
     Route::get('/home', 'HomeController@index');
     Route::get('/learn', 'HomeController@learn');
     Route::get('/learn/{name}', 'HomeController@details');

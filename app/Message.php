@@ -58,6 +58,12 @@ class Message extends Model
         return $carbonDate->diffForHumans();
     }
 
+    public static function unreadMessages($user_id)
+    {
 
+        return \App\Message::where('receiver_id', $user_id)
+            ->where('read', 0)
+            ->get();
 
+    }
 }

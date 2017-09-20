@@ -16,7 +16,7 @@
                 @foreach($rankedUsers as $user)
                     <tr>
                         <td>
-
+                            <img class="image is-16x16" src="{{$user->houseRole->house->thumbnail()}}" alt="">
                         </td>
                         <td>{{ $index += 1 }}</td>
                         <td>{{ $user->name }}</td>

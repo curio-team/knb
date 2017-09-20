@@ -42203,7 +42203,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\badges\\index.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\badges\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42237,7 +42237,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] details.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42271,7 +42271,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\index.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42305,7 +42305,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\links.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\links.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] links.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42339,7 +42339,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\tools.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\tools.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] tools.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42373,7 +42373,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\points\\index.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\points\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 

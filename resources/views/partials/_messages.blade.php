@@ -1,7 +1,14 @@
 <div class="content">
     <h1> Inbox </h1>
+    @if (count($messages ) > 0 )
 
+        <form method="POST" action="{{action('MessageController@checkAllRead')}}">
+            {{csrf_field()}}
+            <button type="submit" style="margin-bottom: 15px" class="button is-warning">Mark all read</button>
+        </form>
+    @endif
     <div class="posts" >
+
         @forelse($messages as $message)
 
             <div class="{{ $message->read ? 'message-read' : 'message-unread' }} box box-post box-with-options" data-href="{{ action('MessageController@show', $message) }}">
