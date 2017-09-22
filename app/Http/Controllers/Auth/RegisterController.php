@@ -70,6 +70,7 @@ class RegisterController extends Controller
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
+                'points' => 3
             ]);
 
             \App\HouseRole::create([

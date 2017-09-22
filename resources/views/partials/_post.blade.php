@@ -41,8 +41,11 @@
                         </div>
                         <div class="column is-11">
                             <h4 class="title is-4">{{ $post->title }}</h4>
-                            <span class="author">author: {{ $post->author->name }}</span>
-
+                            @if($post->author->isHeadmaster())
+                                <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $post->author->name }}</span>
+                            @else
+                                <span class="author">author: {{ $post->author->name }}</span>
+                            @endif
                             <p>{!! $post->content !!}</p>
                         </div>
                     </div>
@@ -84,8 +87,11 @@
                                     <img src="{{$comment->author->houserole->house->thumbnail()}}" alt="">
                                 </figure>
                                 <div class="content media-post-comment">
-                                    <strong>{{ $comment->author->name }}</strong>
-
+                                    @if($comment->author->isHeadmaster())
+                                        <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ \Auth::user()->name }}</span>
+                                    @else
+                                        <strong>{{ $comment->author->name }}</strong>
+                                    @endif
                                     <p>{!! nl2br($comment->content) !!}</p>
                                 </div>
                             </article>
@@ -144,8 +150,11 @@
                                     </figure>
                                 </div>
                                 <div class="column is-11">
-                                    <span class="author">author: {{ $post->author->name }}</span>
-
+                                    @if($post->author->isHeadmaster())
+                                        author: <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $post->author->name }}</span>
+                                    @else
+                                        <span class="author">author: {{ $post->author->name }}</span>
+                                    @endif
                                     <p>{!! $post->content !!}</p>
                                 </div>
                             </div>
@@ -195,7 +204,12 @@
                                 @foreach($post->comments as $comment)
                                     <article class="media">
                                         <div class="content media-post-comment">
-                                            <strong>{{ $comment->author->name }}</strong>
+
+                                            @if ($comment->author->isHeadmaster())
+                                                <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $comment->author->name }}</span>
+                                            @else
+                                                <strong>{{ $comment->author->name }}</strong>;
+                                            @endif
 
                                             <p>{!! nl2br($comment->content) !!}</p>
                                         </div>

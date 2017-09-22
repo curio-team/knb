@@ -52,7 +52,7 @@
                         How to ask questions!
                     </span>
 
-                    <div class="panel-block">
+                    <div class="panel-block question-info">
                         <ul>
                             <li>
                                 First <strong> be sure your question hasn't already been posted. </strong> Use the search function to verify this.
@@ -60,7 +60,10 @@
 
                             <li>
                                 <strong> Be specific to your question. </strong> Give as much information as you can. Use links to sandbox
-                                environments (codepen.io for example) to illustrate the problem you are dealing with.
+                                environments (<a href="https://codepen.io"> codepen.io </a> for HTML/CSS/Javascript or <a href="https://dotnetfiddle.net"> dotnetfiddle </a> for C#) to illustrate the problem you are dealing with.
+                            </li>
+                            <li>
+                                If you want to use <strong>screen captures</strong> we recommend hosting these on <a href="https://imgur.com"> imgur </a> and post the link in your post.
                             </li>
                         </ul>
                     </div>

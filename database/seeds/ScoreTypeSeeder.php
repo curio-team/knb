@@ -36,21 +36,6 @@ class ScoreTypeSeeder extends Seeder
                 'name'          => 'Comment posted',
                 'points'        => 1,
                 'description'   => 'Points awarded for posting a comment.'
-            ],
-            [
-                'name'          => 'Top weekly commenter',
-                'points'        => 3,
-                'description'   => 'Points awarded for being the weekly top commenter.'
-            ],
-            [
-                'name'          => 'Top weekly most voted for',
-                'points'        => 5,
-                'description'   => 'Points awarded for having the weekly most votes'
-            ],
-            [
-                'name'         => 'Top weekly answers',
-                'points'        => 4,
-                'description'   => 'Points awarded for having the weekly most answers'
             ]
         ];
 

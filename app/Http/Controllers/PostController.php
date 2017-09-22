@@ -195,7 +195,7 @@ class PostController extends Controller
         }
 
 
-        return redirect()->action('PostController@show', $post)->with('success', 'Succesfully edited your question.');
+        return redirect()->action('PostController@show', $post->parent)->with('success', 'Succesfully edited your question.');
 
     }
 

@@ -3,7 +3,11 @@
         <p class="image is-64x64">
             <img src="{{Auth::user()->houserole->house->thumbnail()}}">
         </p>
-        <p class="user-name">{{ Auth::user()->name }}</p>
+        @if(\Auth::user()->isHeadmaster())
+            author: <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ \Auth::user()->name }}</span>
+        @else
+            <p class="user-name">{{ Auth::user()->name }}</p>
+        @endif
     </figure>
 
     <div class="media-content">

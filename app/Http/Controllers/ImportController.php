@@ -24,10 +24,12 @@ class ImportController extends Controller
         Excel::load($file, function($reader)  {
 
             $results = $reader->select(['roepnaam', 'voorvoegsel', 'achternaam', 'studentnummer'])->get();
-
+            $results = $results->shuffle();
 
             foreach ($results as $result)
             {
+
+
                 if (\App\User::where('studentnr', '=', $result->studentnummer)->exists())
                 {
                    $this->duplicates++;
@@ -41,12 +43,14 @@ class ImportController extends Controller
                     $user->name     = $fullname;
                     $user->studentnr = $result->studentnummer;
                     $user->email        = $email;
+                    $user->points = 0;
                     $user->password     = \Hash::make( 'welkom' );
                     $user->save();
                     \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house_id, 'role_level', '0']);
                     \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
                     $user->addPoints(\App\Point::BENEFACTOR_REGISTER_SYSTEM, true);
                     $this->imports++;
+
                 }
 
             }

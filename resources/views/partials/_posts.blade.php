@@ -53,7 +53,12 @@
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                <strong>{{ $post->author->name }}</strong>
+                                @if($post->author->isHeadmaster())
+                                    author: <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $post->author->name }}</span>
+                                @else
+                                    <span class="author">author: {{ $post->author->name }}</span>
+                                @endif
+
                                 <br>
                                 <a href="{{ action('PostController@show', $post) }}">{{ $post->title }}</a>
                             </p>
