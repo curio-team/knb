@@ -15,7 +15,9 @@ class ImportController extends Controller
     {
     }
 
-
+    private function stripAccents($stripAccents){
+        return strtr($stripAccents,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+    }
 
     public function upload(UploadCsvRequest $request)
     {
@@ -23,28 +25,26 @@ class ImportController extends Controller
 
         Excel::load($file, function($reader)  {
 
-            $results = $reader->select(['roepnaam', 'voorvoegsel', 'achternaam', 'studentnummer'])->get();
-            $results = $results->shuffle();
-
+            $results = $reader->select(['klas', 'studentnr', 'naam', 'email'])->get();
+            $house_id = 1;
             foreach ($results as $result)
             {
+                if ($house_id == 5)
+                {
+                    $house_id = 1;
+                }
 
-
-                if (\App\User::where('studentnr', '=', $result->studentnummer)->exists())
+                if (\App\User::where('studentnr', '=', $result->studentnr)->exists())
                 {
                    $this->duplicates++;
                 } else
                 {
-                    $fullname = $result->roepnaam . ' ' . $result->voorvoegsel . ' ' . $result->achternaam;
-                    $email = 'd' . $result->studentnummer . '@edu.rocwb.nl';
-
-                    $house_id = mt_rand(1, 4);
                     $user = new \App\User;
-                    $user->name     = $fullname;
-                    $user->studentnr = $result->studentnummer;
-                    $user->email        = $email;
+                    $user->name     = $this->stripAccents($result->naam);
+                    $user->studentnr = $result->studentnr;
+                    $user->email        = $result->email;
                     $user->points = 0;
-                    $user->password     = \Hash::make( 'welkom' );
+                    $user->password     = \Hash::make( 'fdsjh4354J34jmb%poOO' );
                     $user->save();
                     \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house_id, 'role_level', '0']);
                     \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
@@ -52,7 +52,7 @@ class ImportController extends Controller
                     $this->imports++;
 
                 }
-
+                $house_id++;
             }
 
 

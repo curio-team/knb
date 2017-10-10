@@ -14,7 +14,7 @@
                         <div class="card column is-3" style="margin: 20px">
                             <div class="card-image">
                                 <figure class="image">
-                                    <img src="{{asset('img/icons/badges/' . $badge->img_path)}}" alt="{{$badge->title}}">
+                                    <img src="{{asset('img/icons/' . $badge->img_path)}}" alt="{{$badge->title}}">
                                 </figure>
                             </div>
                             <div class="card-content" style="padding: 5px">

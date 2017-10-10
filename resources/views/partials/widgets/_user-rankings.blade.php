@@ -4,7 +4,6 @@
         <table class="table">
             <thead>
             <tr>
-                <th></th>
                 <th>Pos</th>
                 <th>User</th>
                 <th>Points</th>
@@ -15,9 +14,7 @@
                 <?php $index = 0; ?>
                 @foreach($rankedUsers as $user)
                     <tr>
-                        <td>
-                            <img class="image is-16x16" src="{{$user->houseRole->house->thumbnail()}}" alt="">
-                        </td>
+
                         <td>{{ $index += 1 }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->points }}</td>

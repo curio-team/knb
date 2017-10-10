@@ -61,15 +61,16 @@
               <!-- Nav menu -->
               @if (Auth::guest())
                 <ul class="header-nav is-pulled-right">
-                  <li><a href="{{ route('login') }}" class="nav-item is-tab">login</a></li>
-                  <li><a href="{{ route('register') }}" class="nav-item is-tab">register</a></li>
+{{--                  <li><a href="{{ route('login') }}" class="nav-item is-tab">login</a></li>--}}
+                  {{--<li><a href="{{ route('register') }}" class="nav-item is-tab">register</a></li>--}}
                 </ul>
               @else
                 <ul class="header-nav">
-                  <li><a href="{{ action('HomeController@index') }}" class="nav-item is-tab {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a></li>
-                  <li><a href="{{ action('HomeController@learn') }}" class="nav-item is-tab {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a></li>
-                    <li><a href="{{ action('HomeController@gameInfo')}}" class="nav-item is-tab {{ strpos(Request::path(), 'game-info') !== false ? "is-active" : "" }}">Game Info</a></li>
-                    <li><a href="{{ action('HomeController@about') }}" class="nav-item is-tab {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}">Story</a></li>
+                    {{--ENABLE AFTER HOUSE SELECTION --}}
+                  {{--<li><a href="{{ action('HomeController@index') }}" class="nav-item is-tab {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a></li>--}}
+                  {{--<li><a href="{{ action('HomeController@learn') }}" class="nav-item is-tab {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a></li>--}}
+                    {{--<li><a href="{{ action('HomeController@gameInfo')}}" class="nav-item is-tab {{ strpos(Request::path(), 'game-info') !== false ? "is-active" : "" }}">Game Info</a></li>--}}
+                    {{--<li><a href="{{ action('HomeController@about') }}" class="nav-item is-tab {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}">Story</a></li>--}}
                 </ul>
               @endif
             </div>
@@ -138,7 +139,8 @@
                   @if (\Auth::user()->isHeadMaster())
                     <li><a  href="{{ route('dashboard') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-bar-chart"></i></span> Dashboard</a></li>
                   @else
-                    <li><a href="{{ route('profile', \Auth::id()) }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>
+                      {{--ENABLE AFTER HOUSE SELECTION--}}
+                    {{--<li><a href="{{ route('profile', \Auth::id()) }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>--}}
                   @endif
                   <li><a onclick="event.preventDefault(), document.getElementById('logout-form').submit()" class="nav-item is-tab"><span class="icon"><i class="fa fa-sign-out"></i></span> Logout</a></li>
                 </ul>
