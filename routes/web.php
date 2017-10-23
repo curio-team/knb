@@ -17,7 +17,12 @@ Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::get('/', function() {
-   return redirect()->to('/house-selection');
+
+    if (\Auth::check())
+    {
+        return redirect()->to('/house-selection');
+    }
+    return redirect()->to('/login');
 })->name('home');
 
 

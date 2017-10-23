@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container main-content">
+        <a href="/house-selection" class="button" style="background: yellow; margin-bottom: 10px">to the house selections</a>
         <div class="columns">
             <div class="column is-three-quarters">
                 <nav class="level filter-bar">
