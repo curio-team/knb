@@ -57,7 +57,7 @@
                     <h3 class="is-3" style="color: white">{{ selectedPractice.title }}</h3>
 
                     <div class="box">
-                        <div v-for="assignment in selectedPractice.assignments">
+                        <div v-for="assignment in selectedPractice.assignments" class="content" >
                             <h2 v-html="assignment.assignment"></h2>
                             <span v-html="assignment.description"></span>
 							<pre v-if="assignment.code != null" v-html="assignment	.code" class="language-markup"></pre>

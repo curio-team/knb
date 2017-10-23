@@ -7,7 +7,202 @@
         "difficulty":"beginner",
         "content":"Deze video series is voor jou als je vanaf nul wilt weten hoe een webpagina opgebouwd wordt.",
         "length":"still in progress",
-        "tag":"html-css-fundamentals"
+        "tag":"html-css-fundamentals",
+		"videos" : {
+		"/videos/218620418" : {
+			"quiz" : {
+				"title": "Introductie",
+				"questions" : [
+					{
+						"question": "1. Wat staat er niet in een html bestand?",
+						"answers": [
+							{
+								"answer" : "A: De inhoud (content) van een webpagina."
+							},
+							{
+								"answer" : "B: Tags om structuur in je site aan te brengen."
+							},
+							{
+								"answer" : "C: Tags om elementen als links in je site aan te brengen."
+							},
+							{
+								"answer" : "D: Al het bovenstaande is te vinden in een html bestand.",
+								"is_correct": true
+							}
+						]
+					},
+					{
+						"question": "2. Geef aan welke van deze stellingen waar is.<br />  1. Je kan html in en text-editor als kladblok, vim of notepad++ schrijven.<br />  2. Je moet online zijn om een html bestand te kunnen openen.",
+						"answers": [
+							{
+								"answer" : "A: Alleen 1 is waar.",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: Aleen 2 is waar."
+							},
+							{
+								"answer" : "C: Zowel 1 als 2 zijn waar."
+							},
+							{
+								"answer" : "D: Zowel 1 als 2 zijn onwaar."
+							}
+						]
+					},
+					{
+						"question": "3. Waar gebruik je een atribuut voor?",
+						"answers": [
+							{
+								"answer" : "A: Om extra data mee te geven aan een tag.",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: Om je pagina een goede structuur te geven."
+							},
+							{
+								"answer" : "C: Om de algemene eigenschappen van je pagina te bepalen."
+							}
+						]
+					},
+					{
+						"question": "4. Zoek de fout in het onderstaande stukje html.",
+						"code" : "<p>&lt;h2&gt;Mijn lievelingslied&lt;/h3&gt;<br /> &lt;h3&gt;Bananen in pyjamas&lt;/h3&gt;<br /> &lt;p&gt;Bananen in pyjamas, ze komen naar benee! Bananen in pyjamas, zijn altijd met zn twee! Bananen in pyjamas, de teddys spelen mee!&lt;/p&gt;<br /> &lt;h4&gt;Benodigdheden&lt;/h4&gt;<br /> &lt;ul&gt;<br /> &lt;li&gt;Bananen&lt;/li&gt;<br /> &lt;li&gt;Pyjamas&lt;/li&gt;<br /> &lt;li&gt;Teddys&lt;/li&gt;<br /> &lt;/ul&gt;&lt;/li&gt;<br /> &lt;p&gt;&lt;a href=&quothttp://songteksten-vantoenennu.jouwweb.nl/kinder-en-jeugdseries/tv-tunes-nl-kej/songteksten-tv-tunes-nl/bananen-in-pyjama-s&quot&gt;klik hier!&lt;/a&gt;&lt;/p&gt;</p>",
+						"answers": [
+							{
+								"answer" : "A: Er is verkeerd gebruik gemaakt van headers."
+							},
+							{
+								"answer" : "B: De lijst is verkeerd afgesloten.",
+								"is_correct": true
+							},
+							{
+								"answer" : "C: De hyperlink referentie is ongeldig."
+							},
+							{
+								"answer" : "D: Er zitten geen fouten in."
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "Introductie",
+				"assignments": [
+					{
+						"assignment": "Portefolio 1",
+						"description": "<p>Maak een eenvoudige website waarin je het volgende over jezelf verteld.<br /> Je naam<br /> Een kort verhaaltje over jezelf of je kanariepiet.<br /> Je hobbys (met 1 of 2 regels uitleg per hobby)<br /> Je muziek met een lijst van 3-5 nummers.<br /> Voeg 1 of 2 links toe naar websites die je vaak gebruikt.<br /> <br />Vergeet niet gebruik te maken van allineas &lt;p&gt; en headers &lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt; etc.</p>"
+					}
+				]
+			}
+		  },
+		  "/videos/218620575" : {
+			"quiz" : {
+				"title": "Geef structuur aan je webpagina",
+				"questions" : [
+					{
+						"question": "1. Welke tag verteld de browser dat het om html gaat?",
+						"answers": [
+							{
+								"answer" : "A: &lt;!DOCTYPE&gt;"
+							},
+							{
+								"answer" : "B: &lt;html&gt;",
+								"is_correct": true
+							},
+							{
+								"answer" : "A: &lt;head&gt;"
+							},
+							{
+								"answer" : "A: &lt;body&gt;"
+							}
+						]
+					},
+					{
+						"question": "2. Geef aan welke van deze stellingen waar is.<br /> 1. De content van een pagina staat tussen de &lt;body&gt; en &lt;/body&gt; tags.<br /> 2. De head en body van een een pagina staan tussen de &lt;html&gt; en &lt;/html&gt; tags.",
+						"answers": [
+							{
+								"answer" : "A. Alleen 1 is waar.",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: Alleen 2 is waar."
+							},
+							{
+								"answer" : "C: Zowel 1 als 2 zijn waar."
+							},
+							{
+								"answer" : "D: Zowel 1 als 2 zijn niet waar."
+							}
+						]
+					},
+					{
+						"question": "3. Welke van deze tags gebruik je niet om structuur in je html aan te brengen?",
+						"answers": [
+							{
+								"answer" : "A: &lt;footer&gt;"
+							},
+							{
+								"answer" : "B: &lt;div&gt;"
+							},
+							{
+								"answer" : "A: &lt;title&gt;",
+								"is_correct": true
+							},
+							{
+								"answer" : "A: &lt;main&gt;"
+							}
+						]
+					},
+					{
+						"question": "4. Wat kan je meestal vinden in in de header van een pagina?",
+						"answers": [
+							{
+								"answer" : "A: Een navigatie- of menubalk.",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: Algemene informatie over de site."
+							},
+							{
+								"answer" : "C: de &lt;body&gt; tag."
+							}
+						]
+					},
+					{
+						"question": "5. Welke van de volgende tags kan je gebruiken om stukjes van je pagina te groeperen?",
+						"code" : " 1 &lt;div&gt;<br /> 2 &lt;main&gt;<br /> 3 &lt;section&gt;<br /> 4 &lt;header&gt;<br /> 5 &lt;footer&gt;",
+						"answers": [
+							{
+								"answer" : "A: 1, 3, 4, 5"
+							},
+							{
+								"answer" : "B: 2, 4, 5"
+							},
+							{
+								"answer" : "C: 1, 2, 3"
+							},
+							{
+								"answer" : "D: 2, 3, 4, 5"
+							},
+							{
+								"answer" : "E: 1, 2, 3, 4, 5",
+								"is_correct": true
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "Geef structuur aan je webpagina",
+				"assignments": [
+					{
+						"assignment": "Portefolio 2",
+						"description": "Pas de pagina van de vorige opdracht aan zodat het aan de structuur voldoet die je met het videocollege hebt geleerd. Vul de site ook aan met een titel en een voetnoot."
+					}
+				]
+			}
+		  }
+		}
       }
     ]
   },
@@ -421,14 +616,715 @@
         "difficulty":"beginner",
         "content":"In deze videoserie maak je met behulp van PDO een databaseconnectie en maak je een een online todo list waarbij de items in een database worden gezet.",
         "length":"6 videos",
-        "tag":"series-todo-beginner"
+        "tag":"series-todo-beginner",
+		"videos": {
+			"/videos/" : {
+			"quiz" : {
+				"title": "Introductie",
+				"questions" : [
+					{
+						"question": "1. ",
+						"answers": [
+							{
+								"answer" : "A: 1 is juist en 2 is onjuist.",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: 2 is juist en 1 is onjuist."
+							},
+							{
+								"answer" : "C: 1 en 2 zijn beide juist."
+							},
+							{
+								"answer" : "D: 1 en 2 zijn beide onjuist."
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "Introductie",
+				"assignments": [
+					{
+						"assignment": "Zoeken en vinden",
+						"description": "Maak een eenvoudige website die de huidige datum en tijd weergeeft. Kijk op bijvoorbeeld https://www.w3schools.com/php om verder te komen."
+					}
+				]
+			}
+		  }
+		}
       },
       {
         "title":"PHP Fundamentals",
         "difficulty":"beginner",
         "content":"In deze videoserie maak je kennis met PHP als programmeertaal. Deze serie is geschikt voor als je met behulp van PHP je programmeerskills wilt opvijzelen.",
         "length":"8 videos",
-        "tag":"series-php-fundamentals"
+        "tag":"series-php-fundamentals",
+				"videos": {
+			"/videos/215819436" : {
+			"quiz" : {
+				"title": "Introductie",
+				"questions" : [
+					{
+						"question": "1. Gegeven zijn de volgende stellingen. Geef aan welke waar zijn.<br /><ul><li> 1. PHP wordt server side uitgevoerd.</li><li> 2. PHP is een essentieel component van een goede database.</li></ul>",
+						"answers": [
+							{
+								"answer" : "A: 1 is juist en 2 is onjuist.",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: 2 is juist en 1 is onjuist."
+							},
+							{
+								"answer" : "C: 1 en 2 zijn beide juist."
+							},
+							{
+								"answer" : "D: 1 en 2 zijn beide onjuist."
+							}
+						]
+					},
+					{
+						"question": "2. Je hebt de contentpagina main.html. Je wil PHP gebruiken om functionaliteit toe te voegen. Moet je de extentie veranderen?",
+						"answers": [
+							{
+								"answer" : "A: Ja, altijd.",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: Nee, nooit."
+							},
+							{
+								"answer" : "C: Niet als je enkel inline PHP gebruikt."
+							}
+						]
+					},
+					{
+						"question": "3. Zoek uit welke poorten PHPMyAdmin en Appache per default gebruiken bij XAMP.",
+						"answers": [
+							{
+								"answer" : "Apache: 80, 440"
+							},
+							{
+								"answer" : "Apache: 88 MySQL: 80"
+							},
+							{
+								"answer" : "C: Apache: 80, MySQL: 88"
+							},
+							{
+								"answer" : "D: Apache: 80, 443 MySQL: 3306",
+								"is_correct": true
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "Introductie",
+				"assignments": [
+					{
+						"assignment": "Zoeken en vinden",
+						"description": "Maak een eenvoudige website die de huidige datum en tijd weergeeft. Kijk op bijvoorbeeld https://www.w3schools.com/php om verder te komen."
+					}
+				]
+			}
+		  },
+		  "/videos/215819711" : {
+			"quiz" : {
+				"title": "PHP Syntax",
+				"questions" : [
+					{
+						"question": "1. Gegeven een regel code. Geef aan welke bewering hierover waar is.",
+						"code" : "$bananaPrice = &quot2.45&quot;",
+						"answers": [
+							{
+								"answer" : "A: Maak de variabele bananaPrice aan van het type int en stop de waarde 2.45 erin."
+							},
+							{
+								"answer" : "B: Maak de variabele bananaPrice aan van het type string en stop de waarde 2.45 erin.",
+								"is_correct": true
+							},
+							{
+								"answer" : "C: Maak de variabele bananaPrice aan van het type float en stop de waarde 2.45 erin."
+							},
+							{
+								"answer" : "D: Maak een int aan met de waarde 2.45 en noem deze bananaPrice."
+							},
+							{
+								"answer" : "E: Maak een float aan met de waarde 2.45 en noem deze bananaPrice."
+							}
+						]
+					},
+					{
+					"question": "2. Gegeven zijn de volgende gegevens, geef aan welke datatypen php aan iedere variabele zal verbinden.",
+						"code" : "23, 2.3, '2', 2E-5, &quot6maal6&quot",
+						"answers": [
+							{
+								"answer" : "A: int, float, char, string, string"
+							},
+							{
+								"answer" : "B: float, float, char, float, string"
+							},
+							{
+								"answer" : "C: int, int, string, int, string"
+							},
+							{
+								"answer" : "D: int, float, string, int, string",
+								"is_correct": true
+							}
+						]
+					},
+					{
+					"question": "3. Welke van deze arrays is juist gedeclareerd?",
+						"code" : "1 $bananaCrate = [oneBanana, twoBanana, threeBanana];<br />2 $bananaCrate = $[oneBanana, twoBanana, threeBanana];<br />3 $bananaCrate = $[$&quotoneBanana&quot, $&quottwoBanana&quot, $&quotmonkey&quot];",
+						"answers": [
+							{
+								"answer" : "A: 1 en 2 zijn goed, 3 is fout."
+							},
+							{
+								"answer" : "B: 1 en 3 zijn goed, 2 is fout."
+},
+							{
+								"answer" : "C: 2 en 3 zijn goed, 1 is fout."
+							},
+							{
+								"answer" : "D: Alleen 2 is goed"
+							},
+							{
+								"answer" : "E: 1, 2 en 3 zijn allen goed."
+							},
+							{
+								"answer" : "F: 1, 2, en 3 zijn allen fout.",
+								"is_correct": true
+							}
+						]
+					},
+					{
+					"question": "4. In wat voor een variabele slaat PHP de waarde true op?",
+						"answers": [
+							{
+								"answer" : "A: int"
+							},
+							{
+								"answer" : "B: bool",
+								"is_correct" : true
+							},
+							{
+								"answer" : "C: string"
+							},
+							{
+								"answer" : "D: object"
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "PHP Syntax",
+				"assignments": [
+					{
+						"assignment": "Trial en error",
+						"description": "Vogel op eigen houtje uit hoe php reageert op hoofdlettergebruik in functies (zoals echo) en de namen van variabelen."
+					}
+				]
+			}
+		  },
+		"/videos/215819825" : {
+			"quiz" : {
+				"title": "Operatoren en het if statement",
+				"questions" : [
+					{
+						"question": "1. Gegeven is dat mensen minstens 1 meter 50 moeten zijn om in de achtbaan te mogen. Vul bij de onderstaande code de juiste comperator in.",
+						"code" : "$rollerCoasterMinLength = 1.50;<br />$passengerLength;  //todo: haal de lengte uit de database<br />if(passengerLength [vul hier de comperator in] rollerCoasterMinLength){<br />   echo &quotWhoooooo!&quot;<br />}",
+						"answers": [
+							{
+								"answer" : "A: >"
+							},
+							{
+								"answer" : "B: <"
+							},
+							{
+								"answer" : "C: >=",
+								"is_correct": true
+							},
+							{
+								"answer" : "D: <="
+							},
+							{
+								"answer" : "E: =="
+							},
+							{
+								"answer" : "F: !="
+							},
+							{
+								"answer" : "G: =>"
+							}
+						]
+					},{
+						"question": "2. Nog steeds moeten mensen 1 meter 50 zijn om de achtbaan in te mogen. Je collega Pietje heeft echter lelijke code geschreven. Vul desalnietemin de juiste operator en comperator in.",
+						"code" : "$rollerCoasterMinLength = 1.50;<br />$passengerLength;   //TODO dingen<br />$getal = $rollerCoasterMinLength [vul hier iets in] $passengerLength;<br />if(0 [vul hier nog meer in] $getal){<br />echo &quotWhoohooooo!&quot;}",
+						"answers": [
+							{
+								"answer" : "A: + en =="
+							},
+							{
+								"answer" : "B: % en <="
+							},
+							{
+								"answer" : "C: - en <"
+							},
+							{
+								"answer" : "D: - en <=",
+								"is_correct": true
+							},
+							{
+								"answer" : "E: + en >"
+							},
+							{
+								"answer" : "F: + en <="
+							},
+							{
+								"answer" : "G: - en =="
+							}
+						]
+					},{
+					"question": "3. Welke waarde heeft $calcResult aan het einde van dit stukje code?",
+						"code" : "$calcResult = 6;<br />$calcHelper = $calcResult * $calcResult;<br />$calcHelper -= $calcResult;<br />$calcResult %= $calcHelper;",
+						"answers": [
+							{
+								"answer" : "A: 0"
+							},
+							{
+								"answer" : "B: 1"
+							},
+							{
+								"answer" : "C: 3"
+							},
+							{
+								"answer" : "D: 6",
+								"is_correct": true
+							},
+							{
+								"answer" : "30"
+							},
+							{
+								"answer" : "Er zit een fout in de code waardoor deze niet wordt uitgevoerd."
+							}
+						]
+					},
+					{
+						"question": "Wat gaat er fout? Als je iets niet herkend kan je het altijd googlen.",
+						"code" : "<p>&lt;?php header('Content-type: text/plain; charset=utf-8');</p><p>$bananaPrice = 2.45;<br /> $bananaKilos = 100;<br /> $bananaSubtotal = $bananaPrice * $bananaKilos;<br /> $sendCost = 30;<br /> if($bananaKilos &gt; 200){<br /> $sendCost = false;<br /> }<br /> echo &quotOfferte:\n&quot;<br /> echo &quotBananen x .$bananaKilos.kg x &euro;.$bananaPrice&quot;<br /> if(fmod($bananaPrice, 1) == 0){<br /> echo &quot-&quot;<br /> }<br /> echo &quot =\n&quot;<br /> <br /> echo &quotDelivery cost: &euro;.$sendCost.\n&quot;<br /> echo &quotTotal: &euro;.($bananaKilos*$bananaPrice+$sendCost)&quot;</p>",
+						"answers": [
+							{
+								"answer" : "A: Er wordt verkeert gebruik gemaakt van &quot -tekens. ",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: De operators bewerken de variabelen onjuist."
+							},
+							{
+								"answer" : "C: Het eerste if-statement werkt niet."
+							},
+							{
+								"answer" : "D: Het tweede if-statement werkt niet."
+							},
+							{
+								"answer" : "E: Er gaat hier helemaal niks fout."
+							}
+						]
+					},{
+						"question": "Wat zal dit stukje code echoën bij $banana = 8 en $packagenr = 2?",
+						"code" : "<p>if($banana &lt; 10 &amp;&amp; $packagenr &lt; 10){<br /> if($banana != $packagenr){<br /> echo &quotBananen zijn gezond!&quot; <br /> }else{<br /> echo &quotApen eten bananen&quot;<br /> }<br />}else if($banana &gt; $packagenr || $packagenr &lt;= 2){<br /> echo &quotAl die bananen&quot;<br />}else{<br /> echo &quotIk houd niet van bananen&quot;<br />}</p>",
+						"answers": [
+							{
+								"answer" : "A: Bananen zijn gezond"
+							},
+							{
+								"answer" : "B: Apen eten bananen"
+							},
+							{
+								"answer" : "C: Al die bananen",
+								"is_correct": true
+							},
+							{
+								"answer" : "D: Ik houd niet van bananen"
+							}
+						]
+					}
+					
+				]
+			},
+			"practice" : {
+				"title" : "Operatoren en het if statement",
+				"assignments": [
+					{
+						"assignment": "De klok",
+						"description": "Breidt de klok uit de opdracht van &quotPHP Introductie&quot zodat deze 'môgge' zegt in de ochtend, 'middag' in de middag, 'avond' in de avond en 'zzz' als het nacht is."
+					}
+				]
+			}
+		  },
+		  "/videos/215820035" : {
+			"quiz" : {
+				"title": "Switch case",
+				"questions" : [
+					{
+						"question": "1. Wat is er loos met het volgende de volgende switch?",
+						"code" : "switch( $drink ){<br />&nbsp;&nbsp;&nbsp; case &quotcoffee&quot;<br />&nbsp;&nbsp;&nbsp; case &quotespresso&quot;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo &quotZwart goud!&quot<br />&nbsp;&nbsp;&nbsp; break;<br />&nbsp;&nbsp;&nbsp; case &quottea&quot;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo &quotSlurp&quot;<br />&nbsp;&nbsp;&nbsp; break;<br />&nbsp;&nbsp;&nbsp; default;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $drink = &quotBananensap&quot;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo &quotQue?&quot<br />&nbsp;&nbsp;&nbsp; break;<br /> }",
+						"answers": [
+							{
+								"answer" : "A: &quotcoffee&quot doet niks."
+							},
+							{
+								"answer" : "B: De kromme haken { } zijn verkeerd geplaatst."
+							},
+							{
+								"answer" : "C: De cases zijn verkeerd opgesteld."
+							},
+							{
+								"answer" : "D: Er is niks loos.",
+								"is_correct": true
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "Switch case",
+				"assignments": [
+					{
+						"assignment": "Wissel",
+						"description": "Pas statements uit de vorige opdracht aan zodat er gebruik word gemaakt van een switch case in plaats van if-else statements."
+					}
+				]
+			}
+		  },
+		  "/videos/215820582" : {
+			"quiz" : {
+				"title": "Strings nader bekeken",
+				"questions" : [
+					{
+						"question": "Ga naar http://php.net/manual/en/ref.strings.php en bekijk even welke functies php je allemaal geeft voor stringbewerking. Gebruikt deze voor de volgende opgaven.<hr>1. Bekijk en test het volgende stukje code. Wat veroorzaakt de foutmelding?",
+						"code" : "$banana;<br /> $roep = 'H&eacute;!';<br /> echo &quotWelke $banana?\n&quot;<br /> $banana = &quotbanananas&quot;<br /> echo $roep.' Een banaan!' <br /> echo '\nBleh, $banana\n&quot;",
+						"answers": [
+							{
+								"answer" : "A:",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: Er wordt geprobeerd $banana op het scherm weer te geven hoewel deze nog geen waarde heeft."
+							},
+							{
+								"answer" : "C: De cases zijn verkeerd opgestelDe concat punt (het . teken) bij roep wordt verkeerd gebruikt."
+							},
+							{
+								"answer" : "D: Er gaat niks fout."
+							}
+						]
+					},
+					{
+						"question": "2. Zoek een functie die een string uit elkaar kan halen op een specifiek teken. Met als input bijvoorbeeld &quotPietje+Puk&quot en output twee strings &quotPietje&quot en &quotPuk&quot",
+						"answers": [
+							{
+								"answer" : "A: wordwrap"
+							},
+							{
+								"answer" : "B: str_repear"
+							},
+							{
+								"answer" : "C: sprintf"
+							},
+							{
+								"answer" : "D: explode",
+								"is_correct": true
+							},
+							{
+								"answer" : "E: strtok"
+							},
+							{
+								"answer" : "F: strip_tags"
+							}
+						]
+					},
+					{
+						"question": "3. Bekijk het volgende stuk code. Mocht je iets niet herkennen, vergeet het dan niet op te zoeken op php.net!",
+						"code" : "<p>&lt;?php<br />&nbsp;&nbsp; $nameInput = &quotpietje petERTJE BASJE&quot;<br />&nbsp;&nbsp; $names = explode(&quot &quot, $nameInput);<br />&nbsp;&nbsp; for($i = 0 ; $i &lt; count($names) ; $i++ ){<br />&nbsp; &nbsp; &nbsp; $nameData = strToLower($names[$i]);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $nameData = ucwords($nameData);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $names[$i] = $nameData;<br />&nbsp; }<br />&nbsp; unset($nameData);<br />&nbsp; unset($i);</p><p>&nbsp; foreach($names as $name){<br />&nbsp;&nbsp;&nbsp;&nbsp; echo $name.&quot &quot;<br />&nbsp; }</p>",
+						"answers": [
+							{
+								"answer" : "A: regel 3"
+							},
+							{
+								"answer" : "B: regel 5",
+								"is_correct": true
+							},
+							{
+								"answer" : "C: regel 6"
+							},
+							{
+								"answer" : "D: regel 13"
+							},
+							{
+								"answer" : "E: regel 3 en 6"
+							},
+							{
+								"answer" : "F: regel 5 en 6"
+							},
+							{
+								"answer" : "G: regel 3 en 13"
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "",
+				"assignments": [
+					{
+						"assignment": "Explode/Implode",
+						"description": "Maak een php script dat een string als 1202017 omzet in 12/02/2017. Breidt het hierna zodat het data als 0606993 juist omzet naar 06/06/1993."
+					}
+				]
+			}
+		  },
+		  "/videos/215820690" : {
+			"quiz" : {
+				"title": "ints en floats nader bekeken",
+				"questions" : [
+					{
+						"question": "Gegeven is de volgende code en de volgende output.",
+						"code" : "echo &quot8 naar beneden afgerond is: &quot.floor(8).&quot&#92n&quot;<br /> echo &quot8.0 naar beneden afgerond is: &quot.floor(0.8*10).&quot&#92n&quot;<br /> echo &quot8.0 naar beneden afgerond is: &quot.floor((0.1+0.7)*10);<hr>Met de output:<br /><ul><li>8 naar beneden afgerond is: 8</li><li>8.0 naar beneden afgerond is: 8</li><li>8.0 naar beneden afgerond is: 7</li><il>",
+						"answers": [
+							{
+								"answer" : "A: Dit komt door de manier waarop floor(..) werkt."
+							},
+							{
+								"answer" : "B: Dit komt door de manier waarop floats worden opgeslagen.",
+								"is_correct": true
+							},
+							{
+								"answer" : "C: Dit komt door de manier waarop php met de rekenregels omgaat."
+							},
+							{
+								"answer" : "D: Dit komt omdat de haakjes verkeerd zijn geplaatst."
+							}
+						]
+					},
+					{
+						"question": "2. Zoek de documentatie op voor de functie rand() en bekijk het onderstaande stukje code. Welke waarden moeten $lowerLimit en $upperLimit hebben om rand een getal tussen de 1 en 216 te laten genereren?",
+						"code" : "$lowerLimit = ...;<br />$upperLimit = ...;<br />echo rand($lowerLimit, $upperLimit)",
+						"answers" : [
+							{
+								"answer" : "A: 1 en 216",
+								"is_correct" : true
+							},
+							{
+								"answer" : "B: 1 en 217"
+							},
+							{
+								"answer" : "C: 0 en 216"
+							},
+							{
+								"answer" : "D: 0 en 217"
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "ints en floats nader bekeken",
+				"assignments": [
+					{
+						"assignment": "Afronden",
+						"description": "Maak php script dat floats afrond tot $decimals decimalen."
+					}
+				]
+			}
+		  },
+		  "/videos/215820843" : {
+			"quiz" : {
+				"title": "Arrays nader bekeken",
+				"questions" : [
+					{
+						"question": "1. Kijk naar de onderstaande code. Welke waarde moeten $x en $y hebben om ervoor te zorgen dat Bananas wordt getoont?",
+						"code" : "$fruits = array<br /> (<br /> array(&quotGrapes&quot, 0, 3),<br /> array(&quotBananas&quot, 23, 6),<br /> array(&quotOranges&quot, 1, 10)<br /> )<br />echo[$x][$y];",
+						"answers": [
+							{
+								"answer" : "A: 2 en 1"
+							},
+							{
+								"answer" : "B: 1 en 2"
+							},
+							{
+								"answer" : "C: 0 en 1"
+							},
+							{
+								"answer" : "D: 1 en 0",
+								"is_correct": true
+							}
+						]
+					},
+					{
+						"question": "2. Welke van de onderstaande waarden komt overeen met de index van het enerlaatste element van de indexed array $fruits?",
+						"answers": [
+							{
+								"answer" : "A: count $fruits + 2"
+							},
+							{
+								"answer" : "B: count $fruits + 1"
+							},
+							{
+								"answer" : "C: count $fruits"
+							},
+							{
+								"answer" : "D: count $fruits - 1"
+							},
+							{
+								"answer" : "E: count $fruits - 2",
+								"is_correct": true
+							}
+						]
+					},
+					{
+						"question": "3. Gegeven zijn de volgende stellingen.<br /><ul><li>1. In een associatieve array moet de sleutel altijd uniek zijn.</li><li>2. Een array heeft nooit minder dan 1 element.</li>",
+						"answers":[
+							{
+								"answer" : "A: 1 is waar en 2 is niet waar.",
+								"is_correct" : true
+							},
+							{
+								"answer": "B: 2 is waar en 1 is niet waar."
+							},
+							{
+								"answer": "C: 1 en 2 zijn beiden waar."
+							},
+							{
+								"answer": "D: 1 en 2 zijn beiden niet waar."
+							}
+						]
+					},
+					{
+						"question": "4. Zoek op welke functie je het best zou kunnen gebruiken om in één keer 100 lege elementen aan de linkerkant van een array to te voegen.",
+						"answers":[
+							{
+								"answer" : "A: array_chunk"
+							},
+							{
+								"answer": "B: list"
+							},
+							{
+								"answer": "C: array_push"
+							},
+							{
+								"answer": "D: array_pad",
+								"is_correct" : true
+							}
+						]
+					},
+					{
+						"question": "5. Bestudeer het volgende stukje code. Na initialisatie $implicitTypes bevat deze alleen het element &quotBananen&quot. Zoek uit hoe dit komt.",
+						"code" : "&lt;?php<br />&nbsp;&nbsp;&nbsp; $implicitTypes = [<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 =&gt; &quotapen&quot,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.3 =&gt; &quoteten&quot,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot1&quot =&gt; &quotveel&quot,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; true =&gt; &quotbananen&quot<br /> ];",
+						"answers":[
+							{
+								"answer" : "A: Doordat er fouten zitten in de initialisatie van de array."
+							},
+							{
+								"answer": "B: Doordat de array niet kan omgaan met de key true, en daarom alle andere waarden overschrijft."
+							},
+							{
+								"answer": "C: Doordat php onder de motorkap de key waarden cast.",
+								"is_correct" : true
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "Arrays nader bekeken",
+				"assignments": [
+					{
+						"assignment": "TODO",
+						"description": "Maak een script dat alle elementen in een associatief array sorteerd op volgorde van klein naar groot. Kijk wat er gebeurd als de keys strings zijn."
+					}
+				]
+			}
+		  },
+		  "/videos/218473140" : {
+			"quiz" : {
+				"title": "Functions",
+				"questions" : [
+					{
+						"question": "1. Kijk goed naar de onderstaande code. Wat zal er getoond worden?",
+						"code" : "&lt;?php header('Content-type: text &#92;plain; charset=utf-8');<br  &#92;> function launch($start){<br  &#92;> while($start &gt; 0){<br  &#92;> echo $start.&quot...\n&quot;<br  &#92;> $start--;<br  &#92;> }<br  &#92;> echo &quotLaunch!\n&quot;<br  &#92;> }<br  &#92;> launch(3);",
+						"answers": [
+							{
+								"answer" : "A: 3...<br /> 2...<br /> 1...<br /> Launch!",
+								"is_correct": true
+							},
+							{
+								"answer" : "B: 2...<br /> 1...<br /> 0...<br /> Launch!"
+							},
+							{
+								"answer" : "C: 2...<br /> 1...<br /> Launch!"
+							},
+							{
+								"answer" : "De functie word foutief aangeroepen, waardoor er niks word uitgevoerd."
+							}
+						]
+					},
+					{
+						"question": "2. De eerste regel van de functie uit opgave 1 is aangepast. Wat zal deze aanpassing veroorzaken?",
+						"code" : "function launch($start = 6){<br  &#92;> while($start &gt; 0){<br  &#92;> echo $start.&quot...\n&quot;<br  &#92;> $start--;<br  &#92;> }<br  &#92;> echo &quotLaunch!\n&quot;",
+						"answers": [
+							{
+								"answer" : "A: Er zit nu een fout in launch($start) die ervoor zal zorgen dat het programma niet zal werken als launch wordt aangeroepen."
+							},
+							{
+								"answer" : "B: Er wordt nu een default waarde aan $start meegegeven die ervoor zorgt dat het programma nog steeds goed werkt als er bijvoorbeeld een string wordt meegegeven als argument."
+							},
+							{
+								"answer" : "C: Er wordt nu een default waarde aan $start meegegeven die wordt gebruikt als launch($start) zonder argumenten wordt aangeroepen.",
+								"is_correct": true
+							},
+							{
+								"answer" : "D: $start zal nu altijd de waarde 6 meekrijgen, wat het argument ook is."
+							},
+							{
+								"answer" : "E: launch($start) wordt nu alleen uitgevoerd als het meegegeven argument gelijk is aan 6."
+							}
+						]
+					},
+					{
+						"question": "3. Wat gaat er fout in de onderstaande code?",
+						"code" : "<p>&lt;?php header('Content-type: text/plain; charset=utf-8');</p><p><br />function countDown($start = 6){<br />&nbsp;&nbsp;&nbsp; while($start &gt; 0){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo $start.&quot...&#92;n&quot;<br />&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $start--;<br />&nbsp;&nbsp;&nbsp; }<br /> }<br /> function launch(){<br />&nbsp;&nbsp;&nbsp; echo &quotLaunch!&#92;n&quot;<br /> }<br /> function whiff(){<br />&nbsp;&nbsp;&nbsp; echo &quot ..whiff...&#92;n&quot;<br /> }<br /> function getCountDown(){<br />&nbsp;&nbsp;&nbsp; return 3;<br /> }<br /> function launchPackage(){<br />&nbsp;&nbsp;&nbsp; $toCount = getCountDown();<br />&nbsp;&nbsp;&nbsp; countDown($toCount);<br />&nbsp;&nbsp;&nbsp; if($toCount == 0){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; whiff();<br />&nbsp;&nbsp;&nbsp; }else{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; launch();<br />&nbsp;&nbsp;&nbsp; }<br /> }<br /> launchPackage();</p>",
+						"answers": [
+							{
+								"answer" : "A: De functies whiff() en launch() worden foutief aangeroepen."
+							},
+							{
+								"answer" : "B: countDown(start) werkt niet."
+							},
+							{
+								"answer" : "C: $toCount kan niet zomaar worden doorgegeven aan een functie die $start nodig heeft."
+							},
+							{
+								"answer" : "D: Er gaat helemaal niks fout",
+								"is_correct": true
+							}
+						]
+					}
+				]
+			},
+			"practice" : {
+				"title" : "Functions",
+				"assignments": [
+					{
+						"assignment": "De werledklok",
+						"description": "Schrijf een php script dat de huidige tijd ophaalt en de gebruiker deze laat converteren naar minimaal zes andere tijdzones."
+					}
+				]
+			}
+		  }
+		}
       }
     ]
   },
