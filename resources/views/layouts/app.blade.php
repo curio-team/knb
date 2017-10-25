@@ -45,7 +45,7 @@
     <div id="app">
 
 
-        <div class="header">
+        <div class="header" style="display:none">
           <div class="container">
             <div class="header-left">
               <!-- Logo -->
@@ -66,11 +66,10 @@
                 </ul>
               @else
                 <ul class="header-nav">
-                    {{--ENABLE AFTER HOUSE SELECTION --}}
-                  {{--<li><a href="{{ action('HomeController@index') }}" class="nav-item is-tab {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a></li>--}}
-                  {{--<li><a href="{{ action('HomeController@learn') }}" class="nav-item is-tab {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a></li>--}}
-                    {{--<li><a href="{{ action('HomeController@gameInfo')}}" class="nav-item is-tab {{ strpos(Request::path(), 'game-info') !== false ? "is-active" : "" }}">Game Info</a></li>--}}
-                    {{--<li><a href="{{ action('HomeController@about') }}" class="nav-item is-tab {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}">Story</a></li>--}}
+                  <li><a href="{{ action('HomeController@index') }}" class="nav-item is-tab {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a></li>
+                  <li><a href="{{ action('HomeController@learn') }}" class="nav-item is-tab {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a></li>
+                    <li><a href="{{ action('HomeController@gameInfo')}}" class="nav-item is-tab {{ strpos(Request::path(), 'game-info') !== false ? "is-active" : "" }}">Game Info</a></li>
+                    <li><a href="{{ action('HomeController@about') }}" class="nav-item is-tab {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}">Story</a></li>
                 </ul>
               @endif
             </div>
@@ -134,13 +133,12 @@
                   </li>
                   <!-- Options nav -->
                   <li><a class="nav-item is-tab is-hidden-tablet"><span class="icon"><i class="fa fa-home"></i></span>Home</a></li>
-                  {{-- <li><a class="nav-item is-tab">About</a></li> --}}
+                   {{--<li><a class="nav-item is-tab">About</a></li>--}}
 
                   @if (\Auth::user()->isHeadMaster())
                     <li><a  href="{{ route('dashboard') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-bar-chart"></i></span> Dashboard</a></li>
                   @else
-                      {{--ENABLE AFTER HOUSE SELECTION--}}
-                    {{--<li><a href="{{ route('profile', \Auth::id()) }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>--}}
+                    <li><a href="{{ route('profile', \Auth::id()) }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>
                   @endif
                   <li>
                       
