@@ -57,6 +57,7 @@
 
 
         mounted: function() {
+            console.log('test');
             this.getBadges();
             this.getStudents();
         },
