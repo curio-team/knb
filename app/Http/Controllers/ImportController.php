@@ -26,10 +26,12 @@ class ImportController extends Controller
         Excel::load($file, function($reader)  {
 
             $results = $reader->select(['klas', 'studentnr', 'naam', 'email'])->get();
-            $id = 'D'.$this->studentnr;
+
             $house_id = 1;
             foreach ($results as $result)
             {
+                $id = 'D'.$result->studentnr;
+
                 if ($house_id == 5)
                 {
                     $house_id = 1;
