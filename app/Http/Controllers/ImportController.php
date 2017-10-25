@@ -43,7 +43,7 @@ class ImportController extends Controller
                 } else
                 {
                     $user = new \App\User;
-                    $user->id = 'D' . $id;
+                    $user->id = $id;
                     $user->name     = $this->stripAccents($result->naam);
                     $user->email        = $result->email;
                     $user->type = 'student';
