@@ -27,7 +27,7 @@ class LoginController extends Controller
      * */
     public function performLogout(Request $request) {
         return 'tst';
-        Auth::logout();
+//        Auth::logout();
         return redirect('https://login.amo.rocks/logout');
     }
 
