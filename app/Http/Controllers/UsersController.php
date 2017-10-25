@@ -40,11 +40,12 @@ class UsersController extends Controller
     }
 
     public function callBack() {
-        if (! count($this->houseRole) )
+        $user = \Auth::user();
+        if (! count($user->houseRole) )
         {
-            \App\HouseRole::create(['user_id' => $this->id, 'house_id' => mt_rand(1, 4), 'role_level', '0']);
-            \App\Point::assign($this->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
-            $this->addPoints(\App\Point::BENEFACTOR_REGISTER_SYSTEM, true);
+            \App\HouseRole::create(['user_id' => $user->id, 'house_id' => mt_rand(1, 4), 'role_level', '0']);
+            \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
+            $user->addPoints(\App\Point::BENEFACTOR_REGISTER_SYSTEM, true);
         }
         return redirect("/");
     }
