@@ -104,5 +104,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('comment', 'CommentController');
 
+    Route::get("amoclient/ready", function() {
+       return redirect('/')->with('success', 'logged in via amologin....');
+    });
 
 });

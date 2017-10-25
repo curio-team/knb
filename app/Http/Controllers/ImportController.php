@@ -40,11 +40,10 @@ class ImportController extends Controller
                 } else
                 {
                     $user = new \App\User;
+                    $user->id = 'D' . $this->studentnr;
                     $user->name     = $this->stripAccents($result->naam);
-                    $user->studentnr = $result->studentnr;
                     $user->email        = $result->email;
                     $user->points = 0;
-                    $user->password     = \Hash::make( 'fdsjh4354J34jmb%poOO' );
                     $user->save();
                     \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house_id, 'role_level', '0']);
                     \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
