@@ -34,6 +34,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', function(){
 
     \Auth::logout();
+    return redirect('https://login.amo.rocks/logout');
 
 
 })->name('logout');
