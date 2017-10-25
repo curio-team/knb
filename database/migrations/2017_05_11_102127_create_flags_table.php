@@ -16,7 +16,7 @@ class CreateFlagsTable extends Migration
         Schema::create('flags', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('post_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->string('user_id');
             $table->timestamps();
 
             $table->foreign('post_id')->references('id')->on('posts');

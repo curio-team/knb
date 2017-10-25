@@ -23,7 +23,7 @@ class CreatePostsTable extends Migration
             $table->boolean('accepted_answer')->nullable();
             $table->integer('post_id')->unsigned()->nullable();
 
-            $table->integer('author_id')->unsigned();
+            $table->string('author_id');
             $table->timestamps();
             $table->softDeletes();
 

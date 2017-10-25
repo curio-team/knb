@@ -15,7 +15,7 @@ class CreateScorelogsTabl extends Migration
     {
         Schema::create('scorelogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->string('user_id');
             $table->integer('points');
             $table->string('reason');
             $table->string('type');

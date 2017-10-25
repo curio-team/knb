@@ -17,7 +17,7 @@ class CreateHouseRolesTable extends Migration
         Schema::create('house_roles', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('house_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->string('user_id');
             $table->integer('role_level')->unsigned()->nullable();
             $table->string('role_title')->nullable();
             $table->timestamps();

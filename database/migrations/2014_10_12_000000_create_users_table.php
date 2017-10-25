@@ -15,15 +15,16 @@ class CreateUsersTable extends Migration
     {
         Schema::defaultStringLength(191);
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('id')->unique();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('studentnr')->unique()->nullable();
-            $table->string('password');
+            $table->string('type');
             $table->integer('points')->nullable();
-            $table->boolean('confirmed')->default(0);
+
             $table->rememberToken();
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 
