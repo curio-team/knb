@@ -10,6 +10,7 @@ use App\Point;
 class User extends Authenticatable
 {
     use Notifiable;
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
