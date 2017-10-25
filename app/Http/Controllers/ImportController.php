@@ -46,6 +46,7 @@ class ImportController extends Controller
                     $user->id = 'D' . $id;
                     $user->name     = $this->stripAccents($result->naam);
                     $user->email        = $result->email;
+                    $user->type = 'student';
                     $user->points = 0;
                     $user->save();
                     \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house_id, 'role_level', '0']);
