@@ -20,6 +20,17 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('https://login.amo.rocks/logout');
+    }
+
     /**
      * Where to redirect users after login.
      *

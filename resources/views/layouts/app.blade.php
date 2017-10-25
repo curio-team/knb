@@ -144,8 +144,8 @@
                   @endif
                   <li>
                       
-                      {{--<a onclick="event.preventDefault(), document.getElementById('logout-form').submit()" class="nav-item is-tab"><span class="icon"><i class="fa fa-sign-out"></i></span> Logout</a>--}}
-                      <a class="nav-item is-tab" href="https://login.amo.rocks/logout"><span class="icon"><i class="fa fa-sign-out"></i></span> Logout</a>
+                      <a onclick="event.preventDefault(), document.getElementById('logout-form').submit()" class="nav-item is-tab"><span class="icon"><i class="fa fa-sign-out"></i></span> Logout</a>
+
                   </li>
                 </ul>
 
