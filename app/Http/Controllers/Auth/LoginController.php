@@ -20,7 +20,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    public function logout(Request $request)
+    public function logout(\Request $request)
     {
         $this->guard()->logout();
 
