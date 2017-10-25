@@ -43,7 +43,10 @@ class UsersController extends Controller
         $user = \Auth::user();
         if (! count($user->houseRole) )
         {
-            \App\HouseRole::create(['user_id' => $user->id, 'house_id' => mt_rand(1, 4), 'role_level', '0']);
+
+            $house_id = \App\House::withCount('users')->orderBy('users_count')->first(['id']);
+
+            \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house_id, 'role_level', '0']);
             \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
             $user->addPoints(\App\Point::BENEFACTOR_REGISTER_SYSTEM, true);
         }
