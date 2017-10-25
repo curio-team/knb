@@ -31,7 +31,7 @@ Route::get('login', function(){
     return redirect('/amoclient/redirect');
 })->name('login');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('logout', 'Auth\LoginController@performLogout')->name('logout');
 
 // Registration Routes...
 //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
