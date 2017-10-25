@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     public function isHeadMaster()
     {
-        return $this->houseRole->role_level == 100 ? true : false;
+        return $this->type == 'teacher' ? true : false;
     }
 
     public static function sortByPoints($limit = null)
