@@ -26,6 +26,7 @@ class ImportController extends Controller
         Excel::load($file, function($reader)  {
 
             $results = $reader->select(['klas', 'studentnr', 'naam', 'email'])->get();
+            $id = 'D'.$this->studentnr;
             $house_id = 1;
             foreach ($results as $result)
             {
@@ -34,13 +35,13 @@ class ImportController extends Controller
                     $house_id = 1;
                 }
 
-                if (\App\User::where('studentnr', '=', $result->studentnr)->exists())
+                if (\App\User::where('id', '=', $id)->exists())
                 {
                    $this->duplicates++;
                 } else
                 {
                     $user = new \App\User;
-                    $user->id = 'D' . $this->studentnr;
+                    $user->id = 'D' . $id;
                     $user->name     = $this->stripAccents($result->naam);
                     $user->email        = $result->email;
                     $user->points = 0;
