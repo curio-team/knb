@@ -181,7 +181,8 @@ return [
         Sven\EnvProviders\EnvServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
-        'Maatwebsite\Excel\ExcelServiceProvider'
+        'Maatwebsite\Excel\ExcelServiceProvider',
+        StudioKaa\Amoclient\AmoclientServiceProvider::class
 
     ],
 
