@@ -26,6 +26,7 @@ class LoginController extends Controller
      * custom logout action
      * */
     public function performLogout(Request $request) {
+        dd('test');
         Auth::logout();
         return redirect('https://login.amo.rocks/logout');
     }
