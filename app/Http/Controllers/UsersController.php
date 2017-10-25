@@ -39,4 +39,14 @@ class UsersController extends Controller
         }
     }
 
+    public function callBack() {
+        if (! $this->has('houseRole') )
+        {
+            \App\HouseRole::create(['user_id' => $this->id, 'house_id' => mt_rand(1, 4), 'role_level', '0']);
+            \App\Point::assign($this->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
+            $this->addPoints(\App\Point::BENEFACTOR_REGISTER_SYSTEM, true);
+        }
+        return redirect("/");
+    }
+
 }
