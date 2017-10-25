@@ -33,6 +33,8 @@ Route::get('login', function(){
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@performLogout')->name('logout');
 
+Route::post('logout', function(){return 'test';});
+
 // Registration Routes...
 //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 //Route::post('register', 'Auth\RegisterController@register');
