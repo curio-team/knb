@@ -33,7 +33,8 @@ Route::get('login', function(){
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', function(){
 
-    return 'tst';
+    \Auth::logout();
+
 
 })->name('logout');
 
