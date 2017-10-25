@@ -1,6 +1,13 @@
 [
   {
     "name":"HTML/CSS",
+	"resources" : [
+		{
+			"name" 			: "Visual Studio Code",
+			"description"	: "Your go to code editor",
+			"link"			: "https://code.visualstudio.com/"
+		}
+	]
     "series":[
       {
         "title":"HTML CSS Fundamentals",
@@ -416,13 +423,6 @@
   {
     "name":"PHP",
     "series":[
-      {
-        "title":"Maak een todo list met PHP en MySql",
-        "difficulty":"beginner",
-        "content":"In deze videoserie maak je met behulp van PDO een databaseconnectie en maak je een een online todo list waarbij de items in een database worden gezet.",
-        "length":"6 videos",
-        "tag":"series-todo-beginner"
-      },
       {
         "title":"PHP Fundamentals",
         "difficulty":"beginner",

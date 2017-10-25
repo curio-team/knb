@@ -20981,7 +20981,7 @@ __webpack_require__(39);
 window.Vue = __webpack_require__(10);
 
 Vue.component('videos', __webpack_require__(44));
-Vue.component('videos-overview', __webpack_require__(45));
+Vue.component('learning', __webpack_require__(45));
 Vue.component('points', __webpack_require__(48));
 Vue.component('badges', __webpack_require__(43));
 Vue.component('tools', __webpack_require__(47));
@@ -22312,13 +22312,103 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     data: function data() {
         return {
             categories: [],
-            active: ''
+            subCategories: [],
+            active: '',
+            subActive: ''
         };
     },
 
@@ -22328,7 +22418,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //TODO: Load from database instead of plain JSON file
         axios.get('json/series_data.json').then(function (response) {
             _this.categories = response.data;
+            _this.subCategories = ['Videos', 'Workbook', 'Resources'];
             _this.setActive(_this.categories[0]);
+            _this.setSubActive(_this.subCategories[0]);
         });
     },
 
@@ -22338,8 +22430,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.active = name;
         },
 
+        setSubActive: function setSubActive(name) {
+            this.subActive = name;
+        },
+
         isActive: function isActive(name) {
             return name === this.active.name ? true : false;
+        },
+
+        isSubActive: function isSubActive(name) {
+            return name === this.subActive ? true : false;
         },
 
         serieClicked: function serieClicked(tag) {
@@ -42203,7 +42303,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\badges\\index.vue"
+Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\badges\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42237,7 +42337,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
+Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] details.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42261,17 +42361,21 @@ module.exports = Component.exports
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+/* styles */
+__webpack_require__(63)
+
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(35),
   /* template */
   __webpack_require__(50),
   /* scopeId */
-  null,
+  "data-v-15cbb1a0",
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\index.vue"
+Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42305,7 +42409,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\links.vue"
+Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\links.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] links.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42339,7 +42443,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\tools.vue"
+Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\tools.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] tools.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42373,7 +42477,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\points\\index.vue"
+Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\points\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42541,7 +42645,9 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "root-element section"
-  }, [_c('h2', [_vm._v("Course videos")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('h2', {
+    staticClass: "sub-title"
+  }, [_vm._v("What do you want to learn next?")]), _vm._v(" "), _c('div', {
     staticClass: "tabs is-centered is-medium is-boxed"
   }, [_c('ul', _vm._l((_vm.categories), function(category) {
     return _c('li', {
@@ -42555,7 +42661,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('a', [_vm._v(_vm._s(category.name))])])
   }))]), _vm._v(" "), _vm._l((_vm.categories), function(category) {
-    return _c('div', [(category.name === _vm.active.name) ? _c('div', {
+    return _c('div', [(category.name === _vm.active.name) ? _c('div', [_c('div', {
+      staticClass: "tabs is-medium is-boxed"
+    }, [_c('ul', _vm._l((_vm.subCategories), function(subCategory) {
+      return _c('li', {
+        class: {
+          'is-active': _vm.isSubActive(subCategory)
+        },
+        on: {
+          "click": function($event) {
+            _vm.setSubActive(subCategory)
+          }
+        }
+      }, [_c('a', [_vm._v(_vm._s(subCategory))])])
+    }))]), _vm._v(" "), (category.name === _vm.active.name) ? _c('div', [(_vm.subActive === 'Videos') ? _c('div', {
       staticClass: "columns"
     }, [(!category.series.length > 0) ? _c('p', {
       staticClass: "notification is-warning"
@@ -42572,7 +42691,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }, [_c('div', {
         staticClass: "card"
-      }, [_vm._m(1, true), _vm._v(" "), _c('div', {
+      }, [_vm._m(0, true), _vm._v(" "), _c('div', {
         staticClass: "card-content"
       }, [_c('div', {
         staticClass: "media"
@@ -42584,14 +42703,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         staticClass: "subtitle is-6"
       }, [_vm._v(_vm._s(serie.difficulty))])])]), _vm._v(" "), _c('div', {
         staticClass: "content"
-      }, [_vm._v("\n                                    " + _vm._s(serie.content) + "\n                                ")]), _vm._v(" "), _c('b', [_vm._v(_vm._s(serie.length))])])])])
-    })], 2) : _vm._e()])
+      }, [_vm._v("\n                                            " + _vm._s(serie.content) + "\n                                        ")]), _vm._v(" "), _c('b', [_vm._v(_vm._s(serie.length))])])])])
+    })], 2) : _vm._e(), _vm._v(" "), (_vm.subActive === 'Workbook') ? _c('div', [_c('p', [_vm._v("This is the werkbook section")])]) : _vm._e(), _vm._v(" "), (_vm.subActive === 'Resources') ? _c('div', [_vm._m(1, true)]) : _vm._e()]) : _vm._e()]) : _vm._e()])
   })], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', {
-    staticClass: "is-subtitle"
-  }, [_c('i', [_vm._v(" Videos meant as support for lessons during the course AMO. ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "card-image"
   }, [_c('figure', {
@@ -42602,6 +42717,128 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "alt": "Image"
     }
   })])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "columns"
+  }, [_c('div', {
+    staticClass: "column"
+  }, [_c('nav', {
+    staticClass: "panel"
+  }, [_c('div', {
+    staticClass: "panel-body"
+  }, [_c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://www.sublimetext.com/"
+    }
+  }, [_vm._v("Sublime Text (Code Editor)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://www.visualstudio.com/"
+    }
+  }, [_vm._v("Visual Studio (Microsoft Development Environment)")]), _vm._v(" (Install enterprise version via MSDN)\n                                            ")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://www.jetbrains.com/phpstorm/"
+    }
+  }, [_vm._v("PHP Storm (Editor for PHP)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://www.apachefriends.org/"
+    }
+  }, [_vm._v("Xampp (local webserver software to run sites on)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://www.getpaint.net/"
+    }
+  }, [_vm._v("Paint.net (image editing software)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "http://www.7-zip.org/"
+    }
+  }, [_vm._v("7 zip (file compression software)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://www.getcloudapp.com/"
+    }
+  }, [_vm._v("CloudApp (Easily take screenshots and clips with instant upload)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://products.office.com/nl-nl/home"
+    }
+  }, [_vm._v("Microsoft Office")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://git-scm.com/download/win"
+    }
+  }, [_vm._v("GIT (version control system)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://www.gitkraken.com/"
+    }
+  }, [_vm._v("GIT Kraken (awesome git client)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": ""
+    }
+  }, [_vm._v("SMTP 4 dev (local smtp server)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://getcomposer.org"
+    }
+  }, [_vm._v("Composer (PHP Package Manager)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://nodejs.org/"
+    }
+  }, [_vm._v("Node JS (Javascript environment)")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://products.office.com/nl-nl/visio/flowchart-software?tab=tabs-1"
+    }
+  }, [_vm._v("Microsoft Visio ")]), _vm._v("(via msdn)\n                                            ")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://products.office.com/nl-nl/project/project-and-portfolio-management-software?tab=tabs-1"
+    }
+  }, [_vm._v("Microsoft Project ")]), _vm._v("(via msdn)\n                                            ")])]), _vm._v(" "), _c('h3', {
+    staticClass: "is-3"
+  }, [_vm._v("Useful online apps")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://asana.com"
+    }
+  }, [_vm._v(" Asana (Project Management Tool) ")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://codepen.io"
+    }
+  }, [_vm._v(" Codepen.io ( Make and share runnable code snippets ) ")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-block"
+  }, [_c('a', {
+    attrs: {
+      "href": "https://github.com"
+    }
+  }, [_vm._v(" Github ( Biggest open source development platform ) ")])])])])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -43185,6 +43422,353 @@ module.exports = function(module) {
 
 __webpack_require__(12);
 module.exports = __webpack_require__(14);
+
+
+/***/ }),
+/* 57 */,
+/* 58 */,
+/* 59 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 60 */,
+/* 61 */,
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(59)();
+exports.push([module.i, "\n.sub-title[data-v-15cbb1a0] {\n    text-align: center;\n}\n\n", ""]);
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(62);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(64)("0f5d27fa", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-15cbb1a0&scoped=true!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-15cbb1a0&scoped=true!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(65)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
 
 
 /***/ })

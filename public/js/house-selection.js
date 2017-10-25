@@ -108,6 +108,7 @@ var pusher = new Pusher('8f5d535785d154b591eb', {
 
 var channel = pusher.subscribe('houseSelection');
 channel.bind('housesSelected', function () {
+    console.log('triggered...');
     setPrinting(true);
 });
 

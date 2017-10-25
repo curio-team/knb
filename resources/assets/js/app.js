@@ -9,7 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 Vue.component('videos', require('./components/learn/details.vue') );
-Vue.component('videos-overview', require('./components/learn/index.vue'));
+Vue.component('learning', require('./components/learn/index.vue'));
 Vue.component('points', require('./components/points/index.vue'));
 Vue.component('badges', require('./components/badges/index.vue'));
 Vue.component('tools', require('./components/learn/tools.vue'));

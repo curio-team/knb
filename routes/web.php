@@ -11,11 +11,10 @@
 |
 */
 
-Route::get('/test', function(){return 'test';});
 Route::get('/house-selection', 'HouseController@selection');
 Route::get('/', 'HomeController@index')->name('home');
 
-
+// delete these after house selection
 Route::get('/', function() {
 
     if (\Auth::check())
@@ -24,6 +23,7 @@ Route::get('/', function() {
     }
     return redirect()->to('/login');
 })->name('home');
+
 
 
 // Authentication Routes...
@@ -88,7 +88,20 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('answer/{post}', 'PostController@editAnswer');
 
     Route::get('post/{post}/answer', 'PostController@answer')->name('answer');
+
     Route::resource('post', 'PostController');
+
+    // delete after house selection
+    Route::get('post/create', function(){
+
+        if (\Auth::check())
+        {
+            return redirect()->to('/house-selection');
+        }
+        return redirect()->to('/login');
+    });
+
+
     Route::resource('comment', 'CommentController');
 
 

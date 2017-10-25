@@ -5,8 +5,8 @@
         <div class="container">
             <div class="content">
             <h1>Learn</h1>
-                <videos-overview></videos-overview>
-                <tools></tools>
+                <learning></learning>
+
                 <resource-links></resource-links>
             </div>
         </div>
