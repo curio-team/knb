@@ -1,13 +1,25 @@
 [
   {
     "name":"HTML/CSS",
-	"resources" : [
+	"software" : [
 		{
 			"name" 			: "Visual Studio Code",
 			"description"	: "Your go to code editor",
 			"link"			: "https://code.visualstudio.com/"
+		},
+		{
+			"name"			: "Google Chrome",
+			"description"	: "",
+			"link"			: "https://www.google.com/chrome/browser/desktop/index.html"
+		},
+		{
+			"name"			: "Mozilla Firefox",
+			"description"	: "",
+			"link"			: "https://www.mozilla.org/nl/firefox/new/"
 		}
-	]
+
+	],
+
     "series":[
       {
         "title":"HTML CSS Fundamentals",

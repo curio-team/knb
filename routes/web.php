@@ -30,6 +30,11 @@ Route::get('/', function() {
 Route::get('login', function(){
     return redirect('/amoclient/redirect');
 })->name('login');
+
+if (\App::environment('local')) {
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+}
+
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', function(){
 
@@ -40,9 +45,16 @@ Route::post('logout', function(){
 })->name('logout');
 
 
+if (\App::environment('local')) {
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+}
+
 // Registration Routes...
-//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-//Route::post('register', 'Auth\RegisterController@register');
+if (\App::environment('local'))
+{
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register');
+}
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -101,14 +113,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('post', 'PostController');
 
     // delete after house selection
-    Route::get('post/create', function(){
-
-        if (\Auth::check())
-        {
-            return redirect()->to('/house-selection');
-        }
-        return redirect()->to('/login');
-    });
+//    Route::get('post/create', function(){
+//
+//        if (\Auth::check())
+//        {
+//            return redirect()->to('/house-selection');
+//        }
+//        return redirect()->to('/login');
+//    });
 
 
     Route::resource('comment', 'CommentController');

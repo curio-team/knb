@@ -45,7 +45,7 @@
     <div id="app">
 
 
-        <div class="header" style="display:none">
+        <div class="header" style="">
           <div class="container">
             <div class="header-left">
               <!-- Logo -->

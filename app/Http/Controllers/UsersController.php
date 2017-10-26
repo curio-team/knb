@@ -43,7 +43,6 @@ class UsersController extends Controller
         $user = \Auth::user();
         if (! count($user->houseRole) )
         {
-
             $house = \App\House::withCount('users')->orderBy('users_count')->first();
 
             \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house->id, 'role_level', '0']);

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 56);
+/******/ 	return __webpack_require__(__webpack_require__.s = 61);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -20980,12 +20980,12 @@ module.exports = g;
 __webpack_require__(39);
 window.Vue = __webpack_require__(10);
 
-Vue.component('videos', __webpack_require__(44));
-Vue.component('learning', __webpack_require__(45));
-Vue.component('points', __webpack_require__(48));
-Vue.component('badges', __webpack_require__(43));
-Vue.component('tools', __webpack_require__(47));
-Vue.component('resource-links', __webpack_require__(46));
+Vue.component('videos', __webpack_require__(46));
+Vue.component('learning', __webpack_require__(47));
+Vue.component('points', __webpack_require__(50));
+Vue.component('badges', __webpack_require__(45));
+Vue.component('tools', __webpack_require__(49));
+Vue.component('resource-links', __webpack_require__(48));
 
 var app = new Vue({
     el: '#app'
@@ -21999,6 +21999,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     mounted: function mounted() {
+        console.log('test');
         this.getBadges();
         this.getStudents();
     },
@@ -22343,63 +22344,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -22418,7 +22362,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //TODO: Load from database instead of plain JSON file
         axios.get('json/series_data.json').then(function (response) {
             _this.categories = response.data;
-            _this.subCategories = ['Videos', 'Workbook', 'Resources'];
+            _this.subCategories = ['Videos', 'Workbook', 'Software'];
             _this.setActive(_this.categories[0]);
             _this.setSubActive(_this.subCategories[0]);
         });
@@ -22747,7 +22691,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {window._ = __webpack_require__(41);
+/* WEBPACK VAR INJECTION */(function($) {window._ = __webpack_require__(43);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -25198,6 +25142,69 @@ if (typeof jQuery === 'undefined') {
 
 /***/ }),
 /* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(42)();
+exports.push([module.i, "\n.sub-title[data-v-15cbb1a0] {\n    text-align: center;\n}\n\n", ""]);
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -42286,24 +42293,24 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(55)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(60)(module)))
 
 /***/ }),
-/* 42 */,
-/* 43 */
+/* 44 */,
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(33),
   /* template */
-  __webpack_require__(53),
+  __webpack_require__(55),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\badges\\index.vue"
+Component.options.__file = "C:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\badges\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42324,20 +42331,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(34),
   /* template */
-  __webpack_require__(54),
+  __webpack_require__(56),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
+Component.options.__file = "C:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\details.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] details.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42358,24 +42365,24 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(63)
+__webpack_require__(57)
 
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(35),
   /* template */
-  __webpack_require__(50),
+  __webpack_require__(52),
   /* scopeId */
   "data-v-15cbb1a0",
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\index.vue"
+Component.options.__file = "C:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42396,20 +42403,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(36),
   /* template */
-  __webpack_require__(52),
+  __webpack_require__(54),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\links.vue"
+Component.options.__file = "C:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\links.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] links.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42430,20 +42437,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(37),
   /* template */
-  __webpack_require__(49),
+  __webpack_require__(51),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\tools.vue"
+Component.options.__file = "C:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\learn\\tools.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] tools.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42464,20 +42471,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(38),
   /* template */
-  __webpack_require__(51),
+  __webpack_require__(53),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "c:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\points\\index.vue"
+Component.options.__file = "C:\\xampp7\\htdocs\\projects\\knb\\resources\\assets\\js\\components\\points\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -42498,7 +42505,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -42639,7 +42646,7 @@ if (false) {
 }
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -42676,9 +42683,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }, [_c('a', [_vm._v(_vm._s(subCategory))])])
     }))]), _vm._v(" "), (category.name === _vm.active.name) ? _c('div', [(_vm.subActive === 'Videos') ? _c('div', {
       staticClass: "columns"
-    }, [(!category.series.length > 0) ? _c('p', {
-      staticClass: "notification is-warning"
-    }, [_vm._v("Nog geen video series beschikbaar")]) : _vm._e(), _vm._v(" "), _vm._l((category.series), function(serie) {
+    }, _vm._l((category.series), function(serie) {
       return _c('div', {
         staticClass: "column is-one-quarter",
         staticStyle: {
@@ -42704,7 +42709,27 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }, [_vm._v(_vm._s(serie.difficulty))])])]), _vm._v(" "), _c('div', {
         staticClass: "content"
       }, [_vm._v("\n                                            " + _vm._s(serie.content) + "\n                                        ")]), _vm._v(" "), _c('b', [_vm._v(_vm._s(serie.length))])])])])
-    })], 2) : _vm._e(), _vm._v(" "), (_vm.subActive === 'Workbook') ? _c('div', [_c('p', [_vm._v("This is the werkbook section")])]) : _vm._e(), _vm._v(" "), (_vm.subActive === 'Resources') ? _c('div', [_vm._m(1, true)]) : _vm._e()]) : _vm._e()]) : _vm._e()])
+    })) : _vm._e(), _vm._v(" "), (_vm.subActive === 'Workbook') ? _c('div', [_c('p', [_vm._v("This is the werkbook section")])]) : _vm._e(), _vm._v(" "), (_vm.subActive === 'Software') ? _c('div', [_c('div', {
+      staticClass: "columns"
+    }, [_c('div', {
+      staticClass: "column"
+    }, [_c('nav', {
+      staticClass: "panel"
+    }, [_c('div', {
+      staticClass: "panel-body"
+    }, _vm._l((category.software), function(ware) {
+      return _c('div', {
+        staticClass: "panel-block"
+      }, [_c('a', {
+        attrs: {
+          "href": ware.link
+        }
+      }, [_vm._v(_vm._s(ware.name))]), _vm._v(" "), (ware.description) ? _c('p', {
+        staticStyle: {
+          "text-align": "center"
+        }
+      }, [_c('small', [_c('i', [_vm._v("(" + _vm._s(ware.description) + ")")])])]) : _vm._e()])
+    }))])])])]) : _vm._e()]) : _vm._e()]) : _vm._e()])
   })], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -42717,128 +42742,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "alt": "Image"
     }
   })])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "columns"
-  }, [_c('div', {
-    staticClass: "column"
-  }, [_c('nav', {
-    staticClass: "panel"
-  }, [_c('div', {
-    staticClass: "panel-body"
-  }, [_c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://www.sublimetext.com/"
-    }
-  }, [_vm._v("Sublime Text (Code Editor)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://www.visualstudio.com/"
-    }
-  }, [_vm._v("Visual Studio (Microsoft Development Environment)")]), _vm._v(" (Install enterprise version via MSDN)\n                                            ")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://www.jetbrains.com/phpstorm/"
-    }
-  }, [_vm._v("PHP Storm (Editor for PHP)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://www.apachefriends.org/"
-    }
-  }, [_vm._v("Xampp (local webserver software to run sites on)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://www.getpaint.net/"
-    }
-  }, [_vm._v("Paint.net (image editing software)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "http://www.7-zip.org/"
-    }
-  }, [_vm._v("7 zip (file compression software)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://www.getcloudapp.com/"
-    }
-  }, [_vm._v("CloudApp (Easily take screenshots and clips with instant upload)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://products.office.com/nl-nl/home"
-    }
-  }, [_vm._v("Microsoft Office")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://git-scm.com/download/win"
-    }
-  }, [_vm._v("GIT (version control system)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://www.gitkraken.com/"
-    }
-  }, [_vm._v("GIT Kraken (awesome git client)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": ""
-    }
-  }, [_vm._v("SMTP 4 dev (local smtp server)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://getcomposer.org"
-    }
-  }, [_vm._v("Composer (PHP Package Manager)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://nodejs.org/"
-    }
-  }, [_vm._v("Node JS (Javascript environment)")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://products.office.com/nl-nl/visio/flowchart-software?tab=tabs-1"
-    }
-  }, [_vm._v("Microsoft Visio ")]), _vm._v("(via msdn)\n                                            ")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://products.office.com/nl-nl/project/project-and-portfolio-management-software?tab=tabs-1"
-    }
-  }, [_vm._v("Microsoft Project ")]), _vm._v("(via msdn)\n                                            ")])]), _vm._v(" "), _c('h3', {
-    staticClass: "is-3"
-  }, [_vm._v("Useful online apps")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://asana.com"
-    }
-  }, [_vm._v(" Asana (Project Management Tool) ")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://codepen.io"
-    }
-  }, [_vm._v(" Codepen.io ( Make and share runnable code snippets ) ")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-block"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://github.com"
-    }
-  }, [_vm._v(" Github ( Biggest open source development platform ) ")])])])])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -42849,7 +42752,7 @@ if (false) {
 }
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43002,7 +42905,7 @@ if (false) {
 }
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43091,7 +42994,7 @@ if (false) {
 }
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43193,7 +43096,7 @@ if (false) {
 }
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43389,120 +43292,17 @@ if (false) {
 }
 
 /***/ }),
-/* 55 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(12);
-module.exports = __webpack_require__(14);
-
-
-/***/ }),
-/* 57 */,
-/* 58 */,
-/* 59 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function() {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
-			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
-			} else {
-				result.push(item[1]);
-			}
-		}
-		return result.join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-
-/***/ }),
-/* 60 */,
-/* 61 */,
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(59)();
-exports.push([module.i, "\n.sub-title[data-v-15cbb1a0] {\n    text-align: center;\n}\n\n", ""]);
-
-/***/ }),
-/* 63 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(62);
+var content = __webpack_require__(41);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(64)("0f5d27fa", content, false);
+var update = __webpack_require__(58)("0f5d27fa", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -43518,7 +43318,7 @@ if(false) {
 }
 
 /***/ }),
-/* 64 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -43537,7 +43337,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(65)
+var listToStyles = __webpack_require__(59)
 
 /*
 type StyleObject = {
@@ -43739,7 +43539,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 65 */
+/* 59 */
 /***/ (function(module, exports) {
 
 /**
@@ -43769,6 +43569,42 @@ module.exports = function listToStyles (parentId, list) {
   }
   return styles
 }
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(12);
+module.exports = __webpack_require__(14);
 
 
 /***/ })

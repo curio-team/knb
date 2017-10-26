@@ -22,14 +22,6 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /*
-     * custom logout action
-     * */
-    public function performLogout(Request $request) {
-        return 'tst';
-//        Auth::logout();
-//        return redirect('https://login.amo.rocks/logout');
-    }
 
     /**
      * Where to redirect users after login.
