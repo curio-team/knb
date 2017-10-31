@@ -47,7 +47,8 @@ class PostController extends Controller
 
     public function lock(Post $post)
     {
-        $post->locked = 1;
+
+        $post->locked = $post->isLocked() ? 0 : 1;
         $post->save();
     }
 
