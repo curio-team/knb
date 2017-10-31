@@ -134,7 +134,7 @@ class User extends Authenticatable
                 FROM `points`
                 INNER JOIN `score_types` ON `score_types`.`id` = `points`.`score_type_id`
                 LEFT JOIN `users` ON `users`.`id` = `points`.`receiver_id`
-                WHERE `users`.`id` = " . $this->id;
+                WHERE `users`.`id` = " . '$this->id';
 
        $points = \DB::select($sql);
        $points[0]->total += $this->points;
