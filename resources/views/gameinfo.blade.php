@@ -154,7 +154,7 @@
                     <article class="media">
                         <figure class="media-left">
                             <p class="image is-32x32">
-                                <img src="{{asset('img/badges/')}}{{$badge->img_path}}" alt="">
+                                <img src="{{asset('img/badges')}}/{{$badge->img_path}}" alt="">
                             </p>
                         </figure>
                         <div class="media-content">
