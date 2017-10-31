@@ -4,10 +4,10 @@
     <ul class="admin-controls">
 
         <li data-id="{{$post->id}}" class="admin-control btn-admin-control-lock">
-            @if ($post->isLocked())
-                <i class="fa fa-lock"></i> lock this post
+            @if (! $post->isLocked())
+                <i class="fa fa-lock"></i> Lock this post
             @else
-                <i class="fa fa-unlock">Unlock this post</i>
+                <i class="fa fa-unlock"></i> Unlock this post
             @endif
         </li>
 
