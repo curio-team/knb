@@ -97,7 +97,7 @@
                         </p>
                     </div>
                 </div>
-                @if($post->isLocked()) <p style="color: red; border: 1px solid red">This post is locked. You cannot answer or comment this post.</p>
+                @if($post->isLocked()) <p style="color: red; border: 1px solid red">This post is locked. You cannot answer or comment this post.</p> @endif
             </div>
         @endforeach
 
