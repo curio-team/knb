@@ -14,15 +14,11 @@
                         <div class="card column is-3" style="margin: 20px">
                             <div class="card-image">
                                 <figure class="image">
-                                    <img src="{{asset('img/icons/' . $badge->img_path)}}" alt="{{$badge->title}}">
+                                    <img src="{{$badge->image}}" alt="{{$badge->title}}">
                                 </figure>
                             </div>
                             <div class="card-content" style="padding: 5px">
-                                <div class="media">
-                                    <div class="media-content">
-                                        <p class="title is-5" style="text-align: center">{{$badge->title}}</p>
-                                    </div>
-                                </div>
+
 
                                 <div class="content" style="text-align:center">
                                     {{ $badge->description }}
