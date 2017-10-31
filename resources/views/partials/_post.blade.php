@@ -74,7 +74,7 @@
                         <a href="{{ action('PostController@answer', $post) }}" class="button is-success">Give answer</a>
                         <a href="" class="btn-add-comment button is-info" >Add comment</a>
                         @else
-                        <p class="is-warning">This post is locked. You can not comment or answer this post</p>
+                        <p style="color: darkred">This post is locked. You can not comment or answer this post</p>
                         @endunless
                     </div>
 
