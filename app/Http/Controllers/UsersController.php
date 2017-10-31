@@ -47,7 +47,7 @@ class UsersController extends Controller
 
             \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house->id, 'role_level', '0']);
             \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
-            \App\Badge::assign($user->id, 1);
+//            \App\Badge::assign($user->id, 1);
             $user->addPoints(\App\Point::BENEFACTOR_REGISTER_SYSTEM, true);
         }
         return redirect("/");
