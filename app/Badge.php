@@ -14,7 +14,7 @@ class Badge extends Model
         $user = \App\User::find($user_id);
         $badge = \App\Badge::find($badge_id);
 
-        $user->badges->attach($badge_id);
+        $user->badges()->attach($badge_id);
 
         $message = new \App\Message();
         $message->sender_id = null;
