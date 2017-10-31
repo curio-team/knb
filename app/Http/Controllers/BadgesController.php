@@ -28,10 +28,7 @@ class BadgesController extends Controller
         if ( ! $user->badges->contains($badge->id) )
         {
             //assign badge
-            $user->badges()->attach($request->badge_id);
-            $message->subject = 'You received a new Badge!!'; // Implement message based on type here
-            $message->content = "You have received the badge: <b>$badge->title.</b> <br> <i> $badge->description </i>. <br> Congratulations!";
-
+            \App\Badge::assign($user->id, $badge->id);
         } else
         {
             //deassign badge
