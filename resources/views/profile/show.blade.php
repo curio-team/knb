@@ -21,7 +21,7 @@
                                 @else
 
                                     <figure class="image">
-                                        <img src="{{ asset('img/icons/badge-locked.png')  }}" alt="Locked badge">
+                                        <img src="{{ asset('img/badges/badge-locked.png')  }}" alt="Locked badge">
                                     </figure>
 
                                 @endif
