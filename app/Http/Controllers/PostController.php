@@ -45,6 +45,10 @@ class PostController extends Controller
         ]);
     }
 
+    public function lock(Post $post)
+    {
+        dd($post);
+    }
 
     /**
      * Store a newly created resource in storage.

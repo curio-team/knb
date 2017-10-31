@@ -77,7 +77,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/dashboard/badges', 'DashboardController@badges')->name('badges');
         Route::post('/dashboard/badges/toggle', 'BadgesController@toggle');
 
-
+        Route::post('/post/{post}/lock', 'PostController@Lock');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         // allocate points from dashboard
         Route::post('/dashboard/points/', 'PointsController@allocate');
