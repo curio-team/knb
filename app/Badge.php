@@ -11,7 +11,7 @@ class Badge extends Model
     }
 
     public function getImage() {
-        return public_path("img\badges\$this->img_path");
+        return public_path("img/badges/$this->img_path");
 
     }
 
