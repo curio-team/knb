@@ -13,7 +13,7 @@
 
                     <div class="level-right">
                         <div class="level-item">
-                            <a href="{{ route('post.create') }}" class="button ask-question is-pulled-right is-primary">Ask question</a>
+                            <a style="display:none" href="{{ route('post.create') }}" class="button ask-question is-pulled-right is-primary">Ask question</a>
                         </div>
                     </div>
                 </nav>
