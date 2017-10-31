@@ -11,7 +11,7 @@
                     <h2>Badges:</h2>
                     <div class="columns" style="flex-wrap: wrap">
                     @foreach($badges as $badge)
-                        <div class="card column is-3" style="margin: 20px">
+                        <div class="card column is-3 @if($user->hasBadge($badge->id)) light-up @endif" style="margin: 20px">
                             <div class="card-image">
                                 @if($user->hasBadge($badge->id))
 
