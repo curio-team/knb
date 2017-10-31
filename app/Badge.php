@@ -11,8 +11,7 @@ class Badge extends Model
     }
 
     public function image() {
-        return asset('img/badges/') . $this->img_path;
-
+        return asset('img/badges/') . '/' . $this->img_path;
     }
 
     public static function assign($user_id, $badge_id) {
