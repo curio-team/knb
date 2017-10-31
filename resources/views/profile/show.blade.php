@@ -15,13 +15,13 @@
                             <div class="card-image">
                                 @if($user->hasBadge($badge->id))
 
-                                <figure class="image">
-                                    <img src="{{ $badge->image() }}" alt="{{$badge->title}}">
-                                </figure>
+                                    <figure class="image">  
+                                        <img src="{{ $badge->image() }}" alt="{{$badge->title}}">
+                                    </figure>
                                 @else
 
                                     <figure class="image">
-                                        <img src="">
+                                        <img src="{{ asset('img/icons/badge-locked.png')  }}" alt="Locked badge">
                                     </figure>
 
                                 @endif
