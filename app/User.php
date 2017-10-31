@@ -131,6 +131,7 @@ class User extends Authenticatable
         return $this->houseRole->house->singular;
     }
 
+    /* DEPRECATED */
     public function getPoints()
     {
 //        return $this->id;

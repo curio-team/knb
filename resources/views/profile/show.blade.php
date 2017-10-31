@@ -20,7 +20,10 @@
                                 </figure>
                                 @else
 
-                                <div>no badge yet</div>
+                                    <figure class="image">
+                                        <img src="">
+                                    </figure>
+
                                 @endif
                             </div>
                             <div class="card-content" style="padding: 5px">

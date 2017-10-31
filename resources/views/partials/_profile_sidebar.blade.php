@@ -15,7 +15,7 @@
                     Affiliation: <b>{{ $user->houseRole->house->name }}</b>
                 </div>
                 <div class="panel-block">
-                    Points: <p style="font-size: 8em" class="profile_sidebar_points">{{$user->getPoints()}}</p>
+                    Points: <p style="font-size: 8em" class="profile_sidebar_points">{{$user->points}}</p>
                 </div>
             </nav>
 
