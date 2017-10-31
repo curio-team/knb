@@ -124,7 +124,7 @@ $('document').ready(function(){
                 _token: window.Laravel.csrfToken
             }
         }).done(function(data){
-            document.location.href="/";
+            document.location.href="/post/" + id;
         });
 
     });
