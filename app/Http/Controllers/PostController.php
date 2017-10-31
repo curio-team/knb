@@ -201,8 +201,12 @@ class PostController extends Controller
             return redirect()->back()->with('error', 'Error editing post.: <br>' . $e->getMessage());
         }
 
-
-        return redirect()->action('PostController@show', $post->parent)->with('success', 'Succesfully edited your question.');
+        if ($post->parent)
+        {
+            return redirect()->action('PostController@show', $post->parent->id)->with('success', 'Succesfully edited your question.');
+        } else {
+            return redirect()->action('PostController@show', $post->id)->with('success', 'Succesfully edited your question.');
+        }
 
     }
 
