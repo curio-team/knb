@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->integer('views')->unsigned()->default(0);
             $table->integer('votes')->default(0);
             $table->integer('flags')->default(0);
+            $table->boolean('locked')->default(0);
             $table->boolean('accepted_answer')->nullable();
             $table->integer('post_id')->unsigned()->nullable();
 

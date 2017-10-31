@@ -51,6 +51,11 @@ class Post extends Model
         return $this->flags > 0 ? true : false;
     }
 
+    public function isLocked()
+    {
+        return $this->locked ? true : false;
+    }
+
     public static function getFlaggedPosts()
     {
         return \App\Post::where('flags', '>', 0)->get();

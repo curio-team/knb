@@ -70,9 +70,12 @@
                         </div>
                     </div>
                     <div class="button-group">
-                        <a href="{{ action('PostController@answer', $post) }}" class="button is-success">Give answer</a>
-
-                        <a href="" class="btn-add-comment button is-info">Add comment</a>
+                        @unless ($post->isLocked())
+                        <button href="{{ action('PostController@answer', $post) }}" class="button is-success">Give answer</button>
+                        <button href="" class="btn-add-comment button is-info" >Add comment</button>
+                        @else
+                        <p class="warning">This post is locked. You can not comment or answer this post</p>
+                        @endunless
                     </div>
 
                     <div class="form-comment-hidden">
@@ -192,10 +195,11 @@
                                 </form>
                             @endif
 
+                            @unless( $post->parent->isLocked() )
                             <div class="button-group">
                                 <a href="" class="btn-add-comment button is-info">Add comment</a>
                             </div>
-
+                            @endunless
                             <div class="form-comment-hidden">
                                 @include('partials._create-comment')
                             </div>
