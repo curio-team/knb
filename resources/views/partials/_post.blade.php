@@ -71,8 +71,8 @@
                     </div>
                     <div class="button-group">
                         @unless ($post->isLocked())
-                        <button href="{{ action('PostController@answer', $post) }}" class="button is-success">Give answer</button>
-                        <button href="" class="btn-add-comment button is-info" >Add comment</button>
+                        <a href="{{ action('PostController@answer', $post) }}" class="button is-success">Give answer</a>
+                        <a href="" class="btn-add-comment button is-info" >Add comment</a>
                         @else
                         <p class="warning">This post is locked. You can not comment or answer this post</p>
                         @endunless
