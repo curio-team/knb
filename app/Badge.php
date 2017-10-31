@@ -22,7 +22,7 @@ class Badge extends Model
         $message->subject = 'You have earned a badge!!!';
         $message->content = "<p> This is so awesome. You earned the badge: </p> 
                              <h5> $badge->title </h5>
-                             <img src='img/badges/$badge->img_path' alt='$badge->title'>
+                             <img src='public_path(\'img/badges/$badge->img_path\')' alt='$badge->title'>
                              <p>$badge->description</p>";
         $message->save();
 
