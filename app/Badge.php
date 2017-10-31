@@ -10,8 +10,8 @@ class Badge extends Model
         return $this->belongsToMany(\App\User::class);
     }
 
-    public function getImage() {
-        return "test";
+    public function image() {
+        return public_path('img/badges/') . $this->img_path;
 
     }
 
@@ -27,9 +27,9 @@ class Badge extends Model
         $message->subject = 'You have earned a badge!!!';
         $message->content = "<p> This is so awesome. You earned the badge: </p> 
                              <h5> $badge->title </h5>
-                             <img src='$badge->getImage()' alt='$badge->title'>
+                             <img src='$badge->image' alt='$badge->title'>
                              <p>$badge->description</p>";
-        dd('testing');
+
         $message->save();
 
     }
