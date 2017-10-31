@@ -182,6 +182,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, $id)
     {
+        dd('triggered');
         $post = Post::findOrFail($id);
 
         try
