@@ -10,12 +10,18 @@
                 <div class="badge-overview">
                     <h2>Badges:</h2>
                     <div class="columns" style="flex-wrap: wrap">
-                    @foreach($user->badges as $badge)
+                    @foreach($badges as $badge)
                         <div class="card column is-3" style="margin: 20px">
                             <div class="card-image">
+                                @if($user->hasBadge($badge->id))
+
                                 <figure class="image">
                                     <img src="{{ $badge->image() }}" alt="{{$badge->title}}">
                                 </figure>
+                                @else
+
+                                <div>no badge yet</div>
+                                @endif
                             </div>
                             <div class="card-content" style="padding: 5px">
 

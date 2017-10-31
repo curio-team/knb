@@ -111,6 +111,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Badge::class);
     }
 
+    public function hasBadge($badge_id) {
+        return $this->badges->contains($badge_id);
+    }
+
     public function messages()
     {
         return $this->hasMany(\App\Message::class, 'receiver_id');

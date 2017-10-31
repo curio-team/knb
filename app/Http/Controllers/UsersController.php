@@ -9,7 +9,10 @@ class UsersController extends Controller
 
     public function show(\App\User $user)
     {
-        return view('profile.show', ['user' => $user]);
+        $badges = \App\Badge::all();
+        return view('profile.show', [
+            'user' => $user,
+            'badges' => $badges]);
     }
 
     public function getStudents() {
