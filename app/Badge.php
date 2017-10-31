@@ -11,7 +11,7 @@ class Badge extends Model
     }
 
     public function getImage() {
-        dd('test');
+        return "test";
 
     }
 
@@ -29,6 +29,7 @@ class Badge extends Model
                              <h5> $badge->title </h5>
                              <img src='$badge->getImage()' alt='$badge->title'>
                              <p>$badge->description</p>";
+        dd('testing');
         $message->save();
 
     }
