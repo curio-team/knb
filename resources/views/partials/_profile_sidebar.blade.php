@@ -17,6 +17,9 @@
                 <div class="panel-block">
                     Points: <p style="font-size: 8em" class="profile_sidebar_points">{{$user->points}}</p>
                 </div>
+                <div class="panel-block">
+                    Forum points: <b> {{$user->getForumPoints()}} </b>
+                </div>
             </nav>
 
             @if ($user->id === \Auth::user()->id)
@@ -25,7 +28,7 @@
                         <div class="panel-block">
 
                             <a href="{{route('request-badge')}}">Request a badge</a>
-                            
+
                         </div>
 
                     </div>
