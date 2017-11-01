@@ -74,7 +74,7 @@ function getTime(){
 // The drawing and printing function
 function update() {
     window.requestAnimationFrame(update);
-
+    emblemImage = document.getElementById('emblemImage');
     ctx.clearRect(0, 0, canvasW, canvasH);
 
     //
