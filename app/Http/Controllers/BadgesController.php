@@ -26,7 +26,7 @@ class BadgesController extends Controller
 
 
         \Mail::to(['f.vangils@rocwb.nl', 'b.roos2@rocwb.nl', 't.lutt@rocwb.nl', 'e.boekhoudt@rocwb.nl'])
-            ->send(new BadgeRequest($badge, $user));
+            ->send(new \App\Mail\BadgeRequest($badge, $user));
 
 
     }
