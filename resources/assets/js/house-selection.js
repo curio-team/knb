@@ -61,7 +61,7 @@ var jumping = true;
 var printJump = 5;
 var emblemW = 135;
 var emblemH = 186;
-var emblemNowH = 1;
+var emblemNowH = 0;
 
 function setPrinting(printing){
     isPrinting = printing;
