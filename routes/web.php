@@ -98,7 +98,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/learn', 'HomeController@learn');
     Route::get('/learn/{name}', 'HomeController@details');
     Route::get('/request-badge', 'HomeController@badgeRequest')->name('request-badge');
-    Route::post('/request-badge', 'BadgeController@request')->name('post-request-badge');
+    Route::post('/request-badge', 'BadgesController@request')->name('post-request-badge');
 
     Route::resource('house', 'HouseController');
 
