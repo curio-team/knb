@@ -27,7 +27,8 @@ class HouseController extends Controller
      */
     public function selection()
     {
-        return view('houses.selection');
+        $thumbnail = \Auth::user()->houseRole->house->thumbnail();
+        return view('houses.selection', ['thumbnail', $thumbnail]);
     }
 
     /**

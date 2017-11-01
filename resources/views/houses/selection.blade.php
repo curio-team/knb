@@ -9,7 +9,7 @@
                     <img src="{{ asset('img/houses/printer_bottom.png') }}" id="printerBottomImage" class="canvas-image" alt="">
                     <img src="{{ asset('img/houses/printer_top.png') }}" id="printerTopImage" class="canvas-image" alt="">
                     <img src="{{ asset('img/houses/printer_paper.png') }}" id="printerPaperImage" class="canvas-image" alt="">
-                    <img src="{{ \Auth::user()->houseRole->house->thumbnail() }}" id="emblemImage" class="canvas-image" alt="">
+                    <img src="{{ $thumbnail }}" id="emblemImage" class="canvas-image" alt="">
 
                     <div class="center-content">
                         <canvas id="printerCanvas" class="center" width="375px" height="550px">Sorry, your browser does not support HTML5 canvas</canvas>
