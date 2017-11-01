@@ -16,9 +16,10 @@ class BadgeRequest extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($badge, $user)
     {
-        //
+        $this->badge = $badge;
+        $this->user = $user;
     }
 
     /**
@@ -28,6 +29,10 @@ class BadgeRequest extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.badge.request');
+
+        return $this->markdown('emails.badge.request')->with([
+            'user' => $this->user,
+            'badge' => $this->badge
+        ]);
     }
 }
