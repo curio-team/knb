@@ -149,7 +149,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        if ($post->author->id !== \Auth::user()->id)
+        if ($post->author->id !== \Auth::user()->id && \Auth::user()->type != 'teacher')
         {
             return back();
         }
