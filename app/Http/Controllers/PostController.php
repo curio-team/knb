@@ -149,6 +149,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if ($post->author->id !== \Auth::user()->id)
+        {
+            return back();
+        }
         return view('posts/edit', [
             'post' => $post->load('author', 'author.houseRole', 'author.houseRole.house', 'votes'),
             'tags' => Tag::all()
