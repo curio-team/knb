@@ -61,7 +61,7 @@ var jumping = true;
 var printJump = 5;
 var emblemW = 135;
 var emblemH = 186;
-var emblemNowH = 0;
+var emblemNowH = 1;
 
 function setPrinting(printing){
     isPrinting = printing;
@@ -102,7 +102,7 @@ function update() {
     ctx.drawImage(printerPaperImage, 0, paperY, 379, 255);
     ctx.drawImage(emblemImage,
         // sourceX, sourceY (where on the image do we start sampling from)
-        0, Math.max(1, Math.floor(emblemImage.height)) - (Math.max(1, Math.floor(emblemImage.height)) * emblemNowH),
+        1, Math.max(1, Math.floor(emblemImage.height)) - (Math.max(1, Math.floor(emblemImage.height)) * emblemNowH),
 
         // sourceW, sourceH (for what width and height do we sample)
         Math.max(1, Math.floor(emblemImage.width)), Math.max(1, Math.floor(emblemImage.height)) * emblemNowH,
