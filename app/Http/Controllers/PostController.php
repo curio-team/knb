@@ -10,6 +10,7 @@ use App\Http\Requests\UpdatePostRequest;
 use Session;
 use App\Post;
 use App\Tag;
+use App\Message;
 use Illuminate\Http\Request;
 use Auth;
 
