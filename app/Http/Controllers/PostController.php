@@ -347,10 +347,30 @@ class PostController extends Controller
         // check whether post was an answer for determining the point type.
         $type = $post->isAnswer() ? \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED : \App\Point::BENEFACTOR_TYPE_QUESTION_ASKED;
 
+        $author_id = $post->author_id;
         \App\Point::deAssign($post->author_id, $type);
         $post->author->deletePoints($type, true);
         $post->children()->delete();
         $post->delete();
+
+        try
+        {
+            \DB::beginTransaction();
+
+            $message = new Message;
+            $message->sender_id = \Auth::id();
+            $message->receiver_id = $author_id;
+            $message->subject = 'Your post or answer has been removed.';
+            $message->content = 'Please follow our guidelines: do not spam, be specific and only give useful answers. Just a link is never a useful answer!';
+            $message->save();
+
+            // create the message
+            \DB::commit();
+        } catch (\Exception $e)
+        {
+            \DB::rollback();
+            return redirect()->back()->with('error', 'Error creating message.' . var_export($e->getMessage(), true));
+        }
 
     }
 }
