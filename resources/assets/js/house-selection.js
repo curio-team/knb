@@ -100,18 +100,23 @@ function update() {
 
     ctx.drawImage(printerBottomImage, 0, 0, 379, 500);
     ctx.drawImage(printerPaperImage, 0, paperY, 379, 255);
-    ctx.drawImage(emblemImage,
-        // sourceX, sourceY (where on the image do we start sampling from)
-        0, Math.max(1, Math.floor(emblemImage.height)) - (Math.max(1, Math.floor(emblemImage.height)) * emblemNowH),
+    try {
+        ctx.drawImage(emblemImage,
+            // sourceX, sourceY (where on the image do we start sampling from)
+            0, Math.max(1, Math.floor(emblemImage.height)) - (Math.max(1, Math.floor(emblemImage.height)) * emblemNowH),
 
-        // sourceW, sourceH (for what width and height do we sample)
-        Math.max(1, Math.floor(emblemImage.width)), Math.max(1, Math.floor(emblemImage.height)) * emblemNowH,
+            // sourceW, sourceH (for what width and height do we sample)
+            Math.max(1, Math.floor(emblemImage.width)), Math.max(1, Math.floor(emblemImage.height)) * emblemNowH,
 
-        // X, Y (where do we draw)
-        120, 280,
+            // X, Y (where do we draw)
+            120, 280,
 
-        // W, H (what width and height do we draw)
-        emblemW, emblemH * emblemNowH);
+            // W, H (what width and height do we draw)
+            emblemW, emblemH * emblemNowH);
+    } catch(e) {
+        
+    }
+
     ctx.drawImage(printerTopImage, 0, 0, 379, 500);
 }
 
