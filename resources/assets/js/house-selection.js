@@ -95,6 +95,7 @@ function update() {
         emblemNowH = 1 - (1 / (emblemH / (maxPrintPos - paperY)));
     }
 
+
     ctx.drawImage(printerBottomImage, 0, 0, 379, 500);
     ctx.drawImage(printerPaperImage, 0, paperY, 379, 255);
     ctx.drawImage(emblemImage,
@@ -112,4 +113,6 @@ function update() {
     ctx.drawImage(printerTopImage, 0, 0, 379, 500);
 }
 
-window.requestAnimationFrame(update);
+document.addEventListener('DOMContentLoaded', function(){
+    window.requestAnimationFrame(update);
+}, false);
