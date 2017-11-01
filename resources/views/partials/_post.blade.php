@@ -18,19 +18,19 @@
                                 <i class="fa fa-2x fa-edit"></i>
                             </a>
                         @else
-                                @unless($post->isFlagged())
-                                    <i class="option-flag">
-                                        <i title="flag this post" class="fa fa-2x fa-flag"></i>
-                                    </i>
+                            @unless($post->isFlagged())
+                                <i class="option-flag">
+                                    <i title="flag this post" class="fa fa-2x fa-flag"></i>
+                                </i>
 
-                                    <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
-                                        {{ csrf_field() }}
-                                    </form>
-                                @else
-                                    <i title="this post is flagged. A moderator will look into this soon." style="color: red">
-                                        flagged
-                                    </i>
-                                @endunless
+                                <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
+                                    {{ csrf_field() }}
+                                </form>
+                            @else
+                                <i title="this post is flagged. A moderator will look into this soon." style="color: red">
+                                    flagged
+                                </i>
+                            @endunless
                         @endif
                     </div>
 
@@ -91,7 +91,7 @@
                                 </figure>
                                 <div class="content media-post-comment">
                                     @if($comment->author->isHeadmaster())
-                                        <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ \Auth::user()->name }}</span>
+                                        <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $comment->author->name }}</span>
                                     @else
                                         <strong>{{ $comment->author->name }}</strong>
                                     @endif

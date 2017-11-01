@@ -283,9 +283,15 @@ class PostController extends Controller
         $user = Auth::user();
         $user->flags()->attach($post->id);
         return back();
-
     }
 
+    public function unflag(Request $request, Post $post)
+    {
+        $post->decrement('flags');
+        $user = Auth::user();
+        $user->flags()->detach($post->id);
+        return back();
+    }
 
     public function filter(Request $request)
     {
@@ -293,13 +299,14 @@ class PostController extends Controller
         {
             return redirect()->action('HomeController@index');
         }
+        
         $posts = Post::with('author')->
-                whereHas('tags', function($query) use ($request){
-                    $query->whereIn('tags.id', $request->tags);
-                })->
-                orderBy('created_at', 'DESC')->
-                where('post_id', NULL)->
-                paginate(10);
+            whereHas('tags', function($query) use ($request){
+                $query->whereIn('tags.id', $request->tags);
+            })->
+            orderBy('created_at', 'DESC')->
+            where('post_id', NULL)->
+            paginate(10);
 
         return view('home', [
             'posts' => $posts,
@@ -320,7 +327,6 @@ class PostController extends Controller
         where('content', 'like', "%$query%")->
         orWhere('title', 'like', "%$query%")->
         paginate(10);
-
 
         return view('home', [
             'posts' => $posts,

@@ -8,7 +8,7 @@
                     Flagged posts
                 </p>
                 @foreach($flagged as $post)
-                    <a class="panel-block">
+                    <a class="panel-block" href="{{ action('PostController@show', $post) }}">
                         {{  $post->title }}
                         <button  class="button is-pulled-right" disabled>{{$post->flags}}</button>
                     </a>
