@@ -468,3 +468,7 @@ table.table {
 .light-up {
   box-shadow: 0px 0px 40px 10px lightyellow;
 }
+
+code[class*="language-"], pre[class*="language-"] {
+  max-width: 650px;
+}
