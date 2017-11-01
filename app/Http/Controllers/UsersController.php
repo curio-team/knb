@@ -16,7 +16,7 @@ class UsersController extends Controller
     }
 
     public function getStudents() {
-        return \App\User::getStudents();
+        return \App\User::with('badges')->get();
     }
 
     public function getStudent($id) {

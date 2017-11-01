@@ -1,7 +1,7 @@
 @component('mail::message')
 # A new badge request is done.
 
-{{$user->name}} requested the badge {{ $badge->title }}
+{{$user->name}} ({{$user->id}}) requested the badge {{ $badge->title }}
 Please look into it.
 
 
