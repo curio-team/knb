@@ -91,7 +91,7 @@
                                 </figure>
                                 <div class="content media-post-comment">
                                     @if($comment->author->isHeadmaster())
-                                        <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ \Auth::user()->name }}</span>
+                                        <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $comment->author->name }}</span>
                                     @else
                                         <strong>{{ $comment->author->name }}</strong>
                                     @endif
