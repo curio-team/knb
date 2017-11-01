@@ -43,7 +43,6 @@ channel.bind('housesSelected', function() {
     Visual elements
 */
 
-window.addEventListener('DOMContentLoaded', function() {
 
 var canvas = document.getElementById('printerCanvas');
 var ctx = canvas.getContext('2d');
@@ -117,9 +116,5 @@ function update() {
 }
 
 
-
-
     window.requestAnimationFrame(update);
 
-
-}, true);
