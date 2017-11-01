@@ -177,7 +177,7 @@
                     </div>
                     <p>
                         This is an open source project created for ROC West-Brabant. As a student, if you want to contribute, please check out the project on
-                        <a href="https://github.com/Radiuscollege/knb">GitHub</a>.
+                        <a target="_blank" href="https://github.com/Radiuscollege/knb">GitHub</a>.
                     </p>
                 </div>
 
