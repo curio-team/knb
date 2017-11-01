@@ -129,6 +129,20 @@ $('document').ready(function(){
 
     });
 
+    $(".btn-admin-control-unflag").on('click', function(e){
+        e.stopPropagation();
+        var id = $(this).attr('data-id');
+        $.ajax('/post/' + id + '/unflag', {
+            type: 'POST',
+            data : {
+                _token: window.Laravel.csrfToken
+            }
+        }).done(function(data){
+            document.location.href="/post/" + id;
+        });
+
+    });
+
     $("body").on('click', '.badge-toggler',  function(){
 
         $(this).toggleClass('fa-toggle-on fa-toggle-off');
