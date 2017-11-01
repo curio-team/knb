@@ -42,6 +42,9 @@ channel.bind('housesSelected', function() {
 /*
     Visual elements
 */
+
+window.addEventListener('DOMContentLoaded', function() {
+
 var canvas = document.getElementById('printerCanvas');
 var ctx = canvas.getContext('2d');
 var printerBottomImage = document.getElementById('printerBottomImage');
@@ -98,20 +101,25 @@ function update() {
 
     ctx.drawImage(printerBottomImage, 0, 0, 379, 500);
     ctx.drawImage(printerPaperImage, 0, paperY, 379, 255);
-    // ctx.drawImage(emblemImage,
-    //     // sourceX, sourceY (where on the image do we start sampling from)
-    //     0, emblemImage.height - (emblemImage.height * emblemNowH),
-    //
-    //     // sourceW, sourceH (for what width and height do we sample)
-    //     emblemImage.width, emblemImage.height * emblemNowH,
-    //
-    //     // X, Y (where do we draw)
-    //     120, 280,
-    //
-    //     // W, H (what width and height do we draw)
-    //     emblemW, emblemH * emblemNowH);
+    ctx.drawImage(emblemImage,
+        // sourceX, sourceY (where on the image do we start sampling from)
+        0, emblemImage.height - (emblemImage.height * emblemNowH),
+
+        // sourceW, sourceH (for what width and height do we sample)
+        emblemImage.width, emblemImage.height * emblemNowH,
+
+        // X, Y (where do we draw)
+        120, 280,
+
+        // W, H (what width and height do we draw)
+        emblemW, emblemH * emblemNowH);
     ctx.drawImage(printerTopImage, 0, 0, 379, 500);
 }
 
+
+
+
     window.requestAnimationFrame(update);
 
+
+}, true);
