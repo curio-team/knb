@@ -9,14 +9,15 @@
                         {{ csrf_field() }}
 
                         <div class="field">
-                            <label class="label">Title</label>
+                            <label class="label">Question</label>
                             <p class="control">
                                 <input type="text" placeholder="Please be specific about your question" class="input" name="title">
                             </p>
                         </div>
 
                         <div class="field">
-                            <label class="label" for="content">Question</label>
+                            <label class="label" for="content">Message</label>
+                            <p>Tell us more about your problem:</p>
                             <textarea name="content" id="content" style="min-height:250px" class="textarea tinymce"></textarea>
                         </div>
 
