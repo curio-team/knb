@@ -114,7 +114,7 @@ function update() {
             // W, H (what width and height do we draw)
             emblemW, emblemH * emblemNowH);
     } catch(e) {
-        
+
     }
 
     ctx.drawImage(printerTopImage, 0, 0, 379, 500);

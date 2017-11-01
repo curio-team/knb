@@ -14,18 +14,6 @@
 Route::get('/house-selection', 'HouseController@selection');
 Route::get('/', 'HomeController@index')->name('home');
 
-// delete these after house selection
-Route::get('/', function() {
-
-    if (\Auth::check())
-    {
-        return redirect()->to('/house-selection');
-    }
-    return redirect()->to('/login');
-})->name('home');
-
-
-
 // Authentication Routes...
 Route::get('login', function(){
     return redirect('/amoclient/redirect');

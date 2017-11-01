@@ -45,7 +45,7 @@
     <div id="app">
 
 
-        <div class="header" style="display: none">
+        <div class="header" style="">
           <div class="container">
             <div class="header-left">
               <!-- Logo -->
@@ -133,7 +133,7 @@
                   </li>
                   <!-- Options nav -->
                   <li><a class="nav-item is-tab is-hidden-tablet"><span class="icon"><i class="fa fa-home"></i></span>Home</a></li>
-                   {{--<li><a class="nav-item is-tab">About</a></li>--}}
+                    {{--<li><a class="nav-item is-tab">About</a></li>--}}
 
                   @if (\Auth::user()->isHeadMaster())
                     <li><a  href="{{ route('dashboard') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-bar-chart"></i></span> Dashboard</a></li>
