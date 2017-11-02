@@ -13,7 +13,7 @@
                         @if(\Auth::user()->isHeadMaster())
                             @include("partials/minis/_post-admin-controls")
                         @endif
-                        @if($question->isYours())
+                        @if($question->isYours() || \Auth::user()->isHeadMaster())
                             <a class="option"  href="{{ action('PostController@edit', $post) }}" class="option-edit">
                                 <i class="fa fa-2x fa-edit"></i>
                             </a>

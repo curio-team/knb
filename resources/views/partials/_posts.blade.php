@@ -21,7 +21,7 @@
                         @include("partials/minis/_post-admin-controls")
                     @endif
 
-                    @if($post->isYours())
+                    @if($post->isYours() || \Auth::user()->isHeadMaster())
                         <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
                             <i title="edit this post" class="fa fa-2x fa-edit"></i>
                         </a>
