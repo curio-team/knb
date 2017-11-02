@@ -30,4 +30,10 @@ class DashboardController extends Controller
         return view('dashboard/badges', compact('badges'));
     }
 
+    public function news()
+    {
+        $news = \App\News::all();
+        return view('dashboard/news', compact('news'));
+    }
+
 }

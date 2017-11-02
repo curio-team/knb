@@ -37,7 +37,7 @@
                     <a href="{{route('points')}}" class="item"><span class="icon"><i class="fa fa-thumbs-o-up"></i></span><span class="name">Points</span></a>
                     <a href="{{route('badges')}}" class="item"><span class="icon"><i class="fa fa-shield"></i></span><span class="name">Badges</span></a>
                     <a href="{{route('import')}}" class="item"><span class="icon"><i class="fa fa-folder-o"></i></span><span class="name">Import / Export</span></a>
-
+                    <a href="{{route('news')}}" class="item"><span class="icon"><i class="fa fa-newspaper-o"></i></span><span class="name">News</span></a>
                     <div style="margin-top: 100px">
                         <a href="{{action('HouseController@doSelection')}}" class="button is-primary">Start Sorting Printer </a>
                     </div>

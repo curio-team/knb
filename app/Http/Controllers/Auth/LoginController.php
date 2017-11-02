@@ -39,4 +39,36 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+    public function login(Request $request) {
+
+        $user = \App\User::where('email', $request->email)->first();
+        if (!$user)
+        {
+            $user = \App\User::create([
+                'id'    => explode('@', $request->email)[0],
+                'email' => $request->email,
+                'type'  => 'teacher',
+                'name'  => explode('@', $request->email)[0],
+                'points' => 0
+            ]);
+        }
+
+        \Auth::login($user);
+
+        if (! count($user->houseRole) )
+        {
+            $house = \App\House::withCount('users')->orderBy('users_count')->first();
+
+            \App\HouseRole::create(['user_id' => $user->id, 'house_id' => $house->id, 'role_level', '0']);
+            \App\Point::assign($user->id, \App\Point::BENEFACTOR_REGISTER_SYSTEM);
+            \App\Badge::assign($user->id, 1);
+
+            $user->addPoints(\App\Point::BENEFACTOR_REGISTER_SYSTEM, true);
+
+        }
+
+        return redirect('/');
+
+    }
 }

@@ -14,7 +14,7 @@ Vue.component('points', require('./components/points/index.vue'));
 Vue.component('badges', require('./components/badges/index.vue'));
 Vue.component('tools', require('./components/learn/tools.vue'));
 Vue.component('resource-links', require('./components/learn/links.vue'));
-
+Vue.component('news', require('./components/news/index.vue'));
 
 
 const app = new Vue({

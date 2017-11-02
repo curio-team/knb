@@ -472,3 +472,24 @@ table.table {
 code[class*="language-"], pre[class*="language-"] {
   max-width: 650px;
 }
+
+.news-panel .news-item {
+  @include transparent();
+  margin: 10px;
+  padding: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  a {
+    font-weight: bold;
+  }
+}
+
+.news-show {
+  h1 {
+    color: black;
+  }
+  @include transparent();
+  margin: 10px;
+  padding: 10px;
+}

@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'points'
+        'id','name', 'email', 'type', 'password', 'points'
     ];
 
     /**
@@ -171,9 +171,7 @@ class User extends Authenticatable
         if ($fromDB)
         {
             $point = \App\ScoreType::find($points);
-
             $this->points += $point->points;
-
 
         } else {
             $this->points += $points;

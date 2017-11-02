@@ -13,6 +13,7 @@
 
 Route::get('/house-selection', 'HouseController@selection');
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('forum', 'HomeController@forum')->name('forum');
 
 // Authentication Routes...
 Route::get('login', function(){
@@ -61,7 +62,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/start-house-selection', 'HouseController@doSelection');
         Route::get('/dashboard/import', 'DashboardController@import')->name('import');
         Route::get('/dashboard/points', 'DashboardController@points')->name('points');
-
+        Route::get('dashboard/news', 'DashboardController@news')->name('news');
         Route::get('/dashboard/badges', 'DashboardController@badges')->name('badges');
         Route::post('/dashboard/badges/toggle', 'BadgesController@toggle');
 
@@ -102,6 +103,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('post/{post}/answer', 'PostController@answer')->name('answer');
 
     Route::resource('post', 'PostController');
+
+    Route::resource('news','NewsController');
 
     // delete after house selection
 //    Route::get('post/create', function(){

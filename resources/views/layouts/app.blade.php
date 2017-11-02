@@ -66,7 +66,8 @@
                 </ul>
               @else
                 <ul class="header-nav">
-                  <li><a href="{{ action('HomeController@index') }}" class="nav-item is-tab {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Knowledgebase</a></li>
+                    <li><a href="{{ action('HomeController@index') }}" class="nav-item is-tab {{ strpos(Request::path(), 'home') !== false ? "is-active" : "" }}">Home</a></li>
+                  <li><a href="{{ action('HomeController@forum') }}" class="nav-item is-tab {{ strpos(Request::path(), 'forum') !== false ? "is-active" : "" }}">Forum</a></li>
                   <li><a href="{{ action('HomeController@learn') }}" class="nav-item is-tab {{ strpos(Request::path(), 'learn') !== false ? 'is-active' : ''}} ">Learn</a></li>
                     <li><a href="{{ action('HomeController@gameInfo')}}" class="nav-item is-tab {{ strpos(Request::path(), 'game-info') !== false ? "is-active" : "" }}">Game Info</a></li>
                     <li><a href="{{ action('HomeController@about') }}" class="nav-item is-tab {{ strpos(Request::path(), 'about') !== false ? 'is-active' : ''}}">Story</a></li>

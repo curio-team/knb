@@ -21,16 +21,31 @@ class HomeController extends Controller
         $this->github = $github;
     }
 
-    /**
-     * Show the application dashboard.
+    /*
+     * Show the applications home
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
+
+        $news = \App\News::all();
+        return view('home', [
+            'news' => $news,
+
+        ]);
+    }
+
+    /**
+     * Show the application forum.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function forum()
+    {
         $posts = Post::with('author')->orderBy('created_at', 'DESC')->where('post_id', NULL)->paginate(10);
 
-        return view('home', [
+        return view('forum', [
             'posts' => $posts,
 
         ]);

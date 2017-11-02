@@ -12,7 +12,7 @@
 
                 <div class="field">
                     <label for="email" class="label">E-Mail Address</label>
-
+                    <p>(If user does not exist, it will be created.)</p>
                     <p class="control">
                         <input id="email" type="email" class="input{{ $errors->has('email') ? ' is-danger' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
                     </p>
@@ -22,16 +22,6 @@
                     @endif
                 </div>
 
-                <div class="field">
-                    <label for="password" class="label">Password</label>
-
-                    <p class="control">
-                        <input id="password" type="password" class="input{{ $errors->has('password') ? ' is-danger' : '' }}" name="password" required>
-                    </p>
-                    @if($errors->has('password'))
-                        <p class="help is-danger">{{ $errors->first('password') }}</p>
-                    @endif
-                </div>
 
                 <div class="field">
                     <p class="control">

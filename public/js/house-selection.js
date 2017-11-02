@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 62);
+/******/ 	return __webpack_require__(__webpack_require__.s = 65);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -78,7 +78,7 @@
  */
 // import Echo from 'laravel-echo'
 
-window.Pusher = __webpack_require__(44);
+window.Pusher = __webpack_require__(45);
 
 window.Pusher.log = function (message) {
     if (window.console && window.console.log) {
@@ -115,6 +115,7 @@ channel.bind('housesSelected', function () {
 /*
     Visual elements
 */
+
 var canvas = document.getElementById('printerCanvas');
 var ctx = canvas.getContext('2d');
 var printerBottomImage = document.getElementById('printerBottomImage');
@@ -145,7 +146,7 @@ function getTime() {
 // The drawing and printing function
 function update() {
     window.requestAnimationFrame(update);
-
+    emblemImage = document.getElementById('emblemImage');
     ctx.clearRect(0, 0, canvasW, canvasH);
 
     //
@@ -170,18 +171,21 @@ function update() {
 
     ctx.drawImage(printerBottomImage, 0, 0, 379, 500);
     ctx.drawImage(printerPaperImage, 0, paperY, 379, 255);
-    ctx.drawImage(emblemImage,
-    // sourceX, sourceY (where on the image do we start sampling from)
-    0, emblemImage.height - emblemImage.height * emblemNowH,
+    try {
+        ctx.drawImage(emblemImage,
+        // sourceX, sourceY (where on the image do we start sampling from)
+        0, Math.max(1, Math.floor(emblemImage.height)) - Math.max(1, Math.floor(emblemImage.height)) * emblemNowH,
 
-    // sourceW, sourceH (for what width and height do we sample)
-    emblemImage.width, emblemImage.height * emblemNowH,
+        // sourceW, sourceH (for what width and height do we sample)
+        Math.max(1, Math.floor(emblemImage.width)), Math.max(1, Math.floor(emblemImage.height)) * emblemNowH,
 
-    // X, Y (where do we draw)
-    120, 280,
+        // X, Y (where do we draw)
+        120, 280,
 
-    // W, H (what width and height do we draw)
-    emblemW, emblemH * emblemNowH);
+        // W, H (what width and height do we draw)
+        emblemW, emblemH * emblemNowH);
+    } catch (e) {}
+
     ctx.drawImage(printerTopImage, 0, 0, 379, 500);
 }
 
@@ -189,7 +193,7 @@ window.requestAnimationFrame(update);
 
 /***/ }),
 
-/***/ 44:
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -4328,7 +4332,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 62:
+/***/ 65:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(13);
