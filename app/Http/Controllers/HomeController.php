@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $news = \App\News::all();
+        $news = \App\News::all()->sortByDesc('created_at');
         return view('home', [
             'news' => $news,
 
