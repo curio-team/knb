@@ -349,6 +349,7 @@ class PostController extends Controller
         $type = $post->isAnswer() ? \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED : \App\Point::BENEFACTOR_TYPE_QUESTION_ASKED;
 
         $author_id = $post->author_id;
+        $body = $post->content;
         \App\Point::deAssign($post->author_id, $type);
         $post->author->deletePoints($type, true);
         $post->children()->delete();
@@ -363,6 +364,8 @@ class PostController extends Controller
             $message->receiver_id = $author_id;
             $message->subject = 'Your post or answer has been removed.';
             $message->content = 'Please follow our guidelines: do not spam, be specific and only give useful answers. Just a link is never a useful answer!';
+            $message->content .= '<br />This concerns the following message:<br /><br />';
+            $message->content .= $body;
             $message->save();
 
             // create the message
