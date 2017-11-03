@@ -38,7 +38,7 @@ class HomeController extends Controller
 
     /**
      * Show the application forum.
-     *
+     "
      * @return \Illuminate\Http\Response
      */
     public function forum()

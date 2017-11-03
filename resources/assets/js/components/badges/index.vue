@@ -136,13 +136,13 @@
 
             toggleBadge : function(badge_id)
             {
-                var that = this;
-                axios.post('/dashboard/badges/toggle', {
-                    badge_id:   badge_id,
-                    student_id: that.activeStudent.id
-                }).then(function(res){
-
-                })
+//                var that = this;
+//                axios.post('/dashboard/badges/toggle', {
+//                    badge_id:   badge_id,
+//                    student_id: that.activeStudent.id
+//                }).then(function(res){
+//
+//                })
             }
         }
 

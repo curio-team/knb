@@ -14,7 +14,16 @@ class ApiHouseController extends Controller
      */
     public function index()
     {
-        return House::with('headmaster', 'headmaster.user')->get();
+
+        $houses = \App\House::all();
+        foreach($houses as &$house)
+        {
+            $points = $house->users->sum('points');
+            $house->points = $points;
+        }
+        $houses  = $houses->sortByDesc('points');
+        return $houses->values()->toArray();
+
     }
 
     /**
