@@ -11,6 +11,12 @@
 |
 */
 
+Route::get('/statistics', function(){
+    $houses = \App\House::all();
+    return view('statistics', compact('houses'));
+});
+
+
 Route::get('/house-selection', 'HouseController@selection');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('forum', 'HomeController@forum')->name('forum');

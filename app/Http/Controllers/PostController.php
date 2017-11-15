@@ -298,7 +298,7 @@ class PostController extends Controller
     {
         if (empty($request->tags))
         {
-            return redirect()->action('HomeController@index');
+            return redirect()->action('HomeController@forum');
         }
         
         $posts = Post::with('author')->
@@ -319,7 +319,7 @@ class PostController extends Controller
     {
         if (empty($request->get('query')))
         {
-            return redirect()->action('HomeController@index');
+            return redirect()->action('HomeController@forum');
         }
         $query = $request->get('query');
         $posts = Post::with('author')->

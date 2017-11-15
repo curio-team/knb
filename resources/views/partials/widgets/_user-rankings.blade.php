@@ -16,7 +16,7 @@
                     <tr>
 
                         <td>{{ $index += 1 }}</td>
-                        <td>{{ $user->name }}</td>
+                        <td><a href="{{route('profile', $user->id)}}">{{ $user->name }}</a></td>
                         <td>{{ $user->points }}</td>
                     </tr>
                 @endforeach
