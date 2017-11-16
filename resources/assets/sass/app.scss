@@ -494,8 +494,12 @@ code[class*="language-"], pre[class*="language-"] {
   padding: 10px;
 }
 
-@media only screen and (max-width: 1009px) {
-  .columns {
+.columns {
+  @media screen and (max-width: 1009px) {  
     margin: 0;
   }
+}
+
+.box {
+  margin: 0;
 }

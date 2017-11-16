@@ -362,9 +362,8 @@ class PostController extends Controller
             $message = new Message;
             $message->sender_id = \Auth::id();
             $message->receiver_id = $author_id;
-            $message->subject = 'Your post or answer has been removed.';
-            $message->content = 'Please follow our guidelines: do not spam, be specific and only give useful answers. Just a link is never a useful answer!';
-            $message->content .= '<br />This concerns the following message:<br /><br />';
+            $message->subject = 'Your post or answer has been removed!';
+            $message->content = 'Please follow our guidelines: do not spam, be specific and only give useful answers. Just a link is never a useful answer! This concerns the following message:';
             $message->content .= $body;
             $message->save();
 
