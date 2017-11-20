@@ -255,17 +255,18 @@
 						"code" : "int a, b;<br />a = 1;<br />b = a;<br />a = b * ( 6 + a ) + ( 3 - b);<br />Console.WriteLine(a);",
 						"answers": [
 							{
-								"answer" : "A: 4"
+								"answer" : "A: 6"
 							},
 							{
-								"answer" : "B: 5",
+								"answer" : "B: 7"
+								
+							},
+							{
+								"answer" : "C: 8"
+							},
+							{
+								"answer" : "D: 9",
 								"is_correct": true
-							},
-							{
-								"answer" : "C: 6"
-							},
-							{
-								"answer" : "D: 7"
 							}
 						]
 					},
@@ -314,11 +315,12 @@
 								"answer" : "A: 0 en 2"
 							},
 							{
-								"answer" : "B: 3 en -1",
-								"is_correct" : true
+								"answer" : "B: 3 en -1"
+								
 							},
 							{
-								"answer" : "C: 0 en -2"
+								"answer" : "C: 3 en 0",
+								"is_correct" : true
 							},
 							{
 								"answer" : "D: 3 en 2"
