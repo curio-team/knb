@@ -27,6 +27,7 @@
                         <div class="level-left">
                             <div class="panel-block level-item">
                                 <div class="field has-addons">
+                                    <form action="{{ action('PostController@search') }}">
                                         <p class="control" style="display: flex">
                                             <input name="query" class="input is-pulled-left" type="text" placeholder="Search">
                                             <button type="submit" class="button is-info is-pulled-left">
