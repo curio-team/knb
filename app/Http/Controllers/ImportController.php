@@ -80,4 +80,14 @@ class ImportController extends Controller
         return back()->with('succes', 'User ' . $user->name . ' succesfully registered to the amohub.');
     }
 
+    public function bulkPointsUpload(UploadCsvRequest $request)
+    {
+        $file = $request->file('csv');
+
+        Excel::load($file, function($reader)  {
+
+        });
+        return back()->with('success', 'Import successful. ' . $this->imports . ' added.' . $this->duplicates . ' duplicates were found.');
+    }
+
 }
