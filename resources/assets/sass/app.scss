@@ -475,7 +475,7 @@ code[class*="language-"], pre[class*="language-"] {
 
 .news-panel .news-item {
   @include transparent();
-  margin: 10px;
+  margin: 10px 0;
   padding: 10px;
 
   display: flex;
@@ -492,4 +492,14 @@ code[class*="language-"], pre[class*="language-"] {
   @include transparent();
   margin: 10px;
   padding: 10px;
+}
+
+.columns {
+  @media screen and (max-width: 1009px) {  
+    margin: 0;
+  }
+}
+
+.box {
+  margin: 0;
 }
