@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'headmaster'], function(){
 
         Route::post('dashboard/csv/upload', 'ImportController@upload')->name('upload');
+        Route::post('dashboard/csv/gradesUpload', 'ImportController@bulkPointsUpload');
         Route::post('dashboard/user/registration', 'ImportController@singleRegistration');
 
         Route::get('/start-house-selection', 'HouseController@doSelection');
@@ -111,17 +112,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('post', 'PostController');
 
     Route::resource('news','NewsController');
-
-    // delete after house selection
-//    Route::get('post/create', function(){
-//
-//        if (\Auth::check())
-//        {
-//            return redirect()->to('/house-selection');
-//        }
-//        return redirect()->to('/login');
-//    });
-
 
     Route::resource('comment', 'CommentController');
 

@@ -9,8 +9,22 @@
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
 
                 <div class="field">
-                    <label for="upload" class="label">Upload csv file</label>
+                    <label for="upload" class="label">Upload students from csv</label>
                     <input type="file" name="csv" id="csv">
+                </div>
+                <input type="submit" value="Import" class="button is-primary">
+            </form>
+
+            <form class="upload-csv" method="post" action="{{action('ImportController@bulkPointsUpload')}}" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
+
+                <div class="field">
+                    <label for="upload" class="label">Upload results from csv</label>
+                    <input type="file" name="csv" id="csv">
+                </div>
+                <div class="field">
+                    <label> check this box and then upload same csv file if you want to redo bulk points </label>
+                    <input type="checkbox" name="revert" id="revert">
                 </div>
                 <input type="submit" value="Import" class="button is-primary">
             </form>

@@ -10,6 +10,7 @@ class ImportController extends Controller
 {
     public $duplicates = 0;
     public $imports = 0;
+    public $pointEntries = 0;
 
     public function __construct()
     {
@@ -83,11 +84,177 @@ class ImportController extends Controller
     public function bulkPointsUpload(UploadCsvRequest $request)
     {
         $file = $request->file('csv');
+        $revert = false;
+        $word = 'awarded';
+        if ($request->revert == 'on')
+        {
+            $revert = true;
+            $word = 'deducted';
+        }
+        Excel::load($file, function($reader) use($revert, $word) {
+            $results = $reader->select(['code', 'pgo', 'vht1', 'vht2', 'keuze', 'project', 'bt1', 'bt2', 'aanwezig'])->get();
+            foreach($results as $result)
+            {
+                $user = \App\User::find($result->code);
+                if (count($user) > 0)
+                {
+                    $this->imports++;
+                    $pgo = intval($result->pgo);
+                    $vht1 = strtolower($result->vht1);
+                    $vht2 = strtolower($result->vht2);
+                    $keuze = strtolower($result->keuze);
+                    $project = strtolower($result->project);
+                    $bt1 = intval($result->bt1);
+                    $bt2 = intval($result->bt2);
+                    $aanwezig = intval($result->aanwezig);
 
-        Excel::load($file, function($reader)  {
+                    $res = [
+                        [
+                            "pgo" => $pgo,
+                            "points" => $this->calculatePointsFromAttitude($pgo),
+                            "message" => "Points $word for PGO this period."
+                        ],
+                        [
+                            "vht1"  => $vht1,
+                            "points" => $this->calculatePointsFromAttitude($vht1),
+                            "message" => "Points $word for VHT1 this period."
+                        ],
+                        [
+                            "vht2"  => $vht2,
+                            "points"    => $this->calculatePointsFromAttitude($vht2),
+                            "message" => "Points $word for VHT2 this period."
+                        ],
+                        [
+                            "keuze" => $keuze,
+                            "points"    => $this->calculatePointsFromAttitude($keuze),
+                            "message"   => "Points $word for 'keuzedelen' this period."
+                        ],
+                        [
+                            "project" => $project,
+                            "points"    => $this->calculatePointsFromAttitude($project),
+                            "message"   => "Points $word for 'project' this period."
+                        ],
+                        [
+                            "bt1" => $bt1,
+                            "points"  => $this->calculatePointsFromGrade($bt1),
+                            "message" => "Points $word for 'bekwaamheidstoets 1' this period."
+                        ],
+                        [
+                            "bt2" => $bt2,
+                            "points"  => $this->calculatePointsFromGrade($bt2),
+                            "message" => "Points $word for 'bekwaamheidstoets 2' this period."
+                        ],
+                        [
+                            "aanwezig" => $aanwezig,
+                            "points"    => $this->calculatePointsFromAttendance($aanwezig),
+                            "message" => "Points $word for 'aanwezigheid' this period."
+                        ]
+                    ];
 
+                    foreach($res as $r)
+                    {
+                        \App\Http\Controllers\PointsController::allocateFromBulk($user->id, $r, $revert);
+                        $this->pointEntries++;
+                    }
+
+                }
+            }
         });
-        return back()->with('success', 'Import successful. ' . $this->imports . ' added.' . $this->duplicates . ' duplicates were found.');
+
+        if (!$revert)
+        {
+            return back()->with('success', "$this->pointEntries point entries are done, $this->imports students are updated...");
+        } else
+        {
+            return back()->with('success', "reverting of $this->pointEntries point entries are done, rolled back the points allocation of $this->imports students");
+        }
+
     }
+
+    public function calculatePointsFromGrade($grade)
+    {
+
+            $points = 0;
+            switch($grade) {
+                case $grade <= 55:
+                    $points = 15;
+                    break;
+                case $grade <= 60:
+                    $points = 20;
+                    break;
+                case $grade <= 65:
+                    $points = 25;
+                    break;
+                case $grade <= 70:
+                    $points = 30;
+                    break;
+                case $grade <= 75:
+                    $points = 35;
+                    break;
+                case $grade <= 80:
+                    $points = 40;
+                    break;
+                case $grade <= 85:
+                    $points = 45;
+                    break;
+                case $grade <= 90:
+                    $points = 50;
+                    break;
+                case $grade <= 95:
+                    $points = 55;
+                    break;
+                case $grade < 100:
+                    $points = 60;
+                    break;
+                case $grade == 100:
+                    $points = 75;
+                    break;
+                default:
+                    return 0;
+            }
+            return $points;
+    }
+
+    public function calculatePointsFromAttitude($rating)
+    {
+        $points = 0;
+        switch($rating)
+        {
+            case $rating >= 55 && $rating < 75:
+                $points = 25;
+                break;
+            case $rating >= 75 && $rating <= 100:
+                $points = 50;
+                break;
+            case strtolower($rating) == 'v':
+                $points = 25;
+                break;
+            case strtolower($rating) == 'g':
+                $points = 50;
+            default:
+                return 0;
+        }
+        return $points;
+    }
+
+    public function calculatePointsFromAttendance($rating)
+    {
+        $points = 0;
+        switch($rating)
+        {
+            case $rating >= 90 && $rating < 100:
+                $points = 25;
+                break;
+            case $rating == 100:
+                $points = 50;
+                break;
+            default:
+                return 0;
+                break;
+        }
+        return $points;
+    }
+
+
 
 }
