@@ -300,7 +300,7 @@ class PostController extends Controller
         {
             return redirect()->action('HomeController@forum');
         }
-        
+
         $posts = Post::with('author')->
             whereHas('tags', function($query) use ($request){
                 $query->whereIn('tags.id', $request->tags);
@@ -309,7 +309,7 @@ class PostController extends Controller
             where('post_id', NULL)->
             paginate(10);
 
-        return view('home', [
+        return view('forum', [
             'posts' => $posts,
             'searchTags' => $request->tags
         ]);
@@ -329,7 +329,7 @@ class PostController extends Controller
         orWhere('title', 'like', "%$query%")->
         paginate(10);
 
-        return view('home', [
+        return view('forum', [
             'posts' => $posts,
             'query' => $request->get('query')
         ]);

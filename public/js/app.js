@@ -43907,11 +43907,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticStyle: {
         "position": "relative"
       }
-    }, [_c('h4', [_vm._v(_vm._s(house.name) + " ")]), _vm._v(" "), _c('div', {
-      staticStyle: {
-        "min-height": "100px"
-      }
-    }, [(house.id === 1) ? _c('img', {
+    }, [_c('h4', [_vm._v(_vm._s(house.name) + " ")]), _vm._v(" "), _c('div', {}, [(house.id === 1) ? _c('img', {
       attrs: {
         "src": __webpack_require__(13),
         "alt": ""

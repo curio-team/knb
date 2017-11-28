@@ -9,7 +9,7 @@
 
                     <div :class="{champion: key === 0}" class="house" style="position: relative" v-for="(house,key) in houses">
                         <h4>{{house.name}} </h4>
-                        <div style="min-height: 100px">
+                        <div style="">
                         <img v-if="house.id === 1" src="../../../../public/img/icons/houses/s_serpents.png" alt="">
                         <img v-if="house.id === 2" src="../../../../public/img/icons/houses/db_dragons.png" alt="">
                         <img v-if="house.id === 3" src="../../../../public/img/icons/houses/r_ravens.png" alt="">
