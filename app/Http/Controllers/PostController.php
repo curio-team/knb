@@ -79,9 +79,7 @@ class PostController extends Controller
             // get points for an answer but not on your own question
             if ($post->isAnswer() )
             {
-                $id = $post->parent->author_id;
-                $suffix = $post->parent->author->isHeadmaster() ? '@rocwb.nl' : '@edu.rocwb.nl';
-                $email = $id . $suffix;
+                $email = $post->parent->author->email;
                 \Mail::to($email)
                 ->send(new \App\Mail\BadgeRequest($post->parent));
 
