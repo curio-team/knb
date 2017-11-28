@@ -79,11 +79,7 @@ class PostController extends Controller
             // get points for an answer but not on your own question
             if ($post->isAnswer() )
             {
-                $email = $post->parent->author->email;
-                \Mail::to($email)
-                ->send(new \App\Mail\PostAnswered($post->parent));
-
-                // we don't want to assign points when answering your own question.
+                 // we don't want to assign points when answering your own question.
                 if ($post->parent->author_id !== \Auth::user()->id )
                 {
                     $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED;
@@ -106,6 +102,12 @@ class PostController extends Controller
             return redirect()->back()->with('error', 'error creating post.');
         }
 
+        if ($post->isAnswer())
+        {
+            $email = $post->parent->author->email;
+            \Mail::to($email)
+            ->send(new \App\Mail\PostAnswered($post->parent));
+        }
 
         $redirect = $request->has('question_id') ? $request->get('question_id') : $post->id;
 
