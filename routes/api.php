@@ -17,4 +17,5 @@ Route::resource('comment', 'ApiCommentController');
 Route::resource('badge', 'BadgesController');
 Route::get('students', 'UsersController@getStudents');
 Route::get('student/{id}', 'UsersController@getStudent');
+Route::get('studentranking/{number}', 'UsersController@getRanking');
 

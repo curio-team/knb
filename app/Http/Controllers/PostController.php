@@ -79,8 +79,7 @@ class PostController extends Controller
             // get points for an answer but not on your own question
             if ($post->isAnswer() )
             {
-
-                // we don't want to assign points when answering your own question.
+                 // we don't want to assign points when answering your own question.
                 if ($post->parent->author_id !== \Auth::user()->id )
                 {
                     $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED;
@@ -103,6 +102,12 @@ class PostController extends Controller
             return redirect()->back()->with('error', 'error creating post.');
         }
 
+        if ($post->isAnswer())
+        {
+            $email = $post->parent->author->email;
+            \Mail::to($email)
+            ->send(new \App\Mail\PostAnswered($post->parent));
+        }
 
         $redirect = $request->has('question_id') ? $request->get('question_id') : $post->id;
 
@@ -300,7 +305,7 @@ class PostController extends Controller
         {
             return redirect()->action('HomeController@forum');
         }
-        
+
         $posts = Post::with('author')->
             whereHas('tags', function($query) use ($request){
                 $query->whereIn('tags.id', $request->tags);
@@ -309,7 +314,7 @@ class PostController extends Controller
             where('post_id', NULL)->
             paginate(10);
 
-        return view('home', [
+        return view('forum', [
             'posts' => $posts,
             'searchTags' => $request->tags
         ]);
@@ -329,7 +334,7 @@ class PostController extends Controller
         orWhere('title', 'like', "%$query%")->
         paginate(10);
 
-        return view('home', [
+        return view('forum', [
             'posts' => $posts,
             'query' => $request->get('query')
         ]);
@@ -362,9 +367,8 @@ class PostController extends Controller
             $message = new Message;
             $message->sender_id = \Auth::id();
             $message->receiver_id = $author_id;
-            $message->subject = 'Your post or answer has been removed.';
-            $message->content = 'Please follow our guidelines: do not spam, be specific and only give useful answers. Just a link is never a useful answer!';
-            $message->content .= '<br />This concerns the following message:<br /><br />';
+            $message->subject = 'Your post or answer has been removed!';
+            $message->content = 'Please follow our guidelines: do not spam, be specific and only give useful answers. Just a link is never a useful answer! This concerns the following message:';
             $message->content .= $body;
             $message->save();
 

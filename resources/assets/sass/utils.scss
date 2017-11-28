@@ -1,0 +1,48 @@
+/*
+  Center an absolutely positioned element.
+  
+  Example usage:
+    <div style="position: relative; width: 100px;">
+      <div class="center-content-abs">
+        <span>100%</span>
+      </div>
+    </div>
+ */
+.center-content-abs{
+  position: absolute;
+  left: 50%;
+}
+.center-content-abs span{
+  position: relative;
+  left: -50%;
+}
+
+/*
+  Progres Bar styling
+  
+  Example usage:
+    <div class="progress-bar">
+      <div class="progress" style="width: 50%;"></div>
+      <div class="center-content-abs">
+        <span>50%</span>
+      </div>
+    </div>
+ */
+.progress-bar{
+   background: #C0C0C0;
+   display: grid;
+   height: 32px;
+   position: relative;
+ }
+
+.progress-bar span{
+  line-height: 32px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.progress-bar .progress{
+  height: 100%;
+  background: #3880F4; // TODO: Create house styling classes for background here. (for use in event goal progress bars)
+  border-radius: 0;
+}
