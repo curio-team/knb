@@ -498,11 +498,17 @@ code[class*="language-"], pre[class*="language-"] {
 }
 
 .columns {
-  @media screen and (max-width: 1009px) {  
+  @media screen and (max-width: 1009px) {
     margin: 0;
   }
 }
 
 .box {
   margin: 0;
+}
+
+@supports (-ms-ime-align: auto) {
+  .story-houses {
+        display: block !important;
+  }
 }
