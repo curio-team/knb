@@ -23119,6 +23119,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -25614,7 +25633,7 @@ exports.push([module.i, "\n.sub-title[data-v-15cbb1a0] {\n    text-align: center
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(10)();
-exports.push([module.i, "\n.columns-50-50[data-v-f958f56c] {\n    display: -ms-grid;\n    display: grid;\n    -ms-grid-columns: 1fr 1fr;\n        grid-template-columns: 1fr 1fr\n}\n.columns-25-75[data-v-f958f56c] {\n    display: -ms-grid;\n    display: grid;\n    -ms-grid-columns: 1fr 3fr;\n        grid-template-columns: 1fr 3fr;\n}\n.columns-33-33-33[data-v-f958f56c] {\n    display: -ms-grid;\n    display: grid;\n    -ms-grid-columns: 1fr 1fr 1fr;\n        grid-template-columns: 1fr 1fr 1fr;\n}\n.row-50-50[data-v-f958f56c] {\n    display: -ms-grid;\n    display: grid;\n    -ms-grid-rows: 1fr 2fr;\n        grid-template-rows: 1fr 2fr;\n}\n.house[data-v-f958f56c] {\n    margin: 10px;\n    padding: 10px;\n    text-align: center;\n    background: rgba(255,255,255,0.6);\n}\n.champion[data-v-f958f56c] {\n    -ms-grid-column: span 3;\n        grid-column: span 3;\n    -ms-grid-row: 2;\n        grid-row-start: 2;\n    font-size: 1.5em;\n}\n.main-stats[data-v-f958f56c] {\n    padding: 25px;\n}\narticle[data-v-f958f56c] {\n    margin-top: 0px !important;\n    padding-top: 0px !important;\n    margin-bottom: 15px !important;\n    border: none !important;\n    background: rgba(255,255,255,0.3);\n}\n.gold[data-v-f958f56c] {\n    background: rgb(255,215, 0);\n    font-weight: bold;\n    box-shadow: 0px 0px 8px 5px rgb(255,215,0);\n}\n.silver[data-v-f958f56c] {\n    background: #D3D3D3;\n    font-weight: bold;\n    box-shadow: 0px 0px 8px 5px #D3D3D3;\n}\n.bronze[data-v-f958f56c] {\n    background: #cc6633;\n    font-weight: bold;\n    box-shadow: 0px 0px 8px 5px #cc6633;\n}\n.house-points[data-v-f958f56c] {\n    font-weight: bold;\n    font-size: 1.3em;\n}\n\n", ""]);
+exports.push([module.i, "\n.columns-50-50[data-v-f958f56c] {\n    display: -ms-grid;\n    display: grid;\n    -ms-grid-columns: 1fr 1fr;\n        grid-template-columns: 1fr 1fr\n}\n.columns-25-75[data-v-f958f56c] {\n    display: -ms-grid;\n    display: grid;\n    -ms-grid-columns: 1fr 3fr;\n        grid-template-columns: 1fr 3fr;\n}\n.columns-33-33-33[data-v-f958f56c] {\n    display: -ms-grid;\n    display: grid;\n    grid-gap: 20px;\n    -ms-grid-columns: 1fr 1fr 1fr;\n        grid-template-columns: 1fr 1fr 1fr;\n}\n.row-50-50[data-v-f958f56c] {\n    display: -ms-grid;\n    display: grid;\n    -ms-grid-rows: 1fr 2fr;\n        grid-template-rows: 1fr 2fr;\n}\n.house[data-v-f958f56c] {\n    margin: 10px;\n    padding: 10px;\n    text-align: center;\n    background: rgba(255,255,255,0.6);\n}\n.champion[data-v-f958f56c] {\n    -ms-grid-column: span 3;\n        grid-column: span 3;\n    -ms-grid-row: 2;\n        grid-row-start: 2;\n    font-size: 1.5em;\n}\n.ranking_number[data-v-f958f56c] {\n}\narticle[data-v-f958f56c] {\n    margin-top: 0px !important;\n    padding-top: 0px !important;\n    margin-bottom: 15px !important;\n    border: none !important;\n    background: rgba(255,255,255,0.3);\n}\ntable[data-v-f958f56c] {\n    border-collapse: separate;\n    border-spacing: 0 15px;\n    background: inherit;\n}\ntable tr td[data-v-f958f56c] {\n    border: none;\n}\ntable tr[data-v-f958f56c] {\n    margin-bottom: 10px;\n    background: rgba(255,255,255,0.4);\n}\n.gold[data-v-f958f56c] {\n    background: rgb(255,215, 0);\n    font-weight: bold;\n    box-shadow: 0px 0px 8px 5px rgb(255,215,0);\n}\n.silver[data-v-f958f56c] {\n    background: #D3D3D3;\n    font-weight: bold;\n    box-shadow: 0px 0px 3px 3px #D3D3D3;\n}\n.bronze[data-v-f958f56c] {\n    background: #cc6633;\n    font-weight: bold;\n    box-shadow: 0px 0px 3px 3px #cc6633;\n}\n.house-points[data-v-f958f56c] {\n    font-weight: bold;\n    font-size: 1.1em;\n}\n\n\n\n", ""]);
 
 /***/ }),
 /* 51 */
@@ -43874,10 +43893,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "content root-element section",
     class: [_vm.className]
   }, [_c('div', {
-    staticClass: "columns-25-75"
+    staticClass: "columns-33-33-33"
   }, [_c('div', {
     staticClass: "main-stats"
-  }, [_c('div', {
+  }, [_c('h1', [_vm._v("House Podium")]), _vm._v(" "), _c('div', {
     staticClass: "house-score columns-33-33-33 row-50-50 "
   }, _vm._l((_vm.houses), function(house, key) {
     return _c('div', {
@@ -43917,17 +43936,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(house.points))])])
   }))]), _vm._v(" "), _c('div', {
     staticClass: "sidebar"
-  }, [_c('h1', [_vm._v("TOP 10 MEMBERS:")]), _vm._v(" "), _vm._l((_vm.top), function(student, key) {
-    return _c('article', {
-      staticClass: "media",
+  }, [_c('h1', [_vm._v("Top 10 members:")]), _vm._v(" "), _c('table', {
+    staticClass: "table"
+  }, _vm._l((_vm.top), function(student, key) {
+    return _c('tr', {
       class: {
         gold: key === 0, silver: key === 1, bronze: key === 2
       }
-    }, [_c('h3', [_vm._v(_vm._s(key + 1))]), _vm._v(" "), _c('div', {
-      staticClass: "media-left",
+    }, [_c('td', {
+      staticClass: "ranking_number",
       staticStyle: {
-        "width": "40px",
-        "height": "auto"
+        "width": "10px"
+      }
+    }, [_vm._v(_vm._s(key + 1))]), _vm._v(" "), _c('td', {
+      staticStyle: {
+        "width": "50px"
       }
     }, [(student.houseId === 1) ? _c('img', {
       attrs: {
@@ -43949,8 +43972,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "src": __webpack_require__(14),
         "alt": ""
       }
-    }) : _vm._e()]), _vm._v(" "), _c('p', [_vm._v(_vm._s(student.name))])])
-  })], 2)])])
+    }) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                        " + _vm._s(student.name) + "\n                    ")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(student.points))])])
+  }))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
