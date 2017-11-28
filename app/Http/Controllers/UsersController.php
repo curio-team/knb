@@ -19,6 +19,16 @@ class UsersController extends Controller
         return \App\User::with('badges')->get();
     }
 
+    public function getRanking($limit)
+    {
+        $users = \App\User::orderBy('points', 'desc')->take($limit)->get();
+        foreach($users as &$user)
+        {
+            $user->houseId = $user->houseRole['house_id'];
+        }
+        return $users;
+    }
+
     public function getStudent($id) {
         return \App\User::with('badges')->where('id', $id)->first();
     }
@@ -30,7 +40,6 @@ class UsersController extends Controller
 
     public function changePassword(Request $request)
     {
-//        dd($request->all());
         if($request->password == $request->password_confirmation)
         {
             $user = \App\User::find(\Auth::user()->id);
