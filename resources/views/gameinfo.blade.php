@@ -82,11 +82,11 @@
                     <tbody>
                         <tr>
                             <td> >= 90% </td>
-                            <td>50</td>
+                            <td>25</td>
                         </tr>
                         <tr>
                             <td> 100% </td>
-                            <td>75</td>
+                            <td>50</td>
                         </tr>
                     </tbody>
                 </table>
