@@ -81,7 +81,7 @@ class PostController extends Controller
             {
                 $email = $post->parent->author->email;
                 \Mail::to($email)
-                ->send(new \App\Mail\BadgeRequest($post->parent));
+                ->send(new \App\Mail\PostAnswered($post->parent));
 
                 // we don't want to assign points when answering your own question.
                 if ($post->parent->author_id !== \Auth::user()->id )
