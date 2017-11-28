@@ -17,5 +17,9 @@ class DatabaseSeeder extends Seeder
 //        $this->call(PostsTableSeeder::class);
         $this->call(TagsTableSeeder::class);
         $this->call(CreateBadgesSeeder::class);
+
+        // Events demo
+        $this->call(EventsTableSeeder::class);
+        $this->call(EventGoalsTableSeeder::class);
     }
 }
