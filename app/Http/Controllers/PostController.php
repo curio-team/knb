@@ -101,17 +101,24 @@ class PostController extends Controller
             \DB::rollback();
             return redirect()->back()->with('error', 'error creating post.');
         }
+        $warning = false;
+        try {
 
-        if ($post->isAnswer())
-        {
-            $email = $post->parent->author->email;
-            \Mail::to($email)
-            ->send(new \App\Mail\PostAnswered($post->parent));
+            if ($post->isAnswer())
+            {
+                $email = $post->parent->author->email;
+                \Mail::to($email)
+                ->send(new \App\Mail\PostAnswered($post->parent));
+            }
+            $warning = true;
+        } catch (\Exception $e){
+
         }
+        
 
         $redirect = $request->has('question_id') ? $request->get('question_id') : $post->id;
 
-        return redirect()->action('PostController@show', $redirect)->with('Success','Post succesfully created.');
+        return redirect()->action('PostController@show', $redirect)->with(($warning) ? 'error' : 'Success', ($warning) ? 'Post succesfully created, but there was an exception' : 'Post succesfully created.');
     }
 
     /**
@@ -136,6 +143,9 @@ class PostController extends Controller
     //            'comments', 'comments.author', 'author', 'author.houseRole', 'author.houseRole.house', 'votes'
     //        ])->get();
     //        dd($post);
+        while ($post->isAnswer() > 0){
+            $post = $post->parent;
+        }
 
         return view('posts.show', [
             'post' => $post,
@@ -329,10 +339,11 @@ class PostController extends Controller
         $query = $request->get('query');
         $posts = Post::with('author')->
         orderBy('created_at', 'DESC')->
-        where('post_id', NULL)->
+        whereRaw("`post_id` is NULL and `post_id` is null and (`content` like '%$query%' or `title` like '%$query%')")->paginate(10);
+        /*where('post_id', NULL)->
         where('content', 'like', "%$query%")->
         orWhere('title', 'like', "%$query%")->
-        paginate(10);
+        paginate(10);*/
 
         return view('forum', [
             'posts' => $posts,
