@@ -87,4 +87,10 @@ class NewsController extends Controller
     {
         //
     }
+
+    public function all()
+    {
+        return \App\News::all();
+    }
+
 }

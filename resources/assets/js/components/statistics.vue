@@ -33,7 +33,7 @@
                 <div class="slide-content">
                     <h2 class="title has-text-centered">Top 10 members:</h2>
                     <table class="table">
-                        <tr :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student, key) in top">
+                        <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student, key) in top">
                             <td class="ranking_number" style="width: 10px">{{key+1}}</td>
                             <td style="width: 50px;">
                                 <img v-if="student.houseId === 1" src="../../../../public/img/icons/houses/s_serpents.png" alt="">
@@ -47,18 +47,51 @@
                             <td>{{student.points}}</td>
                         </tr>
                     </table>
+                </div>
+            </div>
+            <div class="slide" v-if="activeSection == 's-3'">
+                <div class="slide-content">
+                    <h2 class="title has-text-centered">Latest News</h2>
+                    <div class="box">
+                        <h2 class="is-2 news-title">{{news[0].title}}</h2>
 
-                    <!-- <article >
-                        <h3>{{key+1}}</h3>
-                        <div  class="media-left" style="width: 40px; height: auto">
+                        <p class="date"><i>{{news[0].created_at}}</i></p>
 
+                        <p class="news-description">
+                            {{news[0].content}}
+                        </p>
+                    </div>
 
-                        </div>
-                        <div style="display: flex; justify-content:space-between">
-                        <p>{{student.name}}</p>
-                        <p>Points: {{student.points}}</p>
-                        </div>
-                    </article> -->
+                </div>
+            </div>
+            <div class="slide" v-if="activeSection == 's-4'">
+                <div class="slide-content">
+                    <h2 class="title has-text-centered">Latest News</h2>
+                    <div class="box">
+                        <h2 class="is-2 news-title">{{news[1].title}}</h2>
+
+                        <p class="date"><i>{{news[1].created_at}}</i></p>
+
+                        <p class="news-description">
+                            {{news[1].content}}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="slide" v-if="activeSection == 's-5'">
+                <div class="slide-content">
+                    <h2 class="title has-text-centered">Latest News</h2>
+                    <div class="box">
+                        <h2 class="is-2 news-title">{{news[2].title}}</h2>
+
+                        <p class="date"><i>{{news[2].created_at}}</i></p>
+
+                        <p class="news-description">
+                            {{news[2].content}}
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -75,11 +108,12 @@
         data :  function(){
             return {
                 activeSection: '',
-                sections: ['s-1', 's-2'],
+                sections: ['s-1', 's-2', 's-3', 's-4', 's-5'],
                 houses: [],
                 top: [],
                 className: "",
-                counter: ""
+                counter: "",
+                news: []
             }
 
         },
@@ -96,7 +130,10 @@
 
                 axios.get('api/studentranking/10').then((res)=>{
                     this.top = res.data;
+                });
 
+                axios.get('api/news').then((res)=>{
+                    this.news = res.data;
                 });
             }, 4000)
 
@@ -211,6 +248,19 @@
         border: 1px solid;
         padding: 20px;
         box-shadow: 0px 0px 40px black;
+    }
+
+    .news-description {
+        font-size: 1.3em;
+        width: 75%;
+    }
+
+    .news-title {
+        font-size: 2.3em;
+    }
+
+    .leaderboard {
+        font-size: 1.3em;
     }
 
 </style>
