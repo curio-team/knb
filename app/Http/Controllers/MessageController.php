@@ -15,7 +15,7 @@ class MessageController extends Controller
 
     public function __construct()
     {
-        $this->middleware('headmaster')->except(['index', 'show', 'checkAllRead']);
+        $this->middleware('headmaster')->except(['index', 'show', 'checkAllRead', 'destroy']);
     }
 
     /**
@@ -126,11 +126,15 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        $subject = $message->subject;
+        if ($message->receiver->id = \Auth::user()->id)
+        {
+            $subject = $message->subject;
 
-        $message->delete();
+                    $message->delete();
 
-        return redirect()->route('message.index')->with('success','Message with subject: \'' . $subject . '\' successfully removed.');
+                    return redirect()->route('message.index')->with('success','Message with subject: \'' . $subject . '\' successfully removed.');
+        }
+
     }
 
 
