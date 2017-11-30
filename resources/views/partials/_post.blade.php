@@ -125,12 +125,13 @@
                                 @if(\Auth::user()->isHeadMaster())
                                     @include("partials/minis/_post-admin-controls")
                                 @endif
-                                @if($question->isYours())
+                                @if($post->isYours())
                                     <a class="option"  href="{{ action('PostController@edit', $post) }}" class="option-edit">
                                         <i class="fa fa-2x fa-edit"></i>
                                     </a>
-                                @else
-                                    @unless($post->isFlagged())
+                                @endif
+
+                                @unless($post->isFlagged())
                                         <i class="option-flag">
                                             <i title="flag this post" class="fa fa-2x fa-flag"></i>
                                         </i>
@@ -141,8 +142,7 @@
                                         <i title="this post is flagged. A moderator will look into this soon." style="color: red">
                                             flagged
                                         </i>
-                                    @endunless
-                                @endif
+                                @endunless
                             </div>
 
                             <div class="columns">
