@@ -48,6 +48,7 @@
                             <li> "bt2" (grade)</li>
                             <li> "bt3" (grade)</li>
                             <li> "bt4" (grade)</li>
+                            <li> "laat" (integer (aantal laatmeldingen)) </li>
                             <li> "aanwezig" (integer 1 to 100)</li>
                         </ul>
                     </small>

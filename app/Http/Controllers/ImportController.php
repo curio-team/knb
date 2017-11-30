@@ -86,7 +86,7 @@ class ImportController extends Controller
         $file = $request->file('csv');
 
         Excel::load($file, function($reader) {
-            $results = $reader->select(['code', 'bt1', 'bt2', 'bt3', 'bt4', 'aanwezig'])->get();
+            $results = $reader->select(['code', 'bt1', 'bt2', 'bt3', 'bt4', 'laat', 'aanwezig'])->get();
             foreach($results as $result)
             {
                 $user = \App\User::find($result->code);
@@ -95,6 +95,7 @@ class ImportController extends Controller
                 $bt3 = intval($result->bt3);
                 $bt4 = intval($result->bt4);
                 $aanwezig = intval($result->aanwezig);
+                $laat = intval($result->laat);
                 if (count($user) > 0)
                 {
                         // check if any of the grades are above 90
@@ -117,6 +118,14 @@ class ImportController extends Controller
                             \App\Badge::assign($user->id, 12);
                         }
 
+                    }
+
+                    if ($laat == 0)
+                    {
+                        if (!$user->hasBadge(13))
+                        {
+                            \App\Badge::assign($user->id, 13);
+                        }
                     }
                 }
 
