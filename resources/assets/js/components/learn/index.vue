@@ -45,7 +45,7 @@
                             </div>
 
                             <div v-if="subActive === 'Workbook'">
-                                <p>This is the werkbook section</p>
+                                <p>This is the workbook section, currently under construction</p>
                             </div>
 
                             <div v-if="subActive === 'Software'">
