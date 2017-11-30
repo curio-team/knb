@@ -208,7 +208,9 @@
     }
 
 
-
+    body {
+        overflow-y: hidden;
+    }
 
     .silver {
         font-weight: bold;
@@ -260,7 +262,7 @@
     }
 
     .leaderboard {
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
 
 </style>
