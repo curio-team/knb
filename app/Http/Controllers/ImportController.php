@@ -81,9 +81,57 @@ class ImportController extends Controller
         return back()->with('succes', 'User ' . $user->name . ' succesfully registered to the amohub.');
     }
 
+    public function bulkBadgesUpload(UploadCsvRequest $request)
+    {
+        $file = $request->file('csv');
+
+        Excel::load($file, function($reader) {
+            $results = $reader->select(['code', 'bt1', 'bt2', 'bt3', 'bt4', 'aanwezig'])->get();
+            foreach($results as $result)
+            {
+                $user = \App\User::find($result->code);
+                $bt1 = intval($result->bt1);
+                $bt2 = intval($result->bt2);
+                $bt3 = intval($result->bt3);
+                $bt4 = intval($result->bt4);
+                $aanwezig = intval($result->aanwezig);
+                if (count($user) > 0)
+                {
+                        // check if any of the grades are above 90
+                    if ($bt1 >= 90 || $bt2 >= 90 || $bt3 >= 90 || $bt4 >= 90)
+                    {
+                        // check if not already has overachiever badge
+                            // assign overachiever badge
+                        if ( !$user->hasBadge(11) )
+                        {
+                            \App\Badge::assign($user->id, 11);
+                        }
+                    }
+
+                    if ($aanwezig == 100)
+                    {
+                        // check if not already has Always on Time badge
+                            // assign always on time badge
+                        if (!$user->hasBadge(12))
+                        {
+                            \App\Badge::assign($user->id, 12);
+                        }
+
+                    }
+                }
+
+            }
+        });
+
+        return back()->with('success', "Succesfully gifted badges.");
+
+    }
+
     public function bulkPointsUpload(UploadCsvRequest $request)
     {
         $file = $request->file('csv');
+
+
         $revert = false;
         $word = 'awarded';
         if ($request->revert == 'on')
@@ -95,6 +143,7 @@ class ImportController extends Controller
             $results = $reader->select(['code', 'pgo', 'vht1', 'vht2', 'keuze', 'project', 'bt1', 'bt2', 'aanwezig'])->get();
             foreach($results as $result)
             {
+
                 $user = \App\User::find($result->code);
                 if (count($user) > 0)
                 {
@@ -106,7 +155,6 @@ class ImportController extends Controller
                     $project = strtolower($result->project);
                     $bt1 = intval($result->bt1);
                     $bt2 = intval($result->bt2);
-                    $aanwezig = intval($result->aanwezig);
 
                     $res = [
                         [
