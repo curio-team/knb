@@ -92,11 +92,17 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        $message->read = 1;
-        $message->update();
-        return view('messages.show', [
-            'message' => $message
-        ]);
+        if ( $message->receiver->id == \Auth::user()->id)
+        {
+            $message->read = 1;
+            $message->update();
+            return view('messages.show', [
+                'message' => $message
+            ]);
+        } else {
+            return back()->with('error', 'You can only view your own messages');
+        }
+
     }
 
     /**
