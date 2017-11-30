@@ -57,8 +57,8 @@
 
                         <p class="date"><i>{{news[0].created_at}}</i></p>
 
-                        <p class="news-description">
-                            {{news[0].content}}
+                        <p v-html="news[0].content" class="news-description">
+
                         </p>
                     </div>
 
@@ -72,8 +72,8 @@
 
                         <p class="date"><i>{{news[1].created_at}}</i></p>
 
-                        <p class="news-description">
-                            {{news[1].content}}
+                        <p v-html="news[1].content" class="news-description">
+
                         </p>
                     </div>
 
@@ -87,8 +87,8 @@
 
                         <p class="date"><i>{{news[2].created_at}}</i></p>
 
-                        <p class="news-description">
-                            {{news[2].content}}
+                        <p v-html="news[2].content" class="news-description">
+
                         </p>
                     </div>
 
@@ -205,11 +205,6 @@
         background: rgb(255,215, 0);
         font-weight: bold;
         box-shadow: 0px 0px 8px 5px rgb(255,215,0);
-    }
-
-
-    body {
-        overflow-y: hidden;
     }
 
     .silver {

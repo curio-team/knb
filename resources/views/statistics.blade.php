@@ -10,7 +10,8 @@
     <title>Statistics</title>
     <style>
         html {
-            background: linear-gradient(to right, #71B280, #134E5E)
+            background: linear-gradient(to right, #71B280, #134E5E);
+            overflow-y: hidden;
         }
     </style>
 
@@ -27,7 +28,7 @@
     </script>
 
 </head>
-<body>
+<body style="overflow-y: hidden">
     <div id="app">
         <statistics></statistics>
     </div>
