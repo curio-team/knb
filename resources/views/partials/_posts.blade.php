@@ -101,6 +101,6 @@
             </div>
         @endforeach
 
-        {{ $posts->links() }}
+        {{ $posts->appends(Request::only('q'))->links() }}
     </div>
 </div>
