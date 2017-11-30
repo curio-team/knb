@@ -140,7 +140,7 @@
             this.setNextSection();
             setInterval(()=> {
                 this.setNextSection();
-            }, 10000);
+            }, 25000);
 
         },
 
@@ -258,6 +258,10 @@
 
     .leaderboard {
         font-size: 1.2em;
+    }
+
+    .box {
+        background: rgba(255,255,255,0.7);
     }
 
 </style>
