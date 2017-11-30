@@ -101,6 +101,6 @@
             </div>
         @endforeach
 
-        {{ $posts->appends(Request::only(['query', 'tags[]']))->links() }}
+        {{ $posts->appends(Request::only(['query', 'tags']))->links() }}
     </div>
 </div>
