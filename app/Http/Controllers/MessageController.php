@@ -100,7 +100,7 @@ class MessageController extends Controller
                 'message' => $message
             ]);
         } else {
-            return back()->with('error', 'You can only view your own messages');
+            return redirect()->route('home')->with('error', 'You can only view your own messages');
         }
 
     }
