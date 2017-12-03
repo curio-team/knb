@@ -130,6 +130,6 @@
             </div>
         @endforeach
 
-        {{ $posts->links() }}
+        {{ $posts->appends(Request::only(['query', 'tags']))->links() }}
     </div>
 </div>

@@ -58,11 +58,12 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::group(['middleware' => 'auth'], function() {
-    
+
     Route::group(['middleware' => 'headmaster'], function(){
 
-        Route::post('dashboard/csv/upload', 'ImportController@upload')->name('upload');
+        // Route::post('dashboard/csv/upload', 'ImportController@upload')->name('upload');
         Route::post('dashboard/csv/gradesUpload', 'ImportController@bulkPointsUpload');
+        Route::post('dashboard/csv/badgesUpload', 'ImportController@bulkBadgesUpload');
         Route::post('dashboard/user/registration', 'ImportController@singleRegistration');
 
         Route::get('/start-house-selection', 'HouseController@doSelection');
@@ -74,12 +75,12 @@ Route::group(['middleware' => 'auth'], function() {
 
         
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-        
+
         // allocate points from dashboard
         Route::post('/dashboard/points/', 'PointsController@allocate');
-        
+
     });
-    
+
     Route::resource('message', 'MessageController');
 
     Route::get('/game-info', 'HomeController@gameInfo');
@@ -118,10 +119,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('news','NewsController');
 
     Route::resource('comment', 'CommentController');
-    
+
     // Events
     Route::resource('events', 'EventsController');
-    
+
     Route::get("amoclient/ready", 'UsersController@callBack');
 
 });

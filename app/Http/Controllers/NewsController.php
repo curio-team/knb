@@ -109,4 +109,10 @@ class NewsController extends Controller
     {
         //
     }
+
+    public function all()
+    {
+        return \App\News::orderBy('created_at', 'desc')->get();
+    }
+
 }
