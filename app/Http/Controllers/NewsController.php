@@ -34,6 +34,10 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        if(\Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor')
+        {
+            return back();
+        }
         $news = new \App\News();
         $news->title    = $request->get('title');
         $news->content  = $request->get('content');
@@ -62,7 +66,16 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(\Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor')
+        {
+            return back();
+        }
+        $news = \App\News::find($id);
+        if (\Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor')
+        {
+            return back();
+        }
+        return view('news/edit', compact('news'));
     }
 
     /**
@@ -74,7 +87,16 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(\Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor')
+        {
+            return back();
+        }
+        $news = \App\News::find($id);
+        $news->title    = $request->get('title');
+        $news->content  = $request->get('content');
+        $news->sticky   = 0;
+        $news->save();
+        return redirect()->action('NewsController@show', $id)->with('success', 'Newsitem updated succesfully');
     }
 
     /**

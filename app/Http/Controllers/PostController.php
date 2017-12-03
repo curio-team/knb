@@ -151,8 +151,8 @@ class PostController extends Controller
             'post' => $post,
             'replies' => Post::with('votes')->where('post_id', $post->id)
                 ->orderBy('accepted_answer', 'DESC')
-                ->orderBy('votes', 'DESC')
                 ->orderBy('created_at', 'DESC')
+                ->orderBy('votes', 'DESC')
                 ->get(),
         ]);
     }
@@ -165,7 +165,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        if ($post->author->id !== \Auth::user()->id && \Auth::user()->type != 'teacher')
+        if (($post->author->id !== \Auth::user()->id && ($post->flags == 1 || $post->isLocked())) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor')
         {
             return back();
         }
@@ -204,6 +204,10 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        if (($post->author->id !== \Auth::user()->id && ($post->isLocked() || $post->flags == 1)) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor'){
+            return redirect()->back()->with('error', 'Error editing post.: <br>' . $e->getMessage());
+        }
+
         try
         {
             \DB::beginTransaction();
@@ -218,6 +222,14 @@ class PostController extends Controller
         {
             \DB::rollback();
             return redirect()->back()->with('error', 'Error editing post.: <br>' . $e->getMessage());
+        }
+
+        if ($post->flags == 2){
+            $post->decrement('flags');
+            $post->decrement('flags');
+            $user = Auth::user();
+            $user->flags()->detach($post->id);
+            $user->flags()->detach($post->id);
         }
 
         if ($post->parent)
@@ -295,9 +307,12 @@ class PostController extends Controller
 
     public function flag(Request $request, Post $post)
     {
-        $post->increment('flags');
-        $user = Auth::user();
-        $user->flags()->attach($post->id);
+        if (!$post->isFlagged()){
+            $post->increment('flags');
+            $post->update(['flags' => 2]);
+            $user = Auth::user();
+            $user->flags()->attach($post->id);
+        }
         return back();
     }
 
@@ -306,6 +321,16 @@ class PostController extends Controller
         $post->decrement('flags');
         $user = Auth::user();
         $user->flags()->detach($post->id);
+        return back();
+    }
+
+    public function change(Request $request, Post $post)
+    {
+        if ($post->flags == 1){
+            $post->increment('flags');
+            $user = Auth::user();
+            $user->flags()->attach($post->id);
+        }
         return back();
     }
 
@@ -337,9 +362,10 @@ class PostController extends Controller
             return redirect()->action('HomeController@forum');
         }
         $query = $request->get('query');
+        $user_id = Auth::user()->id;
         $posts = Post::with('author')->
         orderBy('created_at', 'DESC')->
-        whereRaw("`post_id` is NULL and `post_id` is null and (`content` like '%$query%' or `title` like '%$query%')")->paginate(10);
+        whereRaw("`post_id` is NULL and (`flags` < '2' or `author_id` like '$user_id') and (`content` like '%$query%' or `title` like '%$query%')")->paginate(10);
         /*where('post_id', NULL)->
         where('content', 'like', "%$query%")->
         orWhere('title', 'like', "%$query%")->
