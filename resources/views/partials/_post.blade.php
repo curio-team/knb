@@ -15,16 +15,23 @@
                         @endif
                         @unless($post->isLocked())
                             @if($post->isYours() ||(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
-                                @if(!$post->isFlagged() || (\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
-                                    <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
-                                        <i title="edit this post" class="fa fa-2x fa-edit"></i>
-                                    </a>
+                                
+                                @if($post->flags == 3)
+                                    <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
                                 @else
-                                    @if($post->flags == 2)
+
+                                    @if(!$post->isFlagged() || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()) && !$post->isYours() ) )
                                         <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
-                                            <i title="edit this post" class="fa fa-2x fa-edit" style="color: yellow"></i>
+                                            <i title="edit this post" class="fa fa-2x fa-edit"></i>
                                         </a>
+                                    @else
+                                        @if($post->flags == 2)
+                                            <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                                <i title="you should edit this post" class="fa fa-2x fa-edit" style="color: #ff6600"></i>
+                                            </a>
+                                        @endif
                                     @endif
+
                                 @endif
                             @endif
 
@@ -41,15 +48,16 @@
                                     @if($post->flags == 1)
                                         <i title="this post is flagged. A moderator will look into this soon." class="fa fa-2x fa-flag" style="color: red"></i>
                                     @else
-                                        @unless($post->isYours() || $post->flags != 2)
-                                            <i title="this post must be edit by author, editor or headmaster." class="fa fa-2x fa-edit" style="color: yellow"></i>
-                                        @endunless
+                                        @if( !$post->isYours() && $post->flags == 2)
+                                            <i title="this post should be edit by the author, an editor or a headmaster." class="fa fa-2x fa-edit" style="color: yellow"></i>
+                                        @endif
                                     @endif
                                 @endunless
                             @endunless
                         @else
                             <i title="This post is locked. You can not comment or answer this post" class="fa fa-2x fa-lock" style="color: red"></i>
                         @endunless
+
                     </div>
 
                     <div class="columns">
@@ -149,19 +157,25 @@
                                 @if(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())
                                     @include("partials/minis/_post-admin-controls")
                                 @endif
-                                
                                 @unless($post->isLocked())
                                     @if($post->isYours() ||(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
-                                        @if(!$post->isFlagged() || (\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
-                                            <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
-                                                <i title="edit this post" class="fa fa-2x fa-edit"></i>
-                                            </a>
+                                        
+                                        @if($post->flags == 3)
+                                            <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
                                         @else
-                                            @if($post->flags == 2)
+
+                                            @if(!$post->isFlagged() || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()) && !$post->isYours() ) )
                                                 <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
-                                                    <i title="edit this post" class="fa fa-2x fa-edit" style="color: yellow"></i>
+                                                    <i title="edit this post" class="fa fa-2x fa-edit"></i>
                                                 </a>
+                                            @else
+                                                @if($post->flags == 2)
+                                                    <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                                        <i title="you should edit this post" class="fa fa-2x fa-edit" style="color: #ff6600"></i>
+                                                    </a>
+                                                @endif
                                             @endif
+
                                         @endif
                                     @endif
 
@@ -178,15 +192,16 @@
                                             @if($post->flags == 1)
                                                 <i title="this post is flagged. A moderator will look into this soon." class="fa fa-2x fa-flag" style="color: red"></i>
                                             @else
-                                                @unless($post->isYours() || $post->flags != 2)
-                                                    <i title="this post must be edit by author, editor or headmaster." class="fa fa-2x fa-edit" style="color: yellow"></i>
-                                                @endunless
+                                                @if( !$post->isYours() && $post->flags == 2)
+                                                    <i title="this post should be edit by the author, an editor or a headmaster." class="fa fa-2x fa-edit" style="color: yellow"></i>
+                                                @endif
                                             @endif
                                         @endunless
                                     @endunless
                                 @else
-                                    <i title="This post is locked. You can not comment this post" class="fa fa-2x fa-lock" style="color: yellow"></i>
+                                    <i title="This post is locked. You can not comment or answer this post" class="fa fa-2x fa-lock" style="color: red"></i>
                                 @endunless
+
                             </div>
 
                             <div class="columns">
