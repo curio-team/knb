@@ -22,6 +22,23 @@
             <li data-id="{{ $post->id }}" class="admin-control btn-admin-control-remove">
                 <i class="fa fa-remove"></i> remove this post
             </li>
+            @if ($post->flags == 3)
+            <li data-id="{{ $post->id }}" class="admin-control btn-admin-control-removal">
+                <i class="fa fa-remove"></i> deleted request
+            </li>
+            @endif
+        @else
+            @if($post->isFlagged() && $post->flags != 2)
+                @if($post->flags != 3)
+                    <li data-id="{{ $post->id }}" class="admin-control btn-admin-control-removal">
+                        <i class="fa fa-remove"></i> request removal
+                    </li>
+                @else
+                    <li data-id="{{ $post->id }}" class="admin-control btn-admin-control-removal">
+                        <i class="fa fa-remove"></i> deleted request
+                    </li>
+                @endif
+            @endif
         @endif
     </ul>
 </div>

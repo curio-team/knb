@@ -22,16 +22,23 @@
                     @endif
                     @unless($post->isLocked())
                         @if($post->isYours() ||(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
-                            @if(!$post->isFlagged() || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()) && !$post->isYours() ) )
-                                <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
-                                    <i title="edit this post" class="fa fa-2x fa-edit"></i>
-                                </a>
+                            
+                            @if($post->flags == 3)
+                                <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
                             @else
-                                @if($post->flags == 2)
+
+                                @if(!$post->isFlagged() || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()) && !$post->isYours() ) )
                                     <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
-                                        <i title="you should edit this post" class="fa fa-2x fa-edit" style="color: #ff6600"></i>
+                                        <i title="edit this post" class="fa fa-2x fa-edit"></i>
                                     </a>
+                                @else
+                                    @if($post->flags == 2)
+                                        <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                            <i title="you should edit this post" class="fa fa-2x fa-edit" style="color: #ff6600"></i>
+                                        </a>
+                                    @endif
                                 @endif
+
                             @endif
                         @endif
 

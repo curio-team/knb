@@ -99,8 +99,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('house', 'HouseController');
 
-    Route::post('/post/{post}/lock', 'PostController@Lock');
+    Route::post('post/{post}/lock', 'PostController@Lock');
     Route::post('post/{post}/change', 'PostController@change');
+    Route::post('post/{post}/removal', 'PostController@removal');
     Route::post('post/{post}/flag', 'PostController@flag');
     Route::post('post/{post}/unflag', 'PostController@unflag');
     Route::post('post/{post}/vote', 'PostController@vote');

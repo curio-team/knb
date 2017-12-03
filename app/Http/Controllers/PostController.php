@@ -165,7 +165,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        if (($post->author->id !== \Auth::user()->id && ($post->flags == 1 || $post->isLocked())) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor')
+        if (($post->author->id !== \Auth::user()->id && ($post->flags == 1 || $post->flags == 3 || $post->isLocked())) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor')
         {
             return back();
         }
@@ -225,8 +225,8 @@ class PostController extends Controller
         }
 
         if ($post->flags == 2){
-            $post->decrement('flags');
-            $post->decrement('flags');
+            $post->flags = 0;
+            $post->save();
             $user = Auth::user();
             $user->flags()->detach($post->id);
             $user->flags()->detach($post->id);
@@ -307,7 +307,8 @@ class PostController extends Controller
 
     public function flag(Request $request, Post $post)
     {
-        if (!$post->isFlagged()){
+        if (!$post->isFlagged())
+        {
             $post->increment('flags');
             $post->update(['flags' => 2]);
             $user = Auth::user();
@@ -318,9 +319,13 @@ class PostController extends Controller
 
     public function unflag(Request $request, Post $post)
     {
-        $post->decrement('flags');
+        if ($post->flags == 1)
+        {
+            $post->decrement('flags');
         $user = Auth::user();
         $user->flags()->detach($post->id);
+        }
+        
         return back();
     }
 
@@ -328,6 +333,17 @@ class PostController extends Controller
     {
         if ($post->flags == 1){
             $post->increment('flags');
+            $user = Auth::user();
+            $user->flags()->attach($post->id);
+        }
+        return back();
+    }
+
+    public function removal(Request $request, Post $post)
+    {
+        if ($post->flags == 1 || $post->flags == 3){
+            $post->flags = ($post->flags == 1) ? 3 : 1;
+            $post->save();
             $user = Auth::user();
             $user->flags()->attach($post->id);
         }
