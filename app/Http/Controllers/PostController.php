@@ -110,9 +110,9 @@ class PostController extends Controller
                 \Mail::to($email)
                 ->send(new \App\Mail\PostAnswered($post->parent));
             }
-            $warning = true;
+            
         } catch (\Exception $e){
-
+            $warning = true;
         }
         
 
