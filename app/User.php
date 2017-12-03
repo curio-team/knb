@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->type == 'teacher' ? true : false;
     }
 
+    public function isEditor()
+    {
+        return $this->type == 'editor' ? true : false;
+    }
+
     public static function sortByPoints($limit = null)
     {
 

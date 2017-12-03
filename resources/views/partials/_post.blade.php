@@ -10,28 +10,46 @@
             <div class="content media-post">
                 <div class="box box-with-options">
                     <div class="box-options">
-                        @if(\Auth::user()->isHeadMaster())
+                        @if(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())
                             @include("partials/minis/_post-admin-controls")
                         @endif
-                        @if($question->isYours() || \Auth::user()->isHeadMaster())
-                            <a class="option"  href="{{ action('PostController@edit', $post) }}" class="option-edit">
-                                <i class="fa fa-2x fa-edit"></i>
-                            </a>
-                        @else
-                            @unless($post->isFlagged())
-                                <i class="option-flag">
-                                    <i title="flag this post" class="fa fa-2x fa-flag"></i>
-                                </i>
+                        @unless($post->isLocked())
+                            @if($post->isYours() ||(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
+                                @if(!$post->isFlagged() || (\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
+                                    <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                        <i title="edit this post" class="fa fa-2x fa-edit"></i>
+                                    </a>
+                                @else
+                                    @if($post->flags == 2)
+                                        <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                            <i title="edit this post" class="fa fa-2x fa-edit" style="color: yellow"></i>
+                                        </a>
+                                    @endif
+                                @endif
+                            @endif
 
-                                <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
-                                    {{ csrf_field() }}
-                                </form>
-                            @else
-                                <i title="this post is flagged. A moderator will look into this soon." style="color: red">
-                                    flagged
-                                </i>
+                            @unless($post->author->isHeadmaster())
+                                @unless($post->isFlagged())
+                                    <i class="option-flag">
+                                        <i title="flag this post" class="fa fa-2x fa-flag"></i>
+                                    </i>
+
+                                    <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
+                                        {{ csrf_field() }}
+                                    </form>
+                                @else
+                                    @if($post->flags == 1)
+                                        <i title="this post is flagged. A moderator will look into this soon." class="fa fa-2x fa-flag" style="color: red"></i>
+                                    @else
+                                        @unless($post->isYours() || $post->flags != 2)
+                                            <i title="this post must be edit by author, editor or headmaster." class="fa fa-2x fa-edit" style="color: yellow"></i>
+                                        @endunless
+                                    @endif
+                                @endunless
                             @endunless
-                        @endif
+                        @else
+                            <i title="This post is locked. You can not comment or answer this post" class="fa fa-2x fa-lock" style="color: red"></i>
+                        @endunless
                     </div>
 
                     <div class="columns">
@@ -42,9 +60,13 @@
                         <div class="column is-11">
                             <h4 class="title is-4">{{ $post->title }}</h4>
                             @if($post->author->isHeadmaster())
-                                <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $post->author->name }}</span>
+                                author: <span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $post->author->name }}</span>
                             @else
-                                <span class="author">author: {{ $post->author->name }}</span>
+                                @if($post->author->isEditor())
+                                    author: <span style="text-shadow: 0px 0px 3px black; color: silver" class="author"> {{ $post->author->name }}</span>
+                                @else
+                                    <span class="author">author: {{ $post->author->name }}</span>
+                                @endif
                             @endif
                             <p>{!! $post->content !!}</p>
                         </div>
@@ -73,8 +95,6 @@
                         @unless ($post->isLocked())
                         <a href="{{ action('PostController@answer', $post) }}" class="button is-success">Give answer</a>
                         <a href="" class="btn-add-comment button is-info" >Add comment</a>
-                        @else
-                        <p style="color: red; border: 1px solid red">OOPS! This post is locked. You can not comment or answer this post</p>
                         @endunless
                     </div>
 
@@ -90,10 +110,14 @@
                                     <img src="{{$comment->author->houserole->house->thumbnail()}}" alt="">
                                 </figure>
                                 <div class="content media-post-comment">
-                                    @if($comment->author->isHeadmaster())
-                                        <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $comment->author->name }}</span>
+                                    @if($post->author->isHeadmaster())
+                                        author: <span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $post->author->name }}</span>
                                     @else
-                                        <strong>{{ $comment->author->name }}</strong>
+                                        @if($post->author->isEditor())
+                                            author: <span style="text-shadow: 0px 0px 3px black; color: silver" class="author"> {{ $post->author->name }}</span>
+                                        @else
+                                            <span class="author">author: {{ $post->author->name }}</span>
+                                        @endif
                                     @endif
                                     <p>{!! nl2br($comment->content) !!}</p>
                                 </div>
@@ -122,27 +146,46 @@
 
                         <div class="content media-post box box-with-options">
                             <div class="box-options">
-                                @if(\Auth::user()->isHeadMaster())
+                                @if(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())
                                     @include("partials/minis/_post-admin-controls")
                                 @endif
-                                @if($question->isYours())
-                                    <a class="option"  href="{{ action('PostController@edit', $post) }}" class="option-edit">
-                                        <i class="fa fa-2x fa-edit"></i>
-                                    </a>
-                                @else
-                                    @unless($post->isFlagged())
-                                        <i class="option-flag">
-                                            <i title="flag this post" class="fa fa-2x fa-flag"></i>
-                                        </i>
-                                       <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    @else
-                                        <i title="this post is flagged. A moderator will look into this soon." style="color: red">
-                                            flagged
-                                        </i>
+                                @unless($post->isLocked())
+                                    @if($post->isYours() ||(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
+                                        @if(!$post->isFlagged() || (\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
+                                            <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                                <i title="edit this post" class="fa fa-2x fa-edit"></i>
+                                            </a>
+                                        @else
+                                            @if($post->flags == 2)
+                                                <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                                    <i title="edit this post" class="fa fa-2x fa-edit" style="color: yellow"></i>
+                                                </a>
+                                            @endif
+                                        @endif
+                                    @endif
+
+                                    @unless($post->author->isHeadmaster())
+                                        @unless($post->isFlagged())
+                                            <i class="option-flag">
+                                                <i title="flag this post" class="fa fa-2x fa-flag"></i>
+                                            </i>
+
+                                            <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        @else
+                                            @if($post->flags == 1)
+                                                <i title="this post is flagged. A moderator will look into this soon." class="fa fa-2x fa-flag" style="color: red"></i>
+                                            @else
+                                                @unless($post->isYours() || $post->flags != 2)
+                                                    <i title="this post must be edit by author, editor or headmaster." class="fa fa-2x fa-edit" style="color: yellow"></i>
+                                                @endunless
+                                            @endif
+                                        @endunless
                                     @endunless
-                                @endif
+                                @else
+                                    <i title="This post is locked. You can not comment this post" class="fa fa-2x fa-lock" style="color: yellow"></i>
+                                @endunless
                             </div>
 
                             <div class="columns">
@@ -154,9 +197,13 @@
                                 </div>
                                 <div class="column is-11">
                                     @if($post->author->isHeadmaster())
-                                        author: <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $post->author->name }}</span>
+                                        author: <span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $post->author->name }}</span>
                                     @else
-                                        <span class="author">author: {{ $post->author->name }}</span>
+                                        @if($post->author->isEditor())
+                                            author: <span style="text-shadow: 0px 0px 3px black; color: silver" class="author"> {{ $post->author->name }}</span>
+                                        @else
+                                            <span class="author">author: {{ $post->author->name }}</span>
+                                        @endif
                                     @endif
                                     <p>{!! $post->content !!}</p>
                                 </div>
@@ -195,7 +242,7 @@
                                 </form>
                             @endif
 
-                            @unless( $post->parent->isLocked() )
+                            @unless( $post->parent->isLocked() || $post->isLocked())
                             <div class="button-group">
                                 <a href="" class="btn-add-comment button is-info">Add comment</a>
                             </div>
@@ -209,10 +256,14 @@
                                     <article class="media">
                                         <div class="content media-post-comment">
 
-                                            @if ($comment->author->isHeadmaster())
-                                                <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $comment->author->name }}</span>
+                                            @if($post->author->isHeadmaster())
+                                                author: <span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $post->author->name }}</span>
                                             @else
-                                                <strong>{{ $comment->author->name }}</strong>;
+                                                @if($post->author->isEditor())
+                                                    author: <span style="text-shadow: 0px 0px 3px black; color: silver" class="author"> {{ $post->author->name }}</span>
+                                                @else
+                                                    <span class="author">author: {{ $post->author->name }}</span>
+                                                @endif
                                             @endif
 
                                             <p>{!! nl2br($comment->content) !!}</p>
