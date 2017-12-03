@@ -15,7 +15,7 @@ class MessageController extends Controller
 
     public function __construct()
     {
-        $this->middleware('headmaster')->except(['index', 'show', 'checkAllRead']);
+        $this->middleware('headmaster')->except(['index', 'show', 'checkAllRead', 'destroy']);
     }
 
     /**
@@ -92,11 +92,17 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        $message->read = 1;
-        $message->update();
-        return view('messages.show', [
-            'message' => $message
-        ]);
+        if ( $message->receiver->id == \Auth::user()->id)
+        {
+            $message->read = 1;
+            $message->update();
+            return view('messages.show', [
+                'message' => $message
+            ]);
+        } else {
+            return redirect()->route('home')->with('error', 'You can only view your own messages');
+        }
+
     }
 
     /**
@@ -120,11 +126,15 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        $subject = $message->subject;
+        if ($message->receiver->id = \Auth::user()->id)
+        {
+            $subject = $message->subject;
 
-        $message->delete();
+                    $message->delete();
 
-        return redirect()->route('message.index')->with('success','Message with subject: \'' . $subject . '\' successfully removed.');
+                    return redirect()->route('message.index')->with('success','Message with subject: \'' . $subject . '\' successfully removed.');
+        }
+
     }
 
 

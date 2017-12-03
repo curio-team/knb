@@ -5,15 +5,6 @@
         <div class="column is-half">
             <h2 class="is-2">Import</h2>
             <h3 class="is-3">Import from csv</h3>
-            <form class="upload-csv" method="post" action="{{action('ImportController@upload')}}" enctype="multipart/form-data">
-                <input type="hidden" name="_token" value="{{csrf_token()}}">
-
-                <div class="field">
-                    <label for="upload" class="label">Upload students from csv</label>
-                    <input type="file" name="csv" id="csv">
-                </div>
-                <input type="submit" value="Import" class="button is-primary">
-            </form>
 
             <form class="upload-csv" method="post" action="{{action('ImportController@bulkPointsUpload')}}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -41,6 +32,28 @@
                     <input type="checkbox" name="revert" id="revert">
                 </div>
                 <input type="submit" value="Import" class="button is-primary">
+            </form>
+
+            <form class="upload-csv" method="post" action="{{action('ImportController@bulkBadgesUpload')}}" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
+
+                <div class="field">
+                    <label for="upload" class="label">Assign badges from csv</label>
+                    <input type="file" name="csv" id="csv">
+                    <br>
+                    <small>Available columns:
+                        <ul>
+                            <li>"code" (studentcode)</li>
+                            <li> "bt1" (grade)</li>
+                            <li> "bt2" (grade)</li>
+                            <li> "bt3" (grade)</li>
+                            <li> "bt4" (grade)</li>
+                            <li> "laat" (integer (aantal laatmeldingen)) </li>
+                            <li> "aanwezig" (integer 1 to 100)</li>
+                        </ul>
+                    </small>
+                </div>
+                <input type="submit" value="Assign Badges" class="button is-primary">
             </form>
 
         </div>

@@ -149,6 +149,7 @@
                                 @if(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())
                                     @include("partials/minis/_post-admin-controls")
                                 @endif
+                                
                                 @unless($post->isLocked())
                                     @if($post->isYours() ||(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
                                         @if(!$post->isFlagged() || (\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
