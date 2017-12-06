@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/dashboard/badges', 'DashboardController@badges')->name('badges');
         Route::post('/dashboard/badges/toggle', 'BadgesController@toggle');
 
-        Route::post('/post/{post}/lock', 'PostController@Lock');
+        
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
         // allocate points from dashboard
@@ -100,6 +100,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('house', 'HouseController');
 
+    Route::post('post/{post}/lock', 'PostController@Lock');
+    Route::post('post/{post}/change', 'PostController@change');
+    Route::post('post/{post}/removal', 'PostController@removal');
     Route::post('post/{post}/flag', 'PostController@flag');
     Route::post('post/{post}/unflag', 'PostController@unflag');
     Route::post('post/{post}/vote', 'PostController@vote');
