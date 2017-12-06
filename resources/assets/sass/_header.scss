@@ -58,13 +58,14 @@ a.nav-item {
   .header-nav {
     display: flex;
     flex-direction: row;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1009px) {
       display: none;
       flex-direction: column;
       position: absolute;
       bottom: 0;
       transform: translateY(100%);
       width: 100%;
+      background-color: rgba(70,70,70,0.9);
     }
     &.is-active {
       display: inherit;

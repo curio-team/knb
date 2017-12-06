@@ -5,8 +5,8 @@
 
     <div class="content container main-content">
         <div class="columns">
-            <div class="column is-two-thirds" id="#info-game">
-                <h1 class="is-1">The game</h1>
+            <div class="column is-two-thirds">
+                <h1 id="info-game" class="is-1">The game</h1>
                 <p>
                     Ok {{ \Auth::user()->getHouseSingular() }}, this is it! Have you read <a href="{{route('story')}}">the story</a> yet? If you did, you know what's at stake here... <br> And now you want to know how to earn those points do you? Of course you do. The fate of the {{ \Auth::user()->houseRole->house->name }} is in your hands. You can earn points and badges. both of them contribute to your personal growth as to your house. <strong>The only way the {{ \Auth::user()->houseRole->house->name  }} can win is through you participating for your house!</strong>
                 </p>
@@ -82,11 +82,11 @@
                     <tbody>
                         <tr>
                             <td> >= 90% </td>
-                            <td>50</td>
+                            <td>25</td>
                         </tr>
                         <tr>
                             <td> 100% </td>
-                            <td>75</td>
+                            <td>50</td>
                         </tr>
                     </tbody>
                 </table>

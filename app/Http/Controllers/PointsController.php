@@ -40,4 +40,25 @@ class PointsController extends Controller
 
 
     }
+
+    public static function allocateFromBulk($id, $data, $revert)
+    {
+        $type = $revert ? 'deassign' : 'assign';
+        \App\ScoreLog::write($id, [
+            'reason'    => $data['message'],
+            'points'    => $data['points'],
+            'type'      => $type
+        ]);
+
+        if ( $revert )
+        {
+            $data['points'] = -abs($data['points']);
+        }
+
+        $user = \App\User::find($id);
+
+        $user->points += $data['points'];
+        $user->save();
+
+    }
 }

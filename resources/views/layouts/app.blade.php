@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.ico') }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/prism.css') }}">
@@ -142,7 +143,7 @@
                     <li><a href="{{ route('profile', \Auth::id()) }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>
                   @endif
                   <li>
-                      
+
                       <a onclick="event.preventDefault(), document.getElementById('logout-form').submit()" class="nav-item is-tab"><span class="icon"><i class="fa fa-sign-out"></i></span> Logout</a>
 
                   </li>

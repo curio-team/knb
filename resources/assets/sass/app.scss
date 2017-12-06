@@ -5,6 +5,9 @@
 // Variables
 @import "variables";
 
+// Utility styling
+@import "utils";
+
 
 
 body {
@@ -132,6 +135,9 @@ span.panel-heading{
   position: absolute;
   right: 15px;
   top: 15px;
+  display: flex;
+  flex-direction: column;
+
   i.fa{
     color: #4a4a4a;
   }
@@ -325,7 +331,7 @@ li.admin-control .fa {
 ul.admin-controls {
   right: 0px;
   top: 0px;
-  min-width: 150px;
+  min-width: 200px;
   display: none;
   background: $brand-warning;
   position: absolute;
@@ -475,7 +481,7 @@ code[class*="language-"], pre[class*="language-"] {
 
 .news-panel .news-item {
   @include transparent();
-  margin: 10px;
+  margin: 10px 0;
   padding: 10px;
 
   display: flex;
@@ -486,10 +492,27 @@ code[class*="language-"], pre[class*="language-"] {
 }
 
 .news-show {
+  position: relative;
   h1 {
     color: black;
   }
   @include transparent();
   margin: 10px;
   padding: 10px;
+}
+
+.columns {
+  @media screen and (max-width: 1009px) {
+    margin: 0;
+  }
+}
+
+.box {
+  margin: 0;
+}
+
+@supports (-ms-ime-align: auto) {
+  .story-houses {
+        display: block !important;
+  }
 }
