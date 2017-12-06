@@ -131,5 +131,16 @@
         @endforeach
 
         {{ $posts->appends(Request::only(['query', 'tags']))->links() }}
+
+        @if(isset($users) && count($users) > 0 )
+        <h1>Users</h1>
+            <div class="users">
+                <ul>
+                    @foreach($users as $user)
+                        <li><a href="{{route('profile', $user->id)}}">{{$user->name}}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 </div>

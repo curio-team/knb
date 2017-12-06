@@ -114,7 +114,7 @@ class PostController extends Controller
         } catch (\Exception $e){
             $warning = true;
         }
-        
+
 
         $redirect = $request->has('question_id') ? $request->get('question_id') : $post->id;
 
@@ -382,13 +382,13 @@ class PostController extends Controller
         $posts = Post::with('author')->
         orderBy('created_at', 'DESC')->
         whereRaw("`post_id` is NULL and (`flags` < '2' or `author_id` like '$user_id') and (`content` like '%$query%' or `title` like '%$query%')")->paginate(10);
-        /*where('post_id', NULL)->
-        where('content', 'like', "%$query%")->
-        orWhere('title', 'like', "%$query%")->
-        paginate(10);*/
+
+      $users = \App\User::whereRaw("`name` like '%$query%' or  `id` like '%query%'")->get();
+
 
         return view('forum', [
             'posts' => $posts,
+            'users' => $users,
             'query' => $request->get('query')
         ]);
 
