@@ -6,16 +6,33 @@ use Illuminate\Http\Request;
 
 class BadgesController extends Controller
 {
+    /**
+     * index
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return \App\Badge::all();
     }
 
+    /**
+     * show
+     *
+     * @param mixed $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         return \App\Badge::findOrFail($id);
     }
 
+    /**
+     * request
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function request(Request $request)
     {
         $badge_id = $request->badge;
@@ -32,6 +49,12 @@ class BadgesController extends Controller
 
     }
 
+    /**
+     * toggle
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function toggle(Request $request)
     {
 

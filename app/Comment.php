@@ -15,12 +15,19 @@ class Comment extends Model
 
     /**
      * Get the post associated with the model.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function post()
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
 
+    /**
+     * author
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');

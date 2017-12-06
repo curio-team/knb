@@ -24,10 +24,18 @@ class Point extends Model
      * @var string
      */
     protected $table = 'points';
+    /**
+     * $fillable
+     *
+     * @var array
+     */
     protected $fillable = ['receiver_id', 'score_type_id'];
 
     /**
+     * scoreType
      * Get the score type associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function scoreType()
     {
@@ -35,6 +43,8 @@ class Point extends Model
     }
 
     /**
+     * isYours
+     *
      * @return bool
      */
     public function isYours()
@@ -43,7 +53,10 @@ class Point extends Model
     }
 
     /**
+     * receiver
      * Get the receiver associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function receiver()
     {
@@ -51,7 +64,10 @@ class Point extends Model
     }
 
     /**
+     * benefactor
      * Get the benefactor associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function benefactor()
     {
@@ -59,7 +75,10 @@ class Point extends Model
     }
 
     /**
+     * benefactorName
      * Get the benefactor name associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function benefactorName()
     {
@@ -70,6 +89,13 @@ class Point extends Model
         }
     }
 
+    /**
+     * assign
+     *
+     * @param mixed $userId
+     * @param mixed $type
+     * @return \Illuminate\Http\Response
+     */
     public static function assign($userId, $type)
     {
         $points = \App\Point::create([
@@ -97,6 +123,13 @@ class Point extends Model
         }
     }
 
+    /**
+     * deAssign
+     *
+     * @param mixed $userId
+     * @param mixed $type
+     * @return \Illuminate\Http\Response
+     */
     public static function deAssign($userId, $type)
     {
         $point = \App\Point::where('receiver_id', $userId)->where('score_type_id', $type)->limit(1);

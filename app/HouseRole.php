@@ -16,15 +16,22 @@ class HouseRole extends Model
     protected $fillable = ['house_id', 'user_id', 'role_level', 'role_title'];
 
     /**
+     * user
      * Get the post associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+
     /**
+     * house
      * Get the tag associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function house()
     {
