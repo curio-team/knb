@@ -13,7 +13,7 @@ class HomeController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function __construct(GitHubManager $github)
     {
@@ -21,10 +21,10 @@ class HomeController extends Controller
         $this->github = $github;
     }
 
-    /*
-     * Show the applications home
+    /**
+     * index
      *
-     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -37,8 +37,8 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application forum.
-     "
+     * forum
+     *
      * @return \Illuminate\Http\Response
      */
     public function forum()
@@ -58,16 +58,31 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * about
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function about()
     {
         return view('about');
     }
 
+    /**
+     * learn
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function learn()
     {
         return view('learn/index');
     }
 
+    /**
+     * gameInfo
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function gameInfo()
     {
         $badges = \App\Badge::orderBy('priority')->get();
@@ -76,6 +91,12 @@ class HomeController extends Controller
     }
 
 
+    /**
+     * details
+     *
+     * @param mixed $tag
+     * @return \Illuminate\Http\Response
+     */
     public function details($tag)
     {
         return view('learn/detail', [
@@ -83,6 +104,11 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * badgeRequest
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function badgeRequest() {
 
         $badges = \App\Badge::all();

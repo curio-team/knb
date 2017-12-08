@@ -12,14 +12,31 @@ class ImportController extends Controller
     public $imports = 0;
     public $pointEntries = 0;
 
+    /**
+     * __construct
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function __construct()
     {
     }
 
+    /**
+     * stripAccents
+     *
+     * @param mixed $stripAccents
+     * @return \Illuminate\Http\Response
+     */
     private function stripAccents($stripAccents){
         return strtr($stripAccents,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
     }
 
+    /**
+     * upload
+     *
+     * @param UploadCsvRequest $request
+     * @return \Illuminate\Http\Response
+     */
     public function upload(UploadCsvRequest $request)
     {
         $file = $request->file('csv');
@@ -65,6 +82,12 @@ class ImportController extends Controller
         return back()->with('success', 'Import successful. ' . $this->imports . ' added.' . $this->duplicates . ' duplicates were found.');
     }
 
+    /**
+     * singleRegistration
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function singleRegistration(Request $request)
     {
 

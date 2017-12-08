@@ -39,6 +39,12 @@ class PostController extends Controller
         return view('posts/create')->with(compact('tags'));
     }
 
+    /**
+     * answer
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\Response
+     */
     public function answer(Post $post)
     {
         return view('posts.create-answer', [
@@ -46,6 +52,12 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * lock
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\Response
+     */
     public function lock(Post $post)
     {
 
@@ -242,6 +254,13 @@ class PostController extends Controller
     }
 
 
+    /**
+     * updateAnswer
+     *
+     * @param UpdateAnswerRequest $request
+     * @param mixed $id
+     * @return \Illuminate\Http\Response
+     */
     public function updateAnswer(UpdateAnswerRequest $request, $id)
     {
         $post = Post::findOrFail($id);
@@ -287,6 +306,13 @@ class PostController extends Controller
         return redirect()->back()->with('success', $message);
     }
 
+    /**
+     * vote
+     *
+     * @param AddVoteRequest $request
+     * @param Post $post
+     * @return \Illuminate\Http\Response
+     */
     public function vote(AddVoteRequest $request,Post $post)
     {
         $data = [
@@ -305,6 +331,13 @@ class PostController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * flag
+     *
+     * @param Request $request
+     * @param Post $post
+     * @return \Illuminate\Http\Response
+     */
     public function flag(Request $request, Post $post)
     {
         if (!$post->isFlagged())
@@ -317,6 +350,13 @@ class PostController extends Controller
         return back();
     }
 
+    /**
+     * unflag
+     *
+     * @param Request $request
+     * @param Post $post
+     * @return \Illuminate\Http\Response
+     */
     public function unflag(Request $request, Post $post)
     {
         if ($post->flags == 1)
@@ -350,6 +390,12 @@ class PostController extends Controller
         return back();
     }
 
+    /**
+     * filter
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function filter(Request $request)
     {
         if (empty($request->tags))
@@ -371,6 +417,12 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * search
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function search(Request $request)
     {
         if (empty($request->get('query')))

@@ -20,12 +20,18 @@ class Attachment extends Model
 
     /**
      * Get the point associated with the model.
+     * @return \Illuminate\Http\Response
      */
     public function point()
     {
         return $this->belongsTo(Point::class, 'points_id');
     }
 
+    /**
+     * description
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function description(){
         switch ($this->type_id){
             case self::TYPE_POINTS:{

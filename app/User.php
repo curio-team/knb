@@ -31,7 +31,10 @@ class User extends Authenticatable
     ];
 
     /**
+     * houseRole
      * Get the house role associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function houseRole()
     {
@@ -39,33 +42,63 @@ class User extends Authenticatable
     }
 
     /**
+     * pointsSum
      * Get the sum of points associated with the model.
      * DEPRECATED
+     *
+     * @return \Illuminate\Http\Response
      */
     public function pointsSum()
     {
         $this->hasMany(Point::class, 'receiver_id')->sum('points');
     }
 
+    /**
+     * points
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function points()
     {
         return $this->hasMany(Point::class,'receiver_id');
     }
 
+    /**
+     * posts
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function posts()
     {
         return $this->belongsToMany(Post::class, 'votes');
     }
 
+    /**
+     * scorelogs
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function scorelogs()
     {
         return $this->hasMany('ScoreLog::class', 'user_id');
     }
 
+    /**
+     * isHeadMaster
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function isHeadMaster()
     {
         return $this->type == 'teacher' ? true : false;
     }
+
+    /**
+     * sortByPoints
+     *
+     * @param mixed $limit
+     * @return \Illuminate\Http\Response
+     */
 
     public function isEditor()
     {
@@ -106,37 +139,73 @@ class User extends Authenticatable
         dd($data);
     }
 
+    /**
+     * flags
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function flags()
     {
         return $this->belongsToMany(Post::class, 'flags', 'user_id', 'post_id');
     }
 
+    /**
+     * badges
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function badges()
     {
         return $this->belongsToMany(Badge::class);
     }
 
+    /**
+     * hasBadge
+     *
+     * @param mixed $badge_id
+     * @return \Illuminate\Http\Response
+     */
     public function hasBadge($badge_id) {
         return $this->badges->contains($badge_id);
     }
 
+    /**
+     * messages
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function messages()
     {
         return $this->hasMany(\App\Message::class, 'receiver_id');
     }
 
+    /**
+     * newMessageCount
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function newMessageCount()
     {
         return \App\Message::where('receiver_id', $this->id)->where('read', 0)->count();
     }
 
 
+    /**
+     * getHouseSingular
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getHouseSingular()
     {
         return $this->houseRole->house->singular;
     }
-
-    /* DEPRECATED */
+    
+    /**
+     * getPoints
+     * DEPRECATED
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getPoints()
     {
 //        return $this->id;
@@ -151,6 +220,11 @@ class User extends Authenticatable
        return $points[0]->total;
     }
 
+    /**
+     * getForumPoints
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getForumPoints()
     {
         $sql = "SELECT SUM(`score_types`.`points`) as total
@@ -163,6 +237,11 @@ class User extends Authenticatable
         return $points[0]->total;
     }
 
+    /**
+     * getStudents
+     *
+     * @return \Illuminate\Http\Response
+     */
     public static function getStudents()
     {
         $students = \App\User::where('type', '=', 'student')->get();
@@ -170,6 +249,13 @@ class User extends Authenticatable
         return $students;
     }
 
+    /**
+     * addPoints
+     *
+     * @param mixed $points
+     * @param mixed $fromDB
+     * @return \Illuminate\Http\Response
+     */
     public function addPoints($points, $fromDB = false)
     {
 
@@ -184,6 +270,13 @@ class User extends Authenticatable
         $this->update();
     }
 
+    /**
+     * deletePoints
+     *
+     * @param mixed $points
+     * @param mixed $fromDB
+     * @return \Illuminate\Http\Response
+     */
     public function deletePoints($points, $fromDB = false) {
 
         if ($fromDB)

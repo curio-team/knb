@@ -22,7 +22,11 @@ class House extends Model
     protected $table = 'houses';
 
     /**
+     * sortByPoints
      * Gets all houses ordered by points
+     *
+     * @param mixed $limit
+     * @return \Illuminate\Http\Response
      */
     public static function sortByPoints($limit = null)
     {
@@ -37,28 +41,41 @@ class House extends Model
     }
 
     /**
+     * memberRoles
      * Get the member roles associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function memberRoles()
     {
         return $this->hasMany(HouseRole::class);
     }
 
+    /**
+     * users
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function users()
     {
         return $this->belongsToMany(User::class, 'house_roles', 'house_id', 'user_id');
     }
 
     /**
+     * headmaster
      * Get the headMaster associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function headmaster()
     {
         return $this->memberRoles()->where('role_level', self::ROLE_LEVEL_HEADMASTER)->first()->user;
     }
-
     /**
+     * pointsSum 
      * Get the total sum of points from all members
+     *
+     * @return \Illuminate\Http\Response
      */
     private function pointsSum()
     {
@@ -79,6 +96,11 @@ class House extends Model
 
     }
 
+    /**
+     * thumbnail
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function thumbnail() {
         $thumb = "";
 

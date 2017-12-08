@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Auth;
 class MessageController extends Controller
 {
 
+    /**
+     * __construct
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function __construct()
     {
         $this->middleware('headmaster')->except(['index', 'show', 'checkAllRead', 'destroy']);
@@ -138,6 +143,11 @@ class MessageController extends Controller
     }
 
 
+    /**
+     * checkAllRead
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function checkAllRead()
     {
         \App\Message::where('receiver_id', \Auth::user()->id)->where('read', 0)->update([

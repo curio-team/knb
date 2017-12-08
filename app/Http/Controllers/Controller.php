@@ -11,6 +11,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * __construct
+     *
+     * 
+     */
     public function __construct()
     {
 
