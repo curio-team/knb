@@ -99,6 +99,12 @@ class User extends Authenticatable
      * @param mixed $limit
      * @return \Illuminate\Http\Response
      */
+
+    public function isEditor()
+    {
+        return $this->type == 'editor' ? true : false;
+    }
+
     public static function sortByPoints($limit = null)
     {
 

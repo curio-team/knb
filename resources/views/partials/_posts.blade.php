@@ -17,29 +17,55 @@
         @foreach($posts as $post)
             <div class="box box-post box-with-options" data-href="{{ action('PostController@show', $post) }}">
                 <div class="box-options">
-                    @if(\Auth::user()->isHeadMaster())
+                    @if(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())
                         @include("partials/minis/_post-admin-controls")
                     @endif
+                    @unless($post->isLocked())
+                        @if($post->isYours() ||(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
+                            
+                            @if($post->flags == 3)
+                                <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
+                            @else
 
-                    @if($post->isYours() || \Auth::user()->isHeadMaster())
-                        <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
-                            <i title="edit this post" class="fa fa-2x fa-edit"></i>
-                        </a>
-                    @else
-                        @unless($post->isFlagged())
-                            <i class="option-flag">
-                                <i title="flag this post" class="fa fa-2x fa-flag"></i>
-                            </i>
+                                @if(!$post->isFlagged() || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()) && !$post->isYours() ) )
+                                    <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                        <i title="edit this post" class="fa fa-2x fa-edit"></i>
+                                    </a>
+                                @else
+                                    @if($post->flags == 2)
+                                        <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
+                                            <i title="you should edit this post" class="fa fa-2x fa-edit" style="color: #ff6600"></i>
+                                        </a>
+                                    @endif
+                                @endif
 
-                            <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
-                                {{ csrf_field() }}
-                            </form>
-                        @else
-                            <i title="this post is flagged. A moderator will look into this soon." style="color: red">
-                                flagged
-                            </i>
+                            @endif
+                        @endif
+
+                        @unless($post->author->isHeadmaster())
+                            @unless($post->isFlagged())
+                                <i class="option-flag">
+                                    <i title="flag this post" class="fa fa-2x fa-flag"></i>
+                                </i>
+
+                                <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
+                                    {{ csrf_field() }}
+                                </form>
+                            @else
+                                @if($post->flags == 1)
+                                    <i title="this post is flagged. A moderator will look into this soon." class="fa fa-2x fa-flag" style="color: red"></i>
+                                @else
+                                    @if( !$post->isYours() && $post->flags == 2)
+                                        <i title="this post should be edit by the author, an editor or a headmaster." class="fa fa-2x fa-edit" style="color: yellow"></i>
+                                    @endif
+                                @endif
+                            @endunless
                         @endunless
-                    @endif
+                    @else
+                        <i title="This post is locked. You can not comment or answer this post" class="fa fa-2x fa-lock" style="color: red"></i>
+                    @endunless
+
+                    
                 </div>
 
                 <article class="media" >
@@ -54,9 +80,13 @@
                         <div class="content">
                             <p>
                                 @if($post->author->isHeadmaster())
-                                    author: <span style="text-shadow: 0px 0px 1px black; color: gold" class="author"> {{ $post->author->name }}</span>
+                                    author: <span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $post->author->name }}</span>
                                 @else
-                                    <span class="author">author: {{ $post->author->name }}</span>
+                                    @if($post->author->isEditor())
+                                        author: <span style="text-shadow: 0px 0px 3px black; color: silver" class="author"> {{ $post->author->name }}</span>
+                                    @else
+                                        <span class="author">author: {{ $post->author->name }}</span>
+                                    @endif
                                 @endif
 
                                 <br>
@@ -97,10 +127,20 @@
                         </p>
                     </div>
                 </div>
-                @if($post->isLocked()) <p style="color: red; border: 1px solid red">This post is locked. You cannot answer or comment this post.</p> @endif
             </div>
         @endforeach
 
-        {{ $posts->links() }}
+        {{ $posts->appends(Request::only(['query', 'tags']))->links() }}
+
+        @if(isset($users) && count($users) > 0 )
+        <h1>Users</h1>
+            <div class="users">
+                <ul>
+                    @foreach($users as $user)
+                        <li><a href="{{route('profile', $user->id)}}">{{$user->name}}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 </div>

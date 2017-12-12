@@ -59,10 +59,11 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::group(['middleware' => 'auth'], function() {
 
-
     Route::group(['middleware' => 'headmaster'], function(){
 
-        Route::post('dashboard/csv/upload', 'ImportController@upload')->name('upload');
+        // Route::post('dashboard/csv/upload', 'ImportController@upload')->name('upload');
+        Route::post('dashboard/csv/gradesUpload', 'ImportController@bulkPointsUpload');
+        Route::post('dashboard/csv/badgesUpload', 'ImportController@bulkBadgesUpload');
         Route::post('dashboard/user/registration', 'ImportController@singleRegistration');
 
         Route::get('/start-house-selection', 'HouseController@doSelection');
@@ -72,10 +73,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/dashboard/badges', 'DashboardController@badges')->name('badges');
         Route::post('/dashboard/badges/toggle', 'BadgesController@toggle');
 
-        Route::post('/post/{post}/lock', 'PostController@Lock');
+        
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
         // allocate points from dashboard
         Route::post('/dashboard/points/', 'PointsController@allocate');
+
     });
 
     Route::resource('message', 'MessageController');
@@ -97,6 +100,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('house', 'HouseController');
 
+    Route::post('post/{post}/lock', 'PostController@Lock');
+    Route::post('post/{post}/change', 'PostController@change');
+    Route::post('post/{post}/removal', 'PostController@removal');
     Route::post('post/{post}/flag', 'PostController@flag');
     Route::post('post/{post}/unflag', 'PostController@unflag');
     Route::post('post/{post}/vote', 'PostController@vote');
@@ -112,18 +118,10 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('news','NewsController');
 
-    // delete after house selection
-//    Route::get('post/create', function(){
-//
-//        if (\Auth::check())
-//        {
-//            return redirect()->to('/house-selection');
-//        }
-//        return redirect()->to('/login');
-//    });
-
-
     Route::resource('comment', 'CommentController');
+
+    // Events
+    Route::resource('events', 'EventsController');
 
     Route::get("amoclient/ready", 'UsersController@callBack');
 

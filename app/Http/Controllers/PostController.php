@@ -91,8 +91,7 @@ class PostController extends Controller
             // get points for an answer but not on your own question
             if ($post->isAnswer() )
             {
-
-                // we don't want to assign points when answering your own question.
+                 // we don't want to assign points when answering your own question.
                 if ($post->parent->author_id !== \Auth::user()->id )
                 {
                     $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED;
@@ -114,11 +113,24 @@ class PostController extends Controller
             \DB::rollback();
             return redirect()->back()->with('error', 'error creating post.');
         }
+        $warning = false;
+        try {
+
+            if ($post->isAnswer())
+            {
+                $email = $post->parent->author->email;
+                \Mail::to($email)
+                ->send(new \App\Mail\PostAnswered($post->parent));
+            }
+            
+        } catch (\Exception $e){
+            $warning = true;
+        }
 
 
         $redirect = $request->has('question_id') ? $request->get('question_id') : $post->id;
 
-        return redirect()->action('PostController@show', $redirect)->with('Success','Post succesfully created.');
+        return redirect()->action('PostController@show', $redirect)->with(($warning) ? 'error' : 'Success', ($warning) ? 'Post succesfully created, but there was an exception' : 'Post succesfully created.');
     }
 
     /**
@@ -143,13 +155,16 @@ class PostController extends Controller
     //            'comments', 'comments.author', 'author', 'author.houseRole', 'author.houseRole.house', 'votes'
     //        ])->get();
     //        dd($post);
+        while ($post->isAnswer() > 0){
+            $post = $post->parent;
+        }
 
         return view('posts.show', [
             'post' => $post,
             'replies' => Post::with('votes')->where('post_id', $post->id)
                 ->orderBy('accepted_answer', 'DESC')
-                ->orderBy('votes', 'DESC')
                 ->orderBy('created_at', 'DESC')
+                ->orderBy('votes', 'DESC')
                 ->get(),
         ]);
     }
@@ -162,7 +177,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        if ($post->author->id !== \Auth::user()->id && \Auth::user()->type != 'teacher')
+        if (($post->author->id !== \Auth::user()->id && ($post->flags == 1 || $post->flags == 3 || $post->isLocked())) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor')
         {
             return back();
         }
@@ -201,6 +216,10 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        if (($post->author->id !== \Auth::user()->id && ($post->isLocked() || $post->flags == 1)) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor'){
+            return redirect()->back()->with('error', 'Error editing post.: <br>' . $e->getMessage());
+        }
+
         try
         {
             \DB::beginTransaction();
@@ -215,6 +234,14 @@ class PostController extends Controller
         {
             \DB::rollback();
             return redirect()->back()->with('error', 'Error editing post.: <br>' . $e->getMessage());
+        }
+
+        if ($post->flags == 2){
+            $post->flags = 0;
+            $post->save();
+            $user = Auth::user();
+            $user->flags()->detach($post->id);
+            $user->flags()->detach($post->id);
         }
 
         if ($post->parent)
@@ -313,9 +340,13 @@ class PostController extends Controller
      */
     public function flag(Request $request, Post $post)
     {
-        $post->increment('flags');
-        $user = Auth::user();
-        $user->flags()->attach($post->id);
+        if (!$post->isFlagged())
+        {
+            $post->increment('flags');
+            $post->update(['flags' => 2]);
+            $user = Auth::user();
+            $user->flags()->attach($post->id);
+        }
         return back();
     }
 
@@ -328,9 +359,34 @@ class PostController extends Controller
      */
     public function unflag(Request $request, Post $post)
     {
-        $post->decrement('flags');
+        if ($post->flags == 1)
+        {
+            $post->decrement('flags');
         $user = Auth::user();
         $user->flags()->detach($post->id);
+        }
+        
+        return back();
+    }
+
+    public function change(Request $request, Post $post)
+    {
+        if ($post->flags == 1){
+            $post->increment('flags');
+            $user = Auth::user();
+            $user->flags()->attach($post->id);
+        }
+        return back();
+    }
+
+    public function removal(Request $request, Post $post)
+    {
+        if ($post->flags == 1 || $post->flags == 3){
+            $post->flags = ($post->flags == 1) ? 3 : 1;
+            $post->save();
+            $user = Auth::user();
+            $user->flags()->attach($post->id);
+        }
         return back();
     }
 
@@ -346,7 +402,7 @@ class PostController extends Controller
         {
             return redirect()->action('HomeController@forum');
         }
-        
+
         $posts = Post::with('author')->
             whereHas('tags', function($query) use ($request){
                 $query->whereIn('tags.id', $request->tags);
@@ -355,7 +411,7 @@ class PostController extends Controller
             where('post_id', NULL)->
             paginate(10);
 
-        return view('home', [
+        return view('forum', [
             'posts' => $posts,
             'searchTags' => $request->tags
         ]);
@@ -374,15 +430,17 @@ class PostController extends Controller
             return redirect()->action('HomeController@forum');
         }
         $query = $request->get('query');
+        $user_id = Auth::user()->id;
         $posts = Post::with('author')->
         orderBy('created_at', 'DESC')->
-        where('post_id', NULL)->
-        where('content', 'like', "%$query%")->
-        orWhere('title', 'like', "%$query%")->
-        paginate(10);
+        whereRaw("`post_id` is NULL and (`flags` < '2' or `author_id` like '$user_id') and (`content` like '%$query%' or `title` like '%$query%')")->paginate(10);
 
-        return view('home', [
+      $users = \App\User::whereRaw("`name` like '%$query%' or  `id` like '%query%'")->get();
+
+
+        return view('forum', [
             'posts' => $posts,
+            'users' => $users,
             'query' => $request->get('query')
         ]);
 

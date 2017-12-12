@@ -43,7 +43,14 @@ class HomeController extends Controller
      */
     public function forum()
     {
-        $posts = Post::with('author')->orderBy('created_at', 'DESC')->where('post_id', NULL)->paginate(10);
+
+        if (\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())
+        {
+            $posts = Post::with('author')->orderBy('created_at', 'DESC')->where('post_id', NULL)->paginate(10);
+        } else {
+            $posts = Post::with('author')->orderBy('created_at', 'DESC')->where('post_id', NULL)->where('flags',"!=","3")->paginate(10);
+        }
+        
 
         return view('forum', [
             'posts' => $posts,
