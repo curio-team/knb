@@ -162,11 +162,14 @@ span.panel-heading{
   display: none;
   label.checkbox {
     padding: 5px;
+    color: #363636!important;
+    &:hover {
+      color: #4a4a4a;
+    }
     input {
       margin-right: 3px;
     }
   }
-
 }
 .fa {
   color: $brand-secondary;

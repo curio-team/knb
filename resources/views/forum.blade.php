@@ -17,8 +17,38 @@
                         </div>
                     </div>
                 </nav>
-
-                <nav class="panel filter-panel">
+                    <nav class="panel filter-panel">
+                        <p class="panel-heading">Filter</p>
+                        <div class="panel-body">
+                            <div class="field has-addons panel-block">
+                                <form action="{{ action('PostController@search') }}">
+                                    <p class="control" style="display: flex">
+                                        <input name="query" class="input is-pulled-left" type="text" placeholder="Search">
+                                        <button type="submit" class="button is-info is-pulled-left">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </p>
+                                </form>
+                            </div>
+                            <div class="panel-block">
+                                <form id="search-tags" action="{{ action('PostController@filter') }}">
+                                <p class="control">
+                                    @foreach($tags as $tag)
+                                        <label for="" class="checkbox">
+                                            <input name="tags[]" type="checkbox" value="{{ $tag->id }}"
+                                                    @if(isset($searchTags) && in_array($tag->id, $searchTags))
+                                                        checked
+                                                    @endif
+                                            >{{ $tag->name }}
+                                        </label>
+                                    @endforeach
+                                </p>
+                            </form>
+                            </div>
+                            
+                        </div>
+                    </nav>
+                <!-- <nav class="panel filter-panel">
                     <p class="panel-heading">
                         Filter
                     </p>
@@ -54,6 +84,13 @@
                                                                    @endif
                                                             >{{ $tag->name }}
                                                         </label>
+                                                        <label for="" class="checkbox">
+                                                            <input name="tags[]" type="checkbox" value="{{ $tag->id }}"
+                                                                   @if(isset($searchTags) && in_array($tag->id, $searchTags))
+                                                                       checked
+                                                                   @endif
+                                                            >{{ $tag->name }}
+                                                        </label>
                                                     @endforeach
                                                 </p>
                                             </form>
@@ -63,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                </nav>
+                </nav> -->
 
                 @include('partials._posts')
             </div>
