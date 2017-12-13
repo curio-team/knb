@@ -7,6 +7,7 @@ use App\Http\Requests\AddVoteRequest;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdateAnswerRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Log;
 use Session;
 use App\Post;
 use App\Tag;
@@ -82,55 +83,57 @@ class PostController extends Controller
                 'post_id' => $request->has('question_id') ? $request->get('question_id') : null,
                 'author_id' => \Auth::id(),
             ]);
+            var_dump('this is a regular post');
 
-            if ($request->has('tag'))
+            if ( $request->has('tag') )
             {
                 $post->tags()->attach($request->get('tag'));
             }
 
-            // get points for an answer but not on your own question
-            if ($post->isAnswer() )
+             // get points for an answer but not on your own question
+            if ( $post->isAnswer() )
             {
+                // var_dump('and this is a anwser');
+                // die;
+
                  // we don't want to assign points when answering your own question.
-                if ($post->parent->author_id !== \Auth::user()->id )
+                if ( $post->parent->author_id !== \Auth::user()->id )
                 {
                     $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED;
+                } else 
+                {
+                    $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ASKED;
+                }
                     \App\Point::assign(\Auth::user()->id, $type);
                     \Auth::user()->addPoints($type, true);
-
-                }
-            // get points for a question
-            } else {
-                $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ASKED;
-                \App\Point::assign(\Auth::user()->id, $type);
-                \Auth::user()->addPoints($type, true);
+        //     // assign the points
+                    \DB::commit();
             }
-            // assign the points
-            \DB::commit();
-
-        } catch (\Exception $e)
+            var_dump('ik vervolg mijn weg en ben tot het einde van de try gekomen');
+        } catch( \Exception $e )
         {
             \DB::rollback();
             return redirect()->back()->with('error', 'error creating post.');
         }
         $warning = false;
-        try {
+        try 
+        {
 
-            if ($post->isAnswer())
+            if ( $post->isAnswer() )
             {
                 $email = $post->parent->author->email;
                 \Mail::to($email)
                 ->send(new \App\Mail\PostAnswered($post->parent));
             }
             
-        } catch (\Exception $e){
+        } catch ( \Exception $e )
+        {
             $warning = true;
+            Log::critical($e);
         }
-
-
         $redirect = $request->has('question_id') ? $request->get('question_id') : $post->id;
 
-        return redirect()->action('PostController@show', $redirect)->with(($warning) ? 'error' : 'Success', ($warning) ? 'Post succesfully created, but there was an exception' : 'Post succesfully created.');
+        return redirect()->action('PostController@show', $redirect)->with(($warning) ? 'warning' : 'Success', ($warning) ? 'Answer succesfully created, email service is not working' : 'Post succesfully created.');
     }
 
     /**

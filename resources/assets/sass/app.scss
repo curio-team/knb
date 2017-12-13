@@ -78,6 +78,12 @@ span.panel-heading{
   color: $transparent;
 }
 
+.notification {
+  &.is-warning {
+    background: $brand-warning;
+  }
+}
+
 .tag {
   &.is-notification {
     font-size: 10px;
