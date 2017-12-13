@@ -240,7 +240,7 @@ class User extends Authenticatable
     /**
      * getStudents
      *
-     * @return \Illuminate\Http\Response
+     * @return bool
      */
     public static function getStudents()
     {
