@@ -49,7 +49,22 @@
 
             <div class="slide" v-if="activeSection == 's-3'">
                 <div class="slide-content">
-                    <h2 class="title has-text-centered">Top 10 members:</h2>
+                    <h2 class="title has-text-centered">Top 5 members for each house:</h2>
+                    <table class="table">
+                        <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(house, key) in houses">
+                            <td class="ranking_number" style="width: 10px">{{key+1}}</td>
+                            <td style="width: 50px;">
+                                <img v-if="student.houseId === 1" src="../../../../public/img/icons/houses/s_serpents.png" alt="">
+                                <img v-if="student.houseId === 2" src="../../../../public/img/icons/houses/db_dragons.png" alt="">
+                                <img v-if="student.houseId === 3" src="../../../../public/img/icons/houses/r_ravens.png" alt="">
+                                <img v-if="student.houseId === 4" src="../../../../public/img/icons/houses/v_vikings.png" alt="">
+                            </td>
+                            <td>
+                                <p v-if="student.houseid === 1">{{student.name}}</p>
+                            </td>
+                            <td v-if="student.houseid === 1">{{student.points}}</td>
+                        </tr>
+                    </table>
                     <table class="table">
                         <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student, key) in top">
                             <td class="ranking_number" style="width: 10px">{{key+1}}</td>
@@ -60,9 +75,9 @@
                                 <img v-if="student.houseId === 4" src="../../../../public/img/icons/houses/v_vikings.png" alt="">
                             </td>
                             <td>
-                                {{student.name}}
+                            <p v-if="student.houseid === 2">{{student.name}}</p>
                             </td>
-                            <td>{{student.points}}</td>
+                            <td><p v-if="student.houseid === 2">{{student.points}}</p></td>
                         </tr>
                     </table>
                 </div>
