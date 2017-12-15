@@ -41,6 +41,11 @@ class User extends Authenticatable
         return $this->hasOne(HouseRole::class, 'user_id');
     }
 
+    public function BadgeUser()
+    {
+        return $this->hasMany(\App\BadgeUser::class);
+    }
+
     /**
      * pointsSum
      * Get the sum of points associated with the model.

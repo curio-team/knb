@@ -6,6 +6,24 @@
             <div class="slide" v-if="activeSection == 's-1'">
                 <div class="slide-content">
                     <div class="house-score">
+                        <h2 class="title has-text-centered">Latest Recieved Badges</h2>
+                            <div class="content">
+                                <div class="box" v-for="(bdgusr,key) in badgesUsers">
+                                    <p>User: {{bdgusr.user_id + "  "}}
+                                        <span>Badge: {{bdgusr.title}}</span>
+                                        <span>Received at:  {{bdgusr.received_at}}</span>
+                                    </p>
+                                    <img :src="getImg(bdgusr.img_path)" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" v-if="activeSection == 's-2'">
+                <div class="slide-content">
+                    <div class="house-score">
                         <h2 class="title has-text-centered">House Ranking</h2>
                         <article :class="{champion: key === 0}" class="house-container media" style="position: relative" v-for="(house,key) in houses">
                             <figure class="media-left" style="">
@@ -29,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="slide" v-if="activeSection == 's-2'">
+            <div class="slide" v-if="activeSection == 's-3'">
                 <div class="slide-content">
                     <h2 class="title has-text-centered">Top 10 members:</h2>
                     <table class="table">
@@ -49,7 +67,7 @@
                     </table>
                 </div>
             </div>
-            <div class="slide" v-if="activeSection == 's-3'">
+            <div class="slide" v-if="activeSection == 's-4'">
                 <div class="slide-content">
                     <h2 class="title has-text-centered">Latest News</h2>
                     <div class="box">
@@ -64,7 +82,7 @@
 
                 </div>
             </div>
-            <div class="slide" v-if="activeSection == 's-4'">
+            <div class="slide" v-if="activeSection == 's-5'">
                 <div class="slide-content">
                     <h2 class="title has-text-centered">Latest News</h2>
                     <div class="box">
@@ -79,7 +97,7 @@
 
                 </div>
             </div>
-            <div class="slide" v-if="activeSection == 's-5'">
+            <div class="slide" v-if="activeSection == 's-6'">
                 <div class="slide-content">
                     <h2 class="title has-text-centered">Latest News</h2>
                     <div class="box">
@@ -96,7 +114,7 @@
             </div>
         </div>
 
-    </div>
+
 
 </template>
 
@@ -108,12 +126,14 @@
         data :  function(){
             return {
                 activeSection: '',
-                sections: ['s-1', 's-2', 's-3', 's-4', 's-5'],
+                sections: ['s-1', 's-2', 's-3', 's-4', 's-5', 's-6'],
                 houses: [],
                 top: [],
                 className: "",
                 counter: "",
-                news: []
+                news: [],
+                badgesUsers: []
+
             }
 
         },
@@ -122,6 +142,10 @@
         mounted : function()
         {
             setInterval(() => {
+                axios.get('api/BadgeUser').then((res) => {
+                    this.badgesUsers = res.data;
+
+                });
 
                 axios.get('api/house').then((res) => {
                 this.houses = res.data;
@@ -140,13 +164,12 @@
             this.setNextSection();
             setInterval(()=> {
                 this.setNextSection();
-            }, 25000);
+            }, 50000);
 
         },
 
         methods: {
-
-            setNextSection() {
+         setNextSection() {
                 console.log(this.activeSection);
                 if (!this.activeSection || this.counter >= this.sections.length)
                 {
@@ -155,8 +178,12 @@
 
                 this.activeSection = this.sections[this.counter];
                 this.counter++;
-            }
+            },
 
+            getImg(i){
+                 var path = "/img/badges/";
+                return  path + i;
+            }
         }
     }
 
