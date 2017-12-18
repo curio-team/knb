@@ -139,6 +139,8 @@
 
                   @if (\Auth::user()->isHeadMaster())
                     <li><a  href="{{ route('dashboard') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-bar-chart"></i></span> Dashboard</a></li>
+                    <li><a href="{{ route('news') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-newspaper-o"></i></span>News</a></li>
+
                   @else
                     <li><a href="{{ route('profile', \Auth::id()) }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>
                   @endif
