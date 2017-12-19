@@ -49,88 +49,81 @@
 
             <div class="slide" v-if="activeSection == 's-3'">
                 <div class="slide-content">
-                    <h2 class="title has-text-centered">Top 5 members for each house:</h2>
+                    <h2 class="title has-text-centered">Top 5 members for Vikings</h2>
                     <table class="table">
-                        <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(house, key) in houses">
+                        <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersVikings">
                             <td class="ranking_number" style="width: 10px">{{key+1}}</td>
                             <td style="width: 50px;">
-                                <img v-if="student.houseId === 1" src="../../../../public/img/icons/houses/s_serpents.png" alt="">
-                                <img v-if="student.houseId === 2" src="../../../../public/img/icons/houses/db_dragons.png" alt="">
-                                <img v-if="student.houseId === 3" src="../../../../public/img/icons/houses/r_ravens.png" alt="">
-                                <img v-if="student.houseId === 4" src="../../../../public/img/icons/houses/v_vikings.png" alt="">
+                                <img src="../../../../public/img/icons/houses/v_vikings.png" alt="">
                             </td>
                             <td>
-                                <p v-if="student.houseid === 1">{{student.name}}</p>
-                            </td>
-                            <td v-if="student.houseid === 1">{{student.points}}</td>
-                        </tr>
-                    </table>
-                    <table class="table">
-                        <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student, key) in top">
-                            <td class="ranking_number" style="width: 10px">{{key+1}}</td>
-                            <td style="width: 50px;">
-                                <img v-if="student.houseId === 1" src="../../../../public/img/icons/houses/s_serpents.png" alt="">
-                                <img v-if="student.houseId === 2" src="../../../../public/img/icons/houses/db_dragons.png" alt="">
-                                <img v-if="student.houseId === 3" src="../../../../public/img/icons/houses/r_ravens.png" alt="">
-                                <img v-if="student.houseId === 4" src="../../../../public/img/icons/houses/v_vikings.png" alt="">
+                                <p >{{student.name}}</p>
                             </td>
                             <td>
-                            <p v-if="student.houseid === 2">{{student.name}}</p>
+                                <p>{{student.points}}</p>
                             </td>
-                            <td><p v-if="student.houseid === 2">{{student.points}}</p></td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <div class="slide" v-if="activeSection == 's-4'">
-                <div class="slide-content">
-                    <h2 class="title has-text-centered">Latest News</h2>
-                    <div class="box">
-                        <h2 class="is-2 news-title">{{news[0].title}}</h2>
-
-                        <p class="date"><i>{{news[0].created_at}}</i></p>
-
-                        <p v-html="news[0].content" class="news-description">
-
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="slide" v-if="activeSection == 's-5'">
-                <div class="slide-content">
-                    <h2 class="title has-text-centered">Latest News</h2>
-                    <div class="box">
-                        <h2 class="is-2 news-title">{{news[1].title}}</h2>
-
-                        <p class="date"><i>{{news[1].created_at}}</i></p>
-
-                        <p v-html="news[1].content" class="news-description">
-
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="slide" v-if="activeSection == 's-6'">
-                <div class="slide-content">
-                    <h2 class="title has-text-centered">Latest News</h2>
-                    <div class="box">
-                        <h2 class="is-2 news-title">{{news[2].title}}</h2>
-
-                        <p class="date"><i>{{news[2].created_at}}</i></p>
-
-                        <p v-html="news[2].content" class="news-description">
-
-                        </p>
-                    </div>
-
-                </div>
+        <div class="slide" v-if="activeSection == 's-4'">
+            <div class="slide-content">
+                <h2 class="title has-text-centered">Top 5 members for Serpents</h2>
+                <table class="table">
+                    <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersSerpents">
+                        <td class="ranking_number" style="width: 10px">{{key+1}}</td>
+                        <td style="width: 50px;">
+                            <img src="../../../../public/img/icons/houses/s_serpents.png" alt="">
+                        </td>
+                        <td>
+                            <p>{{student.name}}</p>
+                        </td>
+                        <td>
+                            <p>{{student.points}}</p>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
-
-
-
+        <div class="slide" v-if="activeSection == 's-5'">
+            <div class="slide-content">
+                <h2 class="title has-text-centered">Top 5 members for Dragons</h2>
+                <table class="table">
+                    <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersDragons">
+                        <td class="ranking_number" style="width: 10px">{{key+1}}</td>
+                        <td style="width: 50px;">
+                            <img src="../../../../public/img/icons/houses/db_dragons.png" alt="">
+                        </td>
+                        <td>
+                            <p>{{student.name}}</p>
+                        </td>
+                        <td>
+                            <p>{{student.points}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="slide" v-if="activeSection == 's-6'">
+            <div class="slide-content">
+                <h2 class="title has-text-centered">Top 5 members for Ravens</h2>
+                <table class="table">
+                    <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersRavens">
+                        <td class="ranking_number" style="width: 10px">{{key+1}}</td>
+                        <td style="width: 50px;">
+                            <img src="../../../../public/img/icons/houses/r_ravens.png" alt="">
+                        </td>
+                        <td>
+                            <p>{{student.name}}</p>
+                        </td>
+                        <td>
+                            <p>{{student.points}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </template>
 
 
@@ -144,6 +137,8 @@
                 sections: ['s-1', 's-2', 's-3', 's-4', 's-5', 's-6'],
                 houses: [],
                 top: [],
+                houseUsersVikings:[],
+                houseUsersSerpents:[],
                 className: "",
                 counter: "",
                 news: [],
@@ -167,19 +162,32 @@
                 this.className = this.houses[0].name.replace(' ', '-').toLowerCase();
                 });
 
-                axios.get('api/studentranking/10').then((res)=>{
-                    this.top = res.data;
+//                axios.get('api/studentranking/5').then((res)=>{
+//                    this.top = res.data;
+//                });
+                axios.get('api/studentranking/1').then((res) =>{
+                    this.houseUsersSerpents = res.data;
+                });
+                axios.get('api/studentranking/2').then((res) =>{
+                    this.houseUsersDragons = res.data;
+                });
+                axios.get('api/studentranking/3').then((res) =>{
+                    this.houseUsersRavens = res.data;
+                });
+                axios.get('api/studentranking/4').then((res) =>{
+
+                    this.houseUsersVikings = res.data;
                 });
 
                 axios.get('api/news').then((res)=>{
                     this.news = res.data;
                 });
-            }, 4000)
+            }, 5000);
 
             this.setNextSection();
             setInterval(()=> {
                 this.setNextSection();
-            }, 50000);
+            }, 5000);
 
         },
 
@@ -198,7 +206,18 @@
             getImg(i){
                  var path = "/img/badges/";
                 return  path + i;
-            }
+            },
+//
+//         selectHouseVikings(){
+//             var house = house.id;
+//               return house;
+//            };
+//
+//        selectHouseSerpents(){
+//
+//            return house;
+//        };
+
         }
     }
 
