@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
 
+    /**
+     * show
+     *
+     * @param \App\User $user
+     * @return \Illuminate\Http\Response
+     */
     public function show(\App\User $user)
     {
         $badges = \App\Badge::all();
@@ -15,10 +21,21 @@ class UsersController extends Controller
             'badges' => $badges]);
     }
 
+    /**
+     * getStudents
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getStudents() {
         return \App\User::with('badges')->get();
     }
-
+  
+    /**
+     * getStudent
+     *
+     * @param mixed $id
+     * @return \Illuminate\Http\Response
+     */
     public function getRanking($limit)
     {
         $users = \App\User::orderBy('points', 'desc')->take($limit)->get();
@@ -29,15 +46,27 @@ class UsersController extends Controller
         return $users;
     }
 
+
     public function getStudent($id) {
         return \App\User::with('badges')->where('id', $id)->first();
     }
 
+    /**
+     * edit
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function edit()
     {
         return view('profile.edit');
     }
 
+    /**
+     * changePassword
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function changePassword(Request $request)
     {
         if($request->password == $request->password_confirmation)
@@ -51,6 +80,11 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * callBack
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function callBack() {
         $user = \Auth::user();
         if (! count($user->houseRole) )

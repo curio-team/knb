@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class PointsController extends Controller
 {
 
+    /**
+     * allocate
+     *
+     * @param AllocatePointsRequest $request
+     * @return \Illuminate\Http\Response
+     */
     public function allocate(AllocatePointsRequest $request)
     {
 

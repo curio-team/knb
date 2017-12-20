@@ -10,6 +10,11 @@ use \Carbon\Carbon;
 class Post extends Model
 {
     use SoftDeletes;
+    /**
+     * $dates
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
     /**
@@ -27,6 +32,8 @@ class Post extends Model
     ];
 
     /**
+     * isYours
+     *
      * @return bool
      */
     public function isYours()
@@ -35,6 +42,7 @@ class Post extends Model
     }
 
     /**
+     * isAccepted
      * return whether the question has an accepted answer
      *
      * @return bool
@@ -46,32 +54,51 @@ class Post extends Model
         })->count() == 1;
     }
 
+    /**
+     * isFlagged
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function isFlagged()
     {
         return $this->flags > 0 ? true : false;
     }
 
+    /**
+     * isLocked
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function isLocked()
     {
         return $this->locked ? true : false;
     }
 
+    /**
+     * getFlaggedPosts
+     *
+     * @return \Illuminate\Http\Response
+     */
     public static function getFlaggedPosts()
     {
         return \App\Post::where('flags', '>', 0)->get();
     }
 
     /**
+     * author
      * Get the author associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
 
-    /*
-     * return int
-     * returns the views, votes or answers.
+    /**
+     * getAnswerTotal
+     *
+     * @return \Illuminate\Http\Response
      */
     public function getAnswerTotal()
     {
@@ -79,7 +106,10 @@ class Post extends Model
     }
 
     /**
+     * parent
      * Get the parent post associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function parent()
     {
@@ -87,7 +117,10 @@ class Post extends Model
     }
 
     /**
+     * children
      * Get the child posts associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function children()
     {
@@ -95,29 +128,52 @@ class Post extends Model
     }
 
     /**
+     * comments
      * Get the comment posts associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
 
+    /**
+     * tags
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'post_tags');
     }
 
+    /**
+     * posts
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function posts()
     {
         return $this->belongsToMany(User::class, 'votes');
     }
 
+    /**
+     * votes
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function votes()
     {
         return $this->hasMany(Vote::class);
     }
 
 
+    /**
+     * getVotesTotal
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getVotesTotal()
     {
         if ($this->votes)
@@ -127,6 +183,11 @@ class Post extends Model
         return 0;
     }
 
+    /**
+     * userHasVoted
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function userHasVoted()
     {
         $data = \App\Vote::where([
@@ -137,6 +198,11 @@ class Post extends Model
         return count($data);
     }
 
+    /**
+     * getTimePosted
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getTimePosted()
     {
         $date = $this->created_at;
@@ -145,6 +211,11 @@ class Post extends Model
         return $carbonDate->diffForHumans();
     }
 
+    /**
+     * isAnswer
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function isAnswer()
     {
         return count($this->parent);

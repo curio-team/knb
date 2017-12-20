@@ -18,7 +18,11 @@ class Message extends Model
     protected $table = 'messages';
 
     /**
+     * attachPoints
      * Attach points to the model
+     *
+     * @param mixed $points
+     * @return \Illuminate\Http\Response
      */
     public function attachPoints($points){
         $attachment = new Attachment;
@@ -30,26 +34,42 @@ class Message extends Model
     }
 
     /**
+     * sender
      * Get the sender associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function sender()
     {
         return $this->belongsTo(User::class, 'sender_id');
     }
 
+    /**
+     * receiver
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function receiver()
     {
         return $this->belongsTo(User::class, 'receiver_id', 'id');
     }
 
     /**
+     * attachments
      * Get the attachments associated with the model.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function attachments()
     {
         return $this->hasMany(Attachment::class, 'message_id', 'id');
     }
 
+    /**
+     * getTimeReceived
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getTimeReceived()
     {
         $date = $this->created_at;
@@ -58,6 +78,12 @@ class Message extends Model
         return $carbonDate->diffForHumans();
     }
 
+    /**
+     * unreadMessages
+     *
+     * @param mixed $user_id
+     * @return \Illuminate\Http\Response
+     */
     public static function unreadMessages($user_id)
     {
 
