@@ -310,21 +310,24 @@ class PostController extends Controller
         if (!$post->isFlagged())
         {
             $post->increment('flags');
-            $post->update(['flags' => 2]);
+
             $user = Auth::user();
-            $user->flags()->attach($post->id);
+            $user->Post_flags()->attach($post->id, ['reason' => $request->get('content')]);
         }
         return back();
     }
 
     public function unflag(Request $request, Post $post)
     {
-        if ($post->flags == 1)
+        if ($post->flags > 0)
         {
-            $post->decrement('flags');
-        $user = Auth::user();
-        $user->flags()->detach($post->id);
+            $post->flags = 0;
+            $post->save();
+
+            $post->ClearFlaggers();
         }
+
+        
         
         return back();
     }
@@ -334,7 +337,7 @@ class PostController extends Controller
         if ($post->flags == 1){
             $post->increment('flags');
             $user = Auth::user();
-            $user->flags()->attach($post->id);
+            $user->Post_flags()->attach($post->id, ["reason" => "auto", "action" => 2]);
         }
         return back();
     }
@@ -345,7 +348,7 @@ class PostController extends Controller
             $post->flags = ($post->flags == 1) ? 3 : 1;
             $post->save();
             $user = Auth::user();
-            $user->flags()->attach($post->id);
+            $user->Post_flags()->attach($post->id, ["reason" => "auto", "action" => $post->flags]);
         }
         return back();
     }
@@ -433,5 +436,24 @@ class PostController extends Controller
             return redirect()->back()->with('error', 'Error creating message.' . var_export($e->getMessage(), true));
         }
 
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Post $post
+     * @return mixed
+     */
+
+    public function status(Post $post)
+    {
+        return view('posts.show-status', [
+            'post' => $post,
+            'replies' => Post::with('votes')->where('post_id', $post->id)
+                ->orderBy('accepted_answer', 'DESC')
+                ->orderBy('created_at', 'DESC')
+                ->orderBy('votes', 'DESC')
+                ->get(),
+        ]);
     }
 }

@@ -106,9 +106,14 @@ class User extends Authenticatable
         dd($data);
     }
 
-    public function flags()
+    public function Post_flags()
     {
         return $this->belongsToMany(Post::class, 'flags', 'user_id', 'post_id');
+    }
+
+    public function Comment_flags()
+    {
+        return $this->belongsToMany(Comment::class, 'flags', 'user_id', 'comment_id');
     }
 
     public function badges()

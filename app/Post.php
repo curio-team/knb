@@ -150,6 +150,24 @@ class Post extends Model
         return count($this->parent);
     }
 
+    public function getFlags()
+    {
+        return $this->hasMany(Flag::class);
+    }
+
+    public function GetFlaggers()
+    {
+        return $this->belongsToMany(User::class, 'flags', 'post_id', 'user_id');
+    }
+
+    public function ClearFlaggers()
+    {
+        foreach ($this->GetFlaggers as $flagger) {
+            $flagger->Post_flags()->detach($this->id);
+        }
+    }
+
+
 
 }
 

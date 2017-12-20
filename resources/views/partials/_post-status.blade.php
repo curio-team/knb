@@ -40,6 +40,10 @@
                                     <i class="option-flag">
                                         <i title="flag this post" class="fa fa-2x fa-flag"></i>
                                     </i>
+
+                                    <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
+                                        {{ csrf_field() }}
+                                    </form>
                                 @else
                                     @if($post->flags == 1)
                                         <i title="this post is flagged. A moderator will look into this soon." class="fa fa-2x fa-flag" style="color: red"></i>
@@ -72,7 +76,34 @@
                                     <span class="author">author: {{ $post->author->name }}</span>
                                 @endif
                             @endif
+                            
                             <p>{!! $post->content !!}</p>
+                            @if($post->isFlagged())
+                                <p>flaggers: {{ count($post->GetFlaggers ) }}</p>
+                                @foreach($post->GetFlags as $flag)
+                                    @if($flag->flagger->isHeadmaster())
+                                        <div class="border-container">
+                                            <i class="fa fa-bars" style="margin-right: 16px;"></i><span>flagger: </span><span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $flag->flagger->name }}</span> <span> {{ $flag->GetAction() }} </span>
+                                            <p>
+                                                {{ $flag->reason }}
+                                            </p>
+                                        </div>
+                                    @else
+                                        @if($flag->flagger->isEditor())
+                                            <i class="fa fa-bars" style="margin-right: 16px;"></i>flagger: <span style="text-shadow: 0px 0px 3px black; color: silver" class="author"> {{ $flag->flagger->name }}</span> <span> {{ $flag->GetAction() }} </span>
+                                            <p>
+                                                {{ $flag->reason }}
+                                            </p>
+                                        @else
+                                            <i class="fa fa-bars" style="margin-right: 16px;"></i><span class="author">flagger: {{ $flag->flagger->name }}</span><span> {{ $flag->GetAction() }} </span>
+                                            <p>
+                                                {{ $flag->reason }}
+                                            </p>
+                                        @endif
+                                    @endif
+
+                                @endforeach
+                            @endif
                         </div>
                     </div>
 
@@ -100,7 +131,7 @@
                             @unless ($post->isAnswer())
                                 <a href="{{ action('PostController@answer', $post) }}" class="button is-success">Give answer</a>
                             @endunless
-                        <a href="" class="btn-add-comment button is-info" >Add comment</a>
+                            <a href="" class="btn-add-comment button is-info" >Add comment</a>
                         @endunless
                     </div>
 
@@ -108,10 +139,6 @@
                         @include('partials._create-comment')
                     </div>
 
-                    <div class="form-flag-hidden" style="display: none;">
-                        @include('partials._create-flag')
-                    </div>
-                    
                     <h3 class="is-3">{{ $post->comments->count() }} {{ str_plural('comment', $post->comments->count()) }}</h3>
                     <div class="comment-box">
                         @foreach($post->comments as $comment)
@@ -269,9 +296,6 @@
                             <div class="form-comment-hidden">
                                 @include('partials._create-comment')
                             </div>
-                            <div class="form-flag-hidden" style="display: none;">
-                                @include('partials._create-flag')
-                            </div>
 
                             <div class="comment-box">
                                 @foreach($post->comments as $comment)
@@ -287,6 +311,7 @@
                                                     <span class="author">author: {{ $comment->author->name }}</span>
                                                 @endif
                                             @endif
+
                                             <p>{!! nl2br($comment->content) !!}</p>
                                         </div>
                                     </article>

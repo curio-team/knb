@@ -35,6 +35,8 @@ $('document').ready(function(){
     $(".btn-add-comment").on('click', function(e){
         e.preventDefault();
         $(this).parent().parent().find('.form-comment-hidden').toggle('fast');
+        $(this).parent().parent().find('.form-flag-hidden').hide('fast');
+
     });
 
     $('.nav-toggle').on({
@@ -85,10 +87,8 @@ $('document').ready(function(){
         e.stopPropagation();
         e.preventDefault();
 
-        if ( confirm('Are you sure you want to mark this post as flagged? A moderator will be notified and address this. Misuse of this will not be tolerated.') )
-        {
-            $(this).next('.flag-form').submit();
-        }
+        $(this).parent().parent().find('.form-comment-hidden').hide('fast');
+        $(this).parent().parent().find('.form-flag-hidden').toggle('fast');
     });
 
     $("#search-tags input").on('change', function(){
@@ -169,6 +169,13 @@ $('document').ready(function(){
         }).done(function(data){
             document.location.href="/post/" + id;
         });
+
+    });
+
+    $(".btn-admin-control-status").on('click', function(e){
+        e.stopPropagation();
+        var id = $(this).attr('data-id');
+        document.location.href="/post/" + id + "/status";
 
     });
 
