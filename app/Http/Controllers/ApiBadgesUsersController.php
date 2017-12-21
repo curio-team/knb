@@ -13,8 +13,11 @@ class ApiBadgesUsersController extends Controller
             ->selectRaw('*')
             ->join('badges', 'badges.id','=' ,'badge_user.badge_id')
             ->join('users', 'users.id' , '=' , 'badge_user.user_id')
+            ->join('house_roles', 'house_roles.user_id' , '=' , 'badge_user.user_id')
+            ->join('houses', 'houses.id' , '=' , 'house_roles.house_id')
+            ->orderBy('received_at','DESC')
+            ->limit(4)
             ->get();
-        $badgesUsers = $badgesUsers->sortByDesc('received_at');
         return $badgesUsers->values()->toArray();
     }
 }

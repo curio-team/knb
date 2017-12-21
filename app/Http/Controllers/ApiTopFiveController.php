@@ -13,6 +13,7 @@ class ApiTopFiveController extends Controller
             ->join('users','house_roles.user_id','=', 'users.id')
             ->where('house_roles.house_id','=',"$id")
             ->orderBy('points', 'DESC')
+            ->limit(5)
             ->get();
         return $houseUsers->values()->toArray();
     }

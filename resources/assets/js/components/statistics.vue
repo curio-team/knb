@@ -6,27 +6,40 @@
             <div class="slide" v-if="activeSection == 's-1'">
                 <div class="slide-content">
                     <div class="house-score">
-                        <h2 class="title has-text-centered">Latest Recieved Badges</h2>
-                            <div class="content">
-                                <div class="box" v-for="(bdgusr,key) in badgesUsers">
-                                    <p>User: {{bdgusr.user_id + "  "}}
-                                        <span>Badge: {{bdgusr.title}}</span>
-                                        <span>Received at:  {{bdgusr.received_at}}</span>
-                                    </p>
-                                    <img :src="getImg(bdgusr.img_path)" alt="">
-                                </div>
+                        <h2 class="title has-text-centered">Latest Received Badges</h2>
+                        <div class="content container">
+                            <div :class="{row: key === 0, row: key === 1, row2: key === 2, row3: key === 3}"  class="box" v-for="(bdgusr,key) in badgesUsers">
+                                <img :src="getImg(bdgusr.img_path)" alt="">
+                                <p class="badge-info">
+                                    <span>Username:</span>
+                                    <span>{{bdgusr.user_id + "  "}}</span>
+                                    <span>House:</span>
+                                    <span>{{bdgusr.name + "  "}}</span>
+                                    <span>Badge:</span>
+                                    <span>{{bdgusr.title}}</span>
+                                    <span>Received at:</span>
+                                    <span>{{bdgusr.received_at}}</span>
+                                </p>
+
+                                <p class="badge-image-house house-icon-container image is-128x128">
+                                    <img class="house-icon" v-if="bdgusr.id === 1" src="../../../../public/img/icons/houses/s_serpents.png" alt="">
+                                    <img class="house-icon" v-if="bdgusr.id === 2" src="../../../../public/img/icons/houses/db_dragons.png" alt="">
+                                    <img class="house-icon" v-if="bdgusr.id === 3" src="../../../../public/img/icons/houses/r_ravens.png" alt="">
+                                    <img class="house-icon" v-if="bdgusr.id === 4" src="../../../../public/img/icons/houses/v_vikings.png" alt="">
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
             <div class="slide" v-if="activeSection == 's-2'">
                 <div class="slide-content">
                     <div class="house-score">
                         <h2 class="title has-text-centered">House Ranking</h2>
                         <article :class="{champion: key === 0}" class="house-container media" style="position: relative" v-for="(house,key) in houses">
-                            <figure class="media-left" style="">
+                            <figure class="" style="">
                                 <p class="house-icon-container image is-128x128">
                                     <img class="house-icon" v-if="house.id === 1" src="../../../../public/img/icons/houses/s_serpents.png" alt="">
                                     <img class="house-icon" v-if="house.id === 2" src="../../../../public/img/icons/houses/db_dragons.png" alt="">
@@ -126,7 +139,6 @@
     </div>
 </template>
 
-
 <script>
 
     export default {
@@ -225,21 +237,43 @@
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Spectral+SC');
+    @import url('https://fonts.googleapis.com/css?family=Spectral+SC');
 
     h2.title {
         font-family: 'Spectral SC';
         font-size: 3em;
         text-transform: uppercase;
     }
-
     .house {
         margin: 10px;
         padding: 10px;
         text-align: center;
         background: rgba(255,255,255,0.6);
     }
+    .container {
+    }
+    .box:not(:last-child) {
+        margin-bottom: 0;
+    }
+    .box {
+        background: rgba(255,255,255,0.7);
+        display: inline-block;
+        margin: 20px;
+        width: 630px;
+    }
+    .badge-image-house {
+        float: left;
+        display: flex;
+        flex-direction: column;
 
+    }
+    .badge-info {
+        font-family: 'Spectral SC';
+        font-size: 25px;
+        float: right;
+        display: flex;
+        flex-direction: column;
+    }
     article {
         margin-top: 0px !important;
         padding-top: 0px !important;
@@ -248,7 +282,7 @@
         background: rgba(255,255,255,0.3);
     }
 
-     table {
+    table {
         border-collapse: separate;
         border-spacing: 0 15px;
         background: inherit;
@@ -297,9 +331,6 @@
         padding-right: 40px;
     }
 
-    .content figure:not(:last-child) {
-        margin-bottom: 0px;
-    }
 
     .house-icon-container {
         border-radius: 50%;
@@ -321,9 +352,17 @@
         font-size: 1.2em;
     }
 
-    .box {
-        background: rgba(255,255,255,0.7);
+    .latest{
+        border: solid #000000;
+    }
+    .box img {
+        width: 280px;
+        height: 280px;
+    }
+    .content figure:not(:last-child) {
+        margin-bottom: 0;
     }
 
 </style>
+
 
