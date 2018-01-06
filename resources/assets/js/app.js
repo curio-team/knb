@@ -83,12 +83,51 @@ $('document').ready(function(){
        document.location.href = $(this).attr('data-href');
     });
 
-    $(".option-flag").on('click', function(e){
+    $(".option-flag-post").on('click', function(e){
         e.stopPropagation();
         e.preventDefault();
 
-        $(this).parent().parent().find('.form-comment-hidden').hide('fast');
-        $(this).parent().parent().find('.form-flag-hidden').toggle('fast');
+        $('#flag-form').parent().parent().parent().parent().find('.form-comment-hidden').hide('fast');
+        $('#flag-form').parent().parent().parent().parent().find('.form-flag-hidden').toggle('fast');
+
+        $('#flag-form').find('.button').html("Flag post");
+        $('#flag-form').find('.textarea').html("");
+        $('#flag-form').find('.textarea').attr('placeholder', "Add the reason for flagging...");
+
+        var id = $(this).attr('data-id');
+        $('#flag-form').attr('action', "/post/" + id + "/flag");
+    });
+
+    $(".option-flag-comment").on('click', function(e){
+        e.stopPropagation();
+        e.preventDefault();
+
+        $('#flag-form').parent().parent().parent().parent().find('.form-comment-hidden').hide('fast');
+        $('#flag-form').parent().parent().parent().parent().find('.form-flag-hidden').toggle('fast');
+        
+        $('#flag-form').find('.textarea').html("");
+        $('#flag-form').find('.textarea').attr('placeholder', "Add the reason for flagging...");
+        $('#flag-form').find('.button').html("Flag comment");
+
+        id = $(this).parent().attr('data-id');
+        $('#flag-form').attr('action', "/comment/" + id + "/flag");
+    });
+
+    $(".option-edit-comment").on('click', function(e){
+        e.stopPropagation();
+        e.preventDefault();
+
+        $('#flag-form').parent().parent().parent().parent().find('.form-comment-hidden').hide('fast');
+        $('#flag-form').parent().parent().parent().parent().find('.form-flag-hidden').toggle('fast');
+
+        $('#flag-form').find('.button').html("Edit comment");
+        var content = $(this).parent().parent().parent().find('.content').find('.content').html();
+        console.log(content);
+        $('#flag-form').find('.textarea').html(content);
+        $('#flag-form').find('.textarea').attr('placeholder', "Editing comment");
+
+        id = $(this).parent().attr('data-id');
+        $('#flag-form').attr('action', "/comment/" + id + "/edit");
     });
 
     $("#search-tags input").on('change', function(){
@@ -107,11 +146,29 @@ $('document').ready(function(){
             type: 'post',
             data : {
                 _method: 'DELETE',
-                _token: window.Laravel.csrfToken
+                _token: window.Laravel.csrfToken,
+                content: $(this).find('.textarea').val()
             }
        }).done(function(data){
            document.location.href="/";
        });
+
+    });
+
+    $(".btn-status-control-remove-comment").on('click', function(e){
+        e.stopPropagation();
+        var id = $(this).parent().parent().parent().attr('data-comment');
+        $.ajax('/comment/' + id, {
+            type: 'post',
+            data : {
+                _method: 'DELETE',
+                _token: window.Laravel.csrfToken,
+                content: $(this).parent().parent().parent().find('.textarea').val(),
+                flag_id: $(this).parent().parent().parent().attr('data-id')
+            }
+        }).done(function(data){
+            document.location.href="/post/" + id;
+        });
 
     });
 
@@ -129,13 +186,112 @@ $('document').ready(function(){
 
     });
 
+    $(".btn-status-control-unflag").on('click', function(e){
+        e.stopPropagation();
+        var id = $(this).parent().parent().parent().attr('data-post');
+        $.ajax('/post/' + id + '/unflag', {
+            type: 'POST',
+            data : {
+                _token: window.Laravel.csrfToken,
+                content: $(this).parent().parent().parent().find('.textarea').val(),
+                flag_id: $(this).parent().parent().parent().attr('data-id')
+            }
+        }).done(function(data){
+            document.location.href="/post/" + id;
+        });
+
+    });
+
+    $(".btn-status-control-change").on('click', function(e){
+        e.stopPropagation();
+        var id = $(this).parent().parent().parent().attr('data-post');
+        $.ajax('/post/' + id + '/change', {
+            type: 'POST',
+            data : {
+                _token: window.Laravel.csrfToken,
+                content: $(this).parent().parent().parent().find('.textarea').val(),
+                flag_id: $(this).parent().parent().parent().attr('data-id')
+            }
+        }).done(function(data){
+            document.location.href="/post/" + id;
+        });
+
+    });
+
+
+    $(".btn-status-control-removal").on('click', function(e){
+        e.stopPropagation();
+        var id = $(this).parent().parent().parent().attr('data-post');
+        $.ajax('/post/' + id + '/removal', {
+            type: 'POST',
+            data : {
+                _token: window.Laravel.csrfToken,
+                content: $(this).parent().parent().parent().find('.textarea').val(),
+                flag_id: $(this).parent().parent().parent().attr('data-id')
+            }
+        }).done(function(data){
+            document.location.href="/post/" + id;
+        });
+
+    });
+
+    $(".btn-status-control-unflag-comment").on('click', function(e){
+        e.stopPropagation();
+        var id = $(this).parent().parent().parent().attr('data-comment');
+        $.ajax('/post/' + id + '/unflag', {
+            type: 'POST',
+            data : {
+                _token: window.Laravel.csrfToken,
+                content: $(this).parent().parent().parent().find('.textarea').val(),
+                flag_id: $(this).parent().parent().parent().attr('data-id')
+            }
+        }).done(function(data){
+            document.location.href="/post/" + id;
+        });
+
+    });
+
+    $(".btn-status-control-change-comment").on('click', function(e){
+        e.stopPropagation();
+        var id = $(this).parent().parent().parent().attr('data-comment');
+        $.ajax('/post/' + id + '/change', {
+            type: 'POST',
+            data : {
+                _token: window.Laravel.csrfToken,
+                content: $(this).parent().parent().parent().find('.textarea').val(),
+                flag_id: $(this).parent().parent().parent().attr('data-id')
+            }
+        }).done(function(data){
+            document.location.href="/post/" + id;
+        });
+
+    });
+
+
+    $(".btn-status-control-removal-comment").on('click', function(e){
+        e.stopPropagation();
+        var id = $(this).parent().parent().parent().attr('data-comment');
+        $.ajax('/post/' + id + '/removal', {
+            type: 'POST',
+            data : {
+                _token: window.Laravel.csrfToken,
+                content: $(this).parent().parent().parent().find('.textarea').val(),
+                flag_id: $(this).parent().parent().parent().attr('data-id')
+            }
+        }).done(function(data){
+            document.location.href="/post/" + id;
+        });
+
+    });
+
     $(".btn-admin-control-unflag").on('click', function(e){
         e.stopPropagation();
         var id = $(this).attr('data-id');
         $.ajax('/post/' + id + '/unflag', {
             type: 'POST',
             data : {
-                _token: window.Laravel.csrfToken
+                _token: window.Laravel.csrfToken,
+                content: $('#flag-form').find('.textarea').val()
             }
         }).done(function(data){
             document.location.href="/post/" + id;
@@ -149,7 +305,8 @@ $('document').ready(function(){
         $.ajax('/post/' + id + '/change', {
             type: 'POST',
             data : {
-                _token: window.Laravel.csrfToken
+                _token: window.Laravel.csrfToken,
+                content: $('#flag-form').find('.textarea').val()
             }
         }).done(function(data){
             document.location.href="/post/" + id;
@@ -164,7 +321,8 @@ $('document').ready(function(){
         $.ajax('/post/' + id + '/removal', {
             type: 'POST',
             data : {
-                _token: window.Laravel.csrfToken
+                _token: window.Laravel.csrfToken,
+                content: $('#flag-form').find('.textarea').val()
             }
         }).done(function(data){
             document.location.href="/post/" + id;

@@ -33,14 +33,18 @@
                     <figure>
                         <img src="{{asset('img/rc-fc.png')}}" alt="">
                     </figure>
-                    <a href="" class="item active"><span class="icon"><i class="fa fa-home"></i></span><span class="name">Dashboard</span></a>
-                    <a href="{{route('points')}}" class="item"><span class="icon"><i class="fa fa-thumbs-o-up"></i></span><span class="name">Points</span></a>
-                    <a href="{{route('badges')}}" class="item"><span class="icon"><i class="fa fa-shield"></i></span><span class="name">Badges</span></a>
-                    <a href="{{route('import')}}" class="item"><span class="icon"><i class="fa fa-folder-o"></i></span><span class="name">Import / Export</span></a>
+                    <a href="{{route('dashboard')}}" class="item active"><span class="icon"><i class="fa fa-home"></i></span><span class="name">Dashboard</span></a>
+                    @if(\Auth::user()->isHeadMaster())
+                        <a href="{{route('points')}}" class="item"><span class="icon"><i class="fa fa-thumbs-o-up"></i></span><span class="name">Points</span></a>
+                        <a href="{{route('badges')}}" class="item"><span class="icon"><i class="fa fa-shield"></i></span><span class="name">Badges</span></a>
+                        <a href="{{route('import')}}" class="item"><span class="icon"><i class="fa fa-folder-o"></i></span><span class="name">Import / Export</span></a>
+                    @endif
                     <a href="{{route('news')}}" class="item"><span class="icon"><i class="fa fa-newspaper-o"></i></span><span class="name">News</span></a>
-                    <div style="margin-top: 100px">
-                        <a href="{{action('HouseController@doSelection')}}" class="button is-primary">Start Sorting Printer </a>
-                    </div>
+                    @if(\Auth::user()->isHeadMaster())
+                        <div style="margin-top: 100px">
+                            <a href="{{action('HouseController@doSelection')}}" class="button is-primary">Start Sorting Printer </a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </aside>

@@ -18,19 +18,66 @@ class Flag extends Model
 
     public $stringaction = ["Unflagged","Flagged", "Edit", "Removed"];
 
+    /**
+     * get the flagger
+     *
+     * @return \App\User
+     */
     public function flagger()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * Get the post
+     *
+     * @return \App\Post
+     */
     public function post()
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
 
+    /**
+     * Get the comment
+     *
+     * @return \App\Post
+     */
+    public function comment()
+    {
+        return $this->belongsTo(Post::class, 'comment_id');
+    }
+
+    /**
+     * Get action in string
+     *
+     * @return string
+     */
     public function GetAction()
     {
         return $this->stringaction[$this->action];
+    }
+
+    /**
+     * parent
+     * Get the parent post associated with the model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function parent()
+    {
+        return $this->belongsTo(Flag::class, 'add_flag_id');
+    }
+
+    /**
+     * children
+     * Get the child posts associated with the model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function children()
+    {
+        return $this->hasMany(Flag::class, 'add_flag_id');
     }
 
 }

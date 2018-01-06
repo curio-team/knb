@@ -137,13 +137,12 @@
                   <li><a class="nav-item is-tab is-hidden-tablet"><span class="icon"><i class="fa fa-home"></i></span>Home</a></li>
                     {{--<li><a class="nav-item is-tab">About</a></li>--}}
 
-                  @if (\Auth::user()->isHeadMaster())
+                  @if (\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())
                     <li><a  href="{{ route('dashboard') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-bar-chart"></i></span> Dashboard</a></li>
                     <li><a href="{{ route('news') }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-newspaper-o"></i></span>News</a></li>
 
-                  @else
-                    <li><a href="{{ route('profile', \Auth::id()) }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>
                   @endif
+                  <li><a href="{{ route('profile', \Auth::id()) }}" class="nav-item is-tab"><span class="icon"><i class="fa fa-user"></i></span> Profile</a></li>
                   <li>
 
                       <a onclick="event.preventDefault(), document.getElementById('logout-form').submit()" class="nav-item is-tab"><span class="icon"><i class="fa fa-sign-out"></i></span> Logout</a>

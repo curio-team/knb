@@ -221,16 +221,31 @@ class Post extends Model
         return count($this->parent);
     }
 
+    /**
+     * isAnswer
+     *
+     * @return \App\Flag
+     */
     public function getFlags()
     {
         return $this->hasMany(Flag::class);
     }
 
+    /**
+     * GetFlaggers
+     *
+     * @return \App\User
+     */
     public function GetFlaggers()
     {
         return $this->belongsToMany(User::class, 'flags', 'post_id', 'user_id');
     }
 
+    /**
+     * ClearFlaggers
+     *
+     * 
+     */
     public function ClearFlaggers()
     {
         foreach ($this->GetFlaggers as $flagger) {
