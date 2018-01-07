@@ -10,7 +10,7 @@
         @endif
     </figure>
     <div class="media-content">
-        <form method="post" action="{{ action('PostController@flag', $post) }}" id="flag-form">
+        <form method="post" action="{{ action('PostController@flag', $post) }}" class="flag-form">
             {{ csrf_field() }}
 
             <div class="field">

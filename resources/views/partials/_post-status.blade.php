@@ -117,7 +117,6 @@
 
                                             <div class="field">
                                                 <p class="control">
-                                                    <button type="button" class="button add-comment btn-status-control-comment">Add comment</button>
                                                     <button type="button" class="button add-comment btn-status-control-change">Require a change</button>
                                                     <button type="button" class="button add-comment btn-status-control-removal">Require a removale</button>
                                                     <button type="button" class="button add-comment btn-status-control-unflag">UnFlag</button>

@@ -20,7 +20,7 @@
                                     <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
                                 @else
 
-                                    @if(!$post->isFlagged() || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()) && !$post->isYours() ) )
+                                    @if((!$post->isFlagged() && $post->isYours()) || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())) )
                                         <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
                                             <i title="edit this post" class="fa fa-2x fa-edit"></i>
                                         </a>
@@ -119,7 +119,7 @@
                                 <figure class="image is-32x32">
                                     <img src="{{$comment->author->houserole->house->thumbnail()}}" alt="">
                                 </figure>
-                                <div class="box-options" data-id="{{ $comment->id }}">
+                                <div class="box-options-row" data-id="{{ $comment->id }}">
 
                                     @unless($post->isLocked())
                                         @if($comment->isYours() ||(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
@@ -128,7 +128,7 @@
                                                 <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
                                             @else
 
-                                                @if(!$comment->isFlagged() || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()) && !$comment->isYours() ) )
+                                                @if((!$comment->isFlagged() && $comment->isYours()) || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())) )
                                                     <i class="option-edit option-edit-comment">
                                                         <i title="edit this post" class="fa fa-2x fa-edit"></i>
                                                     </i>
@@ -218,7 +218,7 @@
                                             <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
                                         @else
 
-                                            @if(!$post->isFlagged() || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()) && !$post->isYours() ) )
+                                            @if((!$post->isFlagged() && $post->isYours()) || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())) )
                                                 <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
                                                     <i title="edit this post" class="fa fa-2x fa-edit"></i>
                                                 </a>
@@ -235,7 +235,7 @@
 
                                     @unless($post->author->isHeadmaster())
                                         @unless($post->isFlagged())
-                                            <i class="option-flag">
+                                            <i class="option-flag-post" data-id="{{ $post->id }}">
                                                 <i title="flag this post" class="fa fa-2x fa-flag"></i>
                                             </i>
 
@@ -326,9 +326,50 @@
 
                             <div class="comment-box">
                                 @foreach($post->comments as $comment)
-                                    <article class="media">
+                                    <article class="media box-with-options">
                                         <div class="content media-post-comment">
+                                            <div class="box-options-row" data-id="{{ $comment->id }}">
+                                            @unless($post->isLocked())
+                                                @if((!$comment->isFlagged() && $comment->isYours()) || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())) )
+                                                    
+                                                    @if($comment->flags == 3)
+                                                        <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
+                                                    @else
 
+                                                        @if(!$comment->isFlagged() || ((\Auth::user()->isHeadmaster() || \Auth::user()->isEditor() || $comment->isYours()) ) )
+                                                            <i class="option-edit option-edit-comment">
+                                                                <i title="edit this post" class="fa fa-2x fa-edit"></i>
+                                                            </i>
+                                                        @else
+                                                            @if($comment->flags == 2)
+                                                                <i class="option-edit option-edit-comment">
+                                                                    <i title="you should edit this post" class="fa fa-2x fa-edit" style="color: #ff6600"></i>
+                                                                </i>
+                                                            @endif
+                                                        @endif
+
+                                                    @endif
+                                                @endif
+
+                                                @unless($comment->author->isHeadmaster())
+                                                    @unless($comment->isFlagged())
+                                                        <i class="option-flag option-flag-comment">
+                                                            <i title="flag this post" class="fa fa-2x fa-flag"></i>
+                                                        </i>
+                                                    @else
+                                                        @if($comment->flags == 1)
+                                                            <i title="this post is flagged. A moderator will look into this soon." class="fa fa-2x fa-flag" style="color: red"></i>
+                                                        @else
+                                                            @if( !$comment->isYours() && $comment->flags == 2)
+                                                                <i title="this post should be edit by the author, an editor or a headmaster." class="fa fa-2x fa-edit" style="color: yellow"></i>
+                                                            @endif
+                                                        @endif
+                                                    @endunless
+                                                @endunless
+                                            @else
+                                                <i title="This post is locked. You can not comment or answer this post" class="fa fa-2x fa-lock" style="color: red"></i>
+                                            @endunless
+                                        </div>
                                             @if($comment->author->isHeadmaster())
                                                 author: <span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $comment->author->name }}</span>
                                             @else

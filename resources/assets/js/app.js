@@ -87,47 +87,53 @@ $('document').ready(function(){
         e.stopPropagation();
         e.preventDefault();
 
-        $('#flag-form').parent().parent().parent().parent().find('.form-comment-hidden').hide('fast');
-        $('#flag-form').parent().parent().parent().parent().find('.form-flag-hidden').toggle('fast');
+        var flag = $(this).parent().parent().parent().find('.flag-form');
 
-        $('#flag-form').find('.button').html("Flag post");
-        $('#flag-form').find('.textarea').html("");
-        $('#flag-form').find('.textarea').attr('placeholder', "Add the reason for flagging...");
+        flag.parent().parent().parent().parent().find('.form-comment-hidden').hide('fast');
+        flag.parent().parent().parent().parent().find('.form-flag-hidden').toggle('fast');
+
+        flag.find('.button').html("Flag post");
+        flag.find('.textarea').html("");
+        flag.find('.textarea').attr('placeholder', "Add the reason for flagging...");
 
         var id = $(this).attr('data-id');
-        $('#flag-form').attr('action', "/post/" + id + "/flag");
+        flag.attr('action', "/post/" + id + "/flag");
     });
 
     $(".option-flag-comment").on('click', function(e){
         e.stopPropagation();
         e.preventDefault();
 
-        $('#flag-form').parent().parent().parent().parent().find('.form-comment-hidden').hide('fast');
-        $('#flag-form').parent().parent().parent().parent().find('.form-flag-hidden').toggle('fast');
+        var flag = $(this).parent().parent().parent().parent().parent().find('.flag-form');
+
+        flag.parent().parent().parent().parent().find('.form-comment-hidden').hide('fast');
+        flag.parent().parent().parent().parent().find('.form-flag-hidden').toggle('fast');
         
-        $('#flag-form').find('.textarea').html("");
-        $('#flag-form').find('.textarea').attr('placeholder', "Add the reason for flagging...");
-        $('#flag-form').find('.button').html("Flag comment");
+        flag.find('.textarea').html("");
+        flag.find('.textarea').attr('placeholder', "Add the reason for flagging...");
+        flag.find('.button').html("Flag comment");
 
         id = $(this).parent().attr('data-id');
-        $('#flag-form').attr('action', "/comment/" + id + "/flag");
+        flag.attr('action', "/comment/" + id + "/flag");
     });
 
     $(".option-edit-comment").on('click', function(e){
         e.stopPropagation();
         e.preventDefault();
 
-        $('#flag-form').parent().parent().parent().parent().find('.form-comment-hidden').hide('fast');
-        $('#flag-form').parent().parent().parent().parent().find('.form-flag-hidden').toggle('fast');
+        var flag = $(this).parent().parent().parent().parent().parent().find('.flag-form');
 
-        $('#flag-form').find('.button').html("Edit comment");
+        flag.parent().parent().parent().parent().find('.form-comment-hidden').hide('fast');
+        flag.parent().parent().parent().parent().find('.form-flag-hidden').toggle('fast');
+
+        flag.find('.button').html("Edit comment");
         var content = $(this).parent().parent().parent().find('.content').find('.content').html();
         console.log(content);
-        $('#flag-form').find('.textarea').html(content);
-        $('#flag-form').find('.textarea').attr('placeholder', "Editing comment");
+        flag.find('.textarea').html(content);
+        flag.find('.textarea').attr('placeholder', "Editing comment");
 
         id = $(this).parent().attr('data-id');
-        $('#flag-form').attr('action', "/comment/" + id + "/edit");
+        flag.attr('action', "/comment/" + id + "/edit");
     });
 
     $("#search-tags input").on('change', function(){
@@ -291,7 +297,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $('#flag-form').find('.textarea').val()
+                content: $(this).closest('.flag-form').find('.textarea').val()
             }
         }).done(function(data){
             document.location.href="/post/" + id;
@@ -306,7 +312,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $('#flag-form').find('.textarea').val()
+                content: $(this).closest('.flag-form').find('.textarea').val()
             }
         }).done(function(data){
             document.location.href="/post/" + id;
@@ -322,7 +328,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $('#flag-form').find('.textarea').val()
+                content: $(this).closest('.flag-form').find('.textarea').val()
             }
         }).done(function(data){
             document.location.href="/post/" + id;
