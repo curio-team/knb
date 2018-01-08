@@ -72,14 +72,5 @@ class Comment extends Model
         return $this->hasMany(Flag::class);
     }
 
-    /**
-     * GetFlaggers
-     *
-     * @return \App\User
-     */
-    public function GetFlaggers()
-    {
-        return $this->belongsToMany(User::class, 'flags', 'post_id', 'user_id');
-    }
 
 }

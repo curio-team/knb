@@ -472,7 +472,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
 
-        if ( \Auth::user()->type != 'teacher'){
+      	if ( \Auth::user()->type != 'teacher'){
             return redirect()->back()->with('error', 'Your are not allow to delete posts');
         }
 
@@ -502,6 +502,7 @@ class PostController extends Controller
 
             // create the message
             \DB::commit();
+            return redirect()->back()->with('success', 'the post has now been deleted.');
         } catch (\Exception $e)
         {
             \DB::rollback();

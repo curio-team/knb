@@ -84,7 +84,7 @@ class CommentController extends Controller
     {
         $comment = \App\Comment::find($id);
         if (($comment->author->id !== \Auth::user()->id && ($comment->post->isLocked() || $comment->flags == 1)) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor'){
-            return redirect()->back()->with('error', 'Error editing comment.: <br>' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error editing comment.');
         }
 
         $comment->content = $request->content;
@@ -166,6 +166,6 @@ class CommentController extends Controller
         $comment->delete();
         \App\Point::deAssign($comment->author()->id,\App\Point::BENEFACTOR_TYPE_COMMENTED );
         $comment->author()->deletePoints(\App\Point::BENEFACTOR_TYPE_COMMENTED, true);
-        return redirect()->back()->with('success', 'Your are allow to delete posts');
+        return redirect()->back()->with('success', 'the post has now been deleted.');
     }
 }

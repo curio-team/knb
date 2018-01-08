@@ -16,7 +16,7 @@ class Flag extends Model
      */
     protected $table = 'flags';
 
-    public $stringaction = ["Unflagged","Flagged", "Edit", "Removed"];
+    public const $stringaction = ["Unflagged","Flagged", "Edit", "Removed"];
 
     /**
      * get the flagger
