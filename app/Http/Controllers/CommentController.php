@@ -108,7 +108,27 @@ class CommentController extends Controller
             $comment->increment('flags');
 
             $user = \Auth::user();
-            $user->Comment_flags()->attach($comment->id, ['reason' => $request->get('reason') == null ? "no reason given" : $request->get('reason')]);
+            $user->commentFlags()->attach($comment->id, ['reason' => $request->get('reason') == null ? "no reason given" : $request->get('reason')]);
+        }
+        return back();
+    }
+
+    /**
+     * Update flags form user and comment as flagged
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function unflag(Request $request, $id)
+    {
+        $comment = \App\Comment::find($id);
+        if (!$comment->isFlagged())
+        {
+            $comment->increment('flags');
+
+            $user = \Auth::user();
+            $user->commentFlags()->attach($comment->id, ['reason' => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 0]);
         }
         return back();
     }
@@ -126,7 +146,7 @@ class CommentController extends Controller
         if ($comment->flags == 1){
             $comment->increment('flags');
             $user = Auth::user();
-            $user->Comment_flags()->attach($comment->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 2, "add_flag_id" => $request->get('flag_id')]);
+            $user->commentFlags()->attach($comment->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 2, "add_flag_id" => $request->get('flag_id')]);
         }
         return back();
     }
@@ -144,7 +164,7 @@ class CommentController extends Controller
             $comment->flags = ($comment->flags == 1) ? 3 : 1;
             $comment->save();
             $user = Auth::user();
-            $user->Comment_flags()->attach($comment->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => $comment->flags, "add_flag_id" => $request->get('flag_id')]);
+            $user->commentFlags()->attach($comment->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => $comment->flags, "add_flag_id" => $request->get('flag_id')]);
         }
         return back();
     }
