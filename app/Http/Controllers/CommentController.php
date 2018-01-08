@@ -108,7 +108,7 @@ class CommentController extends Controller
             $comment->increment('flags');
 
             $user = \Auth::user();
-            $user->Comment_flags()->attach($comment->id, ['reason' => $request->get('content')]);
+            $user->Comment_flags()->attach($comment->id, ['reason' => $request->get('reason') == null ? "no reason given" : $request->get('reason')]);
         }
         return back();
     }
@@ -126,7 +126,7 @@ class CommentController extends Controller
         if ($comment->flags == 1){
             $comment->increment('flags');
             $user = Auth::user();
-            $user->Comment_flags()->attach($comment->id, ["reason" => $request->get('content') == null ? "this is a placeholder" : $request->get('content'), "action" => 2, "add_flag_id" => $request->get('flag_id')]);
+            $user->Comment_flags()->attach($comment->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 2, "add_flag_id" => $request->get('flag_id')]);
         }
         return back();
     }
@@ -144,7 +144,7 @@ class CommentController extends Controller
             $comment->flags = ($comment->flags == 1) ? 3 : 1;
             $comment->save();
             $user = Auth::user();
-            $user->Comment_flags()->attach($comment->id, ["reason" => $request->get('content') == null ? "this is a placeholder" : $request->get('content'), "action" => $comment->flags, "add_flag_id" => $request->get('flag_id')]);
+            $user->Comment_flags()->attach($comment->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => $comment->flags, "add_flag_id" => $request->get('flag_id')]);
         }
         return back();
     }

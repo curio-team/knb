@@ -153,7 +153,7 @@ $('document').ready(function(){
             data : {
                 _method: 'DELETE',
                 _token: window.Laravel.csrfToken,
-                content: $(this).find('.textarea').val()
+                reason: $(this).find('.textarea').val()
             }
        }).done(function(data){
            document.location.href="/";
@@ -169,7 +169,7 @@ $('document').ready(function(){
             data : {
                 _method: 'DELETE',
                 _token: window.Laravel.csrfToken,
-                content: $(this).parent().parent().parent().find('.textarea').val(),
+                reason: $(this).parent().parent().parent().find('.textarea').val(),
                 flag_id: $(this).parent().parent().parent().attr('data-id')
             }
         }).done(function(data){
@@ -199,7 +199,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $(this).parent().parent().parent().find('.textarea').val(),
+                reason: $(this).parent().parent().parent().find('.textarea').val(),
                 flag_id: $(this).parent().parent().parent().attr('data-id')
             }
         }).done(function(data){
@@ -215,7 +215,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $(this).parent().parent().parent().find('.textarea').val(),
+                reason: $(this).parent().parent().parent().find('.textarea').val(),
                 flag_id: $(this).parent().parent().parent().attr('data-id')
             }
         }).done(function(data){
@@ -232,7 +232,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $(this).parent().parent().parent().find('.textarea').val(),
+                reason: $(this).parent().parent().parent().find('.textarea').val(),
                 flag_id: $(this).parent().parent().parent().attr('data-id')
             }
         }).done(function(data){
@@ -248,7 +248,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $(this).parent().parent().parent().find('.textarea').val(),
+                reason: $(this).parent().parent().parent().find('.textarea').val(),
                 flag_id: $(this).parent().parent().parent().attr('data-id')
             }
         }).done(function(data){
@@ -264,7 +264,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $(this).parent().parent().parent().find('.textarea').val(),
+                reason: $(this).parent().parent().parent().find('.textarea').val(),
                 flag_id: $(this).parent().parent().parent().attr('data-id')
             }
         }).done(function(data){
@@ -281,7 +281,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $(this).parent().parent().parent().find('.textarea').val(),
+                reason: $(this).parent().parent().parent().find('.textarea').val(),
                 flag_id: $(this).parent().parent().parent().attr('data-id')
             }
         }).done(function(data){
@@ -297,7 +297,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $(this).closest('.flag-form').find('.textarea').val()
+                reason: $(this).closest('.flag-form').find('.textarea').val()
             }
         }).done(function(data){
             document.location.href="/post/" + id;
@@ -312,7 +312,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $(this).closest('.flag-form').find('.textarea').val()
+                reason: $(this).closest('.flag-form').find('.textarea').val()
             }
         }).done(function(data){
             document.location.href="/post/" + id;
@@ -328,7 +328,7 @@ $('document').ready(function(){
             type: 'POST',
             data : {
                 _token: window.Laravel.csrfToken,
-                content: $(this).closest('.flag-form').find('.textarea').val()
+                reason: $(this).closest('.flag-form').find('.textarea').val()
             }
         }).done(function(data){
             document.location.href="/post/" + id;

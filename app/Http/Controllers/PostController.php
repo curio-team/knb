@@ -348,7 +348,7 @@ class PostController extends Controller
             $post->increment('flags');
 
             $user = Auth::user();
-            $user->Post_flags()->attach($post->id, ['reason' => $request->get('content')]);
+            $user->Post_flags()->attach($post->id, ['reason' => $request->get('reason') == null ? "no reason given" : $request->get('reason')]);
         }
         return back();
     }
@@ -367,7 +367,7 @@ class PostController extends Controller
             $post->flags = 0;
             $post->save();
             $user = Auth::user();
-            $user->Post_flags()->attach($post->id, ["reason" => $request->get('content') == null ? "this is a placeholder" : $request->get('content'), "action" => 0, "add_flag_id" => $request->get('flag_id')]);
+            $user->Post_flags()->attach($post->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 0, "add_flag_id" => $request->get('flag_id')]);
         }
 
         
@@ -380,7 +380,7 @@ class PostController extends Controller
         if ($post->flags > 0)
         {
             $user = Auth::user();
-            $user->Post_flags()->attach($post->id, ["reason" => $request->get('content') == null ? "this is a placeholder" : $request->get('content'), "action" => 5, "add_flag_id" => $request->get('flag_id')]);
+            $user->Post_flags()->attach($post->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 5, "add_flag_id" => $request->get('flag_id')]);
         }
         return back();
     }
@@ -391,7 +391,7 @@ class PostController extends Controller
         if ($post->flags == 1){
             $post->increment('flags');
             $user = Auth::user();
-            $user->Post_flags()->attach($post->id, ["reason" => $request->get('content') == null ? "this is a placeholder" : $request->get('content'), "action" => 2, "add_flag_id" => $request->get('flag_id')]);
+            $user->Post_flags()->attach($post->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 2, "add_flag_id" => $request->get('flag_id')]);
         }
         return back();
     }
@@ -402,7 +402,7 @@ class PostController extends Controller
             $post->flags = ($post->flags == 1) ? 3 : 1;
             $post->save();
             $user = Auth::user();
-            $user->Post_flags()->attach($post->id, ["reason" => $request->get('content') == null ? "this is a placeholder" : $request->get('content'), "action" => $post->flags, "add_flag_id" => $request->get('flag_id')]);
+            $user->Post_flags()->attach($post->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => $post->flags, "add_flag_id" => $request->get('flag_id')]);
         }
         return back();
     }
