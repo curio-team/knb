@@ -62,7 +62,7 @@
 
             <div class="slide" v-if="activeSection == 's-3'">
                 <div class="slide-content">
-                    <h2 class="title has-text-centered">Top 5 members for Vikings</h2>
+                    <h2 class="title has-text-centered">Top 5 Viking members</h2>
                     <table class="table">
                         <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersVikings">
                             <td class="ranking_number" style="width: 10px">{{key+1}}</td>
@@ -81,7 +81,7 @@
             </div>
         <div class="slide" v-if="activeSection == 's-4'">
             <div class="slide-content">
-                <h2 class="title has-text-centered">Top 5 members for Serpents</h2>
+                <h2 class="title has-text-centered">Top 5 Serpent members</h2>
                 <table class="table">
                     <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersSerpents">
                         <td class="ranking_number" style="width: 10px">{{key+1}}</td>
@@ -100,7 +100,7 @@
         </div>
         <div class="slide" v-if="activeSection == 's-5'">
             <div class="slide-content">
-                <h2 class="title has-text-centered">Top 5 members for Dragons</h2>
+                <h2 class="title has-text-centered">Top 5 Dragon members</h2>
                 <table class="table">
                     <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersDragons">
                         <td class="ranking_number" style="width: 10px">{{key+1}}</td>
@@ -119,7 +119,7 @@
         </div>
         <div class="slide" v-if="activeSection == 's-6'">
             <div class="slide-content">
-                <h2 class="title has-text-centered">Top 5 members for Ravens</h2>
+                <h2 class="title has-text-centered">Top 5 Raven members</h2>
                 <table class="table">
                     <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersRavens">
                         <td class="ranking_number" style="width: 10px">{{key+1}}</td>
