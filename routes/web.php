@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/sandbox','ApiBadgesUsersController@index');//<---- SandBox!
+
 Route::get('/statistics', function(){
     $houses = \App\House::all();
     return view('statistics', compact('houses'));

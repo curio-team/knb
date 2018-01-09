@@ -6,9 +6,40 @@
             <div class="slide" v-if="activeSection == 's-1'">
                 <div class="slide-content">
                     <div class="house-score">
+                        <h2 class="title has-text-centered">Latest Received Badges</h2>
+                        <div class="content container">
+                            <div :class="{row: key === 0, row: key === 1, row2: key === 2, row3: key === 3}"  class="box" v-for="(bdgusr,key) in badgesUsers">
+                                <img :src="getImg(bdgusr.img_path)" alt="">
+                                <p class="badge-info">
+                                    <span>Username:</span>
+                                    <span>{{bdgusr.user_id + "  "}}</span>
+                                    <span>House:</span>
+                                    <span>{{bdgusr.name + "  "}}</span>
+                                    <span>Badge:</span>
+                                    <span>{{bdgusr.title}}</span>
+                                    <span>Received at:</span>
+                                    <span>{{bdgusr.received_at}}</span>
+                                </p>
+
+                                <p class="badge-image-house house-icon-container image is-128x128">
+                                    <img class="house-icon" v-if="bdgusr.id === 1" src="../../../../public/img/icons/houses/s_serpents.png" alt="">
+                                    <img class="house-icon" v-if="bdgusr.id === 2" src="../../../../public/img/icons/houses/db_dragons.png" alt="">
+                                    <img class="house-icon" v-if="bdgusr.id === 3" src="../../../../public/img/icons/houses/r_ravens.png" alt="">
+                                    <img class="house-icon" v-if="bdgusr.id === 4" src="../../../../public/img/icons/houses/v_vikings.png" alt="">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="slide" v-if="activeSection == 's-2'">
+                <div class="slide-content">
+                    <div class="house-score">
                         <h2 class="title has-text-centered">House Ranking</h2>
                         <article :class="{champion: key === 0}" class="house-container media" style="position: relative" v-for="(house,key) in houses">
-                            <figure class="media-left" style="">
+                            <figure class="" style="">
                                 <p class="house-icon-container image is-128x128">
                                     <img class="house-icon" v-if="house.id === 1" src="../../../../public/img/icons/houses/s_serpents.png" alt="">
                                     <img class="house-icon" v-if="house.id === 2" src="../../../../public/img/icons/houses/db_dragons.png" alt="">
@@ -29,77 +60,84 @@
                 </div>
             </div>
 
-            <div class="slide" v-if="activeSection == 's-2'">
+            <div class="slide" v-if="activeSection == 's-3'">
                 <div class="slide-content">
-                    <h2 class="title has-text-centered">Top 10 members:</h2>
+                    <h2 class="title has-text-centered">Top 5 Viking members</h2>
                     <table class="table">
-                        <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student, key) in top">
+                        <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersVikings">
                             <td class="ranking_number" style="width: 10px">{{key+1}}</td>
                             <td style="width: 50px;">
-                                <img v-if="student.houseId === 1" src="../../../../public/img/icons/houses/s_serpents.png" alt="">
-                                <img v-if="student.houseId === 2" src="../../../../public/img/icons/houses/db_dragons.png" alt="">
-                                <img v-if="student.houseId === 3" src="../../../../public/img/icons/houses/r_ravens.png" alt="">
-                                <img v-if="student.houseId === 4" src="../../../../public/img/icons/houses/v_vikings.png" alt="">
+                                <img src="../../../../public/img/icons/houses/v_vikings.png" alt="">
                             </td>
                             <td>
-                                {{student.name}}
+                                <p >{{student.name}}</p>
                             </td>
-                            <td>{{student.points}}</td>
+                            <td>
+                                <p>{{student.points}}</p>
+                            </td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <div class="slide" v-if="activeSection == 's-3'">
-                <div class="slide-content">
-                    <h2 class="title has-text-centered">Latest News</h2>
-                    <div class="box">
-                        <h2 class="is-2 news-title">{{news[0].title}}</h2>
-
-                        <p class="date"><i>{{news[0].created_at}}</i></p>
-
-                        <p v-html="news[0].content" class="news-description">
-
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="slide" v-if="activeSection == 's-4'">
-                <div class="slide-content">
-                    <h2 class="title has-text-centered">Latest News</h2>
-                    <div class="box">
-                        <h2 class="is-2 news-title">{{news[1].title}}</h2>
-
-                        <p class="date"><i>{{news[1].created_at}}</i></p>
-
-                        <p v-html="news[1].content" class="news-description">
-
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="slide" v-if="activeSection == 's-5'">
-                <div class="slide-content">
-                    <h2 class="title has-text-centered">Latest News</h2>
-                    <div class="box">
-                        <h2 class="is-2 news-title">{{news[2].title}}</h2>
-
-                        <p class="date"><i>{{news[2].created_at}}</i></p>
-
-                        <p v-html="news[2].content" class="news-description">
-
-                        </p>
-                    </div>
-
-                </div>
+        <div class="slide" v-if="activeSection == 's-4'">
+            <div class="slide-content">
+                <h2 class="title has-text-centered">Top 5 Serpent members</h2>
+                <table class="table">
+                    <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersSerpents">
+                        <td class="ranking_number" style="width: 10px">{{key+1}}</td>
+                        <td style="width: 50px;">
+                            <img src="../../../../public/img/icons/houses/s_serpents.png" alt="">
+                        </td>
+                        <td>
+                            <p>{{student.name}}</p>
+                        </td>
+                        <td>
+                            <p>{{student.points}}</p>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
-
+        <div class="slide" v-if="activeSection == 's-5'">
+            <div class="slide-content">
+                <h2 class="title has-text-centered">Top 5 Dragon members</h2>
+                <table class="table">
+                    <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersDragons">
+                        <td class="ranking_number" style="width: 10px">{{key+1}}</td>
+                        <td style="width: 50px;">
+                            <img src="../../../../public/img/icons/houses/db_dragons.png" alt="">
+                        </td>
+                        <td>
+                            <p>{{student.name}}</p>
+                        </td>
+                        <td>
+                            <p>{{student.points}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="slide" v-if="activeSection == 's-6'">
+            <div class="slide-content">
+                <h2 class="title has-text-centered">Top 5 Raven members</h2>
+                <table class="table">
+                    <tr class="leaderboard" :class="{gold: key===0, silver: key ===1, bronze: key === 2}" style="" v-for="(student , key) in houseUsersRavens">
+                        <td class="ranking_number" style="width: 10px">{{key+1}}</td>
+                        <td style="width: 50px;">
+                            <img src="../../../../public/img/icons/houses/r_ravens.png" alt="">
+                        </td>
+                        <td>
+                            <p>{{student.name}}</p>
+                        </td>
+                        <td>
+                            <p>{{student.points}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
-
 </template>
-
 
 <script>
 
@@ -108,12 +146,16 @@
         data :  function(){
             return {
                 activeSection: '',
-                sections: ['s-1', 's-2', 's-3', 's-4', 's-5'],
+                sections: ['s-1', 's-2', 's-3', 's-4', 's-5', 's-6'],
                 houses: [],
                 top: [],
+                houseUsersVikings:[],
+                houseUsersSerpents:[],
                 className: "",
                 counter: "",
-                news: []
+                news: [],
+                badgesUsers: []
+
             }
 
         },
@@ -122,31 +164,47 @@
         mounted : function()
         {
             setInterval(() => {
+                axios.get('api/BadgeUser').then((res) => {
+                    this.badgesUsers = res.data;
+
+                });
 
                 axios.get('api/house').then((res) => {
                 this.houses = res.data;
                 this.className = this.houses[0].name.replace(' ', '-').toLowerCase();
                 });
 
-                axios.get('api/studentranking/10').then((res)=>{
-                    this.top = res.data;
+//                axios.get('api/studentranking/5').then((res)=>{
+//                    this.top = res.data;
+//                });
+                axios.get('api/studentranking/1').then((res) =>{
+                    this.houseUsersSerpents = res.data;
+                });
+                axios.get('api/studentranking/2').then((res) =>{
+                    this.houseUsersDragons = res.data;
+                });
+                axios.get('api/studentranking/3').then((res) =>{
+                    this.houseUsersRavens = res.data;
+                });
+                axios.get('api/studentranking/4').then((res) =>{
+
+                    this.houseUsersVikings = res.data;
                 });
 
                 axios.get('api/news').then((res)=>{
                     this.news = res.data;
                 });
-            }, 4000)
+            }, 5000);
 
             this.setNextSection();
             setInterval(()=> {
                 this.setNextSection();
-            }, 25000);
+            }, 5000);
 
         },
 
         methods: {
-
-            setNextSection() {
+         setNextSection() {
                 console.log(this.activeSection);
                 if (!this.activeSection || this.counter >= this.sections.length)
                 {
@@ -155,7 +213,22 @@
 
                 this.activeSection = this.sections[this.counter];
                 this.counter++;
-            }
+            },
+
+            getImg(i){
+                 var path = "/img/badges/";
+                return  path + i;
+            },
+//
+//         selectHouseVikings(){
+//             var house = house.id;
+//               return house;
+//            };
+//
+//        selectHouseSerpents(){
+//
+//            return house;
+//        };
 
         }
     }
@@ -164,21 +237,43 @@
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Spectral+SC');
+    @import url('https://fonts.googleapis.com/css?family=Spectral+SC');
 
     h2.title {
         font-family: 'Spectral SC';
         font-size: 3em;
         text-transform: uppercase;
     }
-
     .house {
         margin: 10px;
         padding: 10px;
         text-align: center;
         background: rgba(255,255,255,0.6);
     }
+    .container {
+    }
+    .box:not(:last-child) {
+        margin-bottom: 0;
+    }
+    .box {
+        background: rgba(255,255,255,0.7);
+        display: inline-block;
+        margin: 20px;
+        width: 630px;
+    }
+    .badge-image-house {
+        float: left;
+        display: flex;
+        flex-direction: column;
 
+    }
+    .badge-info {
+        font-family: 'Spectral SC';
+        font-size: 25px;
+        float: right;
+        display: flex;
+        flex-direction: column;
+    }
     article {
         margin-top: 0px !important;
         padding-top: 0px !important;
@@ -187,7 +282,7 @@
         background: rgba(255,255,255,0.3);
     }
 
-     table {
+    table {
         border-collapse: separate;
         border-spacing: 0 15px;
         background: inherit;
@@ -236,9 +331,6 @@
         padding-right: 40px;
     }
 
-    .content figure:not(:last-child) {
-        margin-bottom: 0px;
-    }
 
     .house-icon-container {
         border-radius: 50%;
@@ -260,9 +352,17 @@
         font-size: 1.2em;
     }
 
-    .box {
-        background: rgba(255,255,255,0.7);
+    .latest{
+        border: solid #000000;
+    }
+    .box img {
+        width: 280px;
+        height: 280px;
+    }
+    .content figure:not(:last-child) {
+        margin-bottom: 0;
     }
 
 </style>
+
 
