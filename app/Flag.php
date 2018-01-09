@@ -16,7 +16,7 @@ class Flag extends Model
      */
     protected $table = 'flags';
 
-    public const $stringaction = ["Unflagged","Flagged", "Edit", "Removed"];
+    const ACTION_STRING = ["Unflagged","Flagged", "Edit", "Removed"];
 
     /**
      * get the flagger
@@ -55,7 +55,7 @@ class Flag extends Model
      */
     public function GetAction()
     {
-        return $this->stringaction[$this->action];
+        return Flag::ACTION_STRING[$this->action];
     }
 
     /**

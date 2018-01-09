@@ -78,7 +78,7 @@
                             @endif
                             
                             <p>{!! $post->content !!}</p>
-                            <p>flaggers: {{ count($post->GetFlaggers ) }}</p>
+                            <p>flaggers: {{ count($post->GetFlags ) }}</p>
                             @foreach($post->GetFlags as $flag)
                                 @unless(count($flag->parent) > 0)
                                     <div class="box box-with-options">
