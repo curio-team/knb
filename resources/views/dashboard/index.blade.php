@@ -7,10 +7,19 @@
                 <p class="panel-heading">
                     Flagged posts
                 </p>
-                @foreach($flagged as $post)
-                    <a class="panel-block" href="{{ action('PostController@show', $post) }}">
+                @foreach($posts as $post)
+                    <a class="panel-block" href="{{ action('PostController@status', $post) }}">
                         {{  $post->title }}
                         <button  class="button is-pulled-right" disabled>{{$post->flags}}</button>
+                    </a>
+                @endforeach
+                <p class="panel-heading">
+                    Flagged comments
+                </p>
+                @foreach($comments as $comment)
+                    <a class="panel-block" href="{{ action('PostController@status', $comment->post) }}">
+                        {{  $comment->post->title }}
+                        <button  class="button is-pulled-right" disabled>{{$comment->flags}}</button>
                     </a>
                 @endforeach
 

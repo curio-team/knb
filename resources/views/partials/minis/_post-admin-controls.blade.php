@@ -2,6 +2,10 @@
     <!--<i class=" fa fa-user-md fa-2x"></i>-->
     <i class="fa fa-bars enable-admin-controls is-warning fa-2x"></i>
     <ul class="admin-controls">
+        <li data-id="{{ $post->id }}" class="admin-control btn-admin-control-status">
+            <i class="fa fa-list"></i> status
+        </li>
+
         @if((\Auth::user()->isEditor() || \Auth::user()->isHeadMaster()) && $post->isFlagged())
             <li data-id="{{ $post->id }}" class="admin-control btn-admin-control-unflag">
                 <i class="fa fa-flag"></i> unflag this post

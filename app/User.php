@@ -143,15 +143,19 @@ class User extends Authenticatable
         return collect($data);
         dd($data);
     }
-
     /**
      * flags
      *
      * @return \Illuminate\Http\Response
      */
-    public function flags()
+    public function postFlags()
     {
         return $this->belongsToMany(Post::class, 'flags', 'user_id', 'post_id');
+    }
+
+    public function commentFlags()
+    {
+        return $this->belongsToMany(Comment::class, 'flags', 'user_id', 'comment_id');
     }
 
     /**

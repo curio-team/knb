@@ -14,8 +14,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $flagged = \App\Post::getFlaggedPosts();
-        return view('dashboard/index', compact('flagged'));
+        $posts = \App\Post::getFlaggedPosts();
+        $comments = \App\Comment::getFlaggedComments();
+        return view('dashboard/index', ['posts' => $posts, 'comments' => $comments]);
     }
 
     /**

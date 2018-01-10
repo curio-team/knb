@@ -71,16 +71,25 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/start-house-selection', 'HouseController@doSelection');
         Route::get('/dashboard/import', 'DashboardController@import')->name('import');
         Route::get('/dashboard/points', 'DashboardController@points')->name('points');
-        Route::get('dashboard/news', 'DashboardController@news')->name('news');
         Route::get('/dashboard/badges', 'DashboardController@badges')->name('badges');
         Route::post('/dashboard/badges/toggle', 'BadgesController@toggle');
-
-        
-        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
         // allocate points from dashboard
         Route::post('/dashboard/points/', 'PointsController@allocate');
 
+    });
+
+    // Will Block off everybody how is not editor or headmaster.
+    Route::group(['middleware' => 'editor'], function(){
+        Route::get('/post/{post}/status', 'PostController@status');
+
+        Route::post('/post/{post}/unflag', 'PostController@unflag');
+        Route::post('/post/{post}/lock', 'PostController@Lock');
+        Route::post('/post/{post}/change', 'PostController@change');
+        Route::post('/post/{post}/removal', 'PostController@removal');
+
+        Route::get('dashboard/news', 'DashboardController@news')->name('news');
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     });
 
     Route::resource('message', 'MessageController');
@@ -101,18 +110,17 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/request-badge', 'BadgesController@request')->name('post-request-badge');
 
     Route::resource('house', 'HouseController');
-
-    Route::post('post/{post}/lock', 'PostController@Lock');
-    Route::post('post/{post}/change', 'PostController@change');
-    Route::post('post/{post}/removal', 'PostController@removal');
+    
     Route::post('post/{post}/flag', 'PostController@flag');
-    Route::post('post/{post}/unflag', 'PostController@unflag');
-    Route::post('post/{post}/vote', 'PostController@vote');
+    Route::post('/post/{post}/vote', 'PostController@vote');
     Route::put('post/{post}/accept', 'PostController@accept');
     Route::get('post/filter', 'PostController@filter');
     Route::get('post/search', 'PostController@search');
     Route::put('answer/{post}/edit', 'PostController@updateAnswer');
     Route::get('answer/{post}', 'PostController@editAnswer');
+
+    Route::post('comment/{comment}/flag', 'CommentController@flag');
+    Route::post('comment/{comment}/edit', 'CommentController@update');
 
     Route::get('post/{post}/answer', 'PostController@answer')->name('answer');
 
