@@ -14,7 +14,6 @@ class ApiHouseController extends Controller
      */
     public function index()
     {
-
         $houses = \App\House::all();
         foreach($houses as &$house)
         {
@@ -23,7 +22,6 @@ class ApiHouseController extends Controller
         }
         $houses  = $houses->sortByDesc('points');
         return $houses->values()->toArray();
-
     }
 
     /**

@@ -25,7 +25,3 @@ $ php artisan serve
 * commit and push to forked repository
 * create pull request to github.com/Radiuscollege/knb through the ui of your forked repository on github.com
 * Please be descriptive in the pull request
-
-
-## Demo
-checkout a demo of the application on http://hub.amo.rocks

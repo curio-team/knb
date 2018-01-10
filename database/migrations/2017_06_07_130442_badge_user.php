@@ -16,7 +16,7 @@ class BadgeUser extends Migration
         Schema::create('badge_user', function(Blueprint $table){
             $table->string('user_id');
             $table->integer('badge_id')->unsigned();
-
+            $table->timestamp('received_at')->useCurrent();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('badge_id')->references('id')->on('badges');
         });

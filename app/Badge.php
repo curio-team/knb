@@ -15,6 +15,11 @@ class Badge extends Model
         return $this->belongsToMany(\App\User::class);
     }
 
+    public function BadgeUser()
+    {
+        return $this->belongsTo(\App\BadgeUser::class);
+    }
+
     /**
      * image
      *
