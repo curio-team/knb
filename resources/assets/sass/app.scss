@@ -137,6 +137,27 @@ span.panel-heading{
   cursor: pointer;
 }
 
+.box-options-row {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  display: flex;
+  flex-direction: row;
+
+  i.fa{
+    color: #4a4a4a;
+  }
+  i{
+    &:hover {
+      color: $brand-link;
+    }
+  }
+  .option{
+    margin-bottom: 10px;
+    text-align: center;
+  }
+}
+
 .box-options {
   position: absolute;
   right: 15px;
@@ -252,6 +273,7 @@ span.panel-heading{
 
 
   margin-left: 25px;
+  width: 100%;
 }
 
 .media-question {

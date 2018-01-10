@@ -82,8 +82,93 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comment = \App\Comment::find($id);
+        if (($comment->author->id !== \Auth::user()->id && ($comment->post->isLocked() || $comment->flags == 1)) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor'){
+            return redirect()->back()->with('error', 'Error editing comment.');
+        }
+
+        $comment->content = $request->content;
+        $comment->save();
+
+        return redirect()->back()->with('success', 'Succesfully editing comment!');
     }
+
+    /**
+     * Update flags form user and comment as flagged
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function flag(Request $request, $id)
+    {
+        $comment = \App\Comment::find($id);
+        if (!$comment->isFlagged())
+        {
+            $comment->increment('flags');
+
+            $user = \Auth::user();
+            $user->commentFlags()->attach($comment->id, ['reason' => $request->get('reason') == null ? "no reason given" : $request->get('reason')]);
+        }
+        return back();
+    }
+
+    /**
+     * Update flags form user and comment as flagged
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function unflag(Request $request, $id)
+    {
+        $comment = \App\Comment::find($id);
+        if (!$comment->isFlagged())
+        {
+            $comment->increment('flags');
+
+            $user = \Auth::user();
+            $user->commentFlags()->attach($comment->id, ['reason' => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 0]);
+        }
+        return back();
+    }
+
+    /**
+     * Update flags form user and comment as flagged
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function change(Request $request, $id)
+    {
+        $comment = \App\Comment::find($id);
+        if ($comment->flags == 1){
+            $comment->increment('flags');
+            $user = Auth::user();
+            $user->commentFlags()->attach($comment->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 2, "add_flag_id" => $request->get('flag_id')]);
+        }
+        return back();
+    }
+    /**
+     * Update flags form user and comment as flagged
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function removal(Request $request, $id)
+    {
+        $comment = \App\Comment::find($id);
+        if ($comment->flags == 1 || $comment->flags == 3){
+            $comment->flags = ($comment->flags == 1) ? 3 : 1;
+            $comment->save();
+            $user = Auth::user();
+            $user->commentFlags()->attach($comment->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => $comment->flags, "add_flag_id" => $request->get('flag_id')]);
+        }
+        return back();
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -93,8 +178,14 @@ class CommentController extends Controller
      */
     public function destroy(\App\Comment $comment)
     {
+
+        if ( \Auth::user()->type != 'teacher'){
+            return redirect()->back()->with('error', 'Your are not allow to delete posts');
+        }
+
         $comment->delete();
         \App\Point::deAssign($comment->author()->id,\App\Point::BENEFACTOR_TYPE_COMMENTED );
         $comment->author()->deletePoints(\App\Point::BENEFACTOR_TYPE_COMMENTED, true);
+        return redirect()->back()->with('success', 'the post has now been deleted.');
     }
 }

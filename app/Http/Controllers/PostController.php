@@ -345,9 +345,9 @@ class PostController extends Controller
         if (!$post->isFlagged())
         {
             $post->increment('flags');
-            $post->update(['flags' => 2]);
+
             $user = Auth::user();
-            $user->flags()->attach($post->id);
+            $user->postFlags()->attach($post->id, ['reason' => $request->get('reason') == null ? "no reason given" : $request->get('reason')]);
         }
         return back();
     }
@@ -361,22 +361,34 @@ class PostController extends Controller
      */
     public function unflag(Request $request, Post $post)
     {
-        if ($post->flags == 1)
+        if ($post->flags > 0)
         {
-            $post->decrement('flags');
-        $user = Auth::user();
-        $user->flags()->detach($post->id);
+            $post->flags = 0;
+            $post->save();
+            $user = Auth::user();
+            $user->postFlags()->attach($post->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 0, "add_flag_id" => $request->get('flag_id')]);
         }
 
         return back();
     }
+
+    public function addcomment(Request $request, Post $post)
+    {
+        if ($post->flags > 0)
+        {
+            $user = Auth::user();
+            $user->postFlags()->attach($post->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 5, "add_flag_id" => $request->get('flag_id')]);
+        }
+        return back();
+    }
+
 
     public function change(Request $request, Post $post)
     {
         if ($post->flags == 1){
             $post->increment('flags');
             $user = Auth::user();
-            $user->flags()->attach($post->id);
+            $user->postFlags()->attach($post->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => 2, "add_flag_id" => $request->get('flag_id')]);
         }
         return back();
     }
@@ -387,7 +399,7 @@ class PostController extends Controller
             $post->flags = ($post->flags == 1) ? 3 : 1;
             $post->save();
             $user = Auth::user();
-            $user->flags()->attach($post->id);
+            $user->postFlags()->attach($post->id, ["reason" => $request->get('reason') == null ? "no reason given" : $request->get('reason'), "action" => $post->flags, "add_flag_id" => $request->get('flag_id')]);
         }
         return back();
     }
@@ -457,6 +469,10 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
 
+      	if ( \Auth::user()->type != 'teacher'){
+            return redirect()->back()->with('error', 'Your are not allow to delete posts');
+        }
+
         // check whether post was an answer for determining the point type.
         $type = $post->isAnswer() ? \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED : \App\Point::BENEFACTOR_TYPE_QUESTION_ASKED;
 
@@ -465,6 +481,8 @@ class PostController extends Controller
         \App\Point::deAssign($post->author_id, $type);
         $post->author->deletePoints($type, true);
         $post->children()->delete();
+        $post->comments()->delete();
+
         $post->delete();
 
         try
@@ -481,11 +499,31 @@ class PostController extends Controller
 
             // create the message
             \DB::commit();
+            return redirect()->back()->with('success', 'the post has now been deleted.');
         } catch (\Exception $e)
         {
             \DB::rollback();
             return redirect()->back()->with('error', 'Error creating message.' . var_export($e->getMessage(), true));
         }
 
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Post $post
+     * @return mixed
+     */
+
+    public function status(Post $post)
+    {
+        return view('posts.show-status', [
+            'post' => $post,
+            'replies' => Post::with('votes')->where('post_id', $post->id)
+                ->orderBy('accepted_answer', 'DESC')
+                ->orderBy('created_at', 'DESC')
+                ->orderBy('votes', 'DESC')
+                ->get(),
+        ]);
     }
 }

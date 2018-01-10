@@ -20,7 +20,7 @@
                                     <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
                                 @else
 
-                                    @if((!$post->isFlagged() && $post->isYours()) || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())) )
+                                    @if(!$post->isFlagged() || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()) && !$post->isYours() ) )
                                         <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
                                             <i title="edit this post" class="fa fa-2x fa-edit"></i>
                                         </a>
@@ -37,9 +37,13 @@
 
                             @unless($post->author->isHeadmaster())
                                 @unless($post->isFlagged())
-                                    <i class="option-flag option-flag-post" data-id="{{ $post->id }}">
+                                    <i class="option-flag">
                                         <i title="flag this post" class="fa fa-2x fa-flag"></i>
                                     </i>
+
+                                    <form class="flag-form" style="display:none" action="{{ action('PostController@flag', $post) }}" method="POST">
+                                        {{ csrf_field() }}
+                                    </form>
                                 @else
                                     @if($post->flags == 1)
                                         <i title="this post is flagged. A moderator will look into this soon." class="fa fa-2x fa-flag" style="color: red"></i>
@@ -72,7 +76,84 @@
                                     <span class="author">author: {{ $post->author->name }}</span>
                                 @endif
                             @endif
+                            
                             <p>{!! $post->content !!}</p>
+                            <p>flaggers: {{ count($post->GetFlags ) }}</p>
+                            @foreach($post->GetFlags as $flag)
+                                @unless(count($flag->parent) > 0)
+                                    <div class="box box-with-options">
+                                        <div class="box-options" data-id="{{ $flag->id }}">
+                                            <!--<i class="option-flag option-status-flag">
+                                                <i title="flag this post" class="fa fa-2x fa-flag"></i>
+                                            </i>-->
+                                        </div>
+                                        @if($flag->flagger->isHeadmaster())
+                                            <span>flagger: </span><span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $flag->flagger->name }}</span> <span> {{ $flag->GetAction() }} </span>
+
+                                            <p>
+                                                {{ $flag->reason }}
+                                            </p>
+
+                                            
+                                        @else
+                                            @if($flag->flagger->isEditor())
+                                                flagger: <span style="text-shadow: 0px 0px 3px black; color: silver" class="author"> {{ $flag->flagger->name }}</span> <span> {{ $flag->GetAction() }} </span>
+                                                <p>
+                                                    {{ $flag->reason }}
+                                                </p>
+                                            @else
+                                                <span class="author">flagger: {{ $flag->flagger->name }}</span><span> {{ $flag->GetAction() }} </span>
+                                                <p>
+                                                    {{ $flag->reason }}
+                                                </p>
+                                            @endif
+                                        @endif
+                                        <div class=".status-form" data-id="{{ $flag->id }}" data-post="{{ $post->id }}">
+                                            <div class="field">
+                                                <p class="control">
+                                                    <textarea class="textarea" name="content" placeholder="Add a your reason..."></textarea>
+                                                </p>
+                                            </div>
+
+                                            <div class="field">
+                                                <p class="control">
+                                                    <button type="button" class="button add-comment btn-status-control-change">Require a change</button>
+                                                    <button type="button" class="button add-comment btn-status-control-removal">Require a removale</button>
+                                                    <button type="button" class="button add-comment btn-status-control-unflag">UnFlag</button>
+                                                </p>
+
+                                            </div>
+                                        </div>
+
+                                        <div style="margin-left: 2rem; ">
+                                            @foreach($flag->children as $flag)
+                                                @if($flag->flagger->isHeadmaster())
+                                                    <span>flagger: </span><span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $flag->flagger->name }}</span> <span> {{ $flag->GetAction() }} </span>
+
+                                                    <p>
+                                                        {{ $flag->reason }}
+                                                    </p>
+
+                                                    
+                                                @else
+                                                    @if($flag->flagger->isEditor())
+                                                        flagger: <span style="text-shadow: 0px 0px 3px black; color: silver" class="author"> {{ $flag->flagger->name }}</span> <span> {{ $flag->GetAction() }} </span>
+                                                        <p>
+                                                            {{ $flag->reason }}
+                                                        </p>
+                                                    @else
+                                                        <span class="author">flagger: {{ $flag->flagger->name }}</span><span> {{ $flag->GetAction() }} </span>
+                                                        <p>
+                                                            {{ $flag->reason }}
+                                                        </p>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endunless
+                            @endforeach
+                            
                         </div>
                     </div>
 
@@ -100,75 +181,25 @@
                             @unless ($post->isAnswer())
                                 <a href="{{ action('PostController@answer', $post) }}" class="button is-success">Give answer</a>
                             @endunless
-                        <a href="" class="btn-add-comment button is-info" >Add comment</a>
+                            <a href="" class="btn-add-comment button is-info" >Add comment</a>
+                            <a href="" class="option-flag-post button is-info">Add Flag</a>
                         @endunless
                     </div>
 
                     <div class="form-comment-hidden">
                         @include('partials._create-comment')
                     </div>
-
                     <div class="form-flag-hidden" style="display: none;">
                         @include('partials._create-flag')
                     </div>
-                    
+
                     <h3 class="is-3">{{ $post->comments->count() }} {{ str_plural('comment', $post->comments->count()) }}</h3>
                     <div class="comment-box">
                         @foreach($post->comments as $comment)
-                            <article class="media box-with-options">
+                            <article class="media">
                                 <figure class="image is-32x32">
                                     <img src="{{$comment->author->houserole->house->thumbnail()}}" alt="">
                                 </figure>
-                                <div class="box-options-row" data-id="{{ $comment->id }}">
-
-                                    @unless($post->isLocked())
-                                        @if($comment->isYours() ||(\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()))
-                                            
-                                            @if($comment->flags == 3)
-                                                <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
-                                            @else
-
-                                                @if((!$comment->isFlagged() && $comment->isYours()) || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())) )
-                                                    <i class="option-edit option-edit-comment">
-                                                        <i title="edit this post" class="fa fa-2x fa-edit"></i>
-                                                    </i>
-                                                @else
-                                                    @if($comment->flags == 2)
-                                                        <i class="option-edit option-edit-comment">
-                                                            <i title="you should edit this post" class="fa fa-2x fa-edit" style="color: #ff6600"></i>
-                                                        </i>
-                                                    @endif
-                                                @endif
-
-                                            @endif
-                                        @endif
-
-                                        @unless($comment->author->isHeadmaster())
-                                            @unless($comment->isFlagged())
-                                                <i class="option-flag option-flag-comment">
-                                                    <i title="flag this post" class="fa fa-2x fa-flag"></i>
-                                                </i>
-                                            @else
-                                                @if($comment->flags == 1)
-                                                    <i title="this post is flagged. A moderator will look into this soon." class="fa fa-2x fa-flag" style="color: red"></i>
-                                                @else
-                                                    @if( !$comment->isYours() && $comment->flags == 2)
-                                                        <i title="this post should be edit by the author, an editor or a headmaster." class="fa fa-2x fa-edit" style="color: yellow"></i>
-                                                    @endif
-                                                @endif
-                                            @endunless
-                                        @endunless
-                                    @else
-                                        <i title="This post is locked. You can not comment or answer this post" class="fa fa-2x fa-lock" style="color: red"></i>
-                                    @endunless
-
-                                    <!--<i class="option-flag option-flag-comment">
-                                        <i title="flag this post" class="fa fa-2x fa-flag"></i>
-                                    </i>
-                                    <i class="option-edit option-edit-comment">
-                                        <i title="edit this post" class="fa fa-2x fa-edit"></i>
-                                    </i>-->
-                                </div>
                                 <div class="content media-post-comment">
                                     @if($comment->author->isHeadmaster())
                                         author: <span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $comment->author->name }}</span>
@@ -179,8 +210,84 @@
                                             <span class="author">author: {{ $comment->author->name }}</span>
                                         @endif
                                     @endif
-                                    
-                                    <p class="content">{!! nl2br($comment->content) !!}</p>
+                                    <p>{!! nl2br($comment->content) !!}</p>
+                                    @foreach($comment->GetFlags as $flag)
+                                        @unless(count($flag->parent) > 0)
+                                            <div class="box box-with-options">
+                                                <div class="box-options" data-id="{{ $flag->id }}">
+                                                    <!--<i class="option-flag option-status-flag">
+                                                        <i title="flag this post" class="fa fa-2x fa-flag"></i>
+                                                    </i>-->
+                                                </div>
+                                                @if($flag->flagger->isHeadmaster())
+                                                    <span>flagger: </span><span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $flag->flagger->name }}</span> <span> {{ $flag->GetAction() }} </span>
+
+                                                    <p>
+                                                        {{ $flag->reason }}
+                                                    </p>
+
+                                                    
+                                                @else
+                                                    @if($flag->flagger->isEditor())
+                                                        flagger: <span style="text-shadow: 0px 0px 3px black; color: silver" class="author"> {{ $flag->flagger->name }}</span> <span> {{ $flag->GetAction() }} </span>
+                                                        <p>
+                                                            {{ $flag->reason }}
+                                                        </p>
+                                                    @else
+                                                        <span class="author">flagger: {{ $flag->flagger->name }}</span><span> {{ $flag->GetAction() }} </span>
+                                                        <p>
+                                                            {{ $flag->reason }}
+                                                        </p>
+                                                    @endif
+                                                @endif
+                                                <div class=".status-form" data-id="{{ $flag->id }}" data-comment="{{ $comment->id }}">
+                                                    <div class="field">
+                                                        <p class="control">
+                                                            <textarea class="textarea" name="content" placeholder="Add a your reason..."></textarea>
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="field">
+                                                        <p class="control">
+                                                            <button type="button" class="button btn-status-control-change-comment">Require a change</button>
+                                                            <button type="button" class="button btn-status-control-removal-comment">Require a removale</button>
+                                                            <button type="button" class="button btn-status-control-unflag-comment">UnFlag</button>
+                                                            @if(\Auth::user()->isHeadmaster())
+                                                                <button type="button" class="button btn-status-control-remove-comment">Remove</button>
+                                                            @endif
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+
+                                                <div style="margin-left: 2rem; ">
+                                                    @foreach($flag->children as $flag)
+                                                        @if($flag->flagger->isHeadmaster())
+                                                            <span>flagger: </span><span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $flag->flagger->name }}</span> <span> {{ $flag->GetAction() }} </span>
+
+                                                            <p>
+                                                                {{ $flag->reason }}
+                                                            </p>
+
+                                                            
+                                                        @else
+                                                            @if($flag->flagger->isEditor())
+                                                                flagger: <span style="text-shadow: 0px 0px 3px black; color: silver" class="author"> {{ $flag->flagger->name }}</span> <span> {{ $flag->GetAction() }} </span>
+                                                                <p>
+                                                                    {{ $flag->reason }}
+                                                                </p>
+                                                            @else
+                                                                <span class="author">flagger: {{ $flag->flagger->name }}</span><span> {{ $flag->GetAction() }} </span>
+                                                                <p>
+                                                                    {{ $flag->reason }}
+                                                                </p>
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endunless
+                                    @endforeach
                                 </div>
                             </article>
                         @endforeach
@@ -218,7 +325,7 @@
                                             <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
                                         @else
 
-                                            @if((!$post->isFlagged() && $post->isYours()) || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())) )
+                                            @if(!$post->isFlagged() || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor()) && !$post->isYours() ) )
                                                 <a href="{{ action('PostController@edit', $post) }}" class="option-edit">
                                                     <i title="edit this post" class="fa fa-2x fa-edit"></i>
                                                 </a>
@@ -235,7 +342,7 @@
 
                                     @unless($post->author->isHeadmaster())
                                         @unless($post->isFlagged())
-                                            <i class="option-flag-post" data-id="{{ $post->id }}">
+                                            <i class="option-flag">
                                                 <i title="flag this post" class="fa fa-2x fa-flag"></i>
                                             </i>
 
@@ -320,56 +427,12 @@
                             <div class="form-comment-hidden">
                                 @include('partials._create-comment')
                             </div>
-                            <div class="form-flag-hidden" style="display: none;">
-                                @include('partials._create-flag')
-                            </div>
 
                             <div class="comment-box">
                                 @foreach($post->comments as $comment)
-                                    <article class="media box-with-options">
+                                    <article class="media">
                                         <div class="content media-post-comment">
-                                            <div class="box-options-row" data-id="{{ $comment->id }}">
-                                            @unless($post->isLocked())
-                                                @if((!$comment->isFlagged() && $comment->isYours()) || ((\Auth::user()->isHeadMaster() || \Auth::user()->isEditor())) )
-                                                    
-                                                    @if($comment->flags == 3)
-                                                        <i class="fa fa-2x fa-remove" style="color: red" title="this post should be removed"></i>
-                                                    @else
 
-                                                        @if(!$comment->isFlagged() || ((\Auth::user()->isHeadmaster() || \Auth::user()->isEditor() || $comment->isYours()) ) )
-                                                            <i class="option-edit option-edit-comment">
-                                                                <i title="edit this post" class="fa fa-2x fa-edit"></i>
-                                                            </i>
-                                                        @else
-                                                            @if($comment->flags == 2)
-                                                                <i class="option-edit option-edit-comment">
-                                                                    <i title="you should edit this post" class="fa fa-2x fa-edit" style="color: #ff6600"></i>
-                                                                </i>
-                                                            @endif
-                                                        @endif
-
-                                                    @endif
-                                                @endif
-
-                                                @unless($comment->author->isHeadmaster())
-                                                    @unless($comment->isFlagged())
-                                                        <i class="option-flag option-flag-comment">
-                                                            <i title="flag this post" class="fa fa-2x fa-flag"></i>
-                                                        </i>
-                                                    @else
-                                                        @if($comment->flags == 1)
-                                                            <i title="this post is flagged. A moderator will look into this soon." class="fa fa-2x fa-flag" style="color: red"></i>
-                                                        @else
-                                                            @if( !$comment->isYours() && $comment->flags == 2)
-                                                                <i title="this post should be edit by the author, an editor or a headmaster." class="fa fa-2x fa-edit" style="color: yellow"></i>
-                                                            @endif
-                                                        @endif
-                                                    @endunless
-                                                @endunless
-                                            @else
-                                                <i title="This post is locked. You can not comment or answer this post" class="fa fa-2x fa-lock" style="color: red"></i>
-                                            @endunless
-                                        </div>
                                             @if($comment->author->isHeadmaster())
                                                 author: <span style="text-shadow: 0px 0px 3px black; color: gold" class="author"> {{ $comment->author->name }}</span>
                                             @else
@@ -379,6 +442,7 @@
                                                     <span class="author">author: {{ $comment->author->name }}</span>
                                                 @endif
                                             @endif
+
                                             <p>{!! nl2br($comment->content) !!}</p>
                                         </div>
                                     </article>

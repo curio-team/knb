@@ -57,6 +57,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'headmaster' => \App\Http\Middleware\Headmaster::class,
-        'firsttimer'    => \App\Http\Middleware\FirstTimer::class
+        'firsttimer'    => \App\Http\Middleware\FirstTimer::class,
+        'editor' => \App\Http\Middleware\Editor::class
     ];
 }
