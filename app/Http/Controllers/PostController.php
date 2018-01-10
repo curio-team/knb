@@ -93,22 +93,22 @@ class PostController extends Controller
              // get points for an answer but not on your own question
             if ( $post->isAnswer() )
             {
-                // var_dump('and this is a anwser');
-                // die;
+
 
                  // we don't want to assign points when answering your own question.
                 if ( $post->parent->author_id !== \Auth::user()->id )
                 {
                     $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ANSWERED;
-                } else 
+                } else
                 {
                     $type = \App\Point::BENEFACTOR_TYPE_QUESTION_ASKED;
                 }
                     \App\Point::assign(\Auth::user()->id, $type);
                     \Auth::user()->addPoints($type, true);
         //     // assign the points
-                    \DB::commit();
             }
+            \DB::commit();
+
             var_dump('ik vervolg mijn weg en ben tot het einde van de try gekomen');
         } catch( \Exception $e )
         {
@@ -116,7 +116,7 @@ class PostController extends Controller
             return redirect()->back()->with('error', 'error creating post.');
         }
         $warning = false;
-        try 
+        try
         {
 
             if ( $post->isAnswer() )
@@ -125,15 +125,14 @@ class PostController extends Controller
                 \Mail::to($email)
                 ->send(new \App\Mail\PostAnswered($post->parent));
             }
-            
+
         } catch ( \Exception $e )
         {
             $warning = true;
             Log::critical($e);
         }
-        $redirect = $request->has('question_id') ? $request->get('question_id') : $post->id;
 
-        return redirect()->action('PostController@show', $redirect)->with(($warning) ? 'warning' : 'Success', ($warning) ? 'Answer succesfully created, email service is not working' : 'Post succesfully created.');
+        return redirect()->action('PostController@show', $post->id)->with(($warning) ? 'warning' : 'Success', ($warning) ? 'Answer succesfully created, email service is not working' : 'Post succesfully created.');
     }
 
     /**
@@ -368,7 +367,7 @@ class PostController extends Controller
         $user = Auth::user();
         $user->flags()->detach($post->id);
         }
-        
+
         return back();
     }
 
