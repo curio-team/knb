@@ -187,7 +187,7 @@ class ImportController extends Controller
                     $project = strtolower($result->project);
                     $bt1 = intval($result->bt1);
                     $bt2 = intval($result->bt2);
-
+                    $aanwezig = intval($result->aanwezig);
                     $res = [
                         [
                             "pgo" => $pgo,
