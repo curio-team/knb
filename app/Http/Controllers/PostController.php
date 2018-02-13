@@ -179,7 +179,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        if (($post->author->id !== \Auth::user()->id && ($post->flags == 1 || $post->flags == 3 || $post->isLocked())) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor')
+        if (($post->author->id !== \Auth::user()->id || ($post->flags == 1 || $post->flags == 3 || $post->isLocked())) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor')
         {
             return back();
         }
@@ -218,7 +218,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        if (($post->author->id !== \Auth::user()->id && ($post->isLocked() || $post->flags == 1)) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor'){
+        if (($post->author->id !== \Auth::user()->id || ($post->isLocked() || $post->flags == 1 || $post->flags == 3)) && \Auth::user()->type != 'teacher' && \Auth::user()->type != 'editor'){
             return redirect()->back()->with('error', 'Error editing post.: <br>' . $e->getMessage());
         }
 
